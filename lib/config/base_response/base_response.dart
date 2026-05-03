@@ -14,6 +14,5 @@ class ErrorBaseResponse<T> extends BaseResponse<T> {
 
   ErrorBaseResponse({this.error, this.errorMessage});
 
-  String getErrorMessage(BuildContext context) =>
-      handleErrorMessage(context, error);
+  String getErrorMessage(BuildContext context) => handleErrorMessage(error);
 }

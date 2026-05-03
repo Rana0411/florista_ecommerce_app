@@ -2,11 +2,10 @@ import 'dart:async'; // Fixes TimeoutException error
 import 'package:dio/dio.dart';
 import 'package:florista_ecommerce_app/config/base_response/base_response.dart';
 import 'package:florista_ecommerce_app/generated/l10n.dart';
-import 'package:flutter/material.dart';
 
 extension ErrorFilter on ErrorBaseResponse {
-  String handleErrorMessage(BuildContext context, Object? error) {
-    final l10n = S.of(context);
+  String handleErrorMessage(Object? error) {
+    final l10n = S.current;
 
     // 1️⃣ PRIORITY: Extract message from API response
     if (error is DioException) {
