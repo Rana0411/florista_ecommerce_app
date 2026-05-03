@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 class TDarkTheme {
   static ThemeData get darkTheme => ThemeData(
     brightness: Brightness.dark,
-    dialogBackgroundColor: AppColors.grey,
     primaryColor: AppColors.primary,
     elevatedButtonTheme: AppButtonTheme.dark,
     textTheme: AppTextStyles.dark,
