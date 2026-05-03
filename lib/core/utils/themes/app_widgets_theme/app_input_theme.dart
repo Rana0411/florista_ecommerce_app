@@ -55,7 +55,7 @@ class AppInputTheme {
     filled: true,
     fillColor: AppColors.transparent,
     hintStyle: TextStyle(
-      color: AppColors.white,
+      color: AppColors.lightGrey,
       fontSize: 16,
       fontFamily: AppFonts.interFamily,
     ),
