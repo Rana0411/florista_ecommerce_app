@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:florista_ecommerce_app/core/constants/api_endpoints.dart';
+import 'package:florista_ecommerce_app/core/api_endpoints/api_endpoints.dart';
 import 'package:injectable/injectable.dart';
 
 @module

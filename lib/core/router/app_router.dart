@@ -2,6 +2,8 @@ import 'package:florista_ecommerce_app/core/router/route_path.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../feature/ranon.dart';
+
 class AppRouter {
   static final _navigatorKey = GlobalKey<NavigatorState>();
 
@@ -14,7 +16,7 @@ class AppRouter {
     routes: [
       GoRoute(
         path: RoutePath.splash,
-        builder: (context, state) => const Placeholder(),
+        builder: (context, state) => RanaTry(),
       ),
       GoRoute(
         path: RoutePath.login,
