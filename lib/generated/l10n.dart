@@ -113,6 +113,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Failed to save information securely. Please try again.`
+  String get secureStorageErrorMessage {
+    return Intl.message(
+      'Failed to save information securely. Please try again.',
+      name: 'secureStorageErrorMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No value found for key: `
+  String get noValueKeyFound {
+    return Intl.message(
+      'No value found for key: ',
+      name: 'noValueKeyFound',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -4,5 +4,7 @@
     "notFound": "Requested resource not found.",
     "errorMessageGeneric": "Something went wrong. Please try again.",
     "networkError": "Network error. Please check your connection.",
-    "requestTimeout": "Request timed out. Please try again."
+    "requestTimeout": "Request timed out. Please try again.",
+    "secureStorageErrorMessage": "Failed to save information securely. Please try again.",
+    "noValueKeyFound": "No value found for key: "
 }
