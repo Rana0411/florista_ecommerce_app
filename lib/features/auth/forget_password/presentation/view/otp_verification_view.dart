@@ -10,6 +10,6 @@ class OtpVerificationView extends StatefulWidget {
 class _OtpVerificationViewState extends State<OtpVerificationView> {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Email Verification"));
+    return Scaffold(body: Center(child: Text("Email Verification")));
   }
 }

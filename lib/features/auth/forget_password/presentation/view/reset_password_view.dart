@@ -10,6 +10,6 @@ class ResetPasswordView extends StatefulWidget {
 class _ResetPasswordViewState extends State<ResetPasswordView> {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Reset Password"));
+    return Scaffold(body: Center(child: Text("Reset Password")));
   }
 }

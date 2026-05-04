@@ -10,6 +10,6 @@ class ForgetPasswordView extends StatefulWidget {
 class _ForgetPasswordViewState extends State<ForgetPasswordView> {
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Forget Password"));
+    return Scaffold(body: Center(child: Text("Forget Password")));
   }
 }
