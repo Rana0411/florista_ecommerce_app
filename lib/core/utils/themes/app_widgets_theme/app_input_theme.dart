@@ -1,5 +1,5 @@
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
-import 'package:florista_ecommerce_app/core/utils/app_fonts.dart';
+import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
 import 'package:flutter/material.dart';
 
 class AppInputTheme {
