@@ -1,4 +1,10 @@
 import 'package:florista_ecommerce_app/core/router/route_path.dart';
+import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/view/forget_password_view.dart';
+import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/view/otp_verification_view.dart';
+import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/view/reset_password_view.dart';
+import 'package:florista_ecommerce_app/features/auth/login/presentation/view/login_view.dart';
+import 'package:florista_ecommerce_app/features/auth/sign_up/presentation/view/sign_up_view.dart';
+import 'package:florista_ecommerce_app/features/splash/presentation/view/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -10,25 +16,28 @@ class AppRouter {
   static final GoRouter _goRouter = GoRouter(
     navigatorKey: _navigatorKey,
     initialLocation: RoutePath.splash,
-    //TODO: Add the actual screens instead of Placeholder() widgets
     routes: [
       GoRoute(
         path: RoutePath.splash,
-        builder: (context, state) => const Placeholder(),
+        builder: (context, state) => SplashView(),
       ),
-      GoRoute(
-        path: RoutePath.login,
-        builder: (context, state) => const Placeholder(),
-      ),
+      GoRoute(path: RoutePath.login, builder: (context, state) => LoginView()),
       GoRoute(
         path: RoutePath.signup,
-        builder: (context, state) => const Placeholder(),
+        builder: (context, state) => SignUpView(),
       ),
       GoRoute(
         path: RoutePath.forgetPassword,
-        builder: (context, state) => const Placeholder(),
+        builder: (context, state) => ForgetPasswordView(),
       ),
-      //TODO: Use StatefulShellRoute for the home screen and its nested routes
+      GoRoute(
+        path: RoutePath.otpVerification,
+        builder: (context, state) => OtpVerificationView(),
+      ),
+      GoRoute(
+        path: RoutePath.resetPassword,
+        builder: (context, state) => ResetPasswordView(),
+      ),
     ],
   );
 }
