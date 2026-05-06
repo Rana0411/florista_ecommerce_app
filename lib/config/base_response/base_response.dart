@@ -1,18 +1,19 @@
 import 'package:florista_ecommerce_app/config/base_response/error_base_response_extention.dart';
-import 'package:flutter/material.dart';
 
-sealed class BaseResponse<T> {}
+sealed class BaseResponse<T> {
+  const BaseResponse();
+}
 
 class SuccessBaseResponse<T> extends BaseResponse<T> {
-  T data;
-  SuccessBaseResponse({required this.data});
+  final T data;
+  const SuccessBaseResponse({required this.data});
 }
 
 class ErrorBaseResponse<T> extends BaseResponse<T> {
   final Object? error;
   final String? errorMessage;
 
-  ErrorBaseResponse({this.error, this.errorMessage});
+  const ErrorBaseResponse({this.error, this.errorMessage});
 
-  String getErrorMessage(BuildContext context) => handleErrorMessage(error);
+  String getErrorMessage() => handleErrorMessage(error);
 }

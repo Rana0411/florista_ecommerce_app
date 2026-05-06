@@ -2,13 +2,8 @@ import 'package:florista_ecommerce_app/core/router/route_path.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class AppRouter {
-  static final _navigatorKey = GlobalKey<NavigatorState>();
-
-  static GoRouter get router => _goRouter;
-
-  static final GoRouter _goRouter = GoRouter(
-    navigatorKey: _navigatorKey,
+abstract class AppRouter {
+  static final GoRouter goRouter = GoRouter(
     initialLocation: RoutePath.splash,
     //TODO: Add the actual screens instead of Placeholder() widgets
     routes: [

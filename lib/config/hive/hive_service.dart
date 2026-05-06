@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 
 @singleton
 class HiveService {
+  @preResolve
   Future<void> init() async {
     final dir = await getApplicationDocumentsDirectory();
     Hive.init(dir.path);

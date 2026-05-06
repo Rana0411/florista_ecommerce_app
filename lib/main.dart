@@ -5,17 +5,20 @@ import 'package:florista_ecommerce_app/core/utils/themes/dark_theme.dart';
 import 'package:florista_ecommerce_app/core/utils/themes/light_theme.dart';
 import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widget_previews.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await configureDependencies();
-
   final hive = getIt<HiveService>();
   await hive.init();
+  await configureDependencies();
 
   runApp(const MyApp());
 }
+
+@Preview()
+Widget returnWidgetPreview() => MyApp();
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -27,11 +30,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       localizationsDelegates: [S.delegate],
       supportedLocales: S.delegate.supportedLocales,
-      routerConfig: AppRouter.router,
+      routerConfig: AppRouter.goRouter,
       theme: TLightTheme.lightTheme,
       darkTheme: TDarkTheme.darkTheme,
       themeMode: ThemeMode.system,
-
     );
   }
 }

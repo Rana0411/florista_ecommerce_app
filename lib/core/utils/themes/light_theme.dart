@@ -4,7 +4,7 @@ import 'package:florista_ecommerce_app/core/utils/themes/app_widgets_theme/app_i
 import 'package:florista_ecommerce_app/core/utils/themes/app_widgets_theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
-class TLightTheme {
+abstract class TLightTheme {
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     textTheme: AppTextStyles.light,
