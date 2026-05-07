@@ -6,6 +6,7 @@ import '../../data/models/sign_up_dto.dart';
 
 part 'sign_up_api_client.g.dart';
 
+
 @RestApi()
 @singleton
 abstract class SignUpApiClient {

@@ -10,4 +10,5 @@ class UserEntity {
     required this.token,
     required this.message,
   });
+
 }

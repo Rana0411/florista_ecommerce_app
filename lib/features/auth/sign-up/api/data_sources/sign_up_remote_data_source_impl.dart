@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:florista_ecommerce_app/config/base_response/base_response.dart';
 import 'package:injectable/injectable.dart';
-
 import '../../data/data_souurces/login_up_remote_data_source_contract.dart';
 import '../../data/models/sign_up_dto.dart';
 import '../sign_up_api_client/sign_up_api_client.dart';

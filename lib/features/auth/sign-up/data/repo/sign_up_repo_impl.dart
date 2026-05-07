@@ -18,6 +18,7 @@ class SignUpRepoImpl implements SignUpRepoContract {
     required String password,
     required String rePassword,
     required String phone,
+
   }) async {
     final response = await remoteDataSource.signUp(
       name: name,

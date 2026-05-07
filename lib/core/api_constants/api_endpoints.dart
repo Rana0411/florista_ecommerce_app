@@ -4,4 +4,5 @@ abstract class ApiEndpoints {
   static const String _baseUrl = BaseUrls.flowerAppBaseURl;
   static const String signUp = BaseUrls.flowerSignUP;
 
+
 }

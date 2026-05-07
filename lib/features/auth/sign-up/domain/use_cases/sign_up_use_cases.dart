@@ -25,4 +25,5 @@ class SignUpUseCases {
       phone: phone,
     );
   }
+
 }
