@@ -16,5 +16,16 @@
     "invalidCode": "Invalid code",
     "enterValidEgyptianPhoneNumber": "Enter a valid Egyptian phone number",
     "mustBeAtLeast3Characters": "Must be at least 3 characters",
-    "onlyLettersAllowed": "Only letters allowed"
+    "onlyLettersAllowed": "Only letters allowed",
+     "login": "Login",
+      "forgetPassword": "Forgot Password",
+      "dontHaveAccount": "Don't have an account?",
+      "signUp": "Sign Up",
+      "continueAsGuest": "Continue as Guest",
+      "rememberMe": "Remember me",
+      "enterYourEmail": "Enter your email",
+      "enterYourPassword": "Enter your password",
+      "email": "Email",
+      "password": "Password",
+      "splashTagline": "Fresh flowers, delivered with love."
 }
