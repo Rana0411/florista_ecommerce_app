@@ -12,6 +12,7 @@ class SignUpRemoteDataSourceImpl
 
   SignUpRemoteDataSourceImpl(this.apiClient);
 
+
   @override
   Future<BaseResponse<SignUpDto>> signUp({
     required String name,
