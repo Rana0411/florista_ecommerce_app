@@ -11,19 +11,22 @@ class SignUpUseCases {
   SignUpUseCases(this.repo);
 
   Future<BaseResponse<UserEntity>> call({
-    required String name,
+    required String firstName,
+    required String lastName,
     required String email,
     required String password,
     required String rePassword,
     required String phone,
-  }) {
-    return repo.signUp(
-      name: name,
+    required String gender,
+  }) async {
+    return await repo.signUp(
+      firstName: firstName,
+      lastName: lastName,
       email: email,
       password: password,
       rePassword: rePassword,
       phone: phone,
+      gender: gender,
     );
   }
-
 }

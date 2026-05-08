@@ -2,6 +2,8 @@ import 'package:florista_ecommerce_app/core/router/route_path.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/auth/sign-up/presentation/screens/sign_up_screen.dart';
+
 class AppRouter {
   static final _navigatorKey = GlobalKey<NavigatorState>();
 
@@ -9,8 +11,7 @@ class AppRouter {
 
   static final GoRouter _goRouter = GoRouter(
     navigatorKey: _navigatorKey,
-    initialLocation: RoutePath.splash,
-    //TODO: Add the actual screens instead of Placeholder() widgets
+    initialLocation: RoutePath.signup,
     routes: [
       GoRoute(
         path: RoutePath.splash,
@@ -22,7 +23,7 @@ class AppRouter {
       ),
       GoRoute(
         path: RoutePath.signup,
-        builder: (context, state) => const Placeholder(),
+        builder: (context, state) => const SignUpScreen(),
       ),
       GoRoute(
         path: RoutePath.forgetPassword,

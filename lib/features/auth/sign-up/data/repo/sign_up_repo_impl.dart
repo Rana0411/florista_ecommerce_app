@@ -13,19 +13,22 @@ class SignUpRepoImpl implements SignUpRepoContract {
 
   @override
   Future<BaseResponse<UserEntity>> signUp({
-    required String name,
+    required String firstName,
+    required String lastName,
     required String email,
     required String password,
     required String rePassword,
     required String phone,
-
+    required String gender,
   }) async {
     final response = await remoteDataSource.signUp(
-      name: name,
+      firstName: firstName,
+      lastName: lastName,
       email: email,
       password: password,
       rePassword: rePassword,
       phone: phone,
+      gender: gender,
     );
 
     switch (response) {
