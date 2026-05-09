@@ -47,6 +47,8 @@ dependencies:
   equatable: ^2.0.8
   flutter_localizations:
     sdk: flutter
+  json_annotation: ^4.9.0
+
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +66,8 @@ dev_dependencies:
   flutter_launcher_icons: ^0.14.4
   hive_ce_generator: ^1.11.1
   intl_utils: ^2.8.7
+  json_serializable: ^6.10.0
+
 
 flutter_launcher_icons:
   android: true
