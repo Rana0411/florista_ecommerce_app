@@ -72,5 +72,24 @@ class MessageLookup extends MessageLookupByLibrary {
     "serverError": MessageLookupByLibrary.simpleMessage(
       "Server error. Please try again later.",
     ),
+    "login": MessageLookupByLibrary.simpleMessage("Login"),
+    "forgetPassword": MessageLookupByLibrary.simpleMessage("Forgot Password"),
+    "dontHaveAccount": MessageLookupByLibrary.simpleMessage(
+      "Don't have an account?",
+    ),
+    "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
+    "continueAsGuest": MessageLookupByLibrary.simpleMessage(
+      "Continue as Guest",
+    ),
+    "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
+    "enterYourEmail": MessageLookupByLibrary.simpleMessage("Enter your email"),
+    "enterYourPassword": MessageLookupByLibrary.simpleMessage(
+      "Enter your password",
+    ),
+    "email": MessageLookupByLibrary.simpleMessage("Email"),
+    "password": MessageLookupByLibrary.simpleMessage("Password"),
+
+    'splashTagline': MessageLookupByLibrary.simpleMessage(
+        'Fresh flowers, delivered with love.'),
   };
 }
