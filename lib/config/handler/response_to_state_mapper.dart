@@ -1,7 +1,7 @@
 import 'package:florista_ecommerce_app/config/base_response/base_response.dart';
 import 'package:florista_ecommerce_app/config/base_state/base_state.dart';
 
-class ResponseHandler {
+abstract class ResponseToStateMapper {
   static BaseState<T> handle<T>(BaseResponse<T> response) {
     switch (response) {
       case SuccessBaseResponse<T>():

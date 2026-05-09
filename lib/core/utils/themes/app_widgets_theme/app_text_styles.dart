@@ -2,7 +2,7 @@ import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
 import 'package:flutter/material.dart';
 import '../../app_colors.dart';
 
-class AppTextStyles {
+abstract class AppTextStyles {
   static final light = TextTheme(
     headlineMedium: TextStyle(
       fontSize: 22,

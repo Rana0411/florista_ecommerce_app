@@ -27,11 +27,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       localizationsDelegates: [S.delegate],
       supportedLocales: S.delegate.supportedLocales,
-      routerConfig: AppRouter.router,
+      routerConfig: AppRouter.goRouter,
       theme: TLightTheme.lightTheme,
       darkTheme: TDarkTheme.darkTheme,
       themeMode: ThemeMode.system,
-
     );
   }
 }

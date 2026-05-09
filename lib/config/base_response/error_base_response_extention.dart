@@ -1,4 +1,4 @@
-import 'dart:async'; // Fixes TimeoutException error
+import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:florista_ecommerce_app/config/base_response/base_response.dart';
 import 'package:florista_ecommerce_app/generated/l10n.dart';
@@ -19,7 +19,8 @@ extension ErrorFilter on ErrorBaseResponse {
       }
     }
 
-    // 2️⃣ FALLBACK: DioException type-based messages
+
+
     if (error is DioException) {
       switch (error.type) {
         case DioExceptionType.connectionTimeout:
