@@ -1,6 +1,14 @@
 import 'package:florista_ecommerce_app/core/router/route_path.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:go_router/go_router.dart';
+
+import '../../config/di/di.dart';
+import '../../features/auth/login/presentation/screen/login_screen.dart';
+import '../../features/auth/login/presentation/screen/login_screen.dart';
+import '../../features/auth/login/presentation/view/login_screen.dart';
+import '../../features/splash_screen/splash_screen.dart';
 
 abstract class AppRouter {
   static final GoRouter goRouter = GoRouter(
@@ -9,11 +17,15 @@ abstract class AppRouter {
     routes: [
       GoRoute(
         path: RoutePath.splash,
-        builder: (context, state) => const Placeholder(),
+        builder: (context, state) => const SplashScreen(),
       ),
+
       GoRoute(
         path: RoutePath.login,
-        builder: (context, state) => const Placeholder(),
+        builder: (context, state) => BlocProvider(
+          create: (_) => getIt<LoginCubit>(),
+          child: const LoginScreen(),
+        ),
       ),
       GoRoute(
         path: RoutePath.signup,

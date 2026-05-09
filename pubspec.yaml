@@ -31,6 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flutter_bloc: ^8.1.6
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
@@ -46,6 +47,8 @@ dependencies:
   flutter_secure_storage: ^10.0.0
   equatable: ^2.0.8
   pretty_dio_logger: ^1.4.0
+  bloc_test: ^9.1.7
+  mocktail: ^1.0.4
 
 dev_dependencies:
   flutter_test:
@@ -90,6 +93,8 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+  assets:
+    - assets/icons/florista.png
   fonts:
     - family: Inter
       fonts:
