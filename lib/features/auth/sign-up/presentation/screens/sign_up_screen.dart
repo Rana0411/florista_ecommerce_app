@@ -3,6 +3,7 @@ import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../config/text_field_validator.dart';
 import '../../../../../generated/l10n.dart';
 import '../view_model/sign_up_view_model.dart';
 
@@ -44,20 +45,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   void _onSignUp(BuildContext context) {
+    if (gender.isEmpty) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Please select gender')));
+      return;
+    }
+
     if (_formKey.currentState!.validate()) {
       context.read<SignUpViewModel>().signUp(
         firstName: firstNameController.text.trim(),
-
         lastName: lastNameController.text.trim(),
-
         email: emailController.text.trim(),
-
         password: passwordController.text.trim(),
-
         rePassword: confirmPasswordController.text.trim(),
-
         phone: phoneController.text.trim(),
-
         gender: gender,
       );
     }
@@ -104,14 +106,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                 icon: Icon(
                   Icons.arrow_back_ios,
-
                   color: textTheme.bodyMedium?.color,
                 ),
               ),
 
               title: Text(
                 S.of(context).signUp,
-
                 style: textTheme.headlineMedium,
               ),
             ),
@@ -139,6 +139,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               label: S.of(context).firstName,
 
                               hint: S.of(context).enterFirstName,
+
+                              validator: AppValidator.validateName,
                             ),
                           ),
 
@@ -151,6 +153,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               label: S.of(context).lastName,
 
                               hint: S.of(context).enterLastName,
+
+                              validator: AppValidator.validateName,
                             ),
                           ),
                         ],
@@ -166,6 +170,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         hint: S.of(context).enterYourEmail,
 
                         keyboardType: TextInputType.emailAddress,
+
+                        validator: AppValidator.validateEmail,
                       ),
 
                       const SizedBox(height: 18),
@@ -181,6 +187,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               hint: S.of(context).enterPassword,
 
                               isPassword: true,
+
+                              validator: AppValidator.validatePassword,
                             ),
                           ),
 
@@ -195,6 +203,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               hint: S.of(context).confirmPassword,
 
                               isPassword: true,
+
+                              validator: (value) {
+                                return AppValidator.validateConfirmPassword(
+                                  value,
+                                  passwordController.text,
+                                );
+                              },
                             ),
                           ),
                         ],
@@ -210,6 +225,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         hint: S.of(context).enterPhoneNumber,
 
                         keyboardType: TextInputType.phone,
+
+                        validator: AppValidator.validatePhone,
                       ),
 
                       const SizedBox(height: 28),
@@ -295,7 +312,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                       SizedBox(
                         width: double.infinity,
-
                         height: 56,
 
                         child: ElevatedButton(
@@ -306,12 +322,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           child: isLoading
                               ? const SizedBox(
                                   width: 22,
-
                                   height: 22,
 
                                   child: CircularProgressIndicator(
                                     strokeWidth: 2,
-
                                     color: Colors.white,
                                   ),
                                 )
@@ -359,21 +373,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   Widget _buildTextField({
     required TextEditingController controller,
-
     required String label,
-
     required String hint,
-
     bool isPassword = false,
-
     TextInputType keyboardType = TextInputType.text,
+    String? Function(String?)? validator,
   }) {
     return TextFormField(
       controller: controller,
-
       obscureText: isPassword,
-
       keyboardType: keyboardType,
+      validator: validator,
 
       decoration: InputDecoration(labelText: label, hintText: hint),
     );
