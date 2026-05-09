@@ -1,11 +1,13 @@
 import 'package:florista_ecommerce_app/config/base_response/base_response.dart';
 import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:injectable/injectable.dart';
 
-abstract class SecureStorageService {
-  static const FlutterSecureStorage _storage = FlutterSecureStorage();
+@singleton
+class SecureStorageService {
+  final FlutterSecureStorage _storage = FlutterSecureStorage();
 
-  static Future<BaseResponse<String>> write({
+  Future<BaseResponse<String>> write({
     required String key,
     required String value,
   }) async {
@@ -19,7 +21,7 @@ abstract class SecureStorageService {
     }
   }
 
-  static Future<BaseResponse<String>> read({required String key}) async {
+  Future<BaseResponse<String>> read({required String key}) async {
     try {
       final value = await _storage.read(key: key);
 
@@ -37,7 +39,7 @@ abstract class SecureStorageService {
     }
   }
 
-  static Future<BaseResponse<bool>> delete({required String key}) async {
+  Future<BaseResponse<bool>> delete({required String key}) async {
     try {
       await _storage.delete(key: key);
       return SuccessBaseResponse(data: true);
@@ -48,7 +50,7 @@ abstract class SecureStorageService {
     }
   }
 
-  static Future<BaseResponse<bool>> deleteAll() async {
+  Future<BaseResponse<bool>> deleteAll() async {
     try {
       await _storage.deleteAll();
       return SuccessBaseResponse(data: true);

@@ -1,7 +1,7 @@
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class CustomAppBarTheme {
+abstract class CustomAppBarTheme {
   static final light = AppBarTheme(
     backgroundColor: AppColors.transparent,
     foregroundColor: AppColors.black,
