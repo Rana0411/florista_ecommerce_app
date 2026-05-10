@@ -2,14 +2,14 @@ import 'package:florista_ecommerce_app/config/text_field_validator.dart';
 import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
-class ResetPasswordScreen  extends StatefulWidget {
-  const ResetPasswordScreen({super.key});
+class ResetPasswordView  extends StatefulWidget {
+  const ResetPasswordView({super.key});
 
   @override
-  State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
+  State<ResetPasswordView> createState() => _ResetPasswordViewState();
 }
 
-class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
+class _ResetPasswordViewState extends State<ResetPasswordView> {
   final _formKey = GlobalKey<FormState>();
   final _passwordController = TextEditingController(text: '');
   final _confirmPasswordController =  TextEditingController(text: '');
@@ -45,7 +45,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               ),
               SizedBox(height: 15),
               Text(
-                S.of(context).enterEmailAssociatedToAccount,
+                S.of(context).passwordMustBeAtLeastCharacters,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
@@ -62,7 +62,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               TextFormField(
                 controller: _confirmPasswordController,
                 decoration: InputDecoration(
-                  labelText: S.of(context).password,
+                  labelText: S.of(context).confirmPassword,
                   hintText: S.of(context).confirmPassword,
                 ),
                 validator: AppValidator.validateEmail,

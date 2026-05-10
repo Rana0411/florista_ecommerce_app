@@ -17,7 +17,7 @@ class ForgetPasswordDataSourceImpl implements ForgetPasswordDataSourceContract {
     Map<String, dynamic> body,
   ) async {
     try {
-      final response = await forgetPasswordApiClient.forgetPassword(body);
+      final response = await forgetPasswordApiClient.forgetPassword(body: body);
 
       return SuccessBaseResponse<ForgetPasswordResponse>(data: response);
     } catch (e) {
@@ -42,4 +42,66 @@ class ForgetPasswordDataSourceImpl implements ForgetPasswordDataSourceContract {
       );
     }
   }
+
+  @override
+  Future<BaseResponse<ForgetPasswordResponse>> resetPassword(
+      Map<String, dynamic> body,
+      ) async {
+    try {
+      final response = await forgetPasswordApiClient.forgetPassword(body: body);
+
+      return SuccessBaseResponse<ForgetPasswordResponse>(data: response);
+    } catch (e) {
+      if (e is DioException) {
+        final data = e.response?.data;
+        final messageFromApi = (data is Map<String, dynamic>)
+            ? data['message']?.toString()
+            : null;
+        return ErrorBaseResponse<ForgetPasswordResponse>(
+          errorMessage:
+          messageFromApi ??
+              e.message ??
+              "Something went wrong. Please try again later.",
+        );
+      } else if (e is TimeoutException) {
+        return ErrorBaseResponse<ForgetPasswordResponse>(
+          errorMessage: "Request timed out. Please try again later.",
+        );
+      }
+      return ErrorBaseResponse<ForgetPasswordResponse>(
+        errorMessage: "Something went wrong. Please try again later.",
+      );
+    }
+  }
+
+  @override
+  Future<BaseResponse<ForgetPasswordResponse>> confirmValidationCode(Map<String, dynamic> body) async{
+    try {
+      final response = await forgetPasswordApiClient.forgetPassword(body: body);
+
+      return SuccessBaseResponse<ForgetPasswordResponse>(data: response);
+    } catch (e) {
+      if (e is DioException) {
+        final data = e.response?.data;
+        final messageFromApi = (data is Map<String, dynamic>)
+            ? data['message']?.toString()
+            : null;
+        return ErrorBaseResponse<ForgetPasswordResponse>(
+          errorMessage:
+          messageFromApi ??
+              e.message ??
+              "Something went wrong. Please try again later.",
+        );
+      } else if (e is TimeoutException) {
+        return ErrorBaseResponse<ForgetPasswordResponse>(
+          errorMessage: "Request timed out. Please try again later.",
+        );
+      }
+      return ErrorBaseResponse<ForgetPasswordResponse>(
+        errorMessage: "Something went wrong. Please try again later.",
+      );
+    }
+  }
+
+
 }

@@ -1,66 +1,61 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pinput/pinput.dart';
 
-class ValidationCodeForm extends StatefulWidget {
-  const ValidationCodeForm({super.key});
+class ValidationCodeForm extends StatelessWidget {
+  final TextEditingController controller;
+  final void Function(String)? onCompleted;
 
-  @override
-  State<ValidationCodeForm> createState() => _ValidationCodeFormState();
-}
-
-class _ValidationCodeFormState extends State<ValidationCodeForm> {
-  final List<FocusNode> _focusNodes = List.generate(4, (index) => FocusNode());
-  final List<TextEditingController> _controllers =
-      List.generate(4, (index) => TextEditingController());
-
-  @override
-  void dispose() {
-    for (var node in _focusNodes) {
-      node.dispose();
-    }
-    for (var controller in _controllers) {
-      controller.dispose();
-    }
-    super.dispose();
-  }
+  const ValidationCodeForm({
+    super.key,
+    required this.controller,
+    this.onCompleted,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: List.generate(
-          4,
-          (index) => SizedBox(
-            height: 68,
-            width: 64,
-            child: TextFormField(
-              controller: _controllers[index],
-              focusNode: _focusNodes[index],
-              onChanged: (value) {
-                if (value.length == 1 && index < 3) {
-                  _focusNodes[index + 1].requestFocus();
-                }
-                if (value.isEmpty && index > 0) {
-                  _focusNodes[index - 1].requestFocus();
-                }
-              },
-              style: Theme.of(context).textTheme.headlineMedium,
-              keyboardType: TextInputType.number,
-              textAlign: TextAlign.center,
-              inputFormatters: [
-                LengthLimitingTextInputFormatter(1),
-                FilteringTextInputFormatter.digitsOnly,
-              ],
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-            ),
+    final defaultPinTheme = PinTheme(
+      width: 64,
+      height: 68,
+      textStyle: Theme.of(context).textTheme.headlineMedium?.copyWith(
+            fontWeight: FontWeight.bold,
           ),
-        ),
+      decoration: BoxDecoration(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.grey.shade300),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 5),
+          ),
+        ],
       ),
+    );
+
+    final focusedPinTheme = defaultPinTheme.copyDecorationWith(
+      border: Border.all(color: Theme.of(context).primaryColor, width: 2),
+      borderRadius: BorderRadius.circular(12),
+    );
+
+    final submittedPinTheme = defaultPinTheme.copyWith(
+      decoration: defaultPinTheme.decoration?.copyWith(
+        color: Theme.of(context).scaffoldBackgroundColor,
+      ),
+    );
+
+    return Pinput(
+      length: 6,
+      controller: controller,
+      defaultPinTheme: defaultPinTheme,
+      focusedPinTheme: focusedPinTheme,
+      submittedPinTheme: submittedPinTheme,
+      showCursor: true,
+      inputFormatters: [
+        FilteringTextInputFormatter.digitsOnly,
+      ],
+      onCompleted: onCompleted,
     );
   }
 }

@@ -2,7 +2,9 @@ import 'package:florista_ecommerce_app/config/base_response/base_response.dart';
 import 'package:florista_ecommerce_app/features/auth/forget_password/data/data_source/forget_password_data_source_contract.dart';
 import 'package:florista_ecommerce_app/features/auth/forget_password/data/models/responses/forget_password_response.dart';
 import 'package:florista_ecommerce_app/features/auth/forget_password/domain/repo/forget_password_repo_contract.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable(as:ForgetPasswordRepoContract )
 class ForgetPasswordRepoImpl implements ForgetPasswordRepoContract {
   final ForgetPasswordDataSourceContract forgetPasswordDataSource;
 
@@ -13,6 +15,33 @@ class ForgetPasswordRepoImpl implements ForgetPasswordRepoContract {
     Map<String, dynamic> body,
   ) async {
     final response = await forgetPasswordDataSource.forgetPassword(body);
+    switch (response) {
+      case SuccessBaseResponse():
+        return SuccessBaseResponse(data: response.data);
+      case ErrorBaseResponse():
+        return ErrorBaseResponse(errorMessage: response.errorMessage);
+    }
+  }
+
+  @override
+  Future<BaseResponse<ForgetPasswordResponse>> confirmValidationCode(
+    Map<String, dynamic> body,
+  ) async {
+    final response = await forgetPasswordDataSource.confirmValidationCode(body);
+    switch (response) {
+      case SuccessBaseResponse():
+        return SuccessBaseResponse(data: response.data);
+      case ErrorBaseResponse():
+        return ErrorBaseResponse(errorMessage: response.errorMessage);
+    }
+    ;
+  }
+
+  @override
+  Future<BaseResponse<ForgetPasswordResponse>> resetPassword(
+    Map<String, dynamic> body,
+  ) async {
+    final response = await forgetPasswordDataSource.resetPassword(body);
     switch (response) {
       case SuccessBaseResponse():
         return SuccessBaseResponse(data: response.data);

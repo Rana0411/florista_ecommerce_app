@@ -14,6 +14,19 @@ abstract class ForgetPasswordApiClient {
 
   @POST(ApiEndpoints.forgetPassword)
   Future<ForgetPasswordResponse> forgetPassword(
-      @Body() Map<String, dynamic> body,
-      );
+      {
+    @Body() required Map<String, dynamic> body,
+  });
+
+
+  @POST(ApiEndpoints.verifyResetCode)
+  Future<ForgetPasswordResponse> confirmValidationCode({
+    @Body()  required Map<String, dynamic> body,
+
+  });
+
+  @PUT(ApiEndpoints.resetPassword)
+  Future<ForgetPasswordResponse> resetPassword({
+    @Body() required Map<String, dynamic> resetPassDto,
+  });
 }

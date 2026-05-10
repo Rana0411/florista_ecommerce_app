@@ -5,4 +5,8 @@ import 'package:florista_ecommerce_app/features/auth/forget_password/data/models
 abstract class ForgetPasswordRepoContract {
 
   Future<BaseResponse<ForgetPasswordResponse>> forgetPassword(Map<String, dynamic> body);
+  Future<BaseResponse<ForgetPasswordResponse>> resetPassword(Map<String, dynamic> body);
+  Future<BaseResponse<ForgetPasswordResponse>> confirmValidationCode(Map<String, dynamic> body);
 }
+
+

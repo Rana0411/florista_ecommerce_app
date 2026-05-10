@@ -4,14 +4,14 @@ import 'package:florista_ecommerce_app/features/auth/forget_password/domain/repo
 import 'package:injectable/injectable.dart';
 
 @injectable
-class ForgetPasswordUseCase {
+class VerifyCodeUseCase {
   final ForgetPasswordRepoContract forgetPasswordRepo;
 
-  ForgetPasswordUseCase({required this.forgetPasswordRepo});
+  VerifyCodeUseCase({required this.forgetPasswordRepo});
 
   Future<BaseResponse<ForgetPasswordResponse>> call(
     Map<String, dynamic> body,
   ) async {
-    return await forgetPasswordRepo.forgetPassword(body);
+    return await forgetPasswordRepo.resetPassword(body);
   }
 }
