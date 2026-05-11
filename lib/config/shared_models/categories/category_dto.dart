@@ -1,3 +1,4 @@
+import 'package:florista_ecommerce_app/features/home/domain/entities/category_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'category_dto.g.dart';
@@ -36,4 +37,7 @@ class CategoryDto {
       _$CategoryDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$CategoryDtoToJson(this);
+
+  CategoryEntity toHomeDomain() =>
+      CategoryEntity(id: id, name: name, image: image);
 }
