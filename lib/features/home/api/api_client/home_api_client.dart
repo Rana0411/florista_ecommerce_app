@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:florista_ecommerce_app/config/shared_models/best_seller/best_seller_response.dart';
 import 'package:florista_ecommerce_app/config/shared_models/categories/categories_response.dart';
 import 'package:florista_ecommerce_app/core/api_constants/api_endpoints.dart';
 import 'package:injectable/injectable.dart';
@@ -15,4 +16,7 @@ abstract class HomeApiClient {
 
   @GET(ApiEndpoints.categories)
   Future<CategoriesResponse> getAllCategories();
+
+  @GET(ApiEndpoints.bestSeller)
+  Future<BestSellerResponse> getAllBestSeller();
 }

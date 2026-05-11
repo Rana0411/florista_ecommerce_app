@@ -10,6 +10,6 @@ class GetAllCategoriesUseCase {
   GetAllCategoriesUseCase({required this.homeRepoContract});
 
   Future<BaseResponse<List<CategoryEntity>>> call() async {
-    return homeRepoContract.getAllCategories();
+    return await homeRepoContract.getAllCategories();
   }
 }
