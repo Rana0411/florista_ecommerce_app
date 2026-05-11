@@ -1,5 +1,5 @@
-import 'package:florista_ecommerce_app/core/shared_widgets/shimmer_tab_bar.dart';
-import 'package:florista_ecommerce_app/core/shared_widgets/tab_indicator_painter.dart';
+import 'package:florista_ecommerce_app/core/shared_widgets/tab_bar/shimmer_tab_bar.dart';
+import 'package:florista_ecommerce_app/core/shared_widgets/tab_bar/tab_indicator_painter.dart';
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
 import 'package:flutter/material.dart';

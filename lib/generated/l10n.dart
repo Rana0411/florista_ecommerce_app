@@ -19,8 +19,8 @@ class S {
 
   static S get current {
     assert(
-    _current != null,
-    'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
+      _current != null,
+      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
     );
     return _current!;
   }
@@ -44,8 +44,8 @@ class S {
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
     assert(
-    instance != null,
-    'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
+      instance != null,
+      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
     );
     return instance!;
   }
@@ -129,6 +129,146 @@ class S {
     return Intl.message(
       'No value found for key: ',
       name: 'noValueKeyFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `First name`
+  String get firstName {
+    return Intl.message('First name', name: 'firstName', desc: '', args: []);
+  }
+
+  /// `Enter first name`
+  String get enterFirstName {
+    return Intl.message(
+      'Enter first name',
+      name: 'enterFirstName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last name`
+  String get lastName {
+    return Intl.message('Last name', name: 'lastName', desc: '', args: []);
+  }
+
+  /// `Enter last name`
+  String get enterLastName {
+    return Intl.message(
+      'Enter last name',
+      name: 'enterLastName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get email {
+    return Intl.message('Email', name: 'email', desc: '', args: []);
+  }
+
+  /// `Enter your email`
+  String get enterYourEmail {
+    return Intl.message(
+      'Enter your email',
+      name: 'enterYourEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message('Password', name: 'password', desc: '', args: []);
+  }
+
+  /// `Enter Password`
+  String get enterPassword {
+    return Intl.message(
+      'Enter Password',
+      name: 'enterPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone number`
+  String get phoneNumber {
+    return Intl.message(
+      'Phone number',
+      name: 'phoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter phone number`
+  String get enterPhoneNumber {
+    return Intl.message(
+      'Enter phone number',
+      name: 'enterPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gender`
+  String get gender {
+    return Intl.message('Gender', name: 'gender', desc: '', args: []);
+  }
+
+  /// `Female`
+  String get female {
+    return Intl.message('Female', name: 'female', desc: '', args: []);
+  }
+
+  /// `Male`
+  String get male {
+    return Intl.message('Male', name: 'male', desc: '', args: []);
+  }
+
+  /// `Creating an account, you agree to our`
+  String get creatingAnAccountYouAgreeToOur {
+    return Intl.message(
+      'Creating an account, you agree to our',
+      name: 'creatingAnAccountYouAgreeToOur',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms & Conditions`
+  String get termsConditions {
+    return Intl.message(
+      'Terms & Conditions',
+      name: 'termsConditions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Already have an account?`
+  String get alreadyHaveAnAccount {
+    return Intl.message(
+      'Already have an account?',
+      name: 'alreadyHaveAnAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login`
+  String get login {
+    return Intl.message('Login', name: 'login', desc: '', args: []);
+  }
+
+  /// `Sign up success`
+  String get signUpSuccess {
+    return Intl.message(
+      'Sign up success',
+      name: 'signUpSuccess',
       desc: '',
       args: [],
     );
@@ -234,16 +374,6 @@ class S {
     );
   }
 
-  /// `Login`
-  String get login {
-    return Intl.message(
-      'Login',
-      name: 'login',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Forgot Password`
   String get forgetPassword {
     return Intl.message(
@@ -266,12 +396,7 @@ class S {
 
   /// `Sign Up`
   String get signUp {
-    return Intl.message(
-      'Sign Up',
-      name: 'signUp',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Sign Up', name: 'signUp', desc: '', args: []);
   }
 
   /// `Continue as Guest`
@@ -286,22 +411,7 @@ class S {
 
   /// `Remember me`
   String get rememberMe {
-    return Intl.message(
-      'Remember me',
-      name: 'rememberMe',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Enter your email`
-  String get enterYourEmail {
-    return Intl.message(
-      'Enter your email',
-      name: 'enterYourEmail',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Remember me', name: 'rememberMe', desc: '', args: []);
   }
 
   /// `Enter your password`
@@ -314,25 +424,7 @@ class S {
     );
   }
 
-  /// `Email`
-  String get email {
-    return Intl.message(
-      'Email',
-      name: 'email',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Password`
-  String get password {
-    return Intl.message(
-      'Password',
-      name: 'password',
-      desc: '',
-      args: [],
-    );
-  }
+  /// `Fresh flowers, delivered with love.`
   String get splashTagline {
     return Intl.message(
       'Fresh flowers, delivered with love.',
@@ -340,6 +432,16 @@ class S {
       desc: '',
       args: [],
     );
+  }
+
+  /// `Add to cart`
+  String get addToCart {
+    return Intl.message('Add to cart', name: 'addToCart', desc: '', args: []);
+  }
+
+  /// `EGB`
+  String get EGB {
+    return Intl.message('EGB', name: 'EGB', desc: '', args: []);
   }
 }
 
