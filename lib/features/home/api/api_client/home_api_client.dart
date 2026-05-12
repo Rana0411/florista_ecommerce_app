@@ -4,6 +4,7 @@ import 'package:florista_ecommerce_app/config/shared_models/best_seller/best_sel
 import 'package:florista_ecommerce_app/config/shared_models/categories/categories_response.dart';
 import 'package:florista_ecommerce_app/config/shared_models/occasions/occasions_response.dart';
 import 'package:florista_ecommerce_app/core/api_constants/api_endpoints.dart';
+import 'package:florista_ecommerce_app/core/app_keys/api_keys.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
@@ -27,6 +28,6 @@ abstract class HomeApiClient {
 
   @GET(ApiEndpoints.addresses)
   Future<AddressesResponse> getLoggedUserAddresses({
-    @Header('Authorization') required String token,
+    @Header(ApiKeys.authorization) required String token,
   });
 }
