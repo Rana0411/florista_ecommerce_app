@@ -11,14 +11,14 @@ void main() {
     await configureDependencies();
     useCase = getIt.get<GetAllBestSellerUseCase>();
   });
-  test('Test GetAllCategories', () async {
-    final categories = useCase.call();
-    switch (categories) {
+  test('Test GetAllBestSeller', () async {
+    final bestSeller = await useCase.call();
+    switch (bestSeller) {
       case SuccessBaseResponse<List<BestSellerEntity>>():
-        expect(categories, isA<SuccessBaseResponse<List<BestSellerEntity>>>());
+        expect(bestSeller, isA<SuccessBaseResponse<List<BestSellerEntity>>>());
         break;
       case ErrorBaseResponse<List<BestSellerEntity>>():
-        expect(categories, isA<ErrorBaseResponse<List<BestSellerEntity>>>());
+        expect(bestSeller, isA<ErrorBaseResponse<List<BestSellerEntity>>>());
         break;
     }
   });

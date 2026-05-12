@@ -12,7 +12,7 @@ void main() {
     useCase = getIt.get<GetAllCategoriesUseCase>();
   });
   test('Test GetAllCategories', () async {
-    final categories = useCase.call();
+    final categories = await useCase.call();
     switch (categories) {
       case SuccessBaseResponse<List<CategoryEntity>>():
         expect(categories, isA<SuccessBaseResponse<List<CategoryEntity>>>());
