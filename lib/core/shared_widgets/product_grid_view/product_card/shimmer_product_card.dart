@@ -10,9 +10,11 @@ class ProductCardShimmer extends StatelessWidget {
     return AppShimmer(
       child: Container(
         padding: const EdgeInsets.all(10),
+
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(18),
-          color: AppColors.white,
+            border: Border.all(color: AppColors.grey),
+
+            borderRadius: BorderRadius.circular(18)
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,19 +23,21 @@ class ProductCardShimmer extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Colors.grey,
+                  color: AppColors.lightGrey,
                   borderRadius: BorderRadius.circular(14),
+                  border: Border.all(color: AppColors.grey),
+
                 ),
               ),
             ),
 
             const SizedBox(height: 10),
 
-            Container(height: 14, width: 100, color: AppColors.grey),
+            Container(height: 14, width: 100, color: AppColors.primary),
 
             const SizedBox(height: 10),
 
-            Container(height: 14, width: 140, color: AppColors.grey),
+            Container(height: 14, width: 140, color: AppColors.white),
 
             const SizedBox(height: 12),
 
@@ -41,7 +45,7 @@ class ProductCardShimmer extends StatelessWidget {
               height: 44,
               width: double.infinity,
               decoration: BoxDecoration(
-                color: AppColors.grey,
+                color: AppColors.white,
                 borderRadius: BorderRadius.circular(30),
               ),
             ),
