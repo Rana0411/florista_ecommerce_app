@@ -1,4 +1,5 @@
 import 'package:florista_ecommerce_app/config/base_response/base_response.dart';
+import 'package:florista_ecommerce_app/config/shared_models/addresses/address_dto.dart';
 import 'package:florista_ecommerce_app/config/shared_models/best_seller/best_seller_dto.dart';
 import 'package:florista_ecommerce_app/config/shared_models/categories/category_dto.dart';
 import 'package:florista_ecommerce_app/config/shared_models/occasions/occasion_dto.dart';
@@ -44,6 +45,22 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSourceContract {
       );
     } catch (e) {
       return ErrorBaseResponse<List<OccasionDto>>(error: e);
+    }
+  }
+
+  @override
+  Future<BaseResponse<List<AddressDto>>> getLoggedUserAddresses({
+    required String token,
+  }) async {
+    try {
+      final response = await homeApiClient.getLoggedUserAddresses(
+        token: 'Bearer $token',
+      );
+      return SuccessBaseResponse<List<AddressDto>>(
+        data: response.addresses ?? [],
+      );
+    } catch (e) {
+      return ErrorBaseResponse<List<AddressDto>>(error: e);
     }
   }
 }
