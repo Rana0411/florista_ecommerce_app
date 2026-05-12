@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:florista_ecommerce_app/config/shared_models/best_seller/best_seller_response.dart';
 import 'package:florista_ecommerce_app/config/shared_models/categories/categories_response.dart';
+import 'package:florista_ecommerce_app/config/shared_models/occasions/occasions_response.dart';
 import 'package:florista_ecommerce_app/core/api_constants/api_endpoints.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/error_logger.dart';
@@ -19,4 +20,7 @@ abstract class HomeApiClient {
 
   @GET(ApiEndpoints.bestSeller)
   Future<BestSellerResponse> getAllBestSeller();
+
+  @GET(ApiEndpoints.occasions)
+  Future<OccasionsResponse> getAllOccasions();
 }

@@ -1,9 +1,11 @@
 import 'package:florista_ecommerce_app/config/base_response/base_response.dart';
 import 'package:florista_ecommerce_app/config/shared_models/best_seller/best_seller_dto.dart';
 import 'package:florista_ecommerce_app/config/shared_models/categories/category_dto.dart';
+import 'package:florista_ecommerce_app/config/shared_models/occasions/occasion_dto.dart';
 import 'package:florista_ecommerce_app/features/home/data/data_sources/home_remote_data_source_contract.dart';
 import 'package:florista_ecommerce_app/features/home/domain/entities/best_seller_entity.dart';
 import 'package:florista_ecommerce_app/features/home/domain/entities/category_entity.dart';
+import 'package:florista_ecommerce_app/features/home/domain/entities/occasion_entity.dart';
 import 'package:florista_ecommerce_app/features/home/domain/repo/home_repo_contract.dart';
 import 'package:injectable/injectable.dart';
 
@@ -37,6 +39,21 @@ class HomeRepoImpl implements HomeRepoContract {
         );
       case ErrorBaseResponse<List<BestSellerDto>>():
         return ErrorBaseResponse<List<BestSellerEntity>>(
+          errorMessage: response.errorMessage,
+        );
+    }
+  }
+
+  @override
+  Future<BaseResponse<List<OccasionEntity>>> getAllOccasions() async {
+    final response = await homeRemoteDataSourceContract.getAllOccasions();
+    switch (response) {
+      case SuccessBaseResponse<List<OccasionDto>>():
+        return SuccessBaseResponse<List<OccasionEntity>>(
+          data: response.data.map((dto) => dto.toHomeDomain()).toList(),
+        );
+      case ErrorBaseResponse<List<OccasionDto>>():
+        return ErrorBaseResponse<List<OccasionEntity>>(
           errorMessage: response.errorMessage,
         );
     }

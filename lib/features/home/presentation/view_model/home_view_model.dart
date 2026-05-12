@@ -4,8 +4,10 @@ import 'package:florista_ecommerce_app/config/base_state/base_state.dart';
 import 'package:florista_ecommerce_app/config/handler/response_to_state_mapper.dart';
 import 'package:florista_ecommerce_app/features/home/domain/entities/best_seller_entity.dart';
 import 'package:florista_ecommerce_app/features/home/domain/entities/category_entity.dart';
+import 'package:florista_ecommerce_app/features/home/domain/entities/occasion_entity.dart';
 import 'package:florista_ecommerce_app/features/home/domain/use_cases/get_all_best_seller_use_case.dart';
 import 'package:florista_ecommerce_app/features/home/domain/use_cases/get_all_categories_use_case.dart';
+import 'package:florista_ecommerce_app/features/home/domain/use_cases/get_all_occasions_use_case.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/view_model/home_event.dart';
 import 'package:injectable/injectable.dart';
 
@@ -15,10 +17,12 @@ part 'home_state.dart';
 class HomeViewModel extends Cubit<HomeState> {
   final GetAllCategoriesUseCase getAllCategoriesUseCase;
   final GetAllBestSellerUseCase getAllBestSellerUseCase;
+  final GetAllOccasionsUseCase getAllOccasionsUseCase;
 
   HomeViewModel({
     required this.getAllCategoriesUseCase,
     required this.getAllBestSellerUseCase,
+    required this.getAllOccasionsUseCase,
   }) : super(HomeState());
 
   void doEvent(HomeEvent event) {
@@ -28,6 +32,9 @@ class HomeViewModel extends Cubit<HomeState> {
         break;
       case GetAllBestSellerEvent():
         _getAllBestSeller();
+        break;
+      case GetAllOccasionsEvent():
+        _getAllOccasions();
         break;
     }
   }
@@ -74,6 +81,31 @@ class HomeViewModel extends Cubit<HomeState> {
     emit(
       state.copyWith(
         getAllBestSellerState: state.getAllBestSellerState.copyWith(
+          isLoading: handler.isLoading,
+          data: handler.data,
+          errorMessage: handler.errorMessage,
+        ),
+      ),
+    );
+  }
+
+  Future<void> _getAllOccasions() async {
+    emit(
+      state.copyWith(
+        getAllOccasionsState: state.getAllOccasionsState.copyWith(
+          isLoading: true,
+          data: null,
+          errorMessage: null,
+        ),
+      ),
+    );
+
+    final response = await getAllOccasionsUseCase();
+    final handler = ResponseToStateMapper.handle(response);
+
+    emit(
+      state.copyWith(
+        getAllOccasionsState: state.getAllOccasionsState.copyWith(
           isLoading: handler.isLoading,
           data: handler.data,
           errorMessage: handler.errorMessage,
