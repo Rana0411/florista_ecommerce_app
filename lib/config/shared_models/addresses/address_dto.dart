@@ -1,3 +1,4 @@
+import 'package:florista_ecommerce_app/features/home/domain/entities/address_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'address_dto.g.dart';
@@ -33,4 +34,7 @@ class AddressDto {
       _$AddressDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$AddressDtoToJson(this);
+
+  AddressEntity toHomeDomain() =>
+      AddressEntity(id: id, street: street, city: city);
 }
