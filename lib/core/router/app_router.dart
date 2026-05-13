@@ -18,7 +18,7 @@ abstract class AppRouter {
     routes: [
       GoRoute(
         path: RoutePath.splash,
-        builder: (context, state) => OccasionScreen(),
+        builder: (context, state) => SplashView(),
       ),
       GoRoute(path: RoutePath.login, builder: (context, state) => LoginView()),
       GoRoute(
