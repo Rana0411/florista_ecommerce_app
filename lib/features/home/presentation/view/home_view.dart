@@ -3,9 +3,13 @@ import 'package:florista_ecommerce_app/core/shared_widgets/custom_buttom_navigat
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/core/utils/assets_manager.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
-import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_categories_list.dart';
+import 'package:florista_ecommerce_app/features/home/domain/entities/best_seller_entity.dart';
+import 'package:florista_ecommerce_app/features/home/domain/entities/category_entity.dart';
+import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_best_seller.dart';
+import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_category.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_drop_down_row.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_search_bar.dart';
+import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_section.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -33,6 +37,48 @@ class _HomeViewState extends State<HomeView> {
       const DropdownMenuItem(
         value: 'Deliver to 2XVP+XC - Tanta',
         child: Text('Deliver to 2XVP+XC - Tanta'),
+      ),
+    ];
+
+    final List<HomeCategory> categories = [
+      HomeCategory(
+        category: CategoryEntity(id: 'id', name: "Flowers", image: 'image'),
+      ),
+      HomeCategory(
+        category: CategoryEntity(id: 'id', name: "Gift", image: 'image'),
+      ),
+      HomeCategory(
+        category: CategoryEntity(id: 'id', name: "Card", image: 'image'),
+      ),
+      HomeCategory(
+        category: CategoryEntity(id: 'id', name: "Jewellery", image: 'image'),
+      ),
+    ];
+
+    final List<HomeBestSeller> bestSeller = [
+      HomeBestSeller(
+        bestSeller: BestSellerEntity(
+          id: 'id',
+          title: 'Sunney',
+          imgCover: 'assets/icons/test.png',
+          price: 600,
+        ),
+      ),
+      HomeBestSeller(
+        bestSeller: BestSellerEntity(
+          id: 'id',
+          title: 'Red roses',
+          imgCover: 'assets/icons/test.png',
+          price: 600,
+        ),
+      ),
+      HomeBestSeller(
+        bestSeller: BestSellerEntity(
+          id: 'id',
+          title: 'Spring Vasels',
+          imgCover: 'assets/icons/test.png',
+          price: 600,
+        ),
       ),
     ];
 
@@ -74,36 +120,38 @@ class _HomeViewState extends State<HomeView> {
                 ),
               ),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Categories",
-                    style: TextStyle(
-                      color: AppColors.black,
-                      fontWeight: FontWeight(500),
-                      fontSize: 18,
+              HomeSection(
+                title: 'Categories',
+                items: categories,
+                itemBuilder: (category) {
+                  return HomeCategory(
+                    category: CategoryEntity(
+                      id: 'id',
+                      name: category.category.name,
+                      image: category.category.image,
                     ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      //* Add Categories Navigation here
-                    },
-                    child: Text(
-                      "View All",
-                      style: TextStyle(
-                        color: AppColors.primary,
-                        fontWeight: FontWeight(500),
-                        fontSize: 12,
-                        decoration: TextDecoration.underline,
-                        decorationColor: AppColors.primary,
-                      ),
-                    ),
-                  ),
-                ],
+                  );
+                },
+                onViewAll: () {
+                  //* Navigate to categories
+                },
               ),
 
-              HomeCategoriesList(categories: []),
+              HomeSection(
+                height: 200,
+                title: 'Best seller',
+                items: bestSeller,
+                itemBuilder: (bestSeller) {
+                  return HomeBestSeller(
+                    bestSeller: BestSellerEntity(
+                      id: bestSeller.bestSeller.id,
+                      title: bestSeller.bestSeller.title,
+                      imgCover: bestSeller.bestSeller.imgCover,
+                      price: bestSeller.bestSeller.price,
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),
