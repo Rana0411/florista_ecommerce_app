@@ -1,4 +1,5 @@
 import 'package:florista_ecommerce_app/core/router/route_path.dart';
+import 'package:florista_ecommerce_app/core/shared_widgets/tab_bar/tab_bar_official.dart';
 import 'package:florista_ecommerce_app/features/Cart/presentation/view/cart_view.dart';
 import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/view/forget_password_view.dart';
 import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/view/otp_verification_view.dart';
@@ -17,7 +18,7 @@ abstract class AppRouter {
     routes: [
       GoRoute(
         path: RoutePath.splash,
-        builder: (context, state) => SplashView(),
+        builder: (context, state) => OccasionScreen(),
       ),
       GoRoute(path: RoutePath.login, builder: (context, state) => LoginView()),
       GoRoute(

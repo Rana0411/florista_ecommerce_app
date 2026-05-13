@@ -1,50 +1,51 @@
 import 'package:florista_ecommerce_app/core/shared_widgets/app_shimmer.dart';
-import 'package:florista_ecommerce_app/core/shared_widgets/tab_bar/tab_indicator_painter.dart';
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
 
-class CustomTabBarShimmer extends StatelessWidget {
-  const CustomTabBarShimmer({super.key});
+class AppTabBarShimmer extends StatelessWidget {
+  const AppTabBarShimmer({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Wrap the entire row in your unified shimmer
     return AppShimmer(
-      child: SizedBox(
-        height: 40,
-        child: ListView.separated(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          itemCount: 4,
-          separatorBuilder: (context, index) => const SizedBox(width: 24),
-          itemBuilder: (context, index) {
-            return Shimmer.fromColors(
-              baseColor: Colors.grey.shade300,
-              highlightColor: Colors.grey.shade100,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  // tab text shimmer
-                  Container(
-                    width: 70,
-                    height: 14,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(4),
+          physics:
+              const NeverScrollableScrollPhysics(), // Prevent user scrolling while loading
+          child: Row(
+            children: List.generate(4, (index) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Shimmer for the Tab Text
+                    Container(
+                      width: 90,
+                      height: 20,
+                      decoration: BoxDecoration(
+                        color: AppColors.lightGrey,
+                        borderRadius: BorderRadius.circular(4),
+                      ),
                     ),
-                  ),
-
-                  const SizedBox(height: 6),
-
-                  // trapezoid indicator shimmer
-                  CustomPaint(
-                    size: const Size(45, 3),
-                    painter: TabIndicatorPainter(color: AppColors.white),
-                  ),
-                ],
-              ),
-            );
-          },
+                    const SizedBox(height: 8),
+                    // Shimmer for the Tab Indicator
+                    Container(
+                      width: 90,
+                      height: 3,
+                      decoration: BoxDecoration(
+                        color: AppColors.lightGrey,
+                        borderRadius: BorderRadius.circular(2),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }),
+          ),
         ),
       ),
     );
