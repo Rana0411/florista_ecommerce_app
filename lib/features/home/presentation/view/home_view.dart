@@ -3,9 +3,7 @@ import 'package:florista_ecommerce_app/core/shared_widgets/custom_buttom_navigat
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/core/utils/assets_manager.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
-import 'package:florista_ecommerce_app/features/home/domain/entities/best_seller_entity.dart';
-import 'package:florista_ecommerce_app/features/home/domain/entities/category_entity.dart';
-import 'package:florista_ecommerce_app/features/home/domain/entities/occasion_entity.dart';
+import 'package:florista_ecommerce_app/features/home/presentation/view_model/home_view_model.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_best_seller.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_category.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_drop_down_row.dart';
@@ -13,101 +11,21 @@ import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_o
 import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_search_bar.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_section.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class HomeView extends StatefulWidget {
-  const HomeView({super.key});
+  const HomeView({super.key, required this.viewModel});
+  final HomeViewModel viewModel;
 
   @override
   State<HomeView> createState() => _HomeViewState();
 }
 
 class _HomeViewState extends State<HomeView> {
-  String selectedLocation = 'Deliver to 2XVP+XC - Sheikh Zayed';
   @override
   Widget build(BuildContext context) {
     final String location = GoRouterState.of(context).uri.toString();
-    final List<DropdownMenuItem<String>> items = [
-      const DropdownMenuItem(
-        value: 'Deliver to 2XVP+XC - Sheikh Zayed',
-        child: Text('Deliver to 2XVP+XC - Sheikh Zayed'),
-      ),
-      const DropdownMenuItem(
-        value: 'Deliver to 2XVP+XC - Ismailia',
-        child: Text('Deliver to 2XVP+XC - Ismailia'),
-      ),
-      const DropdownMenuItem(
-        value: 'Deliver to 2XVP+XC - Tanta',
-        child: Text('Deliver to 2XVP+XC - Tanta'),
-      ),
-    ];
-
-    final List<HomeCategory> categories = [
-      HomeCategory(
-        category: CategoryEntity(id: 'id', name: "Flowers", image: 'image'),
-      ),
-      HomeCategory(
-        category: CategoryEntity(id: 'id', name: "Gift", image: 'image'),
-      ),
-      HomeCategory(
-        category: CategoryEntity(id: 'id', name: "Card", image: 'image'),
-      ),
-      HomeCategory(
-        category: CategoryEntity(id: 'id', name: "Jewellery", image: 'image'),
-      ),
-    ];
-
-    final List<HomeBestSeller> bestSellers = [
-      HomeBestSeller(
-        bestSeller: BestSellerEntity(
-          id: 'id',
-          title: 'Sunney',
-          imgCover: 'assets/icons/test.png',
-          price: 600,
-        ),
-      ),
-      HomeBestSeller(
-        bestSeller: BestSellerEntity(
-          id: 'id',
-          title: 'Red roses',
-          imgCover: 'assets/icons/test.png',
-          price: 600,
-        ),
-      ),
-      HomeBestSeller(
-        bestSeller: BestSellerEntity(
-          id: 'id',
-          title: 'Spring Vasels',
-          imgCover: 'assets/icons/test.png',
-          price: 600,
-        ),
-      ),
-    ];
-
-    final List<HomeOccasion> occasions = [
-      HomeOccasion(
-        occasion: OccasionEntity(
-          id: 'id',
-          name: 'Wedding',
-          image: 'assets/icons/test.png',
-        ),
-      ),
-      HomeOccasion(
-        occasion: OccasionEntity(
-          id: 'id',
-          name: 'Birthday',
-          image: 'assets/icons/test.png',
-        ),
-      ),
-      HomeOccasion(
-        occasion: OccasionEntity(
-          id: 'id',
-          name: 'Graduation',
-          image: 'assets/icons/test.png',
-        ),
-      ),
-    ];
-
     return Scaffold(
       appBar: AppBar(
         titleSpacing: 10,
@@ -140,63 +58,65 @@ class _HomeViewState extends State<HomeView> {
             children: [
               Align(
                 alignment: Alignment.centerLeft,
-                child: HomeDropDownRow(
-                  selectedLocation: selectedLocation,
-                  items: items,
-                ),
+                child: HomeDropDownRow(viewModel: widget.viewModel),
               ),
 
-              HomeSection(
-                title: 'Categories',
-                items: categories,
-                itemBuilder: (category) {
-                  return HomeCategory(
-                    category: CategoryEntity(
-                      id: 'id',
-                      name: category.category.name,
-                      image: category.category.image,
-                    ),
+              BlocBuilder<HomeViewModel, HomeState>(
+                buildWhen: (previous, current) =>
+                    previous.getAllCategoriesState !=
+                    current.getAllCategoriesState,
+                builder: (context, state) {
+                  final categories = state.getAllCategoriesState.data;
+                  return HomeSection(
+                    title: 'Categories',
+                    items: categories ?? [],
+                    itemBuilder: (category) {
+                      return HomeCategory(category: category);
+                    },
+                    onViewAll: () {
+                      //* Navigate to categories
+                    },
                   );
-                },
-                onViewAll: () {
-                  //* Navigate to categories
-                },
-              ),
-
-              HomeSection(
-                height: 200,
-                title: 'Best seller',
-                items: bestSellers,
-                itemBuilder: (bestSeller) {
-                  return HomeBestSeller(
-                    bestSeller: BestSellerEntity(
-                      id: bestSeller.bestSeller.id,
-                      title: bestSeller.bestSeller.title,
-                      imgCover: bestSeller.bestSeller.imgCover,
-                      price: bestSeller.bestSeller.price,
-                    ),
-                  );
-                },
-                onViewAll: () {
-                  //* Navigate to best seller
                 },
               ),
 
-              HomeSection(
-                height: 200,
-                title: 'Occasion',
-                items: occasions,
-                itemBuilder: (occasion) {
-                  return HomeOccasion(
-                    occasion: OccasionEntity(
-                      id: occasion.occasion.id,
-                      name: occasion.occasion.name,
-                      image: occasion.occasion.image,
-                    ),
+              BlocBuilder<HomeViewModel, HomeState>(
+                buildWhen: (previous, current) =>
+                    previous.getAllBestSellerState !=
+                    current.getAllBestSellerState,
+                builder: (context, state) {
+                  final bestSellers = state.getAllBestSellerState.data;
+                  return HomeSection(
+                    height: 200,
+                    title: 'Best seller',
+                    items: bestSellers ?? [],
+                    itemBuilder: (bestSeller) {
+                      return HomeBestSeller(bestSeller: bestSeller);
+                    },
+                    onViewAll: () {
+                      //* Navigate to best seller
+                    },
                   );
                 },
-                onViewAll: () {
-                  //* Navigate to occasion
+              ),
+
+              BlocBuilder<HomeViewModel, HomeState>(
+                buildWhen: (previous, current) =>
+                    previous.getAllOccasionsState !=
+                    current.getAllOccasionsState,
+                builder: (context, state) {
+                  final occasions = state.getAllOccasionsState.data;
+                  return HomeSection(
+                    height: 200,
+                    title: 'Occasion',
+                    items: occasions ?? [],
+                    itemBuilder: (occasion) {
+                      return HomeOccasion(occasion: occasion);
+                    },
+                    onViewAll: () {
+                      //* Navigate to occasion
+                    },
+                  );
                 },
               ),
             ],

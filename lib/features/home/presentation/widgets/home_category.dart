@@ -16,7 +16,22 @@ class HomeCategory extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            Image.network(category.image ?? ''),
+            SizedBox(
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Image.network(
+                  width: 24,
+                  height: 24,
+                  category.image ?? '',
+                  errorBuilder: (context, error, stackTrace) {
+                    return const Icon(
+                      Icons.image_not_supported_outlined,
+                      size: 60,
+                    );
+                  },
+                ),
+              ),
+            ),
             Text(
               category.name ?? '',
               style: TextStyle(

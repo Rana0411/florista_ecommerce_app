@@ -1,3 +1,4 @@
+import 'package:florista_ecommerce_app/config/di/di.dart';
 import 'package:florista_ecommerce_app/core/router/route_path.dart';
 import 'package:florista_ecommerce_app/features/Cart/presentation/view/cart_view.dart';
 import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/view/forget_password_view.dart';
@@ -7,8 +8,11 @@ import 'package:florista_ecommerce_app/features/auth/login/presentation/view/log
 import 'package:florista_ecommerce_app/features/auth/sign_up/presentation/view/sign_up_view.dart';
 import 'package:florista_ecommerce_app/features/categories/presentation/view/categories_view.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/view/home_view.dart';
+import 'package:florista_ecommerce_app/features/home/presentation/view_model/home_event.dart';
+import 'package:florista_ecommerce_app/features/home/presentation/view_model/home_view_model.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/view/profile_view.dart';
 import 'package:florista_ecommerce_app/features/splash/presentation/view/splash_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
@@ -36,7 +40,23 @@ abstract class AppRouter {
         path: RoutePath.resetPassword,
         builder: (context, state) => ResetPasswordView(),
       ),
-      GoRoute(path: RoutePath.home, builder: (context, state) => HomeView()),
+      GoRoute(
+        path: RoutePath.home,
+        builder: (context, state) {
+          final HomeViewModel viewModel = getIt.get<HomeViewModel>();
+          //ToDo: Handel token from Secure Storage
+          return BlocProvider(
+            create: (context) => viewModel
+              ..doEvent(
+                HomeInitEvent(
+                  token:
+                      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjlmYzlkZDk2YmJhZjE1ODhiYmRkMjQxIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3Nzg1NDQzNDF9.pjmD32_XEa5D8ZwABCb0uZUjGzoCNJBN4fGywrWpo4c',
+                ),
+              ),
+            child: HomeView(viewModel: viewModel),
+          );
+        },
+      ),
       GoRoute(
         path: RoutePath.categories,
         builder: (context, state) => CategoriesView(),

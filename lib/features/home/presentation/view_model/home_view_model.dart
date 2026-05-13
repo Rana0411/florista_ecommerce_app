@@ -42,7 +42,27 @@ class HomeViewModel extends Cubit<HomeState> {
         break;
       case GetLoggedUserAddressesEvent():
         _getLoggedUserAddresses(token: event.token);
+        break;
+      case HomeInitEvent():
+        _homeInit(token: event.token);
+        break;
+      case SelectAddressEvent():
+        _selectAddress(event.value);
+        break;
     }
+  }
+
+  void _homeInit({required String token}) async {
+    await Future.wait([
+      _getAllCategories(),
+      _getAllBestSeller(),
+      _getAllOccasions(),
+      _getLoggedUserAddresses(token: token),
+    ]);
+  }
+
+  void _selectAddress(String value) {
+    emit(state.copyWith(selectedAddressId: value));
   }
 
   Future<void> _getAllCategories() async {
@@ -132,7 +152,7 @@ class HomeViewModel extends Cubit<HomeState> {
     );
 
     final response = await getLoggedUserAddressesUseCase(token: token);
-    final handler = await ResponseToStateMapper.handle(response);
+    final handler = ResponseToStateMapper.handle(response);
 
     emit(
       state.copyWith(
@@ -141,6 +161,9 @@ class HomeViewModel extends Cubit<HomeState> {
           data: handler.data,
           errorMessage: handler.errorMessage,
         ),
+        selectedAddressId: handler.data?.isNotEmpty == true
+            ? handler.data!.first.id
+            : null,
       ),
     );
   }

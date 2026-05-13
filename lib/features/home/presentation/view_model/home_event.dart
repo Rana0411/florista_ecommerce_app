@@ -11,3 +11,15 @@ class GetLoggedUserAddressesEvent extends HomeEvent {
 
   GetLoggedUserAddressesEvent({required this.token});
 }
+
+class HomeInitEvent extends HomeEvent {
+  final String token;
+
+  HomeInitEvent({required this.token});
+}
+
+class SelectAddressEvent extends HomeEvent {
+  final String value;
+
+  SelectAddressEvent({required this.value});
+}

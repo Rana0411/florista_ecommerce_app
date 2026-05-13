@@ -12,11 +12,24 @@ class HomeOccasion extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          //* Navigate to occasion
+        },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.network(occasion.image ?? ''),
+            Image.network(
+              width: 131,
+              height: 151,
+              occasion.image ?? '',
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                return const Icon(
+                  Icons.image_not_supported_outlined,
+                  size: 151,
+                );
+              },
+            ),
             Text(
               occasion.name ?? '',
               style: TextStyle(

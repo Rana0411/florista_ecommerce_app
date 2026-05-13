@@ -12,17 +12,33 @@ class HomeBestSeller extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          //* Navigate to best seller
+        },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.network(bestSeller.imgCover ?? ''),
-            Text(
-              bestSeller.title ?? '',
-              style: TextStyle(
-                fontWeight: FontWeightManager.regular,
-                color: AppColors.black,
-                fontSize: 12,
+            Image.network(
+              width: 131,
+              height: 151,
+              bestSeller.imgCover ?? '',
+              errorBuilder: (context, error, stackTrace) {
+                return const Icon(
+                  Icons.image_not_supported_outlined,
+                  size: 151,
+                );
+              },
+            ),
+            SizedBox(
+              width: 131,
+              child: Text(
+                bestSeller.title ?? '',
+                style: TextStyle(
+                  fontWeight: FontWeightManager.regular,
+                  color: AppColors.black,
+                  fontSize: 12,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ),
             Text(
