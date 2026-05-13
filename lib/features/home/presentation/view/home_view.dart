@@ -78,7 +78,7 @@ class _HomeViewState extends State<HomeView> {
                     return Center(
                       child: Text(
                         categoryState.errorMessage!,
-                        style: const TextStyle(color: Colors.red),
+                        style: TextStyle(color: AppColors.error),
                       ),
                     );
                   }
@@ -112,7 +112,7 @@ class _HomeViewState extends State<HomeView> {
                     return Center(
                       child: Text(
                         bestSellerState.errorMessage!,
-                        style: const TextStyle(color: Colors.red),
+                        style: TextStyle(color: AppColors.error),
                       ),
                     );
                   }
@@ -147,7 +147,7 @@ class _HomeViewState extends State<HomeView> {
                     return Center(
                       child: Text(
                         occasionState.errorMessage!,
-                        style: const TextStyle(color: Colors.red),
+                        style: TextStyle(color: AppColors.error),
                       ),
                     );
                   }
