@@ -75,5 +75,5 @@ class BestSellerDto {
   Map<String, dynamic> toJson() => _$BestSellerDtoToJson(this);
 
   BestSellerEntity toHomeDomain() =>
-      BestSellerEntity(id: id, title: title, imgCover: imgCover);
+      BestSellerEntity(id: id, title: title, imgCover: imgCover, price: price);
 }
