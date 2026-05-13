@@ -177,6 +177,9 @@ class _HomeViewState extends State<HomeView> {
                     ),
                   );
                 },
+                onViewAll: () {
+                  //* Navigate to best seller
+                },
               ),
 
               HomeSection(
@@ -191,6 +194,9 @@ class _HomeViewState extends State<HomeView> {
                       image: occasion.occasion.image,
                     ),
                   );
+                },
+                onViewAll: () {
+                  //* Navigate to occasion
                 },
               ),
             ],
