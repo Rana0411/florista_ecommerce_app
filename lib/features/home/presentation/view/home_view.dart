@@ -56,66 +56,112 @@ class _HomeViewState extends State<HomeView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              // DropDown Button
               Align(
                 alignment: Alignment.centerLeft,
                 child: HomeDropDownRow(viewModel: widget.viewModel),
               ),
 
+              // Categories Section
               BlocBuilder<HomeViewModel, HomeState>(
                 buildWhen: (previous, current) =>
                     previous.getAllCategoriesState !=
                     current.getAllCategoriesState,
                 builder: (context, state) {
-                  final categories = state.getAllCategoriesState.data;
+                  final categoryState = state.getAllCategoriesState;
+
+                  if (categoryState.isLoading == true) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+
+                  if (categoryState.errorMessage != null) {
+                    return Center(
+                      child: Text(
+                        categoryState.errorMessage!,
+                        style: const TextStyle(color: Colors.red),
+                      ),
+                    );
+                  }
+
+                  final categories = categoryState.data ?? [];
+
                   return HomeSection(
                     title: 'Categories',
-                    items: categories ?? [],
+                    items: categories,
                     itemBuilder: (category) {
                       return HomeCategory(category: category);
                     },
-                    onViewAll: () {
-                      //* Navigate to categories
-                    },
+                    onViewAll: () {},
                   );
                 },
               ),
 
+              //BestSellers Section
               BlocBuilder<HomeViewModel, HomeState>(
                 buildWhen: (previous, current) =>
                     previous.getAllBestSellerState !=
                     current.getAllBestSellerState,
                 builder: (context, state) {
-                  final bestSellers = state.getAllBestSellerState.data;
+                  final bestSellerState = state.getAllBestSellerState;
+
+                  if (bestSellerState.isLoading == true) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+
+                  if (bestSellerState.errorMessage != null) {
+                    return Center(
+                      child: Text(
+                        bestSellerState.errorMessage!,
+                        style: const TextStyle(color: Colors.red),
+                      ),
+                    );
+                  }
+
+                  final bestSellers = bestSellerState.data ?? [];
+
                   return HomeSection(
                     height: 200,
                     title: 'Best seller',
-                    items: bestSellers ?? [],
+                    items: bestSellers,
                     itemBuilder: (bestSeller) {
                       return HomeBestSeller(bestSeller: bestSeller);
                     },
-                    onViewAll: () {
-                      //* Navigate to best seller
-                    },
+                    onViewAll: () {},
                   );
                 },
               ),
 
+              //Occasions Section
               BlocBuilder<HomeViewModel, HomeState>(
                 buildWhen: (previous, current) =>
                     previous.getAllOccasionsState !=
                     current.getAllOccasionsState,
                 builder: (context, state) {
-                  final occasions = state.getAllOccasionsState.data;
+                  final occasionState = state.getAllOccasionsState;
+
+                  if (occasionState.isLoading == true) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+
+                  if (occasionState.errorMessage != null) {
+                    return Center(
+                      child: Text(
+                        occasionState.errorMessage!,
+                        style: const TextStyle(color: Colors.red),
+                      ),
+                    );
+                  }
+
+                  final occasions = occasionState.data ?? [];
+
                   return HomeSection(
                     height: 200,
                     title: 'Occasion',
-                    items: occasions ?? [],
+                    items: occasions,
                     itemBuilder: (occasion) {
                       return HomeOccasion(occasion: occasion);
                     },
-                    onViewAll: () {
-                      //* Navigate to occasion
-                    },
+                    onViewAll: () {},
                   );
                 },
               ),
