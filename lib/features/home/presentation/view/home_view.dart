@@ -5,9 +5,11 @@ import 'package:florista_ecommerce_app/core/utils/assets_manager.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
 import 'package:florista_ecommerce_app/features/home/domain/entities/best_seller_entity.dart';
 import 'package:florista_ecommerce_app/features/home/domain/entities/category_entity.dart';
+import 'package:florista_ecommerce_app/features/home/domain/entities/occasion_entity.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_best_seller.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_category.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_drop_down_row.dart';
+import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_occasion.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_search_bar.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_section.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +57,7 @@ class _HomeViewState extends State<HomeView> {
       ),
     ];
 
-    final List<HomeBestSeller> bestSeller = [
+    final List<HomeBestSeller> bestSellers = [
       HomeBestSeller(
         bestSeller: BestSellerEntity(
           id: 'id',
@@ -78,6 +80,30 @@ class _HomeViewState extends State<HomeView> {
           title: 'Spring Vasels',
           imgCover: 'assets/icons/test.png',
           price: 600,
+        ),
+      ),
+    ];
+
+    final List<HomeOccasion> occasions = [
+      HomeOccasion(
+        occasion: OccasionEntity(
+          id: 'id',
+          name: 'Wedding',
+          image: 'assets/icons/test.png',
+        ),
+      ),
+      HomeOccasion(
+        occasion: OccasionEntity(
+          id: 'id',
+          name: 'Birthday',
+          image: 'assets/icons/test.png',
+        ),
+      ),
+      HomeOccasion(
+        occasion: OccasionEntity(
+          id: 'id',
+          name: 'Graduation',
+          image: 'assets/icons/test.png',
         ),
       ),
     ];
@@ -140,7 +166,7 @@ class _HomeViewState extends State<HomeView> {
               HomeSection(
                 height: 200,
                 title: 'Best seller',
-                items: bestSeller,
+                items: bestSellers,
                 itemBuilder: (bestSeller) {
                   return HomeBestSeller(
                     bestSeller: BestSellerEntity(
@@ -148,6 +174,21 @@ class _HomeViewState extends State<HomeView> {
                       title: bestSeller.bestSeller.title,
                       imgCover: bestSeller.bestSeller.imgCover,
                       price: bestSeller.bestSeller.price,
+                    ),
+                  );
+                },
+              ),
+
+              HomeSection(
+                height: 200,
+                title: 'Occasion',
+                items: occasions,
+                itemBuilder: (occasion) {
+                  return HomeOccasion(
+                    occasion: OccasionEntity(
+                      id: occasion.occasion.id,
+                      name: occasion.occasion.name,
+                      image: occasion.occasion.image,
                     ),
                   );
                 },
