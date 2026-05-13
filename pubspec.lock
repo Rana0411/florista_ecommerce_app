@@ -533,7 +533,7 @@ packages:
     description:
       name: json_serializable
       sha256: "2c15e78e1cc6e62aadecf59f81566fd56829713d96a8c4177699e2b2e17f20db"
-      url: "https://pub.dev"
+      url: "http://pub.flutter-io.cn"
     source: hosted
     version: "6.13.2"
   leak_tracker:
