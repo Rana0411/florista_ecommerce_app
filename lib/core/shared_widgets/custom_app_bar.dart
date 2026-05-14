@@ -3,7 +3,11 @@ import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key, required this.title});
+  const CustomAppBar({
+    super.key,
+    required this.title,
+    required PreferredSize bottom,
+  });
   final String title;
 
   @override
