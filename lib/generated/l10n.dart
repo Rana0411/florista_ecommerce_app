@@ -19,8 +19,8 @@ class S {
 
   static S get current {
     assert(
-    _current != null,
-    'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
+      _current != null,
+      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
     );
     return _current!;
   }
@@ -44,8 +44,8 @@ class S {
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
     assert(
-    instance != null,
-    'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
+      instance != null,
+      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
     );
     return instance!;
   }
@@ -236,12 +236,7 @@ class S {
 
   /// `Login`
   String get login {
-    return Intl.message(
-      'Login',
-      name: 'login',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Login', name: 'login', desc: '', args: []);
   }
 
   /// `Forgot Password`
@@ -266,12 +261,7 @@ class S {
 
   /// `Sign Up`
   String get signUp {
-    return Intl.message(
-      'Sign Up',
-      name: 'signUp',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Sign Up', name: 'signUp', desc: '', args: []);
   }
 
   /// `Continue as Guest`
@@ -286,12 +276,7 @@ class S {
 
   /// `Remember me`
   String get rememberMe {
-    return Intl.message(
-      'Remember me',
-      name: 'rememberMe',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Remember me', name: 'rememberMe', desc: '', args: []);
   }
 
   /// `Enter your email`
@@ -316,23 +301,15 @@ class S {
 
   /// `Email`
   String get email {
-    return Intl.message(
-      'Email',
-      name: 'email',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Email', name: 'email', desc: '', args: []);
   }
 
   /// `Password`
   String get password {
-    return Intl.message(
-      'Password',
-      name: 'password',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Password', name: 'password', desc: '', args: []);
   }
+
+  /// `Fresh flowers, delivered with love.`
   String get splashTagline {
     return Intl.message(
       'Fresh flowers, delivered with love.',
