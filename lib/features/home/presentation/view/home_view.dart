@@ -24,7 +24,6 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.read<HomeViewModel>();
     final String location = GoRouterState.of(context).uri.toString();
     return Scaffold(
       appBar: AppBar(
@@ -57,10 +56,7 @@ class _HomeViewState extends State<HomeView> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // DropDown Button
-              Align(
-                alignment: Alignment.centerLeft,
-                child: HomeDropDownRow(viewModel: viewModel),
-              ),
+              Align(alignment: Alignment.centerLeft, child: HomeDropDownRow()),
 
               // Categories Section
               BlocBuilder<HomeViewModel, HomeState>(
