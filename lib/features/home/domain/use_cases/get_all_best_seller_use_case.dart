@@ -9,7 +9,7 @@ class GetAllBestSellerUseCase {
 
   GetAllBestSellerUseCase({required this.homeRepoContract});
 
-  Future<BaseResponse<List<BestSellerEntity>>> call() async {
-    return await homeRepoContract.getAllBestSeller();
+  Future<BaseResponse<List<BestSellerEntity>>> call() {
+    return homeRepoContract.getAllBestSeller();
   }
 }

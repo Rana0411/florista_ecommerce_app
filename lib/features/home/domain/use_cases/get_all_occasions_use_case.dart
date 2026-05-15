@@ -9,7 +9,7 @@ class GetAllOccasionsUseCase {
 
   GetAllOccasionsUseCase({required this.homeRepoContract});
 
-  Future<BaseResponse<List<OccasionEntity>>> call() async {
-    return await homeRepoContract.getAllOccasions();
+  Future<BaseResponse<List<OccasionEntity>>> call() {
+    return homeRepoContract.getAllOccasions();
   }
 }

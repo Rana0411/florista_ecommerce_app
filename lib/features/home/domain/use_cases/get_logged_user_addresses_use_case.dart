@@ -9,9 +9,7 @@ class GetLoggedUserAddressesUseCase {
 
   GetLoggedUserAddressesUseCase({required this.homeRepoContract});
 
-  Future<BaseResponse<List<AddressEntity>>> call({
-    required String token,
-  }) async {
-    return await homeRepoContract.getLoggedUserAddresses(token: token);
+  Future<BaseResponse<List<AddressEntity>>> call({required String token}) {
+    return homeRepoContract.getLoggedUserAddresses(token: token);
   }
 }
