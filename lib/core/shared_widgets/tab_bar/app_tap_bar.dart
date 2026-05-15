@@ -1,4 +1,4 @@
-import 'package:florista_ecommerce_app/config/models/tab_item_.dart';
+import 'package:florista_ecommerce_app/config/shared_models/tab_item_.dart';
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 

@@ -1,4 +1,5 @@
-import 'package:florista_ecommerce_app/config/models/product_entity.dart';
+import 'package:florista_ecommerce_app/config/shared_models/entities/product_entity.dart';
+import 'package:florista_ecommerce_app/core/app_constants.dart';
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
 import 'package:florista_ecommerce_app/generated/l10n.dart';
@@ -34,7 +35,7 @@ class ProductCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: Image.asset(
-                  productEntity.imageCover,
+                  productEntity.imageCover ?? AppConstants.imagePlaceholder,
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
@@ -44,7 +45,7 @@ class ProductCard extends StatelessWidget {
             const SizedBox(height: 8),
 
             Text(
-              productEntity.name,
+              productEntity.name ?? "No Name Found",
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(fontWeight: FontWeightManager.medium),
@@ -55,7 +56,7 @@ class ProductCard extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  '${S.current.EGB} ${productEntity.price.toInt()}',
+                  '${S.current.EGB} ${productEntity.price}',
                   style: const TextStyle(
                     fontWeight: FontWeightManager.bold,
                     fontSize: FontSize.s16,
@@ -65,7 +66,7 @@ class ProductCard extends StatelessWidget {
                 const SizedBox(width: 6),
 
                 Text(
-                  productEntity.price.toInt().toString(),
+                  productEntity.price.toString(),
                   style: TextStyle(
                     decoration: TextDecoration.lineThrough,
                     color: AppColors.grey,
