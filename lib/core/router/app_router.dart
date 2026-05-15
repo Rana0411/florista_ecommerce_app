@@ -53,7 +53,7 @@ abstract class AppRouter {
                       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjlmYzlkZDk2YmJhZjE1ODhiYmRkMjQxIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3Nzg1NDQzNDF9.pjmD32_XEa5D8ZwABCb0uZUjGzoCNJBN4fGywrWpo4c',
                 ),
               ),
-            child: HomeView(viewModel: viewModel),
+            child: HomeView(),
           );
         },
       ),

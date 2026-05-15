@@ -15,9 +15,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class HomeView extends StatefulWidget {
-  const HomeView({super.key, required this.viewModel});
-  final HomeViewModel viewModel;
-
+  const HomeView({super.key});
   @override
   State<HomeView> createState() => _HomeViewState();
 }
@@ -25,6 +23,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.read<HomeViewModel>();
     final String location = GoRouterState.of(context).uri.toString();
     return Scaffold(
       appBar: AppBar(
@@ -59,7 +58,7 @@ class _HomeViewState extends State<HomeView> {
               // DropDown Button
               Align(
                 alignment: Alignment.centerLeft,
-                child: HomeDropDownRow(viewModel: widget.viewModel),
+                child: HomeDropDownRow(viewModel: viewModel),
               ),
 
               // Categories Section
