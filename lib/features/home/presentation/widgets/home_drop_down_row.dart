@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeDropDownRow extends StatefulWidget {
-  const HomeDropDownRow({super.key, required this.viewModel});
-  final HomeViewModel viewModel;
+  const HomeDropDownRow({super.key});
 
   @override
   State<HomeDropDownRow> createState() => _HomeDropDownRowState();
@@ -15,6 +14,7 @@ class HomeDropDownRow extends StatefulWidget {
 class _HomeDropDownRowState extends State<HomeDropDownRow> {
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.read<HomeViewModel>();
     return BlocBuilder<HomeViewModel, HomeState>(
       buildWhen: (previous, current) =>
           previous.getLoggedUserAddressesState !=
@@ -44,7 +44,7 @@ class _HomeDropDownRowState extends State<HomeDropDownRow> {
 
               onChanged: (value) {
                 if (value != null) {
-                  widget.viewModel.doEvent(SelectAddressEvent(value: value));
+                  viewModel.doEvent(SelectAddressEvent(value: value));
                 }
               },
 
