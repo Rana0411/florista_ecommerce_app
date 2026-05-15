@@ -7,7 +7,7 @@ class HomeState extends Equatable {
   final BaseState<List<AddressEntity>> getLoggedUserAddressesState;
   final String? selectedAddressId;
 
-  HomeState({
+  const HomeState({
     BaseState<List<CategoryEntity>>? getAllCategoriesState,
     BaseState<List<BestSellerEntity>>? getAllBestSellerState,
     BaseState<List<OccasionEntity>>? getAllOccasionsState,
@@ -15,16 +15,16 @@ class HomeState extends Equatable {
     this.selectedAddressId,
   }) : getAllCategoriesState =
            getAllCategoriesState ??
-           BaseState<List<CategoryEntity>>(isLoading: true),
+           const BaseState<List<CategoryEntity>>(isLoading: true),
        getAllBestSellerState =
            getAllBestSellerState ??
-           BaseState<List<BestSellerEntity>>(isLoading: true),
+           const BaseState<List<BestSellerEntity>>(isLoading: true),
        getAllOccasionsState =
            getAllOccasionsState ??
-           BaseState<List<OccasionEntity>>(isLoading: true),
+           const BaseState<List<OccasionEntity>>(isLoading: true),
        getLoggedUserAddressesState =
            getLoggedUserAddressesState ??
-           BaseState<List<AddressEntity>>(isLoading: true);
+           const BaseState<List<AddressEntity>>(isLoading: true);
 
   HomeState copyWith({
     BaseState<List<CategoryEntity>>? getAllCategoriesState,
@@ -47,5 +47,6 @@ class HomeState extends Equatable {
     getAllBestSellerState,
     getAllOccasionsState,
     getLoggedUserAddressesState,
+    selectedAddressId,
   ];
 }
