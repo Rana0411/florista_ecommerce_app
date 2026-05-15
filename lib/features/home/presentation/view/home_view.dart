@@ -4,10 +4,10 @@ import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/core/utils/assets_manager.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/view_model/home_view_model.dart';
-import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_best_seller.dart';
-import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_category.dart';
+import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_best_seller_card.dart';
+import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_category_card.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_drop_down_row.dart';
-import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_occasion.dart';
+import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_occasion_card.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_search_bar.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_section.dart';
 import 'package:flutter/material.dart';
@@ -88,7 +88,7 @@ class _HomeViewState extends State<HomeView> {
                     title: 'Categories',
                     items: categories,
                     itemBuilder: (category) {
-                      return HomeCategory(category: category);
+                      return HomeCategoryCard(category: category);
                     },
                     onViewAll: () {},
                   );
@@ -123,7 +123,7 @@ class _HomeViewState extends State<HomeView> {
                     title: 'Best seller',
                     items: bestSellers,
                     itemBuilder: (bestSeller) {
-                      return HomeBestSeller(bestSeller: bestSeller);
+                      return HomeBestSellerCard(bestSeller: bestSeller);
                     },
                     onViewAll: () {},
                   );
@@ -158,7 +158,7 @@ class _HomeViewState extends State<HomeView> {
                     title: 'Occasion',
                     items: occasions,
                     itemBuilder: (occasion) {
-                      return HomeOccasion(occasion: occasion);
+                      return HomeOccasionCard(occasion: occasion);
                     },
                     onViewAll: () {},
                   );

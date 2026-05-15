@@ -52,7 +52,7 @@ class HomeViewModel extends Cubit<HomeState> {
     }
   }
 
-  void _homeInit({required String token}) async {
+  Future<void> _homeInit({required String token}) async {
     await Future.wait([
       _getAllCategories(),
       _getAllBestSeller(),

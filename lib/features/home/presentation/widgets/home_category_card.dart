@@ -2,8 +2,8 @@ import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/features/home/domain/entities/category_entity.dart';
 import 'package:flutter/material.dart';
 
-class HomeCategory extends StatelessWidget {
-  const HomeCategory({super.key, required this.category});
+class HomeCategoryCard extends StatelessWidget {
+  const HomeCategoryCard({super.key, required this.category});
   final CategoryEntity category;
 
   @override

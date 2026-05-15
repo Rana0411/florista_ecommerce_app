@@ -1,11 +1,11 @@
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
-import 'package:florista_ecommerce_app/features/home/domain/entities/occasion_entity.dart';
+import 'package:florista_ecommerce_app/features/home/domain/entities/best_seller_entity.dart';
 import 'package:flutter/material.dart';
 
-class HomeOccasion extends StatelessWidget {
-  const HomeOccasion({super.key, required this.occasion});
-  final OccasionEntity occasion;
+class HomeBestSellerCard extends StatelessWidget {
+  const HomeBestSellerCard({super.key, required this.bestSeller});
+  final BestSellerEntity bestSeller;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class HomeOccasion extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: InkWell(
         onTap: () {
-          //* Navigate to occasion
+          //* Navigate to best seller
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,8 +21,7 @@ class HomeOccasion extends StatelessWidget {
             Image.network(
               width: 131,
               height: 151,
-              occasion.image ?? '',
-              fit: BoxFit.cover,
+              bestSeller.imgCover ?? '',
               errorBuilder: (context, error, stackTrace) {
                 return const Icon(
                   Icons.image_not_supported_outlined,
@@ -30,12 +29,24 @@ class HomeOccasion extends StatelessWidget {
                 );
               },
             ),
+            SizedBox(
+              width: 131,
+              child: Text(
+                bestSeller.title ?? '',
+                style: TextStyle(
+                  fontWeight: FontWeightManager.regular,
+                  color: AppColors.black,
+                  fontSize: 12,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ),
             Text(
-              occasion.name ?? '',
+              '${bestSeller.price} EGP',
               style: TextStyle(
                 fontWeight: FontWeightManager.medium,
-                fontSize: 14,
                 color: AppColors.black,
+                fontSize: 14,
               ),
             ),
           ],
