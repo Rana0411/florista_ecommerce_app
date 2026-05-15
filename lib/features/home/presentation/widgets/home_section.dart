@@ -1,4 +1,5 @@
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
+import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class HomeSection<T> extends StatelessWidget {
@@ -38,7 +39,7 @@ class HomeSection<T> extends StatelessWidget {
             TextButton(
               onPressed: onViewAll,
               child: Text(
-                "View All",
+                S.current.viewAll,
                 style: TextStyle(
                   color: AppColors.primary,
                   fontWeight: FontWeight.w500,

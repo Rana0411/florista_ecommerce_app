@@ -10,6 +10,7 @@ import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_d
 import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_occasion_card.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_search_bar.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/widgets/home_section.dart';
+import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -35,7 +36,7 @@ class _HomeViewState extends State<HomeView> {
             const SizedBox(width: 6),
 
             Text(
-              "Flowery",
+              S.current.flowery,
               style: TextStyle(
                 fontFamily: AppFonts.imfEllEnglish,
                 color: AppColors.primary,
@@ -85,7 +86,7 @@ class _HomeViewState extends State<HomeView> {
                   final categories = categoryState.data ?? [];
 
                   return HomeSection(
-                    title: 'Categories',
+                    title: S.current.categories,
                     items: categories,
                     itemBuilder: (category) {
                       return HomeCategoryCard(category: category);
@@ -120,7 +121,7 @@ class _HomeViewState extends State<HomeView> {
 
                   return HomeSection(
                     height: 200,
-                    title: 'Best seller',
+                    title: S.current.bestSeller,
                     items: bestSellers,
                     itemBuilder: (bestSeller) {
                       return HomeBestSellerCard(bestSeller: bestSeller);
@@ -155,7 +156,7 @@ class _HomeViewState extends State<HomeView> {
 
                   return HomeSection(
                     height: 200,
-                    title: 'Occasion',
+                    title: S.current.occasion,
                     items: occasions,
                     itemBuilder: (occasion) {
                       return HomeOccasionCard(occasion: occasion);

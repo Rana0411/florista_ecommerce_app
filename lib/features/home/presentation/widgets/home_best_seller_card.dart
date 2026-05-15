@@ -1,6 +1,7 @@
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
 import 'package:florista_ecommerce_app/features/home/domain/entities/best_seller_entity.dart';
+import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class HomeBestSellerCard extends StatelessWidget {
@@ -42,7 +43,7 @@ class HomeBestSellerCard extends StatelessWidget {
               ),
             ),
             Text(
-              '${bestSeller.price} EGP',
+              '${bestSeller.price} ${S.current.egp}',
               style: TextStyle(
                 fontWeight: FontWeightManager.medium,
                 color: AppColors.black,
