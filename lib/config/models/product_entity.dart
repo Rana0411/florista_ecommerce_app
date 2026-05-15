@@ -1,15 +1,15 @@
 class ProductEntity {
-  final String image;
-  final String title;
-  final double price;
-  final double oldPrice;
+  final String name;
+  final int price;
+  final int priceAfterDiscount;
   final int discount;
+  final String imageCover;
 
   ProductEntity({
-    required this.image,
-    required this.title,
+    required this.name,
     required this.price,
-    required this.oldPrice,
+    required this.priceAfterDiscount,
     required this.discount,
+    required this.imageCover,
   });
 }

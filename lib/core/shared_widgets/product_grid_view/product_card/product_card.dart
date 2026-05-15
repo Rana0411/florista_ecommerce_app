@@ -34,7 +34,7 @@ class ProductCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: Image.asset(
-                  productEntity.image,
+                  productEntity.imageCover,
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
@@ -44,7 +44,7 @@ class ProductCard extends StatelessWidget {
             const SizedBox(height: 8),
 
             Text(
-              productEntity.title,
+              productEntity.name,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(fontWeight: FontWeightManager.medium),
@@ -65,7 +65,7 @@ class ProductCard extends StatelessWidget {
                 const SizedBox(width: 6),
 
                 Text(
-                  productEntity.oldPrice.toInt().toString(),
+                  productEntity.price.toInt().toString(),
                   style: TextStyle(
                     decoration: TextDecoration.lineThrough,
                     color: AppColors.grey,
