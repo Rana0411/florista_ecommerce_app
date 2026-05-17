@@ -1,4 +1,4 @@
-import 'package:florista_ecommerce_app/config/models/product_entity.dart';
+import 'package:florista_ecommerce_app/config/shared_models/product_entity.dart';
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
 import 'package:florista_ecommerce_app/generated/l10n.dart';
