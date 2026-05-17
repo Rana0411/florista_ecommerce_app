@@ -10,22 +10,38 @@ class ProductsGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      padding: const EdgeInsets.all(16),
-      itemCount: products.length,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 16,
-        mainAxisSpacing: 12,
-        childAspectRatio: 0.48,
-      ),
-      itemBuilder: (context, index) {
-        final product = products[index];
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final width = constraints.maxWidth;
+        final itemWidth = (width - 48) / 2;
+        final itemHeight = itemWidth * 2.25;
 
-        return ProductCard(
-          onTap: () {},
-          onAddToCart: () {},
-          productEntity: product,
+        int crossAxisCount;
+
+        if (width < 600) {
+          crossAxisCount = 2;
+        } else if (width < 900) {
+          crossAxisCount = 3;
+        } else {
+          crossAxisCount = 4;
+        }
+
+        return GridView.builder(
+          padding: const EdgeInsets.all(16),
+          itemCount: products.length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: crossAxisCount,
+            crossAxisSpacing: 16,
+            mainAxisSpacing: 16,
+            childAspectRatio: itemWidth / itemHeight,
+          ),
+          itemBuilder: (_, index) {
+            return ProductCard(
+              productEntity: products[index],
+              onTap: () {},
+              onAddToCart: () {},
+            );
+          },
         );
       },
     );

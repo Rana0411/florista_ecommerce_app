@@ -83,6 +83,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "networkError": MessageLookupByLibrary.simpleMessage(
       "Network error. Please check your connection.",
     ),
+    "noOccasionFounds": MessageLookupByLibrary.simpleMessage(
+      "No occasions found",
+    ),
     "noValueKeyFound": MessageLookupByLibrary.simpleMessage(
       "No value found for key: ",
     ),

@@ -14,27 +14,28 @@ class ProductCard extends StatelessWidget {
 
   const ProductCard({
     super.key,
+    required this.productEntity,
     this.onTap,
     this.onAddToCart,
-    required this.productEntity,
   });
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return InkWell(
-      borderRadius: BorderRadius.circular(16),
       onTap: onTap,
+      borderRadius: BorderRadius.circular(16),
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: AppColors.white,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: AppColors.lightGrey, width: 1),
+          border: Border.all(color: AppColors.lightGrey),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// Product Image
             AspectRatio(
               aspectRatio: 1,
               child: ClipRRect(
@@ -43,53 +44,36 @@ class ProductCard extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 10),
+            const SizedBox(height: 8),
 
-            /// Product Name
             Text(
-              productEntity.name ?? 'No Name',
+              productEntity.name ?? '',
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontSize:
-                    FontSize.s14, // Lowered slightly to fit 2 lines safely
-                fontWeight: FontWeightManager.medium,
+              style: textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.w600,
               ),
             ),
 
-            const SizedBox(height: 4),
+            const SizedBox(height: 6),
 
-            /// Price Section (Passes the logic down)
             PriceSection(product: productEntity),
 
-            // Replaced Spacer() with a flexible or constant padding to avoid forcing huge card heights
-            const SizedBox(height: 12),
+            const Spacer(),
 
-            /// Add To Cart Button
-            SizedBox(
-              width: double.infinity,
-              height: 36, // Increased slightly for better touch targets
-              child: ElevatedButton.icon(
-                onPressed: onAddToCart,
-                icon: const Icon(Icons.shopping_cart_outlined, size: 16),
-                label: Text(
-                  S.current.addToCart,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.black,
-                    fontWeight: FontWeight.w500,
-                    fontSize: FontSize.s10,
-                  ),
-                ),
-                style: ElevatedButton.styleFrom(
-                  elevation: 0,
-                  backgroundColor: AppColors.primary,
-                  foregroundColor: AppColors.white,
-                  padding: EdgeInsets
-                      .zero, // Prevents text clipping on small screens
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+            ConstrainedBox(
+              constraints: const BoxConstraints(minHeight: 42),
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  onPressed: onAddToCart,
+                  icon: const Icon(Icons.shopping_cart_outlined, size: 18),
+                  label: Text(
+                    S.current.addToCart,
+                    overflow: TextOverflow.ellipsis,
+                    style: textTheme.bodyMedium?.copyWith(
+                      color: AppColors.black,
+                    ),
                   ),
                 ),
               ),

@@ -458,6 +458,16 @@ class S {
       args: [],
     );
   }
+
+  /// `No occasions found`
+  String get noOccasionFounds {
+    return Intl.message(
+      'No occasions found',
+      name: 'noOccasionFounds',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
