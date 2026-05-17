@@ -1,4 +1,4 @@
-import 'package:florista_ecommerce_app/config/models/product_entity.dart';
+import 'package:florista_ecommerce_app/config/shared_models/entities/product_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'product_dto.g.dart';
@@ -125,7 +125,7 @@ class ProductDto {
 
   ProductEntity toDomain(ProductDto dto) {
     return ProductEntity(
-      name: '',
+      name: dto.title,
       price: dto.price,
       priceAfterDiscount: dto.priceAfterDiscount,
       discount: dto.discount,

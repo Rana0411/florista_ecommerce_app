@@ -1,7 +1,7 @@
 import 'package:florista_ecommerce_app/config/base_response/base_response.dart';
 import 'package:florista_ecommerce_app/features/occasions/api/api_client/api_client.dart';
 import 'package:florista_ecommerce_app/features/occasions/data/data_sources/remote_data_source_contract.dart';
-import 'package:florista_ecommerce_app/features/occasions/data/models/occasion_dto/occasion_dto_model.dart';
+import 'package:florista_ecommerce_app/config/shared_models/occasions/occasion_dto.dart';
 import 'package:florista_ecommerce_app/features/occasions/data/models/product_dto/product_dto.dart';
 import 'package:injectable/injectable.dart';
 
@@ -14,7 +14,9 @@ class RemoteDataSourceImpl implements RemoteDataSourceContract {
   Future<BaseResponse<List<OccasionDto>>> getAllOccasions() async {
     try {
       final response = await apiClient.getAllOccasions();
-      return SuccessBaseResponse<List<OccasionDto>>(data: response.occasions);
+      return SuccessBaseResponse<List<OccasionDto>>(
+        data: response.occasions ?? [],
+      );
     } catch (e) {
       return ErrorBaseResponse(errorMessage: e.toString());
     }

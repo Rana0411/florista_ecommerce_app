@@ -4,6 +4,8 @@ import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
 import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
+part 'product_image.dart';
+part 'product_price_section.dart';
 
 class ProductCard extends StatelessWidget {
   final VoidCallback? onTap;
@@ -19,85 +21,76 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
+      borderRadius: BorderRadius.circular(16),
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          border: Border.all(color: AppColors.lightGrey),
-          borderRadius: BorderRadius.circular(16),
           color: AppColors.white,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: AppColors.lightGrey, width: 1),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
+            /// Product Image
+            AspectRatio(
+              aspectRatio: 1,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Image.asset(
-                  productEntity.imageCover ?? AppConstants.imagePlaceholder,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
+                child: ProductImage(imageUrl: productEntity.imageCover),
               ),
-            ),
-
-            const SizedBox(height: 8),
-
-            Text(
-              productEntity.name ?? "No Name Found",
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(fontWeight: FontWeightManager.medium),
-            ),
-
-            const SizedBox(height: 4),
-
-            Row(
-              children: [
-                Text(
-                  '${S.current.EGB} ${productEntity.price}',
-                  style: const TextStyle(
-                    fontWeight: FontWeightManager.bold,
-                    fontSize: FontSize.s16,
-                  ),
-                ),
-
-                const SizedBox(width: 6),
-
-                Text(
-                  productEntity.price.toString(),
-                  style: TextStyle(
-                    decoration: TextDecoration.lineThrough,
-                    color: AppColors.grey,
-                  ),
-                ),
-
-                const SizedBox(width: 6),
-
-                Text(
-                  '${productEntity.discount}%',
-                  style: TextStyle(
-                    color: AppColors.success,
-                    fontWeight: FontWeightManager.semiBold,
-                  ),
-                ),
-              ],
             ),
 
             const SizedBox(height: 10),
 
+            /// Product Name
+            Text(
+              productEntity.name ?? 'No Name',
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize:
+                    FontSize.s14, // Lowered slightly to fit 2 lines safely
+                fontWeight: FontWeightManager.medium,
+              ),
+            ),
+
+            const SizedBox(height: 4),
+
+            /// Price Section (Passes the logic down)
+            PriceSection(product: productEntity),
+
+            // Replaced Spacer() with a flexible or constant padding to avoid forcing huge card heights
+            const SizedBox(height: 12),
+
+            /// Add To Cart Button
             SizedBox(
               width: double.infinity,
-              height: 42,
+              height: 36, // Increased slightly for better touch targets
               child: ElevatedButton.icon(
                 onPressed: onAddToCart,
-                icon: const Icon(Icons.shopping_cart_outlined),
-                label: Text(S.current.addToCart),
+                icon: const Icon(Icons.shopping_cart_outlined, size: 16),
+                label: Text(
+                  S.current.addToCart,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: AppColors.black,
+                    fontWeight: FontWeight.w500,
+                    fontSize: FontSize.s10,
+                  ),
+                ),
                 style: ElevatedButton.styleFrom(
+                  elevation: 0,
                   backgroundColor: AppColors.primary,
                   foregroundColor: AppColors.white,
-                  shape: RoundedRectangleBorder(),
+                  padding: EdgeInsets
+                      .zero, // Prevents text clipping on small screens
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
               ),
             ),

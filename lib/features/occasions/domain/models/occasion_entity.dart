@@ -1,5 +1,6 @@
 class OccasionEntity {
-  final String name;
+  final String? id;
+  final String? name;
 
-  OccasionEntity({required this.name});
+  OccasionEntity({this.id, this.name});
 }

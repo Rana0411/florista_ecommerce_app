@@ -1,5 +1,5 @@
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
-import 'package:florista_ecommerce_app/core/utils/themes/app_widgets_theme/text_style_widgets.dart';
+import 'package:florista_ecommerce_app/core/utils/themes/app_widgets_theme/text_style_manager.dart';
 import 'package:flutter/material.dart';
 import '../../app_colors.dart';
 
@@ -18,6 +18,7 @@ abstract class AppTextStyles {
     displaySmall: getMediumStyle(
       color: AppColors.black,
       fontSize: FontSize.s30,
+
       fontFamily: AppFonts.interFamily,
     ),
 
