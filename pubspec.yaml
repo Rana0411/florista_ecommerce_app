@@ -93,6 +93,7 @@ flutter:
   # example:
   assets:
     - assets/icons/florista.png
+    - assets/icons/flower_12px.png
   fonts:
     - family: Inter
       fonts:

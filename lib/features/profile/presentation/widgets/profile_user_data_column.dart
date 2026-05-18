@@ -2,6 +2,7 @@ import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/core/utils/assets_manager.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/view_model/profile_view_model.dart';
+import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -35,7 +36,7 @@ class ProfileUserDataColumn extends StatelessWidget {
 
         /// Empty State
         if (userDataState.data == null && userDataState.errorMessage == null) {
-          return const Center(child: Text("No User Data"));
+          return Center(child: Text(S.current.noUserData));
         }
 
         /// Data State
@@ -53,7 +54,7 @@ class ProfileUserDataColumn extends StatelessWidget {
             const SizedBox(height: 12),
 
             Text(
-              user.firstName ?? "No Name",
+              user.firstName ?? S.current.noName,
               style: TextStyle(
                 color: AppColors.black,
                 fontSize: 18,
@@ -64,7 +65,7 @@ class ProfileUserDataColumn extends StatelessWidget {
             const SizedBox(height: 4),
 
             Text(
-              user.email ?? "No Email",
+              user.email ?? S.current.noEmail,
               style: TextStyle(
                 color: AppColors.grey,
                 fontSize: 18,

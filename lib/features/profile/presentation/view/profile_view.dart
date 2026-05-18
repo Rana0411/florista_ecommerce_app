@@ -7,6 +7,7 @@ import 'package:florista_ecommerce_app/features/profile/presentation/widgets/lan
 import 'package:florista_ecommerce_app/features/profile/presentation/widgets/notification_tile.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/widgets/profile_tile.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/widgets/profile_user_data_column.dart';
+import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -32,7 +33,7 @@ class _ProfileViewState extends State<ProfileView> {
             const SizedBox(width: 6),
 
             Text(
-              "Flowery",
+              S.current.flowery,
               style: TextStyle(
                 fontFamily: AppFonts.imfEllEnglish,
                 color: AppColors.primary,
@@ -58,14 +59,14 @@ class _ProfileViewState extends State<ProfileView> {
               // My orders
               ProfileTile(
                 icon: Icons.book_outlined,
-                title: "My orders",
+                title: S.current.myOrders,
                 onTap: () {},
               ),
 
               // Saved address
               ProfileTile(
                 icon: Icons.place_outlined,
-                title: "Saved address",
+                title: S.current.savedAddress,
                 onTap: () {},
               ),
 
@@ -80,17 +81,17 @@ class _ProfileViewState extends State<ProfileView> {
               LanguageTile(),
 
               // About us
-              ProfileTile(title: "About us", onTap: () {}),
+              ProfileTile(title: S.current.aboutUs, onTap: () {}),
 
               // Terms & Conditions
-              ProfileTile(title: "Terms & Conditions", onTap: () {}),
+              ProfileTile(title: S.current.termsConditions, onTap: () {}),
 
               Divider(height: 32),
 
               //TODO: Apply Logout Logic here @Rana0411
               ProfileTile(
                 icon: Icons.logout,
-                title: "Logout",
+                title: S.current.logout,
                 isLogout: true,
                 onTap: () {},
               ),
@@ -98,7 +99,7 @@ class _ProfileViewState extends State<ProfileView> {
               Spacer(),
 
               Text(
-                "v 6.3.0 - (446)",
+                S.current.virson,
                 style: TextStyle(
                   fontSize: 11,
                   fontWeight: FontWeightManager.regular,

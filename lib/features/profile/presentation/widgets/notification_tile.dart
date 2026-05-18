@@ -1,5 +1,6 @@
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
+import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class NotificationTile extends StatelessWidget {
@@ -16,7 +17,7 @@ class NotificationTile extends StatelessWidget {
             icon: Icon(Icons.toggle_on, color: AppColors.primary, size: 40),
           ),
           Text(
-            "Notification",
+            S.current.notification,
             style: TextStyle(
               color: AppColors.black,
               fontSize: 13,
