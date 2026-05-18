@@ -1,5 +1,11 @@
 import 'package:florista_ecommerce_app/core/router/nav_helper.dart';
 import 'package:florista_ecommerce_app/core/shared_widgets/custom_buttom_navigation_bar.dart';
+import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
+import 'package:florista_ecommerce_app/core/utils/assets_manager.dart';
+import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
+import 'package:florista_ecommerce_app/features/profile/presentation/widgets/language_tile.dart';
+import 'package:florista_ecommerce_app/features/profile/presentation/widgets/notification_tile.dart';
+import 'package:florista_ecommerce_app/features/profile/presentation/widgets/profile_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -16,8 +22,112 @@ class _ProfileViewState extends State<ProfileView> {
     final String location = GoRouterState.of(context).uri.toString();
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Profile")),
-      body: Center(child: Text("Profile")),
+      appBar: AppBar(
+        titleSpacing: 10,
+        title: Row(
+          children: [
+            Image.asset(AssetsManager.flower12Px, width: 24, height: 24),
+
+            const SizedBox(width: 6),
+
+            Text(
+              "Flowery",
+              style: TextStyle(
+                fontFamily: AppFonts.imfEllEnglish,
+                color: AppColors.primary,
+                fontSize: 20,
+              ),
+            ),
+
+            Spacer(),
+
+            Icon(Icons.notifications_outlined),
+          ],
+        ),
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              CircleAvatar(
+                backgroundImage: AssetImage(AssetsManager.logo),
+                radius: 50,
+              ),
+              Text(
+                "First Name",
+                style: TextStyle(
+                  color: AppColors.black,
+                  fontSize: 18,
+                  fontWeight: FontWeightManager.medium,
+                ),
+              ),
+              Text(
+                "Email976@gmail.com",
+                style: TextStyle(
+                  color: AppColors.grey,
+                  fontSize: 18,
+                  fontWeight: FontWeightManager.medium,
+                ),
+              ),
+
+              SizedBox(height: 32),
+
+              // My orders
+              ProfileTile(
+                icon: Icons.book_outlined,
+                title: "My orders",
+                onTap: () {},
+              ),
+
+              // Saved address
+              ProfileTile(
+                icon: Icons.place_outlined,
+                title: "Saved address",
+                onTap: () {},
+              ),
+
+              Divider(),
+
+              // Notification
+              NotificationTile(),
+
+              Divider(),
+
+              //TODO: Apply Language Logic here @Rana0411
+              LanguageTile(),
+
+              // About us
+              ProfileTile(title: "About us", onTap: () {}),
+
+              // Terms & Conditions
+              ProfileTile(title: "Terms & Conditions", onTap: () {}),
+
+              Divider(height: 32),
+
+              //TODO: Apply Logout Logic here @Rana0411
+              ProfileTile(
+                icon: Icons.logout,
+                title: "Logout",
+                isLogout: true,
+                onTap: () {},
+              ),
+
+              Spacer(),
+
+              Text(
+                "v 6.3.0 - (446)",
+                style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeightManager.regular,
+                  color: AppColors.lightGrey,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+
       bottomNavigationBar: CustomBottomNavigationBar(
         currentIndex: NavHelper.getCurrentIndex(location),
         onTap: (index) => NavHelper.onItemTapped(context, index),
