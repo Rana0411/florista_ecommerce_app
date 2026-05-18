@@ -20,7 +20,7 @@ class ProfileRepoImpl implements ProfileRepoContract {
         );
       case ErrorBaseResponse<UserDataReponse>():
         return ErrorBaseResponse<UserDataEntity>(
-          errorMessage: response.errorMessage,
+          errorMessage: response.getErrorMessage(),
         );
     }
   }

@@ -9,6 +9,7 @@ import 'package:florista_ecommerce_app/features/auth/sign_up/presentation/view/s
 import 'package:florista_ecommerce_app/features/categories/presentation/view/categories_view.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/view/home_view.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/view/profile_view.dart';
+import 'package:florista_ecommerce_app/features/profile/presentation/view_model/profile_events.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/view_model/profile_view_model.dart';
 import 'package:florista_ecommerce_app/features/splash/presentation/view/splash_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,7 +49,8 @@ abstract class AppRouter {
       GoRoute(
         path: RoutePath.profile,
         builder: (context, state) => BlocProvider(
-          create: (context) => getIt.get<ProfileViewModel>(),
+          create: (context) =>
+              getIt.get<ProfileViewModel>()..doEvent(GetUserDataEvent()),
           child: ProfileView(),
         ),
       ),

@@ -6,6 +6,7 @@ import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/widgets/language_tile.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/widgets/notification_tile.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/widgets/profile_tile.dart';
+import 'package:florista_ecommerce_app/features/profile/presentation/widgets/profile_user_data_column.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -50,26 +51,7 @@ class _ProfileViewState extends State<ProfileView> {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              CircleAvatar(
-                backgroundImage: AssetImage(AssetsManager.logo),
-                radius: 50,
-              ),
-              Text(
-                "First Name",
-                style: TextStyle(
-                  color: AppColors.black,
-                  fontSize: 18,
-                  fontWeight: FontWeightManager.medium,
-                ),
-              ),
-              Text(
-                "Email976@gmail.com",
-                style: TextStyle(
-                  color: AppColors.grey,
-                  fontSize: 18,
-                  fontWeight: FontWeightManager.medium,
-                ),
-              ),
+              ProfileUserDataColumn(),
 
               SizedBox(height: 32),
 
