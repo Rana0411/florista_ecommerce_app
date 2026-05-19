@@ -1,4 +1,5 @@
 import 'package:florista_ecommerce_app/config/di/di.dart';
+import 'package:florista_ecommerce_app/config/shared_models/user_data/user_request_dto.dart';
 import 'package:florista_ecommerce_app/core/router/route_path.dart';
 import 'package:florista_ecommerce_app/features/Cart/presentation/view/cart_view.dart';
 import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/view/forget_password_view.dart';
@@ -57,7 +58,8 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: RoutePath.editProfile,
-        builder: (context, state) => EditProfileView(),
+        builder: (context, state) =>
+            EditProfileView(user: state.extra as UserRequestDto),
       ),
     ],
   );

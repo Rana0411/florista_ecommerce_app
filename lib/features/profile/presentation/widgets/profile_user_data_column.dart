@@ -68,7 +68,7 @@ class ProfileUserDataColumn extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    context.push(RoutePath.editProfile);
+                    context.push(RoutePath.editProfile, extra: user);
                   },
                   child: Image.asset(AssetsManager.pen, width: 24),
                 ),
