@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/features/categories/domain/entities/product_entity.dart';
 
@@ -14,7 +13,7 @@ class ProductCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFFEEEEEE)),
+        border: Border.all(color: AppColors.white),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.04),
@@ -31,28 +30,31 @@ class ProductCard extends StatelessWidget {
             child: ClipRRect(
               borderRadius:
               const BorderRadius.vertical(top: Radius.circular(16)),
-              child: Container(
-                width: double.infinity,
-                color: const Color(0xFFFCEEF3),
-                child: Image.network(
-                  product.image,
-                  fit: BoxFit.cover,
-                  errorBuilder: (_, __, ___) => const Center(
-                    child: Icon(
-                      Icons.local_florist,
-                      size: 48,
-                      color: Color(0xFFD21E6A),
-                    ),
-                  ),
-                  loadingBuilder: (_, child, loadingProgress) {
-                    if (loadingProgress == null) return child;
-                    return const Center(
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        color: Color(0xFFD21E6A),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  width: double.infinity,
+                  color: AppColors.white,
+                  child: Image.network(
+                    product.image,
+                    fit: BoxFit.cover,
+                    errorBuilder: (_, __, ___) => Center(
+                      child: Icon(
+                        Icons.local_florist,
+                        size: 48,
+                        color: AppColors.primary,
                       ),
-                    );
-                  },
+                    ),
+                    loadingBuilder: (_, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return  Center(
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          color: AppColors.primary,
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ),
             ),
@@ -67,10 +69,10 @@ class ProductCard extends StatelessWidget {
                 // Name
                 Text(
                   product.name,
-                  style: const TextStyle(
+                  style:  TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
-                    color: Color(0xFF222222),
+                    color: AppColors.black,
                   ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
@@ -83,10 +85,10 @@ class ProductCard extends StatelessWidget {
                   children: [
                     Text(
                       'EGP ${product.price.toStringAsFixed(0)}',
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w700,
-                        color: Color(0xFF222222),
+                        color: AppColors.black,
                       ),
                     ),
                     if (product.hasDiscount) ...[
