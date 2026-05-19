@@ -1,13 +1,13 @@
 part of 'profile_view_model.dart';
 
 class ProfileState extends Equatable {
-  final BaseState<UserDataEntity> getUserDatastate;
+  final BaseState<UserRequestDto> getUserDatastate;
 
-  ProfileState({BaseState<UserDataEntity>? getUserDatastate})
+  ProfileState({BaseState<UserRequestDto>? getUserDatastate})
     : getUserDatastate =
-          getUserDatastate ?? BaseState<UserDataEntity>(isLoading: true);
+          getUserDatastate ?? BaseState<UserRequestDto>(isLoading: true);
 
-  ProfileState copyWith({BaseState<UserDataEntity>? getUserDatastate}) {
+  ProfileState copyWith({BaseState<UserRequestDto>? getUserDatastate}) {
     return ProfileState(
       getUserDatastate: getUserDatastate ?? this.getUserDatastate,
     );

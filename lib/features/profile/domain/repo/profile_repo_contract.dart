@@ -1,6 +1,6 @@
 import 'package:florista_ecommerce_app/config/base_response/base_response.dart';
-import 'package:florista_ecommerce_app/core/entities/user_data_entity.dart';
+import 'package:florista_ecommerce_app/config/shared_models/user_data/user_request_dto.dart';
 
 abstract interface class ProfileRepoContract {
-  Future<BaseResponse<UserDataEntity>> getUserData();
+  Future<BaseResponse<UserRequestDto>> getUserData();
 }
