@@ -1,7 +1,7 @@
 import 'package:florista_ecommerce_app/config/base_response/base_response.dart';
+import 'package:florista_ecommerce_app/config/shared_models/user_data/user_data_response.dart';
+import 'package:florista_ecommerce_app/core/entities/user_data_entity.dart';
 import 'package:florista_ecommerce_app/features/profile/data/data_sources/profile_remote_data_source_contract.dart';
-import 'package:florista_ecommerce_app/features/profile/data/models/responses/user_data_response.dart';
-import 'package:florista_ecommerce_app/features/profile/domain/entities/user_data_entity.dart';
 import 'package:florista_ecommerce_app/features/profile/domain/repo/profile_repo_contract.dart';
 import 'package:injectable/injectable.dart';
 
