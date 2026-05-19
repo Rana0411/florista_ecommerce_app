@@ -12,4 +12,5 @@ abstract class AppColors {
   // Most likely to be used for disabled buttons
   static Color lightGrey = const Color(0xff878787);
   static Color transparent = const Color.fromRGBO(0, 0, 0, 0);
+  static Color placeholder = const Color(0xffA6A6A6);
 }
