@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppFonts {
   static final interFamily = "Inter";
+  static final imfEllEnglish = "IMFellEnglish";
 }
 
 abstract class FontWeightManager {
