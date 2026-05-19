@@ -34,15 +34,17 @@ class CategoriesCubit extends Cubit<CategoriesState> {
       errorMessage: mapped.errorMessage,
     ));
 
-    // Load products for the initially-selected category.
+    // selectedCategoryIndex starts at 0 ("All") — load all products.
     await _fetchProductsForSelectedCategory();
   }
 
   // ─── Category tab selection ────────────────────────────────────────────────
 
+  /// [index] is the tab index where 0 = "All" and 1..n = categories[index-1].
   Future<void> selectCategory(int index) async {
     if (state.selectedCategoryIndex == index) return;
-    emit(state.copyWith(selectedCategoryIndex: index));
+    // Reset search when switching categories.
+    emit(state.copyWith(selectedCategoryIndex: index, searchQuery: ''));
     await _fetchProductsForSelectedCategory();
   }
 
@@ -56,23 +58,42 @@ class CategoriesCubit extends Cubit<CategoriesState> {
       clearProductsError: true,
     ));
 
-    final selectedCategory = state.categories[state.selectedCategoryIndex];
-    final response =
-        await _getProductsByCategoryUseCase(selectedCategory.id);
+    // index 0 is the "All" tab — fetch every category in parallel and merge.
+    // index 1..n maps to categories[index - 1].
+    List<ProductEntity> fetched = [];
 
-    switch (response) {
-      case SuccessBaseResponse():
-        emit(state.copyWith(
-          isProductsLoading: false,
-          products: _applySorting(response.data, state.selectedSort),
-        ));
+    if (state.selectedCategoryIndex == 0) {
+      final futures =
+      state.categories.map((c) => _getProductsByCategoryUseCase(c.id));
+      final responses = await Future.wait(futures);
 
-      case ErrorBaseResponse():
-        emit(state.copyWith(
-          isProductsLoading: false,
-          productsErrorMessage: response.errorMessage,
-        ));
+      for (final response in responses) {
+        if (response case SuccessBaseResponse()) {
+          fetched.addAll(response.data);
+        }
+      }
+    } else {
+      final category = state.categories[state.selectedCategoryIndex - 1];
+      final response = await _getProductsByCategoryUseCase(category.id);
+
+      switch (response) {
+        case SuccessBaseResponse():
+          fetched = response.data;
+        case ErrorBaseResponse():
+          emit(state.copyWith(
+            isProductsLoading: false,
+            productsErrorMessage: response.errorMessage,
+          ));
+          return;
+      }
     }
+
+    final sorted = _applySorting(fetched, state.selectedSort);
+    emit(state.copyWith(
+      isProductsLoading: false,
+      allProducts: fetched,
+      products: sorted,
+    ));
   }
 
   // ─── Sort ──────────────────────────────────────────────────────────────────
@@ -82,6 +103,7 @@ class CategoriesCubit extends Cubit<CategoriesState> {
   void hideSortSheet() => emit(state.copyWith(isSortSheetVisible: false));
 
   void applySort(SortOption sort) {
+    // Sort the currently visible (search-filtered) products.
     final sorted = _applySorting(state.products, sort);
     emit(state.copyWith(
       selectedSort: sort,
@@ -112,7 +134,20 @@ class CategoriesCubit extends Cubit<CategoriesState> {
 
   // ─── Search ────────────────────────────────────────────────────────────────
 
+  /// Filters [allProducts] locally by name/description; preserves active sort.
   void searchProducts(String query) {
-    // Placeholder – hook up to a search use-case when available.
+    final trimmed = query.trim().toLowerCase();
+    final filtered = trimmed.isEmpty
+        ? state.allProducts
+        : state.allProducts
+        .where((p) =>
+    p.name.toLowerCase().contains(trimmed) ||
+        p.description.toLowerCase().contains(trimmed))
+        .toList();
+
+    emit(state.copyWith(
+      searchQuery: query,
+      products: _applySorting(filtered, state.selectedSort),
+    ));
   }
 }

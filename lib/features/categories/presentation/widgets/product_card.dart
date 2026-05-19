@@ -93,7 +93,7 @@ class ProductCard extends StatelessWidget {
                       const SizedBox(width: 5),
                       Flexible(
                         child: Text(
-                          '${product.originalPrice.toStringAsFixed(0)}',
+                          product.originalPrice.toStringAsFixed(0),
                           style: const TextStyle(
                             fontSize: 10,
                             color: Color(0xFFAAAAAA),
@@ -107,7 +107,7 @@ class ProductCard extends StatelessWidget {
                         '${product.discountPercent.toStringAsFixed(0)}%',
                         style: TextStyle(
                           fontSize: 10,
-                          color: AppColors.primary,
+                          color: AppColors.lightGreen,
                           fontWeight: FontWeight.w600,
                         ),
                       ),

@@ -14,13 +14,20 @@ class CategoriesState extends Equatable {
 
   // Products grid state
   final bool isProductsLoading;
+  /// Displayed products (after search filter + sort applied).
   final List<ProductEntity> products;
+  /// Full unfiltered product list for the selected category – used for search.
+  final List<ProductEntity> allProducts;
   final String? productsErrorMessage;
 
   // Filtering & sorting
+  /// 0 = "All", 1..n = categories[index - 1]
   final int selectedCategoryIndex;
   final SortOption? selectedSort;
   final bool isSortSheetVisible;
+
+  // Search
+  final String searchQuery;
 
   const CategoriesState({
     this.isLoading = false,
@@ -28,10 +35,12 @@ class CategoriesState extends Equatable {
     this.errorMessage,
     this.isProductsLoading = false,
     this.products = const [],
+    this.allProducts = const [],
     this.productsErrorMessage,
     this.selectedCategoryIndex = 0,
     this.selectedSort,
     this.isSortSheetVisible = false,
+    this.searchQuery = '',
   });
 
   CategoriesState copyWith({
@@ -41,12 +50,14 @@ class CategoriesState extends Equatable {
     bool clearError = false,
     bool? isProductsLoading,
     List<ProductEntity>? products,
+    List<ProductEntity>? allProducts,
     String? productsErrorMessage,
     bool clearProductsError = false,
     int? selectedCategoryIndex,
     SortOption? selectedSort,
     bool clearSort = false,
     bool? isSortSheetVisible,
+    String? searchQuery,
   }) {
     return CategoriesState(
       isLoading: isLoading ?? this.isLoading,
@@ -54,6 +65,7 @@ class CategoriesState extends Equatable {
       errorMessage: clearError ? null : errorMessage ?? this.errorMessage,
       isProductsLoading: isProductsLoading ?? this.isProductsLoading,
       products: products ?? this.products,
+      allProducts: allProducts ?? this.allProducts,
       productsErrorMessage: clearProductsError
           ? null
           : productsErrorMessage ?? this.productsErrorMessage,
@@ -61,6 +73,7 @@ class CategoriesState extends Equatable {
       selectedCategoryIndex ?? this.selectedCategoryIndex,
       selectedSort: clearSort ? null : selectedSort ?? this.selectedSort,
       isSortSheetVisible: isSortSheetVisible ?? this.isSortSheetVisible,
+      searchQuery: searchQuery ?? this.searchQuery,
     );
   }
 
@@ -71,10 +84,12 @@ class CategoriesState extends Equatable {
     errorMessage,
     isProductsLoading,
     products,
+    allProducts,
     productsErrorMessage,
     selectedCategoryIndex,
     selectedSort,
     isSortSheetVisible,
+    searchQuery,
   ];
 }
 
