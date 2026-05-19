@@ -1,3 +1,4 @@
+import 'package:florista_ecommerce_app/features/home/domain/entities/occasion_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'occasion_dto.g.dart';
@@ -36,4 +37,7 @@ class OccasionDto {
       _$OccasionDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$OccasionDtoToJson(this);
+
+  OccasionEntity toHomeDomain() =>
+      OccasionEntity(id: id, name: name, image: image);
 }
