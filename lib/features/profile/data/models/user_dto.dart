@@ -51,6 +51,13 @@ class UserDto {
 
   Map<String, dynamic> toJson() => _$UserDtoToJson(this);
 
-  UserDataEntity toDomain() =>
-      UserDataEntity(id: id, firstName: firstName, email: email, photo: photo);
+  UserDataEntity toDomain() => UserDataEntity(
+    id: id,
+    firstName: firstName,
+    email: email,
+    photo: photo,
+    lastName: lastName,
+    gender: gender,
+    phone: phone,
+  );
 }
