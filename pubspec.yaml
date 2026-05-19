@@ -94,6 +94,7 @@ flutter:
   assets:
     - assets/icons/florista.png
     - assets/icons/flower_12px.png
+    - assets/icons/noto-v1_pen.png
   fonts:
     - family: Inter
       fonts:
