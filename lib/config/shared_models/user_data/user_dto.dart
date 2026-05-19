@@ -1,5 +1,5 @@
 import 'package:florista_ecommerce_app/config/shared_models/addresses/address_dto.dart';
-import 'package:florista_ecommerce_app/core/entities/user_data_entity.dart';
+import 'package:florista_ecommerce_app/config/shared_models/user_data/user_request_dto.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user_dto.g.dart';
@@ -51,7 +51,7 @@ class UserDto {
 
   Map<String, dynamic> toJson() => _$UserDtoToJson(this);
 
-  UserDataEntity toDomain() => UserDataEntity(
+  UserRequestDto toDomain() => UserRequestDto(
     id: id,
     firstName: firstName,
     email: email,
