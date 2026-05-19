@@ -1,3 +1,4 @@
+import 'package:florista_ecommerce_app/core/router/route_path.dart';
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/core/utils/assets_manager.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
@@ -5,6 +6,7 @@ import 'package:florista_ecommerce_app/features/profile/presentation/view_model/
 import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class ProfileUserDataColumn extends StatelessWidget {
   const ProfileUserDataColumn({super.key});
@@ -53,13 +55,24 @@ class ProfileUserDataColumn extends StatelessWidget {
 
             const SizedBox(height: 12),
 
-            Text(
-              user.firstName ?? S.current.noName,
-              style: TextStyle(
-                color: AppColors.black,
-                fontSize: 18,
-                fontWeight: FontWeightManager.medium,
-              ),
+            Row(
+              mainAxisAlignment: .center,
+              children: [
+                Text(
+                  user.firstName ?? S.current.noName,
+                  style: TextStyle(
+                    color: AppColors.black,
+                    fontSize: 18,
+                    fontWeight: FontWeightManager.medium,
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    context.push(RoutePath.editProfile);
+                  },
+                  child: Image.asset(AssetsManager.pen, width: 24),
+                ),
+              ],
             ),
 
             const SizedBox(height: 4),
