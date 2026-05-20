@@ -4,4 +4,5 @@ abstract class ApiEndpoints {
   static const String _baseUrl = BaseUrls.flowerAppBaseURl;
   static const String getUserData = '$_baseUrl/auth/profile-data';
   static const String editProfile = '$_baseUrl/auth/editProfile';
+  static const String uploadProfilePhoto = '$_baseUrl/auth/upload-photo';
 }
