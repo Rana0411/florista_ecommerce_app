@@ -26,14 +26,14 @@ class GenderRadioGroup extends StatelessWidget {
           child: Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(right: 40),
+                padding: const EdgeInsets.only(right: 30),
                 child: Text(
                   S.current.gender,
                   style: const TextStyle(fontSize: 18),
                 ),
               ),
               SizedBox(
-                width: ScreenSize.w(context, .32),
+                width: ScreenSize.w(context, .34),
                 child: RadioListTile<String>(
                   title: Text(S.current.female),
                   value: "female",
@@ -42,7 +42,7 @@ class GenderRadioGroup extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: ScreenSize.w(context, .32),
+                width: ScreenSize.w(context, .30),
                 child: RadioListTile<String>(
                   title: Text(S.current.male),
                   value: "male",

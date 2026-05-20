@@ -19,3 +19,5 @@ class UpdateGender extends EditProfileEvent {
   final String gender;
   UpdateGender({required this.gender});
 }
+
+class PickProfilePhoto extends EditProfileEvent {}

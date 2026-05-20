@@ -7,6 +7,7 @@ import 'package:florista_ecommerce_app/config/shared_models/user_data/user_reque
 import 'package:florista_ecommerce_app/features/edit_profile/domain/use_cases/upload_profile_data_use_case.dart';
 import 'package:florista_ecommerce_app/features/edit_profile/domain/use_cases/upload_profile_photo_use_case.dart';
 import 'package:florista_ecommerce_app/features/edit_profile/presentation/view_model/cubit/edit_profile_event.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 
 part 'edit_profile_state.dart';
@@ -15,6 +16,8 @@ part 'edit_profile_state.dart';
 class EditProfileViewModel extends Cubit<EditProfileState> {
   final UploadProfileDataUseCase uploadProfileData;
   final UploadProfilePhotoUseCase uploadProfilePhotoUseCase;
+  final ImagePicker _imagePicker = ImagePicker();
+
   EditProfileViewModel({
     required this.uploadProfileData,
     required this.uploadProfilePhotoUseCase,
@@ -28,9 +31,12 @@ class EditProfileViewModel extends Cubit<EditProfileState> {
       case UploadProfilePhoto():
         _uploadProfilePhoto(photo: event.photo);
         break;
-
       case UpdateGender():
         emit(state.copyWith(gender: event.gender));
+        break;
+      case PickProfilePhoto():
+        _pickAndUploadPhoto();
+        break;
     }
   }
 
@@ -54,6 +60,24 @@ class EditProfileViewModel extends Cubit<EditProfileState> {
       phone: phone != initial?.phone ? phone : null,
       gender: state.gender != initial?.gender ? state.gender : null,
     );
+  }
+
+  Future<void> _pickAndUploadPhoto() async {
+    final XFile? picked = await _imagePicker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 80,
+    );
+
+    if (picked == null) return;
+
+    emit(state.copyWith(pickedPhotoPath: picked.path));
+
+    final multipartFile = await MultipartFile.fromFile(
+      picked.path,
+      filename: picked.name,
+    );
+
+    _uploadProfilePhoto(photo: multipartFile);
   }
 
   Future<void> _uploadProfileData({required UserRequestDto user}) async {
@@ -84,7 +108,7 @@ class EditProfileViewModel extends Cubit<EditProfileState> {
   Future<void> _uploadProfilePhoto({required MultipartFile photo}) async {
     emit(
       state.copyWith(
-        uploadProfilePhoto: state.uploadProfilePhoto.copyWith(
+        uploadProfilePhotoState: state.uploadProfilePhotoState.copyWith(
           isLoading: true,
           data: null,
           errorMessage: null,
@@ -97,7 +121,7 @@ class EditProfileViewModel extends Cubit<EditProfileState> {
 
     emit(
       state.copyWith(
-        uploadProfilePhoto: state.uploadProfilePhoto.copyWith(
+        uploadProfilePhotoState: state.uploadProfilePhotoState.copyWith(
           isLoading: handler.isLoading,
           data: handler.data,
           errorMessage: handler.errorMessage,
