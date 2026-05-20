@@ -13,11 +13,11 @@ class EditProfileRemoteDataSourceImpl
 
   EditProfileRemoteDataSourceImpl({required this.editProfileApiClient});
   @override
-  Future<BaseResponse<UserDataReponse>> editProfile({
+  Future<BaseResponse<UserDataReponse>> uploadProfileData({
     required UserRequestDto userRequestDto,
   }) async {
     try {
-      final response = await editProfileApiClient.editProfile(
+      final response = await editProfileApiClient.uploadProfileData(
         userRequestDto: userRequestDto,
       );
       return SuccessBaseResponse<UserDataReponse>(data: response);

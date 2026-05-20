@@ -4,7 +4,7 @@ import 'package:florista_ecommerce_app/config/shared_models/user_data/user_data_
 import 'package:florista_ecommerce_app/config/shared_models/user_data/user_request_dto.dart';
 
 abstract interface class EditProfileRemoteDataSourceContract {
-  Future<BaseResponse<UserDataReponse>> editProfile({
+  Future<BaseResponse<UserDataReponse>> uploadProfileData({
     required UserRequestDto userRequestDto,
   });
   Future<BaseResponse<String>> uploadProfilePhoto({

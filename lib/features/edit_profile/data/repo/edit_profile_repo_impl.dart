@@ -12,12 +12,11 @@ class EditProfileRepoImpl implements EditProfileRepoContract {
 
   EditProfileRepoImpl({required this.editProfileRemoteDataSourceContract});
   @override
-  Future<BaseResponse<UserRequestDto>> editProfile({
+  Future<BaseResponse<UserRequestDto>> uploadProfileData({
     required UserRequestDto userRequestDto,
   }) async {
-    final response = await editProfileRemoteDataSourceContract.editProfile(
-      userRequestDto: userRequestDto,
-    );
+    final response = await editProfileRemoteDataSourceContract
+        .uploadProfileData(userRequestDto: userRequestDto);
     switch (response) {
       case SuccessBaseResponse<UserDataReponse>():
         return SuccessBaseResponse<UserRequestDto>(

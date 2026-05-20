@@ -15,7 +15,7 @@ abstract class EditProfileApiClient {
   factory EditProfileApiClient(Dio dio) = _EditProfileApiClient;
 
   @PUT(ApiEndpoints.editProfile)
-  Future<UserDataReponse> editProfile({
+  Future<UserDataReponse> uploadProfileData({
     @Body() required UserRequestDto userRequestDto,
   });
 

@@ -4,14 +4,16 @@ import 'package:florista_ecommerce_app/features/edit_profile/domain/repo/edit_pr
 import 'package:injectable/injectable.dart';
 
 @injectable
-class EditProfileUseCase {
+class UploadProfileDataUseCase {
   final EditProfileRepoContract editProfileRepoContract;
 
-  EditProfileUseCase({required this.editProfileRepoContract});
+  UploadProfileDataUseCase({required this.editProfileRepoContract});
 
   Future<BaseResponse<UserRequestDto>> call({
     required UserRequestDto userRequestDto,
   }) {
-    return editProfileRepoContract.editProfile(userRequestDto: userRequestDto);
+    return editProfileRepoContract.uploadProfileData(
+      userRequestDto: userRequestDto,
+    );
   }
 }
