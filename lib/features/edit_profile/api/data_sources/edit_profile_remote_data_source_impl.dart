@@ -1,3 +1,4 @@
+import 'package:dio/src/multipart_file.dart';
 import 'package:florista_ecommerce_app/config/base_response/base_response.dart';
 import 'package:florista_ecommerce_app/config/shared_models/user_data/user_data_response.dart';
 import 'package:florista_ecommerce_app/config/shared_models/user_data/user_request_dto.dart';
@@ -22,6 +23,20 @@ class EditProfileRemoteDataSourceImpl
       return SuccessBaseResponse<UserDataReponse>(data: response);
     } catch (e) {
       return ErrorBaseResponse<UserDataReponse>(error: e);
+    }
+  }
+
+  @override
+  Future<BaseResponse<String>> uploadProfilePhoto({
+    required MultipartFile photo,
+  }) async {
+    try {
+      final response = await editProfileApiClient.uploadProfilePhoto(
+        photo: photo,
+      );
+      return SuccessBaseResponse<String>(data: response);
+    } catch (e) {
+      return ErrorBaseResponse<String>(error: e);
     }
   }
 }

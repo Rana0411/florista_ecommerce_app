@@ -18,4 +18,10 @@ abstract class EditProfileApiClient {
   Future<UserDataReponse> editProfile({
     @Body() required UserRequestDto userRequestDto,
   });
+
+  @MultiPart()
+  @PUT(ApiEndpoints.uploadProfilePhoto)
+  Future<String> uploadProfilePhoto({
+    @Part(name: 'photo') required MultipartFile photo,
+  });
 }

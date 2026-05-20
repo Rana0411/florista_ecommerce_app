@@ -3,9 +3,9 @@ import 'package:florista_ecommerce_app/config/text_field_validator.dart';
 import 'package:florista_ecommerce_app/core/router/nav_helper.dart';
 import 'package:florista_ecommerce_app/core/shared_widgets/custom_buttom_navigation_bar.dart';
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
-import 'package:florista_ecommerce_app/core/utils/assets_manager.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
 import 'package:florista_ecommerce_app/core/utils/responsive/screen_size.dart';
+import 'package:florista_ecommerce_app/features/edit_profile/presentation/widgets/edit_profile_image_stack.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -52,12 +52,7 @@ class _EditProfileViewState extends State<EditProfileView> {
             child: Column(
               spacing: 24,
               children: [
-                CircleAvatar(
-                  radius: 50,
-                  backgroundImage: widget.user.photo?.isNotEmpty == true
-                      ? NetworkImage(widget.user.photo!)
-                      : const AssetImage(AssetsManager.logo) as ImageProvider,
-                ),
+                EditProfileImageStack(photo: widget.user.photo),
 
                 Row(
                   mainAxisAlignment: .spaceBetween,
@@ -177,9 +172,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                   width: ScreenSize.w(context, 1),
                   child: ElevatedButton(
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        
-                      }
+                      if (_formKey.currentState!.validate()) {}
                     },
                     child: Text("Update"),
                   ),

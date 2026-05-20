@@ -1,3 +1,4 @@
+import 'package:dio/src/multipart_file.dart';
 import 'package:florista_ecommerce_app/config/base_response/base_response.dart';
 import 'package:florista_ecommerce_app/config/shared_models/user_data/user_data_response.dart';
 import 'package:florista_ecommerce_app/config/shared_models/user_data/user_request_dto.dart';
@@ -27,5 +28,15 @@ class EditProfileRepoImpl implements EditProfileRepoContract {
           errorMessage: response.getErrorMessage(),
         );
     }
+  }
+
+  @override
+  Future<BaseResponse<String>> uploadProfilePhoto({
+    required MultipartFile photo,
+  }) {
+    final response = editProfileRemoteDataSourceContract.uploadProfilePhoto(
+      photo: photo,
+    );
+    return response;
   }
 }
