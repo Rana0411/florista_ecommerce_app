@@ -9,6 +9,7 @@ import 'package:florista_ecommerce_app/features/auth/login/presentation/view/log
 import 'package:florista_ecommerce_app/features/auth/sign_up/presentation/view/sign_up_view.dart';
 import 'package:florista_ecommerce_app/features/categories/presentation/view/categories_view.dart';
 import 'package:florista_ecommerce_app/features/edit_profile/presentation/view/edit_profile_view.dart';
+import 'package:florista_ecommerce_app/features/edit_profile/presentation/view_model/cubit/edit_profile_view_model.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/view/home_view.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/view/profile_view.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/view_model/profile_events.dart';
@@ -58,8 +59,13 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: RoutePath.editProfile,
-        builder: (context, state) =>
-            EditProfileView(user: state.extra as UserRequestDto),
+        builder: (context, state) {
+          final viewModle = getIt.get<EditProfileViewModel>();
+          return BlocProvider(
+            create: (context) => viewModle,
+            child: EditProfileView(user: state.extra as UserRequestDto),
+          );
+        },
       ),
     ],
   );
