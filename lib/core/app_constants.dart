@@ -1,8 +1,8 @@
 abstract class AppConstants {
-  static const String regExpValidateName = "r'^[a-zA-Z]+\$'";
-  static const String regExpValidatePhone = "r'^01[0125][0-9]{8}\$'";
+  static const String regExpValidateName = r'^[a-zA-Z]+$';
+  static const String regExpValidatePhone = r'^\+?20?01[0125][0-9]{8}$';
   static const String regExpValidatePassword =
-      "r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@\$%^&*-]).{8,}\$'";
+      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$';
   static const String regExpValidateEmail =
-      "r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$'";
+      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
 }
