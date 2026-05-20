@@ -8,6 +8,7 @@ import 'package:florista_ecommerce_app/features/auth/forget_password/presentatio
 import 'package:florista_ecommerce_app/features/auth/login/presentation/view/login_view.dart';
 import 'package:florista_ecommerce_app/features/auth/sign_up/presentation/view/sign_up_view.dart';
 import 'package:florista_ecommerce_app/features/categories/presentation/view/categories_view.dart';
+import 'package:florista_ecommerce_app/features/change_password/presentation/view/change_password_view.dart';
 import 'package:florista_ecommerce_app/features/edit_profile/presentation/view/edit_profile_view.dart';
 import 'package:florista_ecommerce_app/features/edit_profile/presentation/view_model/cubit/edit_profile_view_model.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/view/home_view.dart';
@@ -66,6 +67,10 @@ abstract class AppRouter {
             child: EditProfileView(user: state.extra as UserRequestDto),
           );
         },
+      ),
+      GoRoute(
+        path: RoutePath.changePassword,
+        builder: (context, state) => ChangePasswordView(),
       ),
     ],
   );
