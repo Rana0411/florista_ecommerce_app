@@ -9,6 +9,7 @@ import 'package:florista_ecommerce_app/features/auth/login/presentation/view/log
 import 'package:florista_ecommerce_app/features/auth/sign_up/presentation/view/sign_up_view.dart';
 import 'package:florista_ecommerce_app/features/categories/presentation/view/categories_view.dart';
 import 'package:florista_ecommerce_app/features/change_password/presentation/view/change_password_view.dart';
+import 'package:florista_ecommerce_app/features/change_password/presentation/view_model/cubit/change_password_view_model.dart';
 import 'package:florista_ecommerce_app/features/edit_profile/presentation/view/edit_profile_view.dart';
 import 'package:florista_ecommerce_app/features/edit_profile/presentation/view_model/cubit/edit_profile_view_model.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/view/home_view.dart';
@@ -70,7 +71,12 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: RoutePath.changePassword,
-        builder: (context, state) => ChangePasswordView(),
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) => getIt.get<ChangePasswordViewModel>(),
+            child: ChangePasswordView(),
+          );
+        },
       ),
     ],
   );
