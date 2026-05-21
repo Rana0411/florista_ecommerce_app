@@ -1,3 +1,7 @@
+import 'package:florista_ecommerce_app/config/di/di.dart';
+import 'package:florista_ecommerce_app/features/categories/domain/use_cases/categories_use_cases.dart';
+import 'package:florista_ecommerce_app/features/categories/domain/use_cases/get_products_by_category_use_case.dart';
+import 'package:florista_ecommerce_app/features/categories/presentation/cubit/categories_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -7,36 +11,40 @@ import 'package:florista_ecommerce_app/core/shared_widgets/custom_buttom_navigat
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 
 import '../cubit/categories_state.dart';
-import '../cubit/categories_view_model.dart';
 import '../widgets/categories_search_bar.dart';
 import '../widgets/category_tabs.dart';
 import '../widgets/products_grid.dart';
 import '../widgets/sort_sheet.dart';
 
-class CategoriesView extends StatefulWidget {
+class CategoriesView extends StatelessWidget {
   const CategoriesView({super.key});
 
   @override
-  State<CategoriesView> createState() => _CategoriesViewState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => CategoriesCubit(
+        getCategoriesUseCase: getIt<GetCategoriesUseCase>(),
+        getProductsByCategoryUseCase: getIt<GetProductsByCategoryUseCase>(),
+      )..getCategories(),
+      child: const _CategoriesContent(),
+    );
+  }
 }
 
-class _CategoriesViewState extends State<CategoriesView> {
-  @override
-  void initState() {
-    super.initState();
-    context.read<CategoriesCubit>().getCategories();
-  }
+class _CategoriesContent extends StatelessWidget {
+  const _CategoriesContent();
 
   @override
   Widget build(BuildContext context) {
     final String location = GoRouterState.of(context).uri.toString();
+    final textTheme = Theme.of(context).textTheme;
 
     return BlocBuilder<CategoriesCubit, CategoriesState>(
       builder: (context, state) {
         return Stack(
           children: [
             Scaffold(
-              backgroundColor: Colors.white,
+              backgroundColor: AppColors.white,
               body: SafeArea(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,13 +82,9 @@ class _CategoriesViewState extends State<CategoriesView> {
                 backgroundColor: AppColors.primary,
                 shape: const StadiumBorder(),
                 icon: const Icon(Icons.tune, color: Colors.white, size: 20),
-                label: const Text(
+                label: Text(
                   'Filter',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: textTheme.titleSmall?.copyWith(color: AppColors.white),
                 ),
               ),
               floatingActionButtonLocation:

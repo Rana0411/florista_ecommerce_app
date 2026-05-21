@@ -68,8 +68,8 @@ class _SortSheetState extends State<SortSheet>
                   begin: const Offset(0, 1), end: Offset.zero)
                   .animate(_slide),
               child: Container(
-                decoration: const BoxDecoration(
-                  color: Colors.white,
+                decoration:  BoxDecoration(
+                  color: AppColors.white,
                   borderRadius:
                   BorderRadius.vertical(top: Radius.circular(24)),
                 ),
@@ -83,7 +83,7 @@ class _SortSheetState extends State<SortSheet>
                       height: 4,
                       margin: const EdgeInsets.only(bottom: 20),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFE0E0E0),
+                        color: AppColors.white,
                         borderRadius: BorderRadius.circular(2),
                       ),
                     ),
@@ -116,7 +116,7 @@ class _SortSheetState extends State<SortSheet>
                             border: Border.all(
                                 color: isSelected
                                     ? AppColors.primary
-                                    : const Color(0xFFF0F0F0)),
+                                    : AppColors.hintColor),
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Row(
@@ -142,7 +142,7 @@ class _SortSheetState extends State<SortSheet>
                                   border: Border.all(
                                     color: isSelected
                                         ? AppColors.primary
-                                        : const Color(0xFFCCCCCC),
+                                        : AppColors.white,
                                     width: 2,
                                   ),
                                 ),
@@ -181,13 +181,13 @@ class _SortSheetState extends State<SortSheet>
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(28)),
                         ),
-                        icon: const Icon(Icons.tune,
-                            color: Colors.white, size: 18),
-                        label: const Text(
+                        icon: Icon(Icons.tune,
+                            color: AppColors.white, size: 18),
+                        label:  Text(
                           'Filter',
                           style: TextStyle(
                               fontSize: 16,
-                              color: Colors.white,
+                              color: AppColors.white,
                               fontWeight: FontWeight.w600),
                         ),
                       ),
