@@ -1,7 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
-import '../../../features/categories/domain/entities/categories-entity.dart';
 
-part 'category_dto.g.dart';
+import '../../domain/entities/categories-entity.dart';
+
+part 'categories_dto.g.dart';
 
 @JsonSerializable()
 class CategoryDto {
