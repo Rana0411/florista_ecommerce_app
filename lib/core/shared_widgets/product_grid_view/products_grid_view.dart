@@ -1,4 +1,4 @@
-import 'package:florista_ecommerce_app/config/shared_models/product_entity.dart';
+import 'package:florista_ecommerce_app/config/shared_models/products/product_entity.dart';
 import 'package:flutter/material.dart';
 
 import 'product_card/product_card.dart';

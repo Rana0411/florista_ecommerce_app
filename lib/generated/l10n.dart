@@ -443,6 +443,21 @@ class S {
   String get EGB {
     return Intl.message('EGB', name: 'EGB', desc: '', args: []);
   }
+
+  /// `Florista`
+  String get florista {
+    return Intl.message('Florista', name: 'florista', desc: '', args: []);
+  }
+
+  /// `Something went wrong Try again later`
+  String get somethineWentWrong {
+    return Intl.message(
+      'Something went wrong Try again later',
+      name: 'somethineWentWrong',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

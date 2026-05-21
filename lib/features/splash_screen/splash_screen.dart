@@ -52,15 +52,13 @@ class _SplashScreenState extends State<SplashScreen>
       ),
     );
 
-    _textSlide = Tween<Offset>(
-      begin: const Offset(0, 0.4),
-      end: Offset.zero,
-    ).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.5, 1.0, curve: Curves.easeOut),
-      ),
-    );
+    _textSlide = Tween<Offset>(begin: const Offset(0, 0.4), end: Offset.zero)
+        .animate(
+          CurvedAnimation(
+            parent: _controller,
+            curve: const Interval(0.5, 1.0, curve: Curves.easeOut),
+          ),
+        );
 
     _controller.forward();
 
@@ -126,17 +124,14 @@ class _SplashScreenState extends State<SplashScreen>
                 builder: (context, child) {
                   return FadeTransition(
                     opacity: _textOpacity,
-                    child: SlideTransition(
-                      position: _textSlide,
-                      child: child,
-                    ),
+                    child: SlideTransition(position: _textSlide, child: child),
                   );
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      'Florista',
+                      S.of(context).florista,
                       style: TextStyle(
                         fontFamily: AppFonts.interFamily,
                         fontSize: isLarge ? FontSize.s28 * 1.4 : FontSize.s28,
@@ -166,19 +161,17 @@ class _SplashScreenState extends State<SplashScreen>
               AnimatedBuilder(
                 animation: _textOpacity,
                 builder: (context, child) {
-                  return Opacity(
-                    opacity: _textOpacity.value,
-                    child: child,
-                  );
+                  return Opacity(opacity: _textOpacity.value, child: child);
                 },
                 child: SizedBox(
                   width: ScreenSize.w(context, 0.08),
                   height: ScreenSize.w(context, 0.08),
                   child: CircularProgressIndicator(
                     strokeWidth: 2.5,
-                    valueColor:
-                    AlwaysStoppedAnimation<Color>(AppColors.primary),
-                    backgroundColor: AppColors.primary.withOpacity(0.15),
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      AppColors.primary,
+                    ),
+                    backgroundColor: AppColors.primary.withValues(alpha: 0.15),
                   ),
                 ),
               ),

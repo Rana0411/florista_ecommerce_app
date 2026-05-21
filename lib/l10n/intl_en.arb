@@ -43,5 +43,7 @@
   "enterYourPassword": "Enter your password",
   "splashTagline": "Fresh flowers, delivered with love.",
   "addToCart": "Add to cart",
-  "EGB": "EGB"
+  "EGB": "EGB",
+  "florista": "Florista",
+  "somethineWentWrong": "Something went wrong Try again later"
 }

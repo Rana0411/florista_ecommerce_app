@@ -71,6 +71,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "female": MessageLookupByLibrary.simpleMessage("Female"),
     "firstName": MessageLookupByLibrary.simpleMessage("First name"),
+    "florista": MessageLookupByLibrary.simpleMessage("Florista"),
     "forgetPassword": MessageLookupByLibrary.simpleMessage("Forgot Password"),
     "gender": MessageLookupByLibrary.simpleMessage("Gender"),
     "invalidCode": MessageLookupByLibrary.simpleMessage("Invalid code"),
@@ -109,6 +110,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
     "signUpSuccess": MessageLookupByLibrary.simpleMessage("Sign up success"),
+    "somethineWentWrong": MessageLookupByLibrary.simpleMessage(
+      "Something went wrong Try again later",
+    ),
     "splashTagline": MessageLookupByLibrary.simpleMessage(
       "Fresh flowers, delivered with love.",
     ),
