@@ -164,15 +164,22 @@ class _EditProfileViewState extends State<EditProfileView> {
                     validator: AppTextFieldValidator.validatePhone,
                   ),
 
-                  TextFormField(
-                    enabled: false,
-                    cursorColor: AppColors.black,
-                    obscureText: true,
-                    obscuringCharacter: '*',
-                    initialValue: '********',
-                    decoration: InputDecoration(
-                      labelText: S.current.password,
-                      suffixIcon: TextButton(
+                  Stack(
+                    alignment: Alignment.centerRight,
+                    children: [
+                      TextFormField(
+                        enabled: false,
+                        cursorColor: AppColors.black,
+                        obscureText: true,
+                        obscuringCharacter: '*',
+                        initialValue: '********',
+                        decoration: InputDecoration(
+                          labelText: S.current.password,
+                          suffixIcon: const SizedBox(width: 70),
+                        ),
+                      ),
+
+                      TextButton(
                         onPressed: () {
                           context.push(RoutePath.changePassword);
                         },
@@ -190,7 +197,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                           ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
 
                   const GenderRadioGroup(),
