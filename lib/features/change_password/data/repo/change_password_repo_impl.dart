@@ -1,4 +1,7 @@
 import 'package:florista_ecommerce_app/config/base_response/base_response.dart';
+import 'package:florista_ecommerce_app/config/di/di.dart';
+import 'package:florista_ecommerce_app/config/secure_storage/secure_storage_service.dart';
+import 'package:florista_ecommerce_app/core/app_keys/secure_storage_keys.dart';
 import 'package:florista_ecommerce_app/features/change_password/data/data_sources/change_password_remote_data_source_contract.dart';
 import 'package:florista_ecommerce_app/features/change_password/data/models/change_password_request.dart';
 import 'package:florista_ecommerce_app/features/change_password/data/models/change_password_response.dart';
@@ -23,6 +26,11 @@ class ChangePasswordRepoImpl implements ChangePasswordRepoContract {
     //* i made this switch cuz i want to extraxt the error message
     switch (response) {
       case SuccessBaseResponse<ChangePasswordResponse>():
+        final secure = getIt.get<SecureStorageService>();
+        secure.write(
+          key: SecureStorageKeys.token,
+          value: response.data.token ?? '',
+        );
         return SuccessBaseResponse<ChangePasswordResponse>(data: response.data);
       case ErrorBaseResponse<ChangePasswordResponse>():
         return ErrorBaseResponse<ChangePasswordResponse>(
