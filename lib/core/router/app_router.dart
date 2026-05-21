@@ -13,13 +13,16 @@ import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
   static final GoRouter goRouter = GoRouter(
-    initialLocation: RoutePath.splash,
+    initialLocation: RoutePath.categories,
     routes: [
       GoRoute(
         path: RoutePath.splash,
         builder: (context, state) => SplashView(),
       ),
-      GoRoute(path: RoutePath.login, builder: (context, state) => LoginView()),
+      GoRoute(
+        path: RoutePath.login,
+        builder: (context, state) => LoginView(),
+      ),
       GoRoute(
         path: RoutePath.signup,
         builder: (context, state) => SignUpView(),
@@ -36,12 +39,18 @@ abstract class AppRouter {
         path: RoutePath.resetPassword,
         builder: (context, state) => ResetPasswordView(),
       ),
-      GoRoute(path: RoutePath.home, builder: (context, state) => HomeView()),
+      GoRoute(
+        path: RoutePath.home,
+        builder: (context, state) => HomeView(),
+      ),
       GoRoute(
         path: RoutePath.categories,
-        builder: (context, state) => CategoriesView(),
+        builder: (context, state) => const CategoriesView(),
       ),
-      GoRoute(path: RoutePath.cart, builder: (context, state) => CartView()),
+      GoRoute(
+        path: RoutePath.cart,
+        builder: (context, state) => CartView(),
+      ),
       GoRoute(
         path: RoutePath.profile,
         builder: (context, state) => ProfileView(),

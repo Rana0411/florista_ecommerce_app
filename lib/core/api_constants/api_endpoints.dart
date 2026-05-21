@@ -2,6 +2,8 @@ import 'package:florista_ecommerce_app/core/api_constants/base_urls.dart';
 
 abstract class ApiEndpoints {
   static const String _baseUrl = BaseUrls.flowerAppBaseURl;
+  static const String getCategories = "$_baseUrl/categories";
+  static const String getProducts = "$_baseUrl/products";
 
-  //TODO: add Api End Points
+
 }
