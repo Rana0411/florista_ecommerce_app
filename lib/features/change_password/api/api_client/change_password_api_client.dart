@@ -14,7 +14,7 @@ abstract class ChangePasswordApiClient {
   @factoryMethod
   factory ChangePasswordApiClient(Dio dio) = _ChangePasswordApiClient;
 
-  @PUT(ApiEndpoints.changePassword)
+  @PATCH(ApiEndpoints.changePassword)
   Future<ChangePasswordResponse> changePassword({
     @Body() required ChangePasswordRequest passwords,
   });
