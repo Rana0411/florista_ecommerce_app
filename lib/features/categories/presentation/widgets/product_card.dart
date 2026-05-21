@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/features/categories/domain/entities/product_entity.dart';
 
@@ -9,11 +10,13 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.white),
+        border: Border.all(color: const Color(0xFFEEEEEE)),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.04),
@@ -25,42 +28,34 @@ class ProductCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // ── Product image ───────────────────────────────────────────
+          // ── Product image ──────────────────────────────────────────────
           Expanded(
             child: ClipRRect(
               borderRadius:
               const BorderRadius.vertical(top: Radius.circular(16)),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  width: double.infinity,
-                  color: AppColors.white,
-                  child: Image.network(
-                    product.image,
-                    fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => Center(
-                      child: Icon(
-                        Icons.local_florist,
-                        size: 48,
-                        color: AppColors.primary,
-                      ),
+              child: Container(
+                width: double.infinity,
+                color: const Color(0xFFFCEEF3),
+                child: Image.network(
+                  product.image,
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, __, ___) => Center(
+                    child: Icon(
+                      Icons.local_florist,
+                      size: 48,
+                      color: AppColors.primary,
                     ),
-                    loadingBuilder: (_, child, loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return  Center(
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2,
-                          color: AppColors.primary,
-                        ),
-                      );
-                    },
                   ),
+                  loadingBuilder: (_, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return const Center(child: CircularProgressIndicator());
+                  },
                 ),
               ),
             ),
           ),
 
-          // ── Info section ────────────────────────────────────────────
+          // ── Info section ───────────────────────────────────────────────
           Padding(
             padding: const EdgeInsets.fromLTRB(10, 8, 10, 10),
             child: Column(
@@ -69,11 +64,7 @@ class ProductCard extends StatelessWidget {
                 // Name
                 Text(
                   product.name,
-                  style:  TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.black,
-                  ),
+                  style: textTheme.titleSmall,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -85,8 +76,7 @@ class ProductCard extends StatelessWidget {
                   children: [
                     Text(
                       'EGP ${product.price.toStringAsFixed(0)}',
-                      style: TextStyle(
-                        fontSize: 13,
+                      style: textTheme.titleSmall?.copyWith(
                         fontWeight: FontWeight.w700,
                         color: AppColors.black,
                       ),
@@ -96,9 +86,7 @@ class ProductCard extends StatelessWidget {
                       Flexible(
                         child: Text(
                           product.originalPrice.toStringAsFixed(0),
-                          style: const TextStyle(
-                            fontSize: 10,
-                            color: Color(0xFFAAAAAA),
+                          style: textTheme.labelSmall?.copyWith(
                             decoration: TextDecoration.lineThrough,
                           ),
                           overflow: TextOverflow.ellipsis,
@@ -107,8 +95,7 @@ class ProductCard extends StatelessWidget {
                       const SizedBox(width: 4),
                       Text(
                         '${product.discountPercent.toStringAsFixed(0)}%',
-                        style: TextStyle(
-                          fontSize: 10,
+                        style: textTheme.labelSmall?.copyWith(
                           color: AppColors.lightGreen,
                           fontWeight: FontWeight.w600,
                         ),
@@ -119,33 +106,21 @@ class ProductCard extends StatelessWidget {
 
                 const SizedBox(height: 8),
 
-                // Add to cart button
+                // Add to cart button — uses ElevatedButtonTheme from app theme
                 SizedBox(
                   width: double.infinity,
                   height: 34,
                   child: ElevatedButton.icon(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primary,
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
                       padding: EdgeInsets.zero,
+                      textStyle: textTheme.labelMedium,
                     ),
                     icon: const Icon(
                       Icons.shopping_cart_outlined,
                       size: 14,
-                      color: Colors.white,
                     ),
-                    label: const Text(
-                      'Add to cart',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+                    label: const Text('Add to cart'),
                   ),
                 ),
               ],

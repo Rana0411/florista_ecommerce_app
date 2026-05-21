@@ -14,21 +14,19 @@ import 'package:florista_ecommerce_app/features/splash/presentation/view/splash_
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/best_seller/presentation/screens/best_seller_view.dart';
 import '../../features/categories/domain/use_cases/get_products_by_category_use_case.dart';
 import '../../features/categories/presentation/cubit/categories_view_model.dart';
 
 abstract class AppRouter {
   static final GoRouter goRouter = GoRouter(
-    initialLocation: RoutePath.categories,
+    initialLocation: RoutePath.bestSeller,
     routes: [
       GoRoute(
         path: RoutePath.splash,
         builder: (context, state) => SplashView(),
       ),
-      GoRoute(
-        path: RoutePath.login,
-        builder: (context, state) => LoginView(),
-      ),
+      GoRoute(path: RoutePath.login, builder: (context, state) => LoginView()),
       GoRoute(
         path: RoutePath.signup,
         builder: (context, state) => SignUpView(),
@@ -45,10 +43,7 @@ abstract class AppRouter {
         path: RoutePath.resetPassword,
         builder: (context, state) => ResetPasswordView(),
       ),
-      GoRoute(
-        path: RoutePath.home,
-        builder: (context, state) => HomeView(),
-      ),
+      GoRoute(path: RoutePath.home, builder: (context, state) => HomeView()),
       GoRoute(
         path: RoutePath.categories,
         builder: (context, state) => BlocProvider(
@@ -59,13 +54,10 @@ abstract class AppRouter {
           child: const CategoriesView(),
         ),
       ),
+      GoRoute(path: RoutePath.cart, builder: (context, state) => CartView()),
       GoRoute(
-        path: RoutePath.cart,
-        builder: (context, state) => CartView(),
-      ),
-      GoRoute(
-        path: RoutePath.profile,
-        builder: (context, state) => ProfileView(),
+        path: RoutePath.bestSeller,
+        builder: (context, state) => BestSellerView(),
       ),
     ],
   );
