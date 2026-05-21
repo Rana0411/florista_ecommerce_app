@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/features/categories/domain/entities/product_entity.dart';
 
+import '../../../../generated/l10n.dart';
+
 class ProductCard extends StatelessWidget {
   final ProductEntity product;
 
@@ -16,7 +18,7 @@ class ProductCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFFEEEEEE)),
+        border: Border.all(color: AppColors.hintColor),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.04),
@@ -35,7 +37,7 @@ class ProductCard extends StatelessWidget {
               const BorderRadius.vertical(top: Radius.circular(16)),
               child: Container(
                 width: double.infinity,
-                color: const Color(0xFFFCEEF3),
+                color: AppColors.white,
                 child: Image.network(
                   product.image,
                   fit: BoxFit.cover,
@@ -106,7 +108,6 @@ class ProductCard extends StatelessWidget {
 
                 const SizedBox(height: 8),
 
-                // Add to cart button — uses ElevatedButtonTheme from app theme
                 SizedBox(
                   width: double.infinity,
                   height: 34,
@@ -120,7 +121,7 @@ class ProductCard extends StatelessWidget {
                       Icons.shopping_cart_outlined,
                       size: 14,
                     ),
-                    label: const Text('Add to cart'),
+                    label: Text("Add to cart"),
                   ),
                 ),
               ],
