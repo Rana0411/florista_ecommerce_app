@@ -81,7 +81,7 @@ class _BestSellerContent extends StatelessWidget {
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 12,
-              mainAxisSpacing: 12,
+              mainAxisSpacing: 20,
               childAspectRatio: 0.70,
             ),
             itemCount: state.products.length,

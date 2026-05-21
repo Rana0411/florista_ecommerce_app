@@ -17,7 +17,7 @@ class ProductCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: AppColors.white,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(8),
         border: Border.all(color: AppColors.hintColor),
         boxShadow: [
           BoxShadow(
@@ -30,28 +30,24 @@ class ProductCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // ── Product image ──────────────────────────────────────────────
           Expanded(
-            child: ClipRRect(
-              borderRadius:
-              const BorderRadius.vertical(top: Radius.circular(16)),
-              child: Container(
-                width: double.infinity,
-                color: AppColors.white,
-                child: Image.network(
-                  product.image,
-                  fit: BoxFit.cover,
-                  errorBuilder: (_, __, ___) => Center(
-                    child: Icon(
-                      Icons.local_florist,
-                      size: 48,
-                      color: AppColors.primary,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+              child: ClipRRect(
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Image.network(
+                    product.image,
+                    fit: BoxFit.cover,
+                    errorBuilder: (_, __, ___) => Center(
+                      child: Icon(Icons.local_florist, size: 48,
+                          color: AppColors.primary),
                     ),
+                    loadingBuilder: (_, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return const Center(child: CircularProgressIndicator());
+                    },
                   ),
-                  loadingBuilder: (_, child, loadingProgress) {
-                    if (loadingProgress == null) return child;
-                    return const Center(child: CircularProgressIndicator());
-                  },
                 ),
               ),
             ),
@@ -59,69 +55,74 @@ class ProductCard extends StatelessWidget {
 
           // ── Info section ───────────────────────────────────────────────
           Padding(
-            padding: const EdgeInsets.fromLTRB(10, 8, 10, 10),
+            padding: const EdgeInsets.fromLTRB(8, 6, 8, 8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 // Name
-                Text(
-                  product.name,
-                  style: textTheme.titleSmall,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+                Padding(
+                  padding: const EdgeInsets.only(left:12),
+                  child: Text(
+                    product.name,
+                    style: textTheme.titleSmall,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
                 const SizedBox(height: 4),
 
                 // Price row
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      'EGP ${product.price.toStringAsFixed(0)}',
-                      style: textTheme.titleSmall?.copyWith(
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.black,
-                      ),
-                    ),
-                    if (product.hasDiscount) ...[
-                      const SizedBox(width: 5),
+                Padding(
+                  padding: const EdgeInsets.only(left:12),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
                       Flexible(
                         child: Text(
+                          'EGP ${product.price.toStringAsFixed(0)}',
+                          style: textTheme.titleSmall?.copyWith(
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.black,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      if (product.hasDiscount) ...[
+                        const SizedBox(width: 4),
+                        Text(
                           product.originalPrice.toStringAsFixed(0),
                           style: textTheme.labelSmall?.copyWith(
                             decoration: TextDecoration.lineThrough,
                           ),
                           overflow: TextOverflow.ellipsis,
                         ),
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        '${product.discountPercent.toStringAsFixed(0)}%',
-                        style: textTheme.labelSmall?.copyWith(
-                          color: AppColors.lightGreen,
-                          fontWeight: FontWeight.w600,
+                        const SizedBox(width: 3),
+                        Text(
+                          '${product.discountPercent.toStringAsFixed(0)}%',
+                          style: textTheme.labelSmall?.copyWith(
+                            color: AppColors.lightGreen,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
+                      ],
                     ],
-                  ],
+                  ),
                 ),
 
                 const SizedBox(height: 8),
 
                 SizedBox(
                   width: double.infinity,
-                  height: 34,
+                  height: 32,
                   child: ElevatedButton.icon(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.zero,
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
                       textStyle: textTheme.labelMedium,
                     ),
-                    icon: const Icon(
-                      Icons.shopping_cart_outlined,
-                      size: 14,
-                    ),
-                    label: Text("Add to cart"),
+                    icon: const Icon(Icons.shopping_cart_outlined, size: 13),
+                    label: const Text('Add to cart'),
                   ),
                 ),
               ],
