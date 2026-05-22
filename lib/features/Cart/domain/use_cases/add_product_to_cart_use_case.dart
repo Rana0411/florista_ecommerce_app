@@ -5,9 +5,9 @@ import 'package:florista_ecommerce_app/features/cart/domain/repo/cart_repo_contr
 import 'package:injectable/injectable.dart';
 
 @injectable
-class AddProductUseCase {
+class AddProductToCartUseCase {
   final CartRepoContract cartRepoContract;
-  AddProductUseCase({required this.cartRepoContract});
+  AddProductToCartUseCase({required this.cartRepoContract});
 
   Future<BaseResponse<CartResponseEntity>> call(
     AddProductRequest productInfo,

@@ -1,5 +1,5 @@
 import 'package:florista_ecommerce_app/core/router/route_path.dart';
-import 'package:florista_ecommerce_app/features/cart/presentation/view/cart_view.dart';
+import 'package:florista_ecommerce_app/features/cart/presentation/view/screens/cart_view.dart';
 import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/view/forget_password_view.dart';
 import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/view/otp_verification_view.dart';
 import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/view/reset_password_view.dart';
