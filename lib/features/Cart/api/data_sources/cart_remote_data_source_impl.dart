@@ -4,7 +4,9 @@ import 'package:florista_ecommerce_app/features/cart/api/api_client/cart_api_cli
 import 'package:florista_ecommerce_app/features/cart/data/models/cart_requests_model.dart';
 import 'package:florista_ecommerce_app/features/cart/data/models/cart_response_model.dart';
 import 'package:florista_ecommerce_app/generated/l10n.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable(as: CartRemoteDataSourceContract)
 class CartRemoteDataSourceImpl implements CartRemoteDataSourceContract {
   final CartApiClient apiClient;
 

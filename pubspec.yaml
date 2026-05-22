@@ -47,6 +47,8 @@ dependencies:
   shimmer: ^3.0.0
   retrofit: ^4.9.2
   json_annotation: ^4.9.0
+  url_launcher: ^6.3.2
+  flutter_svg: ^2.3.0
 
 dev_dependencies:
   build_runner: ^2.15.0
@@ -94,6 +96,7 @@ flutter:
   # example:
   assets:
     - assets/icons/florista.png
+    - assets/images/empty_cart.svg
   fonts:
     - family: Inter
       fonts:

@@ -5,9 +5,13 @@ class CartState extends Equatable {
   final String? busyRowId;
   final String? message;
 
-  const CartState({required this.cartState, this.busyRowId, this.message});
+  const CartState({
+    required this.cartState,
+    this.busyRowId,
+    this.message,
+  });
 
-  bool get isEmpty => cartState.data?.cart.cartItems.isEmpty ?? false;
+  bool get isEmpty => cartState.data?.cart.cartItems.isEmpty ?? true;
 
   CartState copyWith({
     BaseState<CartResponseEntity>? cartState,
