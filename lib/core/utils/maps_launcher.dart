@@ -18,14 +18,9 @@ abstract class MapsLauncher {
   }) async {
     final query = label ?? StaticDeliveryAddress.mapsSearchQuery;
     final encodedQuery = Uri.encodeComponent(query);
-    final encodedLabel = Uri.encodeComponent(
-      '$latitude,$longitude ($query)',
-    );
+    final encodedLabel = Uri.encodeComponent('$latitude,$longitude ($query)');
 
     final candidates = <Uri>[
-      Uri.parse(
-        'https://www.google.com/maps/search/?api=1&query=$latitude,$longitude',
-      ),
       if (!kIsWeb && defaultTargetPlatform == TargetPlatform.iOS)
         Uri.parse(
           'http://maps.apple.com/?ll=$latitude,$longitude&q=$encodedQuery',

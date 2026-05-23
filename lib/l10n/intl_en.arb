@@ -45,5 +45,20 @@
   "addToCart": "Add to cart",
   "EGB": "EGB",
   "florista": "Florista",
-  "somethineWentWrong": "Something went wrong Try again later"
+  "somethineWentWrong": "Something went wrong Try again later",
+  "cartTitle": "Cart ({count, plural, =0{Empty} =1{1 item} other{{count} items}})",
+  "@cartTitle": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "couldNotOpenMaps": "Could not open maps on this device",
+  "deliveryAddress": "Delivery address",
+  "close": "Close",
+  "openInMaps": "Open in Maps",
+  "plusCode": "Plus Code",
+  "area": "Area",
+  "deliverTo": "Deliver to  "
 }

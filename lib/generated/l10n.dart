@@ -18,10 +18,8 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(
-      _current != null,
-      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
-    );
+    assert(_current != null,
+        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
     return _current!;
   }
 
@@ -43,10 +41,8 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(
-      instance != null,
-      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
-    );
+    assert(instance != null,
+        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
     return instance!;
   }
 
@@ -136,7 +132,12 @@ class S {
 
   /// `First name`
   String get firstName {
-    return Intl.message('First name', name: 'firstName', desc: '', args: []);
+    return Intl.message(
+      'First name',
+      name: 'firstName',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Enter first name`
@@ -151,7 +152,12 @@ class S {
 
   /// `Last name`
   String get lastName {
-    return Intl.message('Last name', name: 'lastName', desc: '', args: []);
+    return Intl.message(
+      'Last name',
+      name: 'lastName',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Enter last name`
@@ -166,7 +172,12 @@ class S {
 
   /// `Email`
   String get email {
-    return Intl.message('Email', name: 'email', desc: '', args: []);
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Enter your email`
@@ -181,7 +192,12 @@ class S {
 
   /// `Password`
   String get password {
-    return Intl.message('Password', name: 'password', desc: '', args: []);
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Enter Password`
@@ -216,17 +232,32 @@ class S {
 
   /// `Gender`
   String get gender {
-    return Intl.message('Gender', name: 'gender', desc: '', args: []);
+    return Intl.message(
+      'Gender',
+      name: 'gender',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Female`
   String get female {
-    return Intl.message('Female', name: 'female', desc: '', args: []);
+    return Intl.message(
+      'Female',
+      name: 'female',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Male`
   String get male {
-    return Intl.message('Male', name: 'male', desc: '', args: []);
+    return Intl.message(
+      'Male',
+      name: 'male',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Creating an account, you agree to our`
@@ -261,7 +292,12 @@ class S {
 
   /// `Login`
   String get login {
-    return Intl.message('Login', name: 'login', desc: '', args: []);
+    return Intl.message(
+      'Login',
+      name: 'login',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Sign up success`
@@ -396,7 +432,12 @@ class S {
 
   /// `Sign Up`
   String get signUp {
-    return Intl.message('Sign Up', name: 'signUp', desc: '', args: []);
+    return Intl.message(
+      'Sign Up',
+      name: 'signUp',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Continue as Guest`
@@ -411,7 +452,12 @@ class S {
 
   /// `Remember me`
   String get rememberMe {
-    return Intl.message('Remember me', name: 'rememberMe', desc: '', args: []);
+    return Intl.message(
+      'Remember me',
+      name: 'rememberMe',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Enter your password`
@@ -436,17 +482,32 @@ class S {
 
   /// `Add to cart`
   String get addToCart {
-    return Intl.message('Add to cart', name: 'addToCart', desc: '', args: []);
+    return Intl.message(
+      'Add to cart',
+      name: 'addToCart',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `EGB`
   String get EGB {
-    return Intl.message('EGB', name: 'EGB', desc: '', args: []);
+    return Intl.message(
+      'EGB',
+      name: 'EGB',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Florista`
   String get florista {
-    return Intl.message('Florista', name: 'florista', desc: '', args: []);
+    return Intl.message(
+      'Florista',
+      name: 'florista',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Something went wrong Try again later`
@@ -458,13 +519,95 @@ class S {
       args: [],
     );
   }
+
+  /// `Cart ({count, plural, =0{Empty} =1{1 item} other{{count} items}})`
+  String cartTitle(num count) {
+    return Intl.message(
+      'Cart (${Intl.plural(count, zero: 'Empty', one: '1 item', other: '$count items')})',
+      name: 'cartTitle',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Could not open maps on this device`
+  String get couldNotOpenMaps {
+    return Intl.message(
+      'Could not open maps on this device',
+      name: 'couldNotOpenMaps',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delivery address`
+  String get deliveryAddress {
+    return Intl.message(
+      'Delivery address',
+      name: 'deliveryAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Close`
+  String get close {
+    return Intl.message(
+      'Close',
+      name: 'close',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Open in Maps`
+  String get openInMaps {
+    return Intl.message(
+      'Open in Maps',
+      name: 'openInMaps',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Plus Code`
+  String get plusCode {
+    return Intl.message(
+      'Plus Code',
+      name: 'plusCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Area`
+  String get area {
+    return Intl.message(
+      'Area',
+      name: 'area',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deliver to  `
+  String get deliverTo {
+    return Intl.message(
+      'Deliver to  ',
+      name: 'deliverTo',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   const AppLocalizationDelegate();
 
   List<Locale> get supportedLocales {
-    return const <Locale>[Locale.fromSubtags(languageCode: 'en')];
+    return const <Locale>[
+      Locale.fromSubtags(languageCode: 'en'),
+    ];
   }
 
   @override

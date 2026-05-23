@@ -51,6 +51,7 @@ dependencies:
   flutter_svg: ^2.3.0
 
 dev_dependencies:
+  intl_utils: ^2.8.8
   build_runner: ^2.15.0
   flutter_launcher_icons: ^0.14.4
 

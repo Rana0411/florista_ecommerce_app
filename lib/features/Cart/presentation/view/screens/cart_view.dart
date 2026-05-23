@@ -8,6 +8,7 @@ import 'package:florista_ecommerce_app/features/cart/presentation/view/utils/car
 import 'package:florista_ecommerce_app/features/cart/presentation/view/widgets/cart_animated_items_list.dart';
 import 'package:florista_ecommerce_app/features/cart/presentation/view/widgets/cart_delivery_address_row.dart';
 import 'package:florista_ecommerce_app/features/cart/presentation/view/widgets/cart_empty_state.dart';
+import 'package:florista_ecommerce_app/features/cart/presentation/view/widgets/cart_header.dart';
 import 'package:florista_ecommerce_app/features/cart/presentation/view/widgets/cart_summary_section.dart';
 import 'package:florista_ecommerce_app/features/cart/presentation/view_model/cart_cubit.dart';
 import 'package:flutter/material.dart';
@@ -34,12 +35,12 @@ class _CartViewBody extends StatelessWidget {
     final location = GoRouterState.of(context).uri.toString();
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const _CartHeader(),
+            const CartHeader(),
             Expanded(
               child: BlocBuilder<CartCubit, CartState>(
                 builder: (context, state) {
@@ -131,46 +132,5 @@ class _CartViewBody extends StatelessWidget {
 
   void _onDelete(BuildContext context, CartItemEntity item) {
     context.read<CartCubit>().removeProductFromCart(item.product.productId);
-  }
-}
-
-class _CartHeader extends StatelessWidget {
-  const _CartHeader();
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<CartCubit, CartState>(
-      builder: (context, state) {
-        final itemCount = state.cartState.data?.numOfCartItems ?? 0;
-
-        return Padding(
-          padding: const EdgeInsets.fromLTRB(8, 8, 16, 8),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  IconButton(
-                    onPressed: () => context.pop(),
-                    icon: const Icon(Icons.arrow_back_ios_new, size: 20),
-                  ),
-                  Expanded(
-                    child: Text(
-                      'Cart ($itemCount ${itemCount == 1 ? 'item' : 'items'})',
-                      style: TextStyle(
-                        fontWeight: FontWeightManager.bold,
-                        fontSize: FontSize.s20,
-                        color: AppColors.black,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const CartDeliveryAddressRow(),
-            ],
-          ),
-        );
-      },
-    );
   }
 }

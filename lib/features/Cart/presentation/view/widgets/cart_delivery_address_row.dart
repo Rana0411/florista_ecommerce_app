@@ -2,7 +2,9 @@ import 'package:florista_ecommerce_app/core/constants/static_delivery_address.da
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
 import 'package:florista_ecommerce_app/core/utils/maps_launcher.dart';
+import 'package:florista_ecommerce_app/features/cart/presentation/view/widgets/address_detail_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:florista_ecommerce_app/generated/l10n.dart';
 
 class CartDeliveryAddressRow extends StatelessWidget {
   const CartDeliveryAddressRow({super.key});
@@ -33,7 +35,7 @@ class CartDeliveryAddressRow extends StatelessWidget {
                       color: AppColors.grey,
                     ),
                     children: [
-                      const TextSpan(text: 'Deliver to '),
+                      TextSpan(text: S.of(context).deliverTo),
                       TextSpan(
                         text: StaticDeliveryAddress.shortLine,
                         style: TextStyle(
@@ -59,9 +61,9 @@ class CartDeliveryAddressRow extends StatelessWidget {
     final opened = await MapsLauncher.openDeliveryAddress();
     if (!context.mounted || opened) return;
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Could not open maps on this device')),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(S.of(context).couldNotOpenMaps)));
   }
 
   Future<void> _showAddressSheet(BuildContext context) async {
@@ -91,7 +93,7 @@ class CartDeliveryAddressRow extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  'Delivery address',
+                  S.of(context).deliveryAddress,
                   style: TextStyle(
                     fontWeight: FontWeightManager.bold,
                     fontSize: FontSize.s18,
@@ -99,21 +101,21 @@ class CartDeliveryAddressRow extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
-                _AddressDetailTile(
+                AddressDetailTile(
                   icon: Icons.home_outlined,
                   title: StaticDeliveryAddress.label,
                   subtitle: StaticDeliveryAddress.fullAddress,
                 ),
                 const SizedBox(height: 12),
-                _AddressDetailTile(
+                AddressDetailTile(
                   icon: Icons.pin_drop_outlined,
-                  title: 'Plus Code',
+                  title: S.of(context).plusCode,
                   subtitle: StaticDeliveryAddress.plusCode,
                 ),
                 const SizedBox(height: 12),
-                _AddressDetailTile(
+                AddressDetailTile(
                   icon: Icons.map_outlined,
-                  title: 'Area',
+                  title: S.of(context).area,
                   subtitle:
                       '${StaticDeliveryAddress.area}, ${StaticDeliveryAddress.governorate}',
                 ),
@@ -126,10 +128,10 @@ class CartDeliveryAddressRow extends StatelessWidget {
                       await _openMaps(context);
                     },
                     icon: const Icon(Icons.map_outlined),
-                    label: const Text('Open in Maps'),
+                    label: Text(S.of(context).openInMaps),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primary,
-                      foregroundColor: Colors.white,
+                      foregroundColor: AppColors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -140,7 +142,7 @@ class CartDeliveryAddressRow extends StatelessWidget {
                 TextButton(
                   onPressed: () => Navigator.of(sheetContext).pop(),
                   child: Text(
-                    'Close',
+                    S.of(context).close,
                     style: TextStyle(color: AppColors.grey),
                   ),
                 ),
@@ -149,49 +151,6 @@ class CartDeliveryAddressRow extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-}
-
-class _AddressDetailTile extends StatelessWidget {
-  const _AddressDetailTile({
-    required this.icon,
-    required this.title,
-    required this.subtitle,
-  });
-
-  final IconData icon;
-  final String title;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Icon(icon, size: 22, color: AppColors.primary),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: TextStyle(
-                  fontWeight: FontWeightManager.semiBold,
-                  fontSize: FontSize.s14,
-                  color: AppColors.black,
-                ),
-              ),
-              const SizedBox(height: 2),
-              Text(
-                subtitle,
-                style: TextStyle(fontSize: FontSize.s14, color: AppColors.grey),
-              ),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }
