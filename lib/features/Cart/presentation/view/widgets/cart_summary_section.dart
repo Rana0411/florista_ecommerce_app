@@ -22,19 +22,19 @@ class CartSummarySection extends StatelessWidget {
       child: Column(
         children: [
           _SummaryRow(
-            label: 'Sub Total',
+            label: S.of(context).subTotal,
             value: '${S.current.EGB} $subtotal',
           ),
           const SizedBox(height: 8),
           _SummaryRow(
-            label: 'Delivery Fee',
+            label: S.of(context).deliveryFee,
             value: '${S.current.EGB} $deliveryFee',
           ),
           const SizedBox(height: 12),
           const Divider(height: 1, color: Color(0xFFE8E8E8)),
           const SizedBox(height: 12),
           _SummaryRow(
-            label: 'Total',
+            label: S.of(context).total,
             value: '${S.current.EGB} $total',
             isBold: true,
           ),

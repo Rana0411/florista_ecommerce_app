@@ -60,5 +60,8 @@
   "openInMaps": "Open in Maps",
   "plusCode": "Plus Code",
   "area": "Area",
-  "deliverTo": "Deliver to  "
+  "deliverTo": "Deliver to  ",
+  "subTotal": "Sub Total",
+  "deliveryFee": "Delivery Fee",
+  "total": "Total"
 }

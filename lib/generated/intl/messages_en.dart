@@ -47,6 +47,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "deliverTo": MessageLookupByLibrary.simpleMessage("Deliver to  "),
         "deliveryAddress":
             MessageLookupByLibrary.simpleMessage("Delivery address"),
+        "deliveryFee": MessageLookupByLibrary.simpleMessage("Delivery Fee"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
@@ -111,7 +112,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Something went wrong Try again later"),
         "splashTagline": MessageLookupByLibrary.simpleMessage(
             "Fresh flowers, delivered with love."),
+        "subTotal": MessageLookupByLibrary.simpleMessage("Sub Total"),
         "termsConditions":
-            MessageLookupByLibrary.simpleMessage("Terms & Conditions")
+            MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
+        "total": MessageLookupByLibrary.simpleMessage("Total")
       };
 }
