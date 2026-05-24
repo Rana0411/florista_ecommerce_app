@@ -1,4 +1,5 @@
 {
+  "@@locale": "en",
   "firstName": "First name",
   "enterFirstName": "Enter first name",
   "lastName": "Last name",
@@ -46,6 +47,7 @@
   "myOrders": "My orders",
   "savedAddress": "Saved address",
   "aboutUs": "About us",
+  "termsConditions": "Terms & Conditions",
   "logout": "Logout",
   "virson": "v 6.3.0 - (446)",
   "language": "Language",

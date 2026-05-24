@@ -3,6 +3,7 @@ import 'package:florista_ecommerce_app/config/hive/hive_service.dart';
 import 'package:florista_ecommerce_app/core/router/app_router.dart';
 import 'package:florista_ecommerce_app/core/utils/themes/dark_theme.dart';
 import 'package:florista_ecommerce_app/core/utils/themes/light_theme.dart';
+import 'package:florista_ecommerce_app/core/localization/florista_localization_delegate.dart';
 import 'package:florista_ecommerce_app/features/app_language/locale_cubit.dart';
 import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -34,15 +35,23 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<LocaleCubit, LocaleState>(
         builder: (context, state) {
           return MaterialApp.router(
+            key: ValueKey(state.locale.languageCode),
             title: 'Florista Shop App',
             debugShowCheckedModeBanner: false,
-
-            // 1. تمرير اللغة الحالية من الـ State للـ MaterialApp
             locale: state.locale,
-
-            // 2. إضافة الـ Delegates الأساسية لفلاتر عشان اتجاه الشاشات والـ Widgets الداخلية
-            localizationsDelegates: [
-              S.delegate,
+            localeResolutionCallback: (locale, supportedLocales) {
+              if (locale == null) {
+                return const Locale('en');
+              }
+              for (final supported in supportedLocales) {
+                if (supported.languageCode == locale.languageCode) {
+                  return supported;
+                }
+              }
+              return const Locale('en');
+            },
+            localizationsDelegates: const [
+              FloristaLocalizationDelegate(),
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,

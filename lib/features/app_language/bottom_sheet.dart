@@ -1,17 +1,17 @@
-import 'package:florista_ecommerce_app/config/di/di.dart';
 import 'package:florista_ecommerce_app/core/utils/responsive/screen_size.dart';
 import 'package:florista_ecommerce_app/features/app_language/locale_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
 import 'package:florista_ecommerce_app/generated/l10n.dart';
 
 class LanguageBottomSheet extends StatelessWidget {
-  LanguageBottomSheet({super.key});
-  final LocaleCubit localeCubit = getIt<LocaleCubit>();
+  const LanguageBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final strings = S.of(context);
     final currentLocale = Localizations.localeOf(context).languageCode;
 
     return Container(
@@ -31,7 +31,7 @@ class LanguageBottomSheet extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            S.of(context).changeLanguage, // ضيفيها في الـ ARB (تغيير اللغة)
+            strings.changeLanguage,
             style: TextStyle(
               fontSize: FontSize.s18,
               fontWeight: FontWeightManager.bold,
@@ -43,23 +43,20 @@ class LanguageBottomSheet extends StatelessWidget {
 
           _buildLanguageOption(
             context: context,
-            title: 'English',
+            title: strings.english,
             isSelected: currentLocale == 'en',
             onTap: () {
-              localeCubit.changeLanguage('en');
-
+              context.read<LocaleCubit>().changeLanguage('en');
               Navigator.pop(context);
             },
           ),
           const SizedBox(height: 12),
-
-          // خيار اللغة العربية
           _buildLanguageOption(
             context: context,
-            title: 'العربية',
+            title: strings.arabic,
             isSelected: currentLocale == 'ar',
             onTap: () {
-              localeCubit.changeLanguage('ar');
+              context.read<LocaleCubit>().changeLanguage('ar');
               Navigator.pop(context);
             },
           ),

@@ -4,7 +4,7 @@ import 'package:florista_ecommerce_app/core/shared_widgets/custom_buttom_navigat
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/core/utils/assets_manager.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
-import 'package:florista_ecommerce_app/features/app_language/bottom_sheet.dart';
+import 'package:florista_ecommerce_app/features/app_language/locale_cubit.dart';
 import 'package:florista_ecommerce_app/features/log_out/presentation/view/widgets/log_out_dialog.dart';
 import 'package:florista_ecommerce_app/features/log_out/presentation/view_model/log_out_cubit.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/widgets/language_tile.dart';
@@ -28,7 +28,11 @@ class _ProfileViewState extends State<ProfileView> {
   Widget build(BuildContext context) {
     final String location = GoRouterState.of(context).uri.toString();
 
-    return Scaffold(
+    return BlocBuilder<LocaleCubit, LocaleState>(
+      builder: (context, _) {
+        final strings = S.of(context);
+
+        return Scaffold(
       appBar: AppBar(
         titleSpacing: 10,
         title: Row(
@@ -38,7 +42,7 @@ class _ProfileViewState extends State<ProfileView> {
             const SizedBox(width: 6),
 
             Text(
-              S.current.flowery,
+              strings.flowery,
               style: TextStyle(
                 fontFamily: AppFonts.imfEllEnglish,
                 color: AppColors.primary,
@@ -64,14 +68,14 @@ class _ProfileViewState extends State<ProfileView> {
               // My orders
               ProfileTile(
                 icon: Icons.book_outlined,
-                title: S.current.myOrders,
+                title: strings.myOrders,
                 onTap: () {},
               ),
 
               // Saved address
               ProfileTile(
                 icon: Icons.place_outlined,
-                title: S.current.savedAddress,
+                title: strings.savedAddress,
                 onTap: () {},
               ),
 
@@ -82,28 +86,19 @@ class _ProfileViewState extends State<ProfileView> {
 
               Divider(),
 
-              LanguageTile(
-                onPressed: () {
-                  // Show language selection bottom sheet
-                  showModalBottomSheet(
-                    context: context,
-                    backgroundColor: AppColors.transparent,
-                    builder: (context) => LanguageBottomSheet(),
-                  );
-                },
-              ),
+              LanguageTile(onPressed: () {}),
 
               // About us
-              ProfileTile(title: S.current.aboutUs, onTap: () {}),
+              ProfileTile(title: strings.aboutUs, onTap: () {}),
 
               // Terms & Conditions
-              ProfileTile(title: S.current.termsConditions, onTap: () {}),
+              ProfileTile(title: strings.termsConditions, onTap: () {}),
 
               Divider(height: 32),
 
               ProfileTile(
                 icon: Icons.logout,
-                title: S.current.logout,
+                title: strings.logout,
                 isLogout: true,
                 onTap: () {
                   showDialog(
@@ -120,7 +115,7 @@ class _ProfileViewState extends State<ProfileView> {
               Spacer(),
 
               Text(
-                S.current.virson,
+                strings.virson,
                 style: TextStyle(
                   fontSize: 11,
                   fontWeight: FontWeightManager.regular,
@@ -136,6 +131,8 @@ class _ProfileViewState extends State<ProfileView> {
         currentIndex: NavHelper.getCurrentIndex(location),
         onTap: (index) => NavHelper.onItemTapped(context, index),
       ),
+        );
+      },
     );
   }
 }

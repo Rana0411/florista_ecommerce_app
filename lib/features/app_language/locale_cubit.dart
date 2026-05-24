@@ -29,13 +29,11 @@ class LocaleCubit extends Cubit<LocaleState> {
   }
 
   Future<void> changeLanguage(String languageCode) async {
-    final BaseResponse<String> response = await _secureStorageService.write(
+    emit(LocaleState(Locale(languageCode)));
+
+    await _secureStorageService.write(
       key: _kLocaleKey,
       value: languageCode,
     );
-
-    if (response is SuccessBaseResponse<String>) {
-      emit(LocaleState(Locale(languageCode)));
-    }
   }
 }

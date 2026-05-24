@@ -45,7 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "emailIsRequired": MessageLookupByLibrary.simpleMessage(
       "البريد الإلكتروني مطلوب",
     ),
-    "english": MessageLookupByLibrary.simpleMessage("الإلكترونية (English)"),
+    "english": MessageLookupByLibrary.simpleMessage("English"),
     "enterFirstName": MessageLookupByLibrary.simpleMessage("أدخل الاسم الأول"),
     "enterLastName": MessageLookupByLibrary.simpleMessage("أدخل اسم العائلة"),
     "enterPassword": MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور"),
@@ -70,7 +70,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "female": MessageLookupByLibrary.simpleMessage("أنثى"),
     "firstName": MessageLookupByLibrary.simpleMessage("الاسم الأول"),
-    "flowery": MessageLookupByLibrary.simpleMessage("Flowery"),
+    "flowery": MessageLookupByLibrary.simpleMessage("فلوريستا"),
     "forgetPassword": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
     "gender": MessageLookupByLibrary.simpleMessage("الجنس"),
     "invalidCode": MessageLookupByLibrary.simpleMessage("رمز غير صحيح"),

@@ -36,7 +36,7 @@ class ProfileUserDataColumn extends StatelessWidget {
 
         /// Empty State
         if (userDataState.data == null && userDataState.errorMessage == null) {
-          return Center(child: Text(S.current.noUserData));
+          return Center(child: Text(S.of(context).noUserData));
         }
 
         /// Data State
@@ -54,7 +54,7 @@ class ProfileUserDataColumn extends StatelessWidget {
             const SizedBox(height: 12),
 
             Text(
-              user.firstName ?? S.current.noName,
+              user.firstName ?? S.of(context).noName,
               style: TextStyle(
                 color: AppColors.black,
                 fontSize: 18,
@@ -65,7 +65,7 @@ class ProfileUserDataColumn extends StatelessWidget {
             const SizedBox(height: 4),
 
             Text(
-              user.email ?? S.current.noEmail,
+              user.email ?? S.of(context).noEmail,
               style: TextStyle(
                 color: AppColors.grey,
                 fontSize: 18,

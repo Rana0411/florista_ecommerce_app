@@ -17,7 +17,7 @@ class NotificationTile extends StatelessWidget {
             icon: Icon(Icons.toggle_on, color: AppColors.primary, size: 40),
           ),
           Text(
-            S.current.notification,
+            S.of(context).notification,
             style: TextStyle(
               color: AppColors.black,
               fontSize: 13,
@@ -25,7 +25,12 @@ class NotificationTile extends StatelessWidget {
             ),
           ),
           Spacer(),
-          Icon(Icons.arrow_forward_ios, size: 24, color: AppColors.lightGrey),
+          Icon(
+            Icons.arrow_forward_ios,
+            size: 24,
+            color: AppColors.lightGrey,
+            textDirection: Directionality.of(context),
+          ),
         ],
       ),
     );
