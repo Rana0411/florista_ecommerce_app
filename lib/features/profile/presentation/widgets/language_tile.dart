@@ -4,7 +4,7 @@ import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class LanguageTile extends StatelessWidget {
-  const LanguageTile({super.key});
+  const LanguageTile({super.key, required Null Function() onPressed});
 
   @override
   Widget build(BuildContext context) {

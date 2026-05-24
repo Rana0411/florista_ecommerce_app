@@ -22,7 +22,61 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "aboutUs": MessageLookupByLibrary.simpleMessage("من نحن"),
+    "alreadyHaveAnAccount": MessageLookupByLibrary.simpleMessage(
+      "لديك حساب بالفعل؟",
+    ),
+    "arabic": MessageLookupByLibrary.simpleMessage("العربية"),
     "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
+    "changeLanguage": MessageLookupByLibrary.simpleMessage("تغيير اللغة"),
+    "codeIsRequired": MessageLookupByLibrary.simpleMessage("الرمز مطلوب"),
+    "confirmPassword": MessageLookupByLibrary.simpleMessage(
+      "يرجى تأكيد كلمة المرور",
+    ),
+    "connectionTimeout": MessageLookupByLibrary.simpleMessage(
+      "انتهت مهلة الطلب. يرجى التحقق من اتصال الإنترنت.",
+    ),
+    "continueAsGuest": MessageLookupByLibrary.simpleMessage("المتابعة كزائر"),
+    "creatingAnAccountYouAgreeToOur": MessageLookupByLibrary.simpleMessage(
+      "بإنشاء حساب، فإنك توافق على",
+    ),
+    "dontHaveAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
+    "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
+    "emailIsRequired": MessageLookupByLibrary.simpleMessage(
+      "البريد الإلكتروني مطلوب",
+    ),
+    "english": MessageLookupByLibrary.simpleMessage("الإلكترونية (English)"),
+    "enterFirstName": MessageLookupByLibrary.simpleMessage("أدخل الاسم الأول"),
+    "enterLastName": MessageLookupByLibrary.simpleMessage("أدخل اسم العائلة"),
+    "enterPassword": MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور"),
+    "enterPhoneNumber": MessageLookupByLibrary.simpleMessage("أدخل رقم الهاتف"),
+    "enterValidEgyptianPhoneNumber": MessageLookupByLibrary.simpleMessage(
+      "أدخل رقم هاتف مصري صحيح",
+    ),
+    "enterValidEmail": MessageLookupByLibrary.simpleMessage(
+      "أدخل بريد إلكتروني صحيح",
+    ),
+    "enterValidPassword": MessageLookupByLibrary.simpleMessage(
+      "يجب أن تحتوي كلمة المرور على حرف كبير، ورقم، ورمز خاص",
+    ),
+    "enterYourEmail": MessageLookupByLibrary.simpleMessage(
+      "أدخل بريد الإلكتروني",
+    ),
+    "enterYourPassword": MessageLookupByLibrary.simpleMessage(
+      "أدخل كلمة المرور الخاصة بك",
+    ),
+    "errorMessageGeneric": MessageLookupByLibrary.simpleMessage(
+      "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    ),
+    "female": MessageLookupByLibrary.simpleMessage("أنثى"),
+    "firstName": MessageLookupByLibrary.simpleMessage("الاسم الأول"),
+    "flowery": MessageLookupByLibrary.simpleMessage("Flowery"),
+    "forgetPassword": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
+    "gender": MessageLookupByLibrary.simpleMessage("الجنس"),
+    "invalidCode": MessageLookupByLibrary.simpleMessage("رمز غير صحيح"),
+    "language": MessageLookupByLibrary.simpleMessage("اللغة"),
+    "lastName": MessageLookupByLibrary.simpleMessage("اسم العائلة"),
+    "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "logout": MessageLookupByLibrary.simpleMessage("خروج"),
     "logoutConfirmation": MessageLookupByLibrary.simpleMessage(
       "هل أنت متأكد أنك تريد تسجيل الخروج من حسابك؟",
@@ -30,6 +84,55 @@ class MessageLookup extends MessageLookupByLibrary {
     "logoutFailed": MessageLookupByLibrary.simpleMessage(
       "فشل تسجيل الخروج، يرجى المحاولة مرة أخرى.",
     ),
+    "logoutSuccessful": MessageLookupByLibrary.simpleMessage(
+      "تم تسجيل الخروج بنجاح",
+    ),
     "logoutTitle": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+    "male": MessageLookupByLibrary.simpleMessage("ذكر"),
+    "mustBeAtLeast3Characters": MessageLookupByLibrary.simpleMessage(
+      "يجب أن يكون 3 أحرف على الأقل",
+    ),
+    "myOrders": MessageLookupByLibrary.simpleMessage("طلباتي"),
+    "networkError": MessageLookupByLibrary.simpleMessage(
+      "خطأ في الشبكة. يرجى التحقق من الاتصال الخاص بك.",
+    ),
+    "noEmail": MessageLookupByLibrary.simpleMessage("لا يوجد بريد إلكتروني"),
+    "noName": MessageLookupByLibrary.simpleMessage("لا يوجد اسم"),
+    "noUserData": MessageLookupByLibrary.simpleMessage("لا توجد بيانات مستخدم"),
+    "noValueKeyFound": MessageLookupByLibrary.simpleMessage(
+      "لم يتم العثور على قيمة للمفتاح: ",
+    ),
+    "notFound": MessageLookupByLibrary.simpleMessage(
+      "المورد المطلوب غير موجود.",
+    ),
+    "notification": MessageLookupByLibrary.simpleMessage("الإشعارات"),
+    "onlyLettersAllowed": MessageLookupByLibrary.simpleMessage(
+      "مسموح بالأحرف فقط",
+    ),
+    "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+    "paswordNotMatched": MessageLookupByLibrary.simpleMessage(
+      "كلمات المرور غير متطابقة",
+    ),
+    "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
+    "rememberMe": MessageLookupByLibrary.simpleMessage("تذكرني"),
+    "requestTimeout": MessageLookupByLibrary.simpleMessage(
+      "انتهت مهلة الطلب. يرجى المحاولة مرة أخرى.",
+    ),
+    "savedAddress": MessageLookupByLibrary.simpleMessage("العناوين المحفوظة"),
+    "secureStorageErrorMessage": MessageLookupByLibrary.simpleMessage(
+      "فشل حفظ المعلومات بشكل آمن. يرجى المحاولة مرة أخرى.",
+    ),
+    "serverError": MessageLookupByLibrary.simpleMessage(
+      "خطأ في الخادم. يرجى المحاولة مرة أخرى لاحقاً.",
+    ),
+    "signUp": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
+    "signUpSuccess": MessageLookupByLibrary.simpleMessage(
+      "تم إنشاء الحساب بنجاح",
+    ),
+    "splashTagline": MessageLookupByLibrary.simpleMessage(
+      "زهور طازجة، تُسلم بكل حب.",
+    ),
+    "termsConditions": MessageLookupByLibrary.simpleMessage("الشروط والأحكام"),
+    "virson": MessageLookupByLibrary.simpleMessage("v 6.3.0 - (446)"),
   };
 }
