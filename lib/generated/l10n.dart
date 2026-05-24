@@ -19,8 +19,8 @@ class S {
 
   static S get current {
     assert(
-    _current != null,
-    'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
+      _current != null,
+      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
     );
     return _current!;
   }
@@ -44,14 +44,129 @@ class S {
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
     assert(
-    instance != null,
-    'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
+      instance != null,
+      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
     );
     return instance!;
   }
 
   static S? maybeOf(BuildContext context) {
     return Localizations.of<S>(context, S);
+  }
+
+  /// `First name`
+  String get firstName {
+    return Intl.message('First name', name: 'firstName', desc: '', args: []);
+  }
+
+  /// `Enter first name`
+  String get enterFirstName {
+    return Intl.message(
+      'Enter first name',
+      name: 'enterFirstName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last name`
+  String get lastName {
+    return Intl.message('Last name', name: 'lastName', desc: '', args: []);
+  }
+
+  /// `Enter last name`
+  String get enterLastName {
+    return Intl.message(
+      'Enter last name',
+      name: 'enterLastName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Password`
+  String get enterPassword {
+    return Intl.message(
+      'Enter Password',
+      name: 'enterPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone number`
+  String get phoneNumber {
+    return Intl.message(
+      'Phone number',
+      name: 'phoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter phone number`
+  String get enterPhoneNumber {
+    return Intl.message(
+      'Enter phone number',
+      name: 'enterPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gender`
+  String get gender {
+    return Intl.message('Gender', name: 'gender', desc: '', args: []);
+  }
+
+  /// `Female`
+  String get female {
+    return Intl.message('Female', name: 'female', desc: '', args: []);
+  }
+
+  /// `Male`
+  String get male {
+    return Intl.message('Male', name: 'male', desc: '', args: []);
+  }
+
+  /// `Creating an account, you agree to our`
+  String get creatingAnAccountYouAgreeToOur {
+    return Intl.message(
+      'Creating an account, you agree to our',
+      name: 'creatingAnAccountYouAgreeToOur',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms & Conditions`
+  String get termsConditions {
+    return Intl.message(
+      'Terms & Conditions',
+      name: 'termsConditions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Already have an account?`
+  String get alreadyHaveAnAccount {
+    return Intl.message(
+      'Already have an account?',
+      name: 'alreadyHaveAnAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign up success`
+  String get signUpSuccess {
+    return Intl.message(
+      'Sign up success',
+      name: 'signUpSuccess',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Request timed out. Please check your internet connection.`
@@ -236,12 +351,7 @@ class S {
 
   /// `Login`
   String get login {
-    return Intl.message(
-      'Login',
-      name: 'login',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Login', name: 'login', desc: '', args: []);
   }
 
   /// `Forgot Password`
@@ -266,12 +376,7 @@ class S {
 
   /// `Sign Up`
   String get signUp {
-    return Intl.message(
-      'Sign Up',
-      name: 'signUp',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Sign Up', name: 'signUp', desc: '', args: []);
   }
 
   /// `Continue as Guest`
@@ -286,12 +391,7 @@ class S {
 
   /// `Remember me`
   String get rememberMe {
-    return Intl.message(
-      'Remember me',
-      name: 'rememberMe',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Remember me', name: 'rememberMe', desc: '', args: []);
   }
 
   /// `Enter your email`
@@ -316,27 +416,144 @@ class S {
 
   /// `Email`
   String get email {
+    return Intl.message('Email', name: 'email', desc: '', args: []);
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message('Password', name: 'password', desc: '', args: []);
+  }
+
+  /// `Fresh flowers, delivered with love.`
+  String get splashTagline {
     return Intl.message(
-      'Email',
-      name: 'email',
+      'Fresh flowers, delivered with love.',
+      name: 'splashTagline',
       desc: '',
       args: [],
     );
   }
 
-  /// `Password`
-  String get password {
+  /// `Flowery`
+  String get flowery {
+    return Intl.message('Flowery', name: 'flowery', desc: '', args: []);
+  }
+
+  /// `My orders`
+  String get myOrders {
+    return Intl.message('My orders', name: 'myOrders', desc: '', args: []);
+  }
+
+  /// `Saved address`
+  String get savedAddress {
     return Intl.message(
-      'Password',
-      name: 'password',
+      'Saved address',
+      name: 'savedAddress',
       desc: '',
       args: [],
     );
   }
-  String get splashTagline {
+
+  /// `About us`
+  String get aboutUs {
+    return Intl.message('About us', name: 'aboutUs', desc: '', args: []);
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message('Logout', name: 'logout', desc: '', args: []);
+  }
+
+  /// `v 6.3.0 - (446)`
+  String get virson {
+    return Intl.message('v 6.3.0 - (446)', name: 'virson', desc: '', args: []);
+  }
+
+  /// `Language`
+  String get language {
+    return Intl.message('Language', name: 'language', desc: '', args: []);
+  }
+
+  /// `English`
+  String get english {
+    return Intl.message('English', name: 'english', desc: '', args: []);
+  }
+
+  /// `Arabic`
+  String get arabic {
+    return Intl.message('Arabic', name: 'arabic', desc: '', args: []);
+  }
+
+  /// `Notification`
+  String get notification {
     return Intl.message(
-      'Fresh flowers, delivered with love.',
-      name: 'splashTagline',
+      'Notification',
+      name: 'notification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No user data`
+  String get noUserData {
+    return Intl.message('No user data', name: 'noUserData', desc: '', args: []);
+  }
+
+  /// `No name`
+  String get noName {
+    return Intl.message('No name', name: 'noName', desc: '', args: []);
+  }
+
+  /// `No email`
+  String get noEmail {
+    return Intl.message('No email', name: 'noEmail', desc: '', args: []);
+  }
+
+  /// `Logout successful`
+  String get logoutSuccessful {
+    return Intl.message(
+      'Logout successful',
+      name: 'logoutSuccessful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout failed. Please try again.`
+  String get logoutFailed {
+    return Intl.message(
+      'Logout failed. Please try again.',
+      name: 'logoutFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log Out`
+  String get logoutTitle {
+    return Intl.message('Log Out', name: 'logoutTitle', desc: '', args: []);
+  }
+
+  /// `Are you sure you want to log out of your account?`
+  String get logoutConfirmation {
+    return Intl.message(
+      'Are you sure you want to log out of your account?',
+      name: 'logoutConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message('Cancel', name: 'cancel', desc: '', args: []);
+  }
+
+  /// `Change Language`
+  String get changeLanguage {
+    return Intl.message(
+      'Change Language',
+      name: 'changeLanguage',
       desc: '',
       args: [],
     );
@@ -347,7 +564,10 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   const AppLocalizationDelegate();
 
   List<Locale> get supportedLocales {
-    return const <Locale>[Locale.fromSubtags(languageCode: 'en')];
+    return const <Locale>[
+      Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'ar'),
+    ];
   }
 
   @override

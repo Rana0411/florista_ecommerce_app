@@ -1,6 +1,6 @@
 // DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
 // This is a library that looks up messages for specific locales by
-// temporarily changing the default locale.
+// delegating to the appropriate library.
 
 // Ignore issues from commonly used lints in this file.
 // ignore_for_file:implementation_imports, file_names, unnecessary_new
@@ -16,15 +16,19 @@ import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
 import 'package:intl/src/intl_helpers.dart';
 
+import 'messages_ar.dart' as messages_ar;
 import 'messages_en.dart' as messages_en;
 
 typedef Future<dynamic> LibraryLoader();
 Map<String, LibraryLoader> _deferredLibraries = {
+  'ar': () => new SynchronousFuture(null),
   'en': () => new SynchronousFuture(null),
 };
 
 MessageLookupByLibrary? _findExact(String localeName) {
   switch (localeName) {
+    case 'ar':
+      return messages_ar.messages;
     case 'en':
       return messages_en.messages;
     default:
@@ -36,7 +40,7 @@ MessageLookupByLibrary? _findExact(String localeName) {
 Future<bool> initializeMessages(String localeName) {
   var availableLocale = Intl.verifiedLocale(
     localeName,
-        (locale) => _deferredLibraries[locale] != null,
+    (locale) => _deferredLibraries[locale] != null,
     onFailure: (_) => null,
   );
   if (availableLocale == null) {
@@ -58,8 +62,11 @@ bool _messagesExistFor(String locale) {
 }
 
 MessageLookupByLibrary? _findGeneratedMessagesFor(String locale) {
-  var actualLocale =
-  Intl.verifiedLocale(locale, _messagesExistFor, onFailure: (_) => null);
+  var actualLocale = Intl.verifiedLocale(
+    locale,
+    _messagesExistFor,
+    onFailure: (_) => null,
+  );
   if (actualLocale == null) return null;
   return _findExact(actualLocale);
 }

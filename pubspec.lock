@@ -294,6 +294,11 @@ packages:
       url: "http://pub.flutter-io.cn"
     source: hosted
     version: "6.0.0"
+  flutter_localizations:
+    dependency: "direct main"
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   flutter_secure_storage:
     dependency: "direct main"
     description:
@@ -440,6 +445,14 @@ packages:
       url: "http://pub.flutter-io.cn"
     source: hosted
     version: "4.4.0"
+  http:
+    dependency: transitive
+    description:
+      name: http
+      sha256: "87721a4a50b19c7f1d49001e51409bddc46303966ce89a65af4f4e6004896412"
+      url: "http://pub.flutter-io.cn"
+    source: hosted
+    version: "1.6.0"
   http_multi_server:
     dependency: transitive
     description:
@@ -488,6 +501,14 @@ packages:
       url: "http://pub.flutter-io.cn"
     source: hosted
     version: "0.20.2"
+  intl_utils:
+    dependency: "direct main"
+    description:
+      name: intl_utils
+      sha256: "07469a81dcb011ab3708ed4a324403f0f556f2e3663b769006f92c9e62a0066a"
+      url: "http://pub.flutter-io.cn"
+    source: hosted
+    version: "2.8.14"
   io:
     dependency: transitive
     description:

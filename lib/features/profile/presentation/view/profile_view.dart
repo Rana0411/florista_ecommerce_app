@@ -1,14 +1,19 @@
+import 'package:florista_ecommerce_app/config/di/di.dart';
 import 'package:florista_ecommerce_app/core/router/nav_helper.dart';
 import 'package:florista_ecommerce_app/core/shared_widgets/custom_buttom_navigation_bar.dart';
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/core/utils/assets_manager.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
+import 'package:florista_ecommerce_app/features/app_language/bottom_sheet.dart';
+import 'package:florista_ecommerce_app/features/log_out/presentation/view/widgets/log_out_dialog.dart';
+import 'package:florista_ecommerce_app/features/log_out/presentation/view_model/log_out_cubit.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/widgets/language_tile.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/widgets/notification_tile.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/widgets/profile_tile.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/widgets/profile_user_data_column.dart';
 import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class ProfileView extends StatefulWidget {
@@ -77,8 +82,16 @@ class _ProfileViewState extends State<ProfileView> {
 
               Divider(),
 
-              //TODO: Apply Language Logic here @Rana0411
-              LanguageTile(),
+              LanguageTile(
+                onPressed: () {
+                  // Show language selection bottom sheet
+                  showModalBottomSheet(
+                    context: context,
+                    backgroundColor: AppColors.transparent,
+                    builder: (context) => LanguageBottomSheet(),
+                  );
+                },
+              ),
 
               // About us
               ProfileTile(title: S.current.aboutUs, onTap: () {}),
@@ -88,12 +101,20 @@ class _ProfileViewState extends State<ProfileView> {
 
               Divider(height: 32),
 
-              //TODO: Apply Logout Logic here @Rana0411
               ProfileTile(
                 icon: Icons.logout,
                 title: S.current.logout,
                 isLogout: true,
-                onTap: () {},
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (dialogContext) => BlocProvider(
+                      create: (context) => getIt.get<LogOutCubit>(),
+                      child: const LogOutDialog(),
+                    ),
+                  );
+                },
               ),
 
               Spacer(),
