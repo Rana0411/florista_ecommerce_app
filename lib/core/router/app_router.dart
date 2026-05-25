@@ -19,7 +19,7 @@ abstract class AppRouter {
     initialLocation: RoutePath.splash,
     routes: [
       GoRoute(
-        path: RoutePath.splash,
+        path: RoutePath.profile,
         builder: (context, state) => SplashView(),
       ),
       GoRoute(path: RoutePath.login, builder: (context, state) => LoginView()),
@@ -45,7 +45,7 @@ abstract class AppRouter {
         builder: (context, state) => CategoriesView(),
       ),
       GoRoute(
-        path: RoutePath.profile,
+        path: RoutePath.splash,
         builder: (context, state) => BlocProvider(
           create: (context) =>
               getIt.get<ProfileViewModel>()..doEvent(GetUserDataEvent()),

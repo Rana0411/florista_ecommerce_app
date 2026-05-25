@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
+import 'package:go_router/go_router.dart';
 
 class LogOutDialog extends StatelessWidget {
   const LogOutDialog({super.key});
@@ -109,7 +110,10 @@ class LogOutDialog extends StatelessWidget {
                           ),
                           onPressed: isLoading
                               ? null
-                              : () => context.read<LogOutCubit>().logOut(),
+                              : () {
+                                  context.read<LogOutCubit>().logOut();
+                                  context.go(RoutePath.login);
+                                },
                           child: isLoading
                               ? SizedBox(
                                   width: 20,

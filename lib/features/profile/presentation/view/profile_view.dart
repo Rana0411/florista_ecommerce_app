@@ -33,104 +33,104 @@ class _ProfileViewState extends State<ProfileView> {
         final strings = S.of(context);
 
         return Scaffold(
-      appBar: AppBar(
-        titleSpacing: 10,
-        title: Row(
-          children: [
-            Image.asset(AssetsManager.flower12Px, width: 24, height: 24),
+          appBar: AppBar(
+            titleSpacing: 10,
+            title: Row(
+              children: [
+                Image.asset(AssetsManager.flower12Px, width: 24, height: 24),
 
-            const SizedBox(width: 6),
+                const SizedBox(width: 6),
 
-            Text(
-              strings.flowery,
-              style: TextStyle(
-                fontFamily: AppFonts.imfEllEnglish,
-                color: AppColors.primary,
-                fontSize: 20,
+                Text(
+                  strings.flowery,
+                  style: TextStyle(
+                    fontFamily: AppFonts.imfEllEnglish,
+                    color: AppColors.primary,
+                    fontSize: 20,
+                  ),
+                ),
+
+                Spacer(),
+
+                Icon(Icons.notifications_outlined),
+              ],
+            ),
+          ),
+          body: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  ProfileUserDataColumn(),
+
+                  SizedBox(height: 32),
+
+                  // My orders
+                  ProfileTile(
+                    icon: Icons.book_outlined,
+                    title: strings.myOrders,
+                    onTap: () {},
+                  ),
+
+                  // Saved address
+                  ProfileTile(
+                    icon: Icons.place_outlined,
+                    title: strings.savedAddress,
+                    onTap: () {},
+                  ),
+
+                  Divider(),
+
+                  // Notification
+                  NotificationTile(),
+
+                  Divider(),
+
+                  LanguageTile(onPressed: () {}),
+
+                  // About us
+                  ProfileTile(title: strings.aboutUs, onTap: () {}),
+
+                  // Terms & Conditions
+                  ProfileTile(title: strings.termsConditions, onTap: () {}),
+
+                  Divider(height: 32),
+
+                  ProfileTile(
+                    icon: Icons.logout,
+                    title: strings.logout,
+                    isLogout: true,
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (dialogContext) => BlocProvider(
+                          create: (context) => getIt.get<LogOutCubit>(),
+                          child: const LogOutDialog(),
+                        ),
+                      );
+                    },
+                  ),
+
+                  Spacer(),
+
+                  Text(
+                    strings.virson,
+                    style: TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeightManager.regular,
+                      color: AppColors.lightGrey,
+                    ),
+                  ),
+                ],
               ),
             ),
-
-            Spacer(),
-
-            Icon(Icons.notifications_outlined),
-          ],
-        ),
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            children: [
-              ProfileUserDataColumn(),
-
-              SizedBox(height: 32),
-
-              // My orders
-              ProfileTile(
-                icon: Icons.book_outlined,
-                title: strings.myOrders,
-                onTap: () {},
-              ),
-
-              // Saved address
-              ProfileTile(
-                icon: Icons.place_outlined,
-                title: strings.savedAddress,
-                onTap: () {},
-              ),
-
-              Divider(),
-
-              // Notification
-              NotificationTile(),
-
-              Divider(),
-
-              LanguageTile(onPressed: () {}),
-
-              // About us
-              ProfileTile(title: strings.aboutUs, onTap: () {}),
-
-              // Terms & Conditions
-              ProfileTile(title: strings.termsConditions, onTap: () {}),
-
-              Divider(height: 32),
-
-              ProfileTile(
-                icon: Icons.logout,
-                title: strings.logout,
-                isLogout: true,
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    barrierDismissible: false,
-                    builder: (dialogContext) => BlocProvider(
-                      create: (context) => getIt.get<LogOutCubit>(),
-                      child: const LogOutDialog(),
-                    ),
-                  );
-                },
-              ),
-
-              Spacer(),
-
-              Text(
-                strings.virson,
-                style: TextStyle(
-                  fontSize: 11,
-                  fontWeight: FontWeightManager.regular,
-                  color: AppColors.lightGrey,
-                ),
-              ),
-            ],
           ),
-        ),
-      ),
 
-      bottomNavigationBar: CustomBottomNavigationBar(
-        currentIndex: NavHelper.getCurrentIndex(location),
-        onTap: (index) => NavHelper.onItemTapped(context, index),
-      ),
+          bottomNavigationBar: CustomBottomNavigationBar(
+            currentIndex: NavHelper.getCurrentIndex(location),
+            onTap: (index) => NavHelper.onItemTapped(context, index),
+          ),
         );
       },
     );
