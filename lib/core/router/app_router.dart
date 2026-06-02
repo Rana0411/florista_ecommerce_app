@@ -1,8 +1,8 @@
 import 'package:florista_ecommerce_app/config/di/di.dart';
 import 'package:florista_ecommerce_app/core/router/route_path.dart';
 import 'package:florista_ecommerce_app/features/Cart/presentation/view/cart_view.dart';
+import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/screens/validation_code_view.dart';
 import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/view/forget_password_view.dart';
-import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/view/otp_verification_view.dart';
 import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/view/reset_password_view.dart';
 import 'package:florista_ecommerce_app/features/auth/login/presentation/view/login_view.dart';
 import 'package:florista_ecommerce_app/features/auth/sign-up/presentation/screens/sign_up_screen.dart';
@@ -37,14 +37,6 @@ abstract class AppRouter {
         path: RoutePath.forgetPassword,
         builder: (context, state) => ForgetPasswordView(),
       ),
-      GoRoute(
-        path: RoutePath.otpVerification,
-        builder: (context, state) => OtpVerificationView(),
-      ),
-      GoRoute(
-        path: RoutePath.resetPassword,
-        builder: (context, state) => ResetPasswordView(),
-      ),
       GoRoute(path: RoutePath.home, builder: (context, state) => HomeView()),
       GoRoute(
         path: RoutePath.categories,
@@ -60,6 +52,14 @@ abstract class AppRouter {
       GoRoute(
         path: RoutePath.bestSeller,
         builder: (context, state) => BestSellerView(),
+      ),
+      GoRoute(
+        path: RoutePath.resetPassword,
+        builder: (context, state) => const ResetPasswordView(),
+      ),
+      GoRoute(
+        path: RoutePath.validationCode,
+        builder: (context, state) => const ValidationCodeView(),
       ),
     ],
   );

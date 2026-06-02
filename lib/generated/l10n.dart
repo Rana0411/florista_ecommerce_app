@@ -18,10 +18,8 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(
-      _current != null,
-      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
-    );
+    assert(_current != null,
+        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
     return _current!;
   }
 
@@ -43,10 +41,8 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(
-      instance != null,
-      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
-    );
+    assert(instance != null,
+        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
     return instance!;
   }
 
@@ -136,12 +132,22 @@ class S {
 
   /// `Sign up`
   String get signUp {
-    return Intl.message('Sign up', name: 'signUp', desc: '', args: []);
+    return Intl.message(
+      'Sign up',
+      name: 'signUp',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `First name`
   String get firstName {
-    return Intl.message('First name', name: 'firstName', desc: '', args: []);
+    return Intl.message(
+      'First name',
+      name: 'firstName',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Enter first name`
@@ -156,7 +162,12 @@ class S {
 
   /// `Last name`
   String get lastName {
-    return Intl.message('Last name', name: 'lastName', desc: '', args: []);
+    return Intl.message(
+      'Last name',
+      name: 'lastName',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Enter last name`
@@ -171,7 +182,12 @@ class S {
 
   /// `Email`
   String get email {
-    return Intl.message('Email', name: 'email', desc: '', args: []);
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Enter your email`
@@ -186,7 +202,12 @@ class S {
 
   /// `Password`
   String get password {
-    return Intl.message('Password', name: 'password', desc: '', args: []);
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Enter Password`
@@ -231,17 +252,32 @@ class S {
 
   /// `Gender`
   String get gender {
-    return Intl.message('Gender', name: 'gender', desc: '', args: []);
+    return Intl.message(
+      'Gender',
+      name: 'gender',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Female`
   String get female {
-    return Intl.message('Female', name: 'female', desc: '', args: []);
+    return Intl.message(
+      'Female',
+      name: 'female',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Male`
   String get male {
-    return Intl.message('Male', name: 'male', desc: '', args: []);
+    return Intl.message(
+      'Male',
+      name: 'male',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Creating an account, you agree to our`
@@ -276,7 +312,12 @@ class S {
 
   /// `Add to cart`
   String get addToCart {
-    return Intl.message('Add to cart', name: 'addToCart', desc: '', args: []);
+    return Intl.message(
+      'Add to cart',
+      name: 'addToCart',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Sign up success`
@@ -381,7 +422,12 @@ class S {
 
   /// `Login`
   String get login {
-    return Intl.message('Login', name: 'login', desc: '', args: []);
+    return Intl.message(
+      'Login',
+      name: 'login',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Forgot Password`
@@ -416,7 +462,12 @@ class S {
 
   /// `Remember me`
   String get rememberMe {
-    return Intl.message('Remember me', name: 'rememberMe', desc: '', args: []);
+    return Intl.message(
+      'Remember me',
+      name: 'rememberMe',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Enter your password`
@@ -438,13 +489,105 @@ class S {
       args: [],
     );
   }
+
+  /// `Please enter your email associated to your account`
+  String get enterEmailAssociatedToAccount {
+    return Intl.message(
+      'Please enter your email associated to your account',
+      name: 'enterEmailAssociatedToAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm`
+  String get confirm {
+    return Intl.message(
+      'Confirm',
+      name: 'confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email Verification`
+  String get emailVerification {
+    return Intl.message(
+      'Email Verification',
+      name: 'emailVerification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your verification code that sent to your email address`
+  String get enterYourVerificationCode {
+    return Intl.message(
+      'Enter your verification code that sent to your email address',
+      name: 'enterYourVerificationCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Didn't receive the code?`
+  String get didNotReceiveCode {
+    return Intl.message(
+      'Didn\'t receive the code?',
+      name: 'didNotReceiveCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend`
+  String get resendCode {
+    return Intl.message(
+      'Resend',
+      name: 'resendCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter the verification code sent to your email address.`
+  String get codeVerificationDis {
+    return Intl.message(
+      'Please enter the verification code sent to your email address.',
+      name: 'codeVerificationDis',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend`
+  String get resend {
+    return Intl.message(
+      'Resend',
+      name: 'resend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must not be empty and must contain at least 6 characters with upper case letter and one digit`
+  String get passwordMustBeAtLeastCharacters {
+    return Intl.message(
+      'Password must not be empty and must contain at least 6 characters with upper case letter and one digit',
+      name: 'passwordMustBeAtLeastCharacters',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   const AppLocalizationDelegate();
 
   List<Locale> get supportedLocales {
-    return const <Locale>[Locale.fromSubtags(languageCode: 'en')];
+    return const <Locale>[
+      Locale.fromSubtags(languageCode: 'en'),
+    ];
   }
 
   @override

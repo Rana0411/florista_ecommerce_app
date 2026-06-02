@@ -42,5 +42,15 @@
   "continueAsGuest": "Continue as Guest",
   "rememberMe": "Remember me",
   "enterYourPassword": "Enter your password",
-  "splashTagline": "Fresh flowers, delivered with love."
+  "splashTagline": "Fresh flowers, delivered with love.",
+  "enterEmailAssociatedToAccount": "Please enter your email associated to your account",
+  "confirm": "Confirm",
+  "emailVerification": "Email Verification",
+  "enterYourVerificationCode": "Enter your verification code that sent to your email address",
+  "didNotReceiveCode": "Didn't receive the code?",
+  "resendCode": "Resend",
+  "codeVerificationDis": "Please enter the verification code sent to your email address.",
+  "resend": "Resend",
+  "passwordMustBeAtLeastCharacters":
+  "Password must not be empty and must contain at least 6 characters with upper case letter and one digit"
 }

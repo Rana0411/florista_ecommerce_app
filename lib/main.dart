@@ -6,6 +6,7 @@ import 'package:florista_ecommerce_app/core/utils/themes/light_theme.dart';
 import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 

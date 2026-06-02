@@ -6,5 +6,9 @@ abstract class ApiEndpoints {
   static const String getProducts = "$_baseUrl/products";
   static const String signUp = "$_baseUrl/auth/signup";
   static const String getBestSeller = "$_baseUrl/best-seller";
+  static const String forgetPassword = '$_baseUrl/auth/forgotPassword';
+  static const String verifyResetCode = '$_baseUrl/auth/verifyResetCode';
+  static const String resetPassword = '$_baseUrl/auth/resetPassword';
+
 
 }
