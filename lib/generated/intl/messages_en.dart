@@ -29,6 +29,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "connectionTimeout": MessageLookupByLibrary.simpleMessage(
       "Request timed out. Please check your internet connection.",
     ),
+    "continueAsGuest": MessageLookupByLibrary.simpleMessage(
+      "Continue as Guest",
+    ),
+    "dontHaveAccount": MessageLookupByLibrary.simpleMessage(
+      "Don\'t have an account?",
+    ),
+    "email": MessageLookupByLibrary.simpleMessage("Email"),
     "emailIsRequired": MessageLookupByLibrary.simpleMessage(
       "Email is required",
     ),
@@ -41,10 +48,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "enterValidPassword": MessageLookupByLibrary.simpleMessage(
       "Password needs uppercase, digit, and special char",
     ),
+    "enterYourEmail": MessageLookupByLibrary.simpleMessage("Enter your email"),
+    "enterYourPassword": MessageLookupByLibrary.simpleMessage(
+      "Enter your password",
+    ),
     "errorMessageGeneric": MessageLookupByLibrary.simpleMessage(
       "Something went wrong. Please try again.",
     ),
+    "forgetPassword": MessageLookupByLibrary.simpleMessage("Forgot Password"),
     "invalidCode": MessageLookupByLibrary.simpleMessage("Invalid code"),
+    "login": MessageLookupByLibrary.simpleMessage("Login"),
     "mustBeAtLeast3Characters": MessageLookupByLibrary.simpleMessage(
       "Must be at least 3 characters",
     ),
@@ -60,9 +73,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "onlyLettersAllowed": MessageLookupByLibrary.simpleMessage(
       "Only letters allowed",
     ),
+    "password": MessageLookupByLibrary.simpleMessage("Password"),
     "paswordNotMatched": MessageLookupByLibrary.simpleMessage(
       "Passwords do not match",
     ),
+    "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
     "requestTimeout": MessageLookupByLibrary.simpleMessage(
       "Request timed out. Please try again.",
     ),
@@ -72,24 +87,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "serverError": MessageLookupByLibrary.simpleMessage(
       "Server error. Please try again later.",
     ),
-    "login": MessageLookupByLibrary.simpleMessage("Login"),
-    "forgetPassword": MessageLookupByLibrary.simpleMessage("Forgot Password"),
-    "dontHaveAccount": MessageLookupByLibrary.simpleMessage(
-      "Don't have an account?",
-    ),
     "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
-    "continueAsGuest": MessageLookupByLibrary.simpleMessage(
-      "Continue as Guest",
+    "splashTagline": MessageLookupByLibrary.simpleMessage(
+      "Fresh flowers, delivered with love.",
     ),
-    "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
-    "enterYourEmail": MessageLookupByLibrary.simpleMessage("Enter your email"),
-    "enterYourPassword": MessageLookupByLibrary.simpleMessage(
-      "Enter your password",
-    ),
-    "email": MessageLookupByLibrary.simpleMessage("Email"),
-    "password": MessageLookupByLibrary.simpleMessage("Password"),
-
-    'splashTagline': MessageLookupByLibrary.simpleMessage(
-        'Fresh flowers, delivered with love.'),
   };
 }

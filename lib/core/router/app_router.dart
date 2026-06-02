@@ -25,7 +25,10 @@ abstract class AppRouter {
         path: RoutePath.splash,
         builder: (context, state) => SplashView(),
       ),
-      GoRoute(path: RoutePath.login, builder: (context, state) => LoginView()),
+      GoRoute(
+        path: RoutePath.login,
+        builder: (context, state) => const LoginView(),
+      ),
       GoRoute(
         path: RoutePath.signup,
         builder: (context, state) => SignUpView(),
@@ -42,7 +45,10 @@ abstract class AppRouter {
         path: RoutePath.resetPassword,
         builder: (context, state) => ResetPasswordView(),
       ),
-      GoRoute(path: RoutePath.home, builder: (context, state) => HomeView()),
+      GoRoute(
+        path: RoutePath.home,
+        builder: (context, state) => HomeView(),
+      ),
       GoRoute(
         path: RoutePath.categories,
         builder: (context, state) => BlocProvider(
@@ -53,7 +59,10 @@ abstract class AppRouter {
           child: const CategoriesView(),
         ),
       ),
-      GoRoute(path: RoutePath.cart, builder: (context, state) => CartView()),
+      GoRoute(
+        path: RoutePath.cart,
+        builder: (context, state) => CartView(),
+      ),
       GoRoute(
         path: RoutePath.bestSeller,
         builder: (context, state) => BestSellerView(),
