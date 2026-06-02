@@ -9,8 +9,7 @@ import 'package:florista_ecommerce_app/features/auth/sign_up/presentation/view/s
 import 'package:florista_ecommerce_app/features/categories/domain/use_cases/categories_use_cases.dart';
 import 'package:florista_ecommerce_app/features/categories/presentation/view/categories_view.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/view/home_view.dart';
-import 'package:florista_ecommerce_app/features/profile/presentation/view/profile_view.dart';
-import 'package:florista_ecommerce_app/features/splash/presentation/view/splash_view.dart';
+import 'package:florista_ecommerce_app/features/splash_screen/splash_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -20,7 +19,7 @@ import '../../features/categories/presentation/cubit/categories_view_model.dart'
 
 abstract class AppRouter {
   static final GoRouter goRouter = GoRouter(
-    initialLocation: RoutePath.bestSeller,
+    initialLocation: RoutePath.splash,
     routes: [
       GoRoute(
         path: RoutePath.splash,

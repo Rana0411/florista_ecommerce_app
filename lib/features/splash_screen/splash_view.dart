@@ -7,14 +7,14 @@ import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+class SplashView extends StatefulWidget {
+  const SplashView({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  State<SplashView> createState() => _SplashViewState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
+class _SplashViewState extends State<SplashView>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _logoScale;
@@ -52,15 +52,13 @@ class _SplashScreenState extends State<SplashScreen>
       ),
     );
 
-    _textSlide = Tween<Offset>(
-      begin: const Offset(0, 0.4),
-      end: Offset.zero,
-    ).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.5, 1.0, curve: Curves.easeOut),
-      ),
-    );
+    _textSlide = Tween<Offset>(begin: const Offset(0, 0.4), end: Offset.zero)
+        .animate(
+          CurvedAnimation(
+            parent: _controller,
+            curve: const Interval(0.5, 1.0, curve: Curves.easeOut),
+          ),
+        );
 
     _controller.forward();
 
@@ -126,10 +124,7 @@ class _SplashScreenState extends State<SplashScreen>
                 builder: (context, child) {
                   return FadeTransition(
                     opacity: _textOpacity,
-                    child: SlideTransition(
-                      position: _textSlide,
-                      child: child,
-                    ),
+                    child: SlideTransition(position: _textSlide, child: child),
                   );
                 },
                 child: Column(
@@ -166,18 +161,16 @@ class _SplashScreenState extends State<SplashScreen>
               AnimatedBuilder(
                 animation: _textOpacity,
                 builder: (context, child) {
-                  return Opacity(
-                    opacity: _textOpacity.value,
-                    child: child,
-                  );
+                  return Opacity(opacity: _textOpacity.value, child: child);
                 },
                 child: SizedBox(
                   width: ScreenSize.w(context, 0.08),
                   height: ScreenSize.w(context, 0.08),
                   child: CircularProgressIndicator(
                     strokeWidth: 2.5,
-                    valueColor:
-                    AlwaysStoppedAnimation<Color>(AppColors.primary),
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      AppColors.primary,
+                    ),
                     backgroundColor: AppColors.primary.withOpacity(0.15),
                   ),
                 ),
