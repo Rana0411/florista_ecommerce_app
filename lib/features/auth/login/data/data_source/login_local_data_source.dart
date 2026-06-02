@@ -15,7 +15,7 @@ class LoginLocalDataSourceImpl implements LoginLocalDataSource {
   @override
   Future<void> persistToken(String token) async {
     await _secureStorage.write(
-      key: SecureStorageKeys.userToken,
+      key: SecureStorageKeys.token,
       value: token,
     );
   }

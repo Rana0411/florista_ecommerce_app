@@ -65,11 +65,7 @@ class _RememberMeRow extends StatelessWidget {
   final bool rememberMe;
   final ValueChanged<bool?> onChanged;
 
-  const _RememberMeRow({
-    super.key,
-    required this.rememberMe,
-    required this.onChanged,
-  });
+  const _RememberMeRow({required this.rememberMe, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {

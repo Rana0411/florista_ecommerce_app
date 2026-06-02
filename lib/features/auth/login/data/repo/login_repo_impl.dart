@@ -1,6 +1,5 @@
 import 'package:florista_ecommerce_app/config/base_response/base_response.dart';
 import 'package:florista_ecommerce_app/features/auth/login/data/data_source/login_local_data_source.dart';
-import 'package:florista_ecommerce_app/features/auth/login/data/data_source/login_local_data_source.dart';
 import 'package:florista_ecommerce_app/features/auth/login/data/model/login_request_model.dart';
 import 'package:florista_ecommerce_app/features/auth/login/domain/entity/login_entity.dart';
 import 'package:florista_ecommerce_app/features/auth/login/domain/repo/login_repo.dart';

@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/features/categories/domain/entities/product_entity.dart';
 
-import '../../../../generated/l10n.dart';
-
 class ProductCard extends StatelessWidget {
   final ProductEntity product;
 

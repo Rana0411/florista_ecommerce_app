@@ -9,7 +9,7 @@ import 'package:florista_ecommerce_app/features/auth/sign_up/presentation/view/s
 import 'package:florista_ecommerce_app/features/categories/domain/use_cases/categories_use_cases.dart';
 import 'package:florista_ecommerce_app/features/categories/presentation/view/categories_view.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/view/home_view.dart';
-import 'package:florista_ecommerce_app/features/splash_screen/splash_view.dart';
+import 'package:florista_ecommerce_app/features/splash/presentation/view/splash_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -45,10 +45,7 @@ abstract class AppRouter {
         path: RoutePath.resetPassword,
         builder: (context, state) => ResetPasswordView(),
       ),
-      GoRoute(
-        path: RoutePath.home,
-        builder: (context, state) => HomeView(),
-      ),
+      GoRoute(path: RoutePath.home, builder: (context, state) => HomeView()),
       GoRoute(
         path: RoutePath.categories,
         builder: (context, state) => BlocProvider(
@@ -59,10 +56,7 @@ abstract class AppRouter {
           child: const CategoriesView(),
         ),
       ),
-      GoRoute(
-        path: RoutePath.cart,
-        builder: (context, state) => CartView(),
-      ),
+      GoRoute(path: RoutePath.cart, builder: (context, state) => CartView()),
       GoRoute(
         path: RoutePath.bestSeller,
         builder: (context, state) => BestSellerView(),

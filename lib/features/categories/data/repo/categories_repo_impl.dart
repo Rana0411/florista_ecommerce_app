@@ -4,7 +4,6 @@ import 'package:florista_ecommerce_app/features/categories/domain/repo/categorie
 import 'package:injectable/injectable.dart';
 
 import '../../../../config/shared_models/categories/categories_response.dart';
-import '../../../../config/shared_models/categories/category_dto.dart';
 import '../../domain/entities/categories-entity.dart';
 
 @Injectable(as: CategoriesRepoContract)
