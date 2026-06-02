@@ -85,7 +85,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                         labelText: S.of(context).email,
                         hintText: S.of(context).enterYourEmail,
                       ),
-                      validator: AppValidator.validateEmail,
+                      validator: AppTextFieldValidator.validateEmail,
                     ),
 
                     SizedBox(height: 30),

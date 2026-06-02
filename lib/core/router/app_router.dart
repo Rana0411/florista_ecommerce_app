@@ -1,9 +1,9 @@
 import 'package:florista_ecommerce_app/config/di/di.dart';
 import 'package:florista_ecommerce_app/core/router/route_path.dart';
 import 'package:florista_ecommerce_app/features/Cart/presentation/view/cart_view.dart';
+import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/screens/forget_password_view.dart';
+import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/screens/reset_password_view.dart';
 import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/screens/validation_code_view.dart';
-import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/view/forget_password_view.dart';
-import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/view/reset_password_view.dart';
 import 'package:florista_ecommerce_app/features/auth/login/presentation/view/login_view.dart';
 import 'package:florista_ecommerce_app/features/auth/sign-up/presentation/screens/sign_up_screen.dart';
 import 'package:florista_ecommerce_app/features/categories/domain/use_cases/categories_use_cases.dart';

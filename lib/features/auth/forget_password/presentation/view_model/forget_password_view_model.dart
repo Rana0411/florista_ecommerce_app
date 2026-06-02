@@ -1,5 +1,6 @@
 import 'package:florista_ecommerce_app/config/base_response/base_response.dart';
 import 'package:florista_ecommerce_app/config/base_state/base_state.dart';
+import 'package:florista_ecommerce_app/config/di/di.dart';
 import 'package:florista_ecommerce_app/config/secure_storage/secure_storage_service.dart';
 import 'package:florista_ecommerce_app/core/app_keys/api_keys.dart';
 import 'package:florista_ecommerce_app/features/auth/forget_password/data/models/responses/forget_password_response.dart';
@@ -35,10 +36,8 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
 
     switch (response) {
       case SuccessBaseResponse<ForgetPasswordResponse>():
-        await SecureStorageService.write(
-          key: "userEmail",
-          value: body[ApiKeys.email],
-        );
+        final secure = getIt.get<SecureStorageService>();
+        secure.write(key: "userEmail", value: body[ApiKeys.email]);
 
         emit(
           state.copyWith(
@@ -95,7 +94,9 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
     }
   }
 
-  Future<void> confirmValidationCode({required Map<String, dynamic> body}) async {
+  Future<void> confirmValidationCode({
+    required Map<String, dynamic> body,
+  }) async {
     emit(
       state.copyWith(
         confirmValidationState: state.confirmValidationState.copyWith(
@@ -130,17 +131,14 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
     }
   }
 
-
   Future<void> resendCode() async {
     final email = await getUserEmail();
-    await forgetPassword({
-      ApiKeys.email: email,
-    });
+    await forgetPassword({ApiKeys.email: email});
   }
+
   Future<String> getUserEmail() async {
-    final emailResponse = await SecureStorageService.read(
-      key: 'userEmail',
-    );
+    final secure = getIt.get<SecureStorageService>();
+    final emailResponse = secure.read(key: 'userEmail');
 
     switch (emailResponse) {
       case SuccessBaseResponse<String>(data: final email):
@@ -149,6 +147,7 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
       case ErrorBaseResponse<String>():
         return '';
     }
-  }
 
+    return '';
+  }
 }

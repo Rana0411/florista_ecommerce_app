@@ -4,7 +4,7 @@ import 'package:florista_ecommerce_app/features/auth/forget_password/data/models
 import 'package:florista_ecommerce_app/features/auth/forget_password/domain/repo/forget_password_repo_contract.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable(as:ForgetPasswordRepoContract )
+@Injectable(as: ForgetPasswordRepoContract)
 class ForgetPasswordRepoImpl implements ForgetPasswordRepoContract {
   final ForgetPasswordDataSourceContract forgetPasswordDataSource;
 
@@ -34,7 +34,6 @@ class ForgetPasswordRepoImpl implements ForgetPasswordRepoContract {
       case ErrorBaseResponse():
         return ErrorBaseResponse(errorMessage: response.errorMessage);
     }
-    ;
   }
 
   @override

@@ -12,6 +12,7 @@ class ForgetPasswordUseCase {
   Future<BaseResponse<ForgetPasswordResponse>> call(
     Map<String, dynamic> body,
   ) async {
+
     return await forgetPasswordRepo.forgetPassword(body);
   }
 }

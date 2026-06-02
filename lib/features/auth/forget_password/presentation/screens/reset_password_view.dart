@@ -56,7 +56,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                   labelText: S.of(context).password,
                   hintText: S.of(context).enterYourPassword,
                 ),
-                validator: AppValidator.validateEmail,
+                validator: AppTextFieldValidator.validateEmail,
               ),
               SizedBox(height: 30),
               TextFormField(
@@ -65,7 +65,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                   labelText: S.of(context).confirmPassword,
                   hintText: S.of(context).confirmPassword,
                 ),
-                validator: AppValidator.validateEmail,
+                validator: AppTextFieldValidator.validateEmail,
               ),
 
               SizedBox(height: 30),
