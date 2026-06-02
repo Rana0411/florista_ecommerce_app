@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "addToCart": MessageLookupByLibrary.simpleMessage("Add to cart"),
     "alreadyHaveAnAccount": MessageLookupByLibrary.simpleMessage(
       "Already have an account? ",
     ),
@@ -65,9 +66,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorMessageGeneric": MessageLookupByLibrary.simpleMessage(
       "Something went wrong. Please try again.",
     ),
-    "forgetPassword": MessageLookupByLibrary.simpleMessage("Forgot Password"),
-    "invalidCode": MessageLookupByLibrary.simpleMessage("Invalid code"),
-    "login": MessageLookupByLibrary.simpleMessage("Login"),
     "female": MessageLookupByLibrary.simpleMessage("Female"),
     "firstName": MessageLookupByLibrary.simpleMessage("First name"),
     "forgetPassword": MessageLookupByLibrary.simpleMessage("Forgot Password"),
@@ -106,10 +104,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "serverError": MessageLookupByLibrary.simpleMessage(
       "Server error. Please try again later.",
     ),
-    "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
-    "splashTagline": MessageLookupByLibrary.simpleMessage(
-      "Fresh flowers, delivered with love.",
-    ),
+    "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
     "signUpSuccess": MessageLookupByLibrary.simpleMessage("Sign up success"),
     "splashTagline": MessageLookupByLibrary.simpleMessage(
       "Fresh flowers, delivered with love.",

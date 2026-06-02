@@ -134,9 +134,9 @@ class S {
     );
   }
 
-  /// `Sign Up`
+  /// `Sign up`
   String get signUp {
-    return Intl.message('Sign Up', name: 'signUp', desc: '', args: []);
+    return Intl.message('Sign up', name: 'signUp', desc: '', args: []);
   }
 
   /// `First name`
@@ -274,9 +274,9 @@ class S {
     );
   }
 
-  /// `Login`
-  String get login {
-    return Intl.message('Login', name: 'login', desc: '', args: []);
+  /// `Add to cart`
+  String get addToCart {
+    return Intl.message('Add to cart', name: 'addToCart', desc: '', args: []);
   }
 
   /// `Sign up success`
@@ -404,11 +404,6 @@ class S {
     );
   }
 
-  /// `Sign Up`
-  String get signUp {
-    return Intl.message('Sign Up', name: 'signUp', desc: '', args: []);
-  }
-
   /// `Continue as Guest`
   String get continueAsGuest {
     return Intl.message(
@@ -424,16 +419,6 @@ class S {
     return Intl.message('Remember me', name: 'rememberMe', desc: '', args: []);
   }
 
-  /// `Enter your email`
-  String get enterYourEmail {
-    return Intl.message(
-      'Enter your email',
-      name: 'enterYourEmail',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Enter your password`
   String get enterYourPassword {
     return Intl.message(
@@ -442,16 +427,6 @@ class S {
       desc: '',
       args: [],
     );
-  }
-
-  /// `Email`
-  String get email {
-    return Intl.message('Email', name: 'email', desc: '', args: []);
-  }
-
-  /// `Password`
-  String get password {
-    return Intl.message('Password', name: 'password', desc: '', args: []);
   }
 
   /// `Fresh flowers, delivered with love.`

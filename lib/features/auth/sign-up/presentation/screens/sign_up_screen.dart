@@ -1,7 +1,8 @@
 import 'package:florista_ecommerce_app/config/di/di.dart';
-import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
+import 'package:florista_ecommerce_app/core/router/route_path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../config/text_field_validator.dart';
 import '../../../../../generated/l10n.dart';
@@ -45,9 +46,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   void _onSignUp(BuildContext context) {
     if (gender.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please select gender')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Please select gender')));
       return;
     }
     if (_formKey.currentState!.validate()) {
@@ -79,13 +80,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
               elevation: 0,
               leading: IconButton(
                 onPressed: () => Navigator.pop(context),
-                icon: Icon(Icons.arrow_back_ios, color: textTheme.bodyMedium?.color),
+                icon: Icon(
+                  Icons.arrow_back_ios,
+                  color: textTheme.bodyMedium?.color,
+                ),
               ),
-              title: Text(S.of(context).signUp, style: textTheme.headlineMedium),
+              title: Text(
+                S.of(context).signUp,
+                style: textTheme.headlineMedium,
+              ),
             ),
             body: SafeArea(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
+                ),
                 child: Form(
                   key: _formKey,
                   child: Column(
@@ -153,10 +163,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
     }
 
     if (state.signUpState.data != null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(S.of(context).signUpSuccess)),
-      );
-      // TODO: navigate to home
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(S.of(context).signUpSuccess)));
+      // a small fix to solve the state error
+      Future.delayed(const Duration(seconds: 1), () {
+        context.go(RoutePath.login);
+      });
     }
   }
 }
