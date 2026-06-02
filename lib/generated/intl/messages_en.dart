@@ -22,15 +22,19 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-    "codeIsRequired": MessageLookupByLibrary.simpleMessage("Code is required"),
-    "confirmPassword": MessageLookupByLibrary.simpleMessage(
-      "Please confirm your password",
+    "alreadyHaveAnAccount": MessageLookupByLibrary.simpleMessage(
+      "Already have an account? ",
     ),
+    "codeIsRequired": MessageLookupByLibrary.simpleMessage("Code is required"),
+    "confirmPassword": MessageLookupByLibrary.simpleMessage("Confirm password"),
     "connectionTimeout": MessageLookupByLibrary.simpleMessage(
       "Request timed out. Please check your internet connection.",
     ),
     "continueAsGuest": MessageLookupByLibrary.simpleMessage(
       "Continue as Guest",
+    ),
+    "creatingAnAccountYouAgreeToOur": MessageLookupByLibrary.simpleMessage(
+      "Creating an account, you agree to our",
     ),
     "dontHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account?",
@@ -38,6 +42,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "email": MessageLookupByLibrary.simpleMessage("Email"),
     "emailIsRequired": MessageLookupByLibrary.simpleMessage(
       "Email is required",
+    ),
+    "enterFirstName": MessageLookupByLibrary.simpleMessage("Enter first name"),
+    "enterLastName": MessageLookupByLibrary.simpleMessage("Enter last name"),
+    "enterPassword": MessageLookupByLibrary.simpleMessage("Enter Password"),
+    "enterPhoneNumber": MessageLookupByLibrary.simpleMessage(
+      "Enter phone number",
     ),
     "enterValidEgyptianPhoneNumber": MessageLookupByLibrary.simpleMessage(
       "Enter a valid Egyptian phone number",
@@ -58,6 +68,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "forgetPassword": MessageLookupByLibrary.simpleMessage("Forgot Password"),
     "invalidCode": MessageLookupByLibrary.simpleMessage("Invalid code"),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
+    "female": MessageLookupByLibrary.simpleMessage("Female"),
+    "firstName": MessageLookupByLibrary.simpleMessage("First name"),
+    "forgetPassword": MessageLookupByLibrary.simpleMessage("Forgot Password"),
+    "gender": MessageLookupByLibrary.simpleMessage("Gender"),
+    "invalidCode": MessageLookupByLibrary.simpleMessage("Invalid code"),
+    "lastName": MessageLookupByLibrary.simpleMessage("Last name"),
+    "login": MessageLookupByLibrary.simpleMessage("Login"),
+    "male": MessageLookupByLibrary.simpleMessage("Male"),
     "mustBeAtLeast3Characters": MessageLookupByLibrary.simpleMessage(
       "Must be at least 3 characters",
     ),
@@ -77,6 +95,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "paswordNotMatched": MessageLookupByLibrary.simpleMessage(
       "Passwords do not match",
     ),
+    "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone number"),
     "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
     "requestTimeout": MessageLookupByLibrary.simpleMessage(
       "Request timed out. Please try again.",
@@ -90,6 +109,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
     "splashTagline": MessageLookupByLibrary.simpleMessage(
       "Fresh flowers, delivered with love.",
+    ),
+    "signUpSuccess": MessageLookupByLibrary.simpleMessage("Sign up success"),
+    "splashTagline": MessageLookupByLibrary.simpleMessage(
+      "Fresh flowers, delivered with love.",
+    ),
+    "termsConditions": MessageLookupByLibrary.simpleMessage(
+      "Terms & Conditions",
     ),
   };
 }

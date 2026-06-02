@@ -19,7 +19,7 @@ import '../../features/categories/presentation/cubit/categories_view_model.dart'
 
 abstract class AppRouter {
   static final GoRouter goRouter = GoRouter(
-    initialLocation: RoutePath.splash,
+    initialLocation: RoutePath.signup,
     routes: [
       GoRoute(
         path: RoutePath.splash,
@@ -31,7 +31,7 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: RoutePath.signup,
-        builder: (context, state) => SignUpView(),
+        builder: (context, state) => SignUpScreen(),
       ),
       GoRoute(
         path: RoutePath.forgetPassword,
