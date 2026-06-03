@@ -4,34 +4,27 @@ import 'package:florista_ecommerce_app/features/categories/domain/repo/categorie
 import 'package:injectable/injectable.dart';
 
 import '../../../../config/shared_models/categories/categories_response.dart';
-import '../../domain/entities/categories-entity.dart';
+import '../../domain/entities/categories_entity.dart';
 
 @Injectable(as: CategoriesRepoContract)
 class CategoriesRepoImpl implements CategoriesRepoContract {
-  final CategoriesRemoteDataSourceContract
-  categoriesRemoteDataSourceContract;
+  final CategoriesRemoteDataSourceContract categoriesRemoteDataSourceContract;
 
-  CategoriesRepoImpl({
-    required this.categoriesRemoteDataSourceContract,
-  });
+  CategoriesRepoImpl({required this.categoriesRemoteDataSourceContract});
 
   @override
-  Future<BaseResponse<List<CategoryEntity>>> getCategories() async {
-    final response =
-    await categoriesRemoteDataSourceContract.getCategories();
+  Future<BaseResponse<List<CategoriesEntity>>> getCategories() async {
+    final response = await categoriesRemoteDataSourceContract.getCategories();
 
     switch (response) {
       case SuccessBaseResponse<CategoriesResponse>():
-        return SuccessBaseResponse<List<CategoryEntity>>(
+        return SuccessBaseResponse<List<CategoriesEntity>>(
           data:
-          response.data.categories
-              ?.map((e) => e.toDomain())
-              .toList() ??
-              [],
+              response.data.categories?.map((e) => e.toDomain()).toList() ?? [],
         );
 
       case ErrorBaseResponse<CategoriesResponse>():
-        return ErrorBaseResponse<List<CategoryEntity>>(
+        return ErrorBaseResponse<List<CategoriesEntity>>(
           errorMessage: response.errorMessage,
         );
     }

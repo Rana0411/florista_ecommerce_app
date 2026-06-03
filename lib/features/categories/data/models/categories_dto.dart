@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../domain/entities/categories-entity.dart';
+import '../../domain/entities/categories_entity.dart';
 
 part 'categories_dto.g.dart';
 
@@ -21,21 +21,15 @@ class CategoryDto {
   @JsonKey(name: "productsCount")
   final int? productsCount;
 
-  CategoryDto({
-    this.id,
-    this.name,
-    this.slug,
-    this.image,
-    this.productsCount,
-  });
+  CategoryDto({this.id, this.name, this.slug, this.image, this.productsCount});
 
   factory CategoryDto.fromJson(Map<String, dynamic> json) =>
       _$CategoryDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$CategoryDtoToJson(this);
 
-  CategoryEntity toDomain() {
-    return CategoryEntity(
+  CategoriesEntity toDomain() {
+    return CategoriesEntity(
       id: id ?? "",
       name: name ?? "",
       image: image ?? "",

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
-import 'package:florista_ecommerce_app/features/categories/domain/entities/categories-entity.dart';
+import 'package:florista_ecommerce_app/features/categories/domain/entities/categories_entity.dart';
 
 class CategoryTabs extends StatelessWidget {
-  final List<CategoryEntity> categories;
+  final List<CategoriesEntity> categories;
   final int selectedIndex;
   final bool isLoading;
   final ValueChanged<int> onTap;
@@ -42,12 +42,8 @@ class CategoryTabs extends StatelessWidget {
                 Text(
                   labels[i],
                   style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                    color: selected
-                        ? AppColors.primary
-                        : AppColors.hintColor,
-                    fontWeight: selected
-                        ? FontWeight.w600
-                        : FontWeight.w400,
+                    color: selected ? AppColors.primary : AppColors.hintColor,
+                    fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
                   ),
                 ),
                 const SizedBox(height: 4),

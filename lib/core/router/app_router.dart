@@ -9,6 +9,8 @@ import 'package:florista_ecommerce_app/features/auth/sign-up/presentation/screen
 import 'package:florista_ecommerce_app/features/categories/domain/use_cases/categories_use_cases.dart';
 import 'package:florista_ecommerce_app/features/categories/presentation/view/categories_view.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/view/home_view.dart';
+import 'package:florista_ecommerce_app/features/home/presentation/view_model/home_event.dart';
+import 'package:florista_ecommerce_app/features/home/presentation/view_model/home_view_model.dart';
 import 'package:florista_ecommerce_app/features/splash/presentation/view/splash_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -37,7 +39,16 @@ abstract class AppRouter {
         path: RoutePath.forgetPassword,
         builder: (context, state) => ForgetPasswordView(),
       ),
-      GoRoute(path: RoutePath.home, builder: (context, state) => HomeView()),
+      GoRoute(
+        path: RoutePath.home,
+        builder: (context, state) {
+          final HomeViewModel viewModel = getIt.get<HomeViewModel>();
+          return BlocProvider(
+            create: (context) => viewModel..doEvent(HomeInitEvent()),
+            child: HomeView(),
+          );
+        },
+      ),
       GoRoute(
         path: RoutePath.categories,
         builder: (context, state) => BlocProvider(

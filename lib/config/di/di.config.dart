@@ -92,6 +92,23 @@ import '../../features/categories/domain/use_cases/get_products_by_category_use_
     as _i293;
 import '../../features/categories/presentation/cubit/categories_view_model.dart'
     as _i550;
+import '../../features/home/api/api_client/home_api_client.dart' as _i592;
+import '../../features/home/api/data_sources/home_remote_data_source_impl.dart'
+    as _i1033;
+import '../../features/home/data/data_sources/home_remote_data_source_contract.dart'
+    as _i582;
+import '../../features/home/data/repo/home_repo_impl.dart' as _i1024;
+import '../../features/home/domain/repo/home_repo_contract.dart' as _i396;
+import '../../features/home/domain/use_cases/get_all_best_seller_use_case.dart'
+    as _i758;
+import '../../features/home/domain/use_cases/get_all_categories_use_case.dart'
+    as _i431;
+import '../../features/home/domain/use_cases/get_all_occasions_use_case.dart'
+    as _i437;
+import '../../features/home/domain/use_cases/get_logged_user_addresses_use_case.dart'
+    as _i567;
+import '../../features/home/presentation/view_model/home_view_model.dart'
+    as _i77;
 import '../auth_interceptor/auth_interceptor.dart' as _i988;
 import '../dio/dio_module.dart' as _i977;
 import '../hive/hive_service.dart' as _i746;
@@ -124,6 +141,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i211.ProductsApiClient>(
       () => _i211.ProductsApiClient(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i592.HomeApiClient>(
+      () => _i592.HomeApiClient(gh<_i361.Dio>()),
     );
     gh.singleton<_i478.ForgetPasswordApiClient>(
       () => _i478.ForgetPasswordApiClient(gh<_i361.Dio>()),
@@ -182,6 +202,11 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i349.LoginLocalDataSource>(),
       ),
     );
+    gh.factory<_i582.HomeRemoteDataSourceContract>(
+      () => _i1033.HomeRemoteDataSourceImpl(
+        homeApiClient: gh<_i592.HomeApiClient>(),
+      ),
+    );
     gh.factory<_i665.ForgetPasswordRepoContract>(
       () => _i610.ForgetPasswordRepoImpl(
         forgetPasswordDataSource: gh<_i170.ForgetPasswordDataSourceContract>(),
@@ -195,6 +220,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i817.LoginUseCase>(
       () => _i817.LoginUseCase(gh<_i632.LoginRepo>()),
     );
+    gh.factory<_i396.HomeRepoContract>(
+      () => _i1024.HomeRepoImpl(
+        homeRemoteDataSourceContract: gh<_i582.HomeRemoteDataSourceContract>(),
+      ),
+    );
     gh.factory<_i629.LoginCubit>(
       () => _i629.LoginCubit(gh<_i817.LoginUseCase>()),
     );
@@ -207,6 +237,26 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i706.CategoriesRepoImpl(
         categoriesRemoteDataSourceContract:
             gh<_i72.CategoriesRemoteDataSourceContract>(),
+      ),
+    );
+    gh.factory<_i758.GetAllBestSellerUseCase>(
+      () => _i758.GetAllBestSellerUseCase(
+        homeRepoContract: gh<_i396.HomeRepoContract>(),
+      ),
+    );
+    gh.factory<_i431.GetAllCategoriesUseCase>(
+      () => _i431.GetAllCategoriesUseCase(
+        homeRepoContract: gh<_i396.HomeRepoContract>(),
+      ),
+    );
+    gh.factory<_i437.GetAllOccasionsUseCase>(
+      () => _i437.GetAllOccasionsUseCase(
+        homeRepoContract: gh<_i396.HomeRepoContract>(),
+      ),
+    );
+    gh.factory<_i567.GetLoggedUserAddressesUseCase>(
+      () => _i567.GetLoggedUserAddressesUseCase(
+        homeRepoContract: gh<_i396.HomeRepoContract>(),
       ),
     );
     gh.factory<_i722.GetBestSellerUseCase>(
@@ -232,6 +282,15 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i900.GetCategoriesUseCase>(
       () => _i900.GetCategoriesUseCase(
         categoriesRepoContract: gh<_i233.CategoriesRepoContract>(),
+      ),
+    );
+    gh.factory<_i77.HomeViewModel>(
+      () => _i77.HomeViewModel(
+        getAllCategoriesUseCase: gh<_i431.GetAllCategoriesUseCase>(),
+        getAllBestSellerUseCase: gh<_i758.GetAllBestSellerUseCase>(),
+        getAllOccasionsUseCase: gh<_i437.GetAllOccasionsUseCase>(),
+        getLoggedUserAddressesUseCase:
+            gh<_i567.GetLoggedUserAddressesUseCase>(),
       ),
     );
     gh.factory<_i550.CategoriesCubit>(

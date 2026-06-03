@@ -1,10 +1,10 @@
-class CategoryEntity {
+class CategoriesEntity {
   final String id;
   final String name;
   final String image;
   final int productsCount;
 
-  CategoryEntity({
+  CategoriesEntity({
     required this.id,
     required this.name,
     required this.image,

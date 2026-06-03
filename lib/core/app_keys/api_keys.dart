@@ -10,4 +10,5 @@ abstract class ApiKeys {
   static const String newPassword = 'new_password';
   static const String confirmPassword = 'confirm_password';
   static const String resetCode = "resetCode";
+  static const String authorization = 'Authorization';
 }

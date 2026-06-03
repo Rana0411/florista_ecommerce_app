@@ -99,6 +99,7 @@ flutter:
   # example:
   assets:
     - assets/icons/florista.png
+    - assets/icons/flower_12px.png
   fonts:
     - family: Inter
       fonts:
@@ -120,6 +121,9 @@ flutter:
           weight: 400
         - asset: assets/fonts/Inter_28pt-Medium.ttf
           weight: 500
+    - family: IMFellEnglish
+      fonts:
+      - asset: assets/fonts/IMFellEnglish-Regular.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
 flutter_intl:

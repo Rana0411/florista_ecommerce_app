@@ -25,6 +25,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "addToCart": MessageLookupByLibrary.simpleMessage("Add to cart"),
         "alreadyHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("Already have an account? "),
+        "bestSeller": MessageLookupByLibrary.simpleMessage("Best seller"),
+        "categories": MessageLookupByLibrary.simpleMessage("Categories"),
         "codeIsRequired":
             MessageLookupByLibrary.simpleMessage("Code is required"),
         "codeVerificationDis": MessageLookupByLibrary.simpleMessage(
@@ -42,6 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Didn\'t receive the code?"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
+        "egp": MessageLookupByLibrary.simpleMessage("EGP"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emailIsRequired":
             MessageLookupByLibrary.simpleMessage("Email is required"),
@@ -72,6 +75,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Something went wrong. Please try again."),
         "female": MessageLookupByLibrary.simpleMessage("Female"),
         "firstName": MessageLookupByLibrary.simpleMessage("First name"),
+        "flowery": MessageLookupByLibrary.simpleMessage("Flowery"),
         "forgetPassword":
             MessageLookupByLibrary.simpleMessage("Forgot Password"),
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
@@ -87,6 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No value found for key: "),
         "notFound": MessageLookupByLibrary.simpleMessage(
             "Requested resource not found."),
+        "occasion": MessageLookupByLibrary.simpleMessage("Occasion"),
         "onlyLettersAllowed":
             MessageLookupByLibrary.simpleMessage("Only letters allowed"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
@@ -100,6 +105,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Request timed out. Please try again."),
         "resend": MessageLookupByLibrary.simpleMessage("Resend"),
         "resendCode": MessageLookupByLibrary.simpleMessage("Resend"),
+        "search": MessageLookupByLibrary.simpleMessage("Search"),
         "secureStorageErrorMessage": MessageLookupByLibrary.simpleMessage(
             "Failed to save information securely. Please try again."),
         "serverError": MessageLookupByLibrary.simpleMessage(
@@ -110,6 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "splashTagline": MessageLookupByLibrary.simpleMessage(
             "Fresh flowers, delivered with love."),
         "termsConditions":
-            MessageLookupByLibrary.simpleMessage("Terms & Conditions")
+            MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
+        "viewAll": MessageLookupByLibrary.simpleMessage("View All")
       };
 }

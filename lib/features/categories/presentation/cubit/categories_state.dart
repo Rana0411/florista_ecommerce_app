@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:florista_ecommerce_app/features/categories/domain/entities/categories-entity.dart';
+import 'package:florista_ecommerce_app/features/categories/domain/entities/categories_entity.dart';
 import 'package:florista_ecommerce_app/features/categories/domain/entities/product_entity.dart';
 
 export 'package:florista_ecommerce_app/features/categories/domain/entities/product_entity.dart';
@@ -9,7 +9,7 @@ enum SortOption { lowestPrice, highestPrice, newest, oldest, discount }
 
 class CategoriesState extends Equatable {
   final bool isLoading;
-  final List<CategoryEntity> categories;
+  final List<CategoriesEntity> categories;
   final String? errorMessage;
 
   // Products grid state
@@ -45,7 +45,7 @@ class CategoriesState extends Equatable {
 
   CategoriesState copyWith({
     bool? isLoading,
-    List<CategoryEntity>? categories,
+    List<CategoriesEntity>? categories,
     String? errorMessage,
     bool clearError = false,
     bool? isProductsLoading,

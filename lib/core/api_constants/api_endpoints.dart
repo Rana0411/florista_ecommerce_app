@@ -11,4 +11,8 @@ abstract class ApiEndpoints {
   static const String resetPassword = '$_baseUrl/auth/resetPassword';
 
 
+  static const String categories = '$_baseUrl/categories';
+  static const String bestSeller = '$_baseUrl/best-seller';
+  static const String occasions = '$_baseUrl/occasions';
+  static const String addresses = '$_baseUrl/addresses';
 }

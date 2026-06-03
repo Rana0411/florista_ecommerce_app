@@ -1,5 +1,6 @@
+import 'package:florista_ecommerce_app/features/categories/domain/entities/categories_entity.dart';
+import 'package:florista_ecommerce_app/features/home/domain/entities/category_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
-import '../../../features/categories/domain/entities/categories-entity.dart';
 
 part 'category_dto.g.dart';
 
@@ -20,25 +21,20 @@ class CategoryDto {
   @JsonKey(name: "productsCount")
   final int? productsCount;
 
-  CategoryDto({
-    this.id,
-    this.name,
-    this.slug,
-    this.image,
-    this.productsCount,
-  });
+  CategoryDto({this.id, this.name, this.slug, this.image, this.productsCount});
 
   factory CategoryDto.fromJson(Map<String, dynamic> json) =>
       _$CategoryDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$CategoryDtoToJson(this);
 
-  CategoryEntity toDomain() {
-    return CategoryEntity(
-      id: id ?? "",
-      name: name ?? "",
-      image: image ?? "",
-      productsCount: productsCount ?? 0,
-    );
-  }
+  CategoriesEntity toDomain() => CategoriesEntity(
+    id: id ?? '',
+    name: name ?? '',
+    image: image ?? '',
+    productsCount: productsCount ?? 0,
+  );
+
+  CategoryEntity toHomeDomain() =>
+      CategoryEntity(id: id, name: name, image: image);
 }
