@@ -48,11 +48,16 @@
   "aboutUs": "About us",
   "logout": "Logout",
   "virson": "v 6.3.0 - (446)",
-  "language" : "Language",
-  "english" : "English",
-  "arabic" : "Arabic",
-  "notification" : "Notification",
-  "noUserData" : "No user data",
-  "noName" : "No name",
-  "noEmail" : "No email"
+  "language": "Language",
+  "english": "English",
+  "arabic": "Arabic",
+  "notification": "Notification",
+  "noUserData": "No user data",
+  "noName": "No name",
+  "noEmail": "No email",
+  "editProfile": "Edit profile",
+  "profileUpdatedSuccessfully": "Profile updated successfully!",
+  "firstNmae": "First name",
+  "change": "change",
+  "update": "Update"
 }
