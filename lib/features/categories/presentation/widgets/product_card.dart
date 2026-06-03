@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/features/categories/domain/entities/product_entity.dart';
 
-import '../../../../generated/l10n.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductEntity product;
@@ -21,7 +20,7 @@ class ProductCard extends StatelessWidget {
         border: Border.all(color: AppColors.hintColor),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.04),
+            color: AppColors.black.withValue(alpha: 10),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -39,7 +38,7 @@ class ProductCard extends StatelessWidget {
                   child: Image.network(
                     product.image,
                     fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => Center(
+                    errorBuilder: (_, _, ___) => Center(
                       child: Icon(Icons.local_florist, size: 48,
                           color: AppColors.primary),
                     ),
