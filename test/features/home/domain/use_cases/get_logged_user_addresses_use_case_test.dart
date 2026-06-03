@@ -12,10 +12,7 @@ void main() {
     useCase = getIt.get<GetLoggedUserAddressesUseCase>();
   });
   test('Test GetLoggedUserAddresses', () async {
-    final addresses = await useCase.call(
-      token:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjlmYzlkZDk2YmJhZjE1ODhiYmRkMjQxIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3Nzg1NDQzNDF9.pjmD32_XEa5D8ZwABCb0uZUjGzoCNJBN4fGywrWpo4c',
-    );
+    final addresses = await useCase.call();
     switch (addresses) {
       case SuccessBaseResponse<List<AddressEntity>>():
         expect(addresses, isA<SuccessBaseResponse<List<AddressEntity>>>());

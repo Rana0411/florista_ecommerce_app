@@ -44,15 +44,8 @@ abstract class AppRouter {
         path: RoutePath.home,
         builder: (context, state) {
           final HomeViewModel viewModel = getIt.get<HomeViewModel>();
-          //ToDo: Handel token from Secure Storage
           return BlocProvider(
-            create: (context) => viewModel
-              ..doEvent(
-                HomeInitEvent(
-                  token:
-                      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjlmYzlkZDk2YmJhZjE1ODhiYmRkMjQxIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3Nzg1NDQzNDF9.pjmD32_XEa5D8ZwABCb0uZUjGzoCNJBN4fGywrWpo4c',
-                ),
-              ),
+            create: (context) => viewModel..doEvent(HomeInitEvent()),
             child: HomeView(),
           );
         },

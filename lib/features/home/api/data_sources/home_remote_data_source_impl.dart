@@ -49,13 +49,9 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSourceContract {
   }
 
   @override
-  Future<BaseResponse<List<AddressDto>>> getLoggedUserAddresses({
-    required String token,
-  }) async {
+  Future<BaseResponse<List<AddressDto>>> getLoggedUserAddresses() async {
     try {
-      final response = await homeApiClient.getLoggedUserAddresses(
-        token: 'Bearer $token',
-      );
+      final response = await homeApiClient.getLoggedUserAddresses();
       return SuccessBaseResponse<List<AddressDto>>(
         data: response.addresses ?? [],
       );

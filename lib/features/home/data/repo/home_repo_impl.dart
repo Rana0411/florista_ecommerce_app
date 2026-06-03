@@ -62,12 +62,9 @@ class HomeRepoImpl implements HomeRepoContract {
   }
 
   @override
-  Future<BaseResponse<List<AddressEntity>>> getLoggedUserAddresses({
-    required String token,
-  }) async {
-    final response = await homeRemoteDataSourceContract.getLoggedUserAddresses(
-      token: token,
-    );
+  Future<BaseResponse<List<AddressEntity>>> getLoggedUserAddresses() async {
+    final response = await homeRemoteDataSourceContract
+        .getLoggedUserAddresses();
     switch (response) {
       case SuccessBaseResponse<List<AddressDto>>():
         return SuccessBaseResponse<List<AddressEntity>>(

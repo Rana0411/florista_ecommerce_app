@@ -8,7 +8,5 @@ abstract interface class HomeRemoteDataSourceContract {
   Future<BaseResponse<List<CategoryDto>>> getAllCategories();
   Future<BaseResponse<List<BestSellerDto>>> getAllBestSeller();
   Future<BaseResponse<List<OccasionDto>>> getAllOccasions();
-  Future<BaseResponse<List<AddressDto>>> getLoggedUserAddresses({
-    required String token,
-  });
+  Future<BaseResponse<List<AddressDto>>> getLoggedUserAddresses();
 }

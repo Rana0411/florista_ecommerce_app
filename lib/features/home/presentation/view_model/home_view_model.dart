@@ -41,10 +41,10 @@ class HomeViewModel extends Cubit<HomeState> {
         _getAllOccasions();
         break;
       case GetLoggedUserAddressesEvent():
-        _getLoggedUserAddresses(token: event.token);
+        _getLoggedUserAddresses();
         break;
       case HomeInitEvent():
-        _homeInit(token: event.token);
+        _homeInit();
         break;
       case SelectAddressEvent():
         _selectAddress(event.value);
@@ -52,12 +52,12 @@ class HomeViewModel extends Cubit<HomeState> {
     }
   }
 
-  Future<void> _homeInit({required String token}) async {
+  Future<void> _homeInit() async {
     await Future.wait([
       _getAllCategories(),
       _getAllBestSeller(),
       _getAllOccasions(),
-      _getLoggedUserAddresses(token: token),
+      _getLoggedUserAddresses(),
     ]);
   }
 
@@ -140,7 +140,7 @@ class HomeViewModel extends Cubit<HomeState> {
     );
   }
 
-  Future<void> _getLoggedUserAddresses({required String token}) async {
+  Future<void> _getLoggedUserAddresses() async {
     emit(
       state.copyWith(
         getLoggedUserAddressesState: state.getLoggedUserAddressesState.copyWith(
@@ -151,7 +151,7 @@ class HomeViewModel extends Cubit<HomeState> {
       ),
     );
 
-    final response = await getLoggedUserAddressesUseCase(token: token);
+    final response = await getLoggedUserAddressesUseCase();
     final handler = ResponseToStateMapper.handle(response);
 
     emit(

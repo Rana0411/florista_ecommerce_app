@@ -8,7 +8,5 @@ abstract interface class HomeRepoContract {
   Future<BaseResponse<List<CategoryEntity>>> getAllCategories();
   Future<BaseResponse<List<BestSellerEntity>>> getAllBestSeller();
   Future<BaseResponse<List<OccasionEntity>>> getAllOccasions();
-  Future<BaseResponse<List<AddressEntity>>> getLoggedUserAddresses({
-    required String token,
-  });
+  Future<BaseResponse<List<AddressEntity>>> getLoggedUserAddresses();
 }

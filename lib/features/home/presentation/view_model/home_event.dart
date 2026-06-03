@@ -6,17 +6,9 @@ class GetAllBestSellerEvent extends HomeEvent {}
 
 class GetAllOccasionsEvent extends HomeEvent {}
 
-class GetLoggedUserAddressesEvent extends HomeEvent {
-  final String token;
+class GetLoggedUserAddressesEvent extends HomeEvent {}
 
-  GetLoggedUserAddressesEvent({required this.token});
-}
-
-class HomeInitEvent extends HomeEvent {
-  final String token;
-
-  HomeInitEvent({required this.token});
-}
+class HomeInitEvent extends HomeEvent {}
 
 class SelectAddressEvent extends HomeEvent {
   final String value;
