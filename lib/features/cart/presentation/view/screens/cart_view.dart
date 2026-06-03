@@ -6,7 +6,6 @@ import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
 import 'package:florista_ecommerce_app/features/cart/domain/models/cart_item_entity.dart';
 import 'package:florista_ecommerce_app/features/cart/presentation/view/utils/cart_helpers.dart';
 import 'package:florista_ecommerce_app/features/cart/presentation/view/widgets/cart_animated_items_list.dart';
-import 'package:florista_ecommerce_app/features/cart/presentation/view/widgets/cart_delivery_address_row.dart';
 import 'package:florista_ecommerce_app/features/cart/presentation/view/widgets/cart_empty_state.dart';
 import 'package:florista_ecommerce_app/features/cart/presentation/view/widgets/cart_header.dart';
 import 'package:florista_ecommerce_app/features/cart/presentation/view/widgets/cart_summary_section.dart';
