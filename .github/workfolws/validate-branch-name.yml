@@ -1,0 +1,30 @@
+#  Validate branch naming on pull requests
+name: Validate Branch Name
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+
+jobs:
+  branch-name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check branch name
+        run: |
+          BRANCH="${{ github.head_ref }}"
+          echo "Branch: $BRANCH"
+
+          # Allowed long-lived branches (exact match)
+          if echo "$BRANCH" | grep -Eiq '^(main|development|demo)$'; then
+            echo "OK: protected branch pattern"
+            exit 0
+          fi
+
+          # feat/, chore/, fix/ + lowercase slug
+          if echo "$BRANCH" | grep -Eiq '^(feat|chore|fix|hotfix)/[a-z0-9][a-z0-9._-]*$'; then
+            echo "OK: feature branch pattern"
+            exit 0
+          fi
+
+          echo "::error::Invalid branch name '$BRANCH'. Use feat/, chore/, fix/, or hotfix/ plus a short name (e.g. feat/cart)."
+          exit 1

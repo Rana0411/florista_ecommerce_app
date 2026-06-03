@@ -1,0 +1,28 @@
+#  Run Flutter unit / widget tests
+name: Validate Unit Tests
+
+on:
+  pull_request:
+    branches: [main, demo, development]
+  push:
+    branches: [main, demo, development]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Generate code (json_serializable, retrofit, etc.)
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Run tests
+        run: flutter test

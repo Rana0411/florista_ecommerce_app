@@ -28,28 +28,30 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  bloc: ^9.2.0
+  cupertino_icons: ^1.0.8
+  dio: ^5.9.2
+  equatable: ^2.0.8
   flutter:
     sdk: flutter
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.8
-  injectable: ^3.0.0
-  dio: ^5.9.2
-  retrofit: ^4.9.2
+  flutter_bloc: ^9.1.1
+  flutter_secure_storage: ^10.0.0
+  get_it: ^9.2.1
   go_router: ^17.2.3
   hive_ce: ^2.19.3
   hive_flutter: ^1.1.0
+  injectable: ^3.0.0
   intl: ^0.20.2
-  get_it: ^9.2.1
   path_provider: ^2.1.5
-  flutter_secure_storage: ^10.0.0
-  equatable: ^2.0.8
   pretty_dio_logger: ^1.4.0
+  retrofit: ^4.9.2
+  json_annotation: ^4.9.0
+  firebase_core: ^4.10.0
+  firebase_crashlytics: ^5.2.3
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
+  build_runner: ^2.15.0
+  flutter_launcher_icons: ^0.14.4
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -57,12 +59,13 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
-  build_runner: ^2.15.0
-  retrofit_generator: ^10.2.5
-  injectable_generator: ^3.0.2
-  flutter_launcher_icons: ^0.14.4
+  flutter_test:
+    sdk: flutter
   hive_ce_generator: ^1.11.1
- 
+  injectable_generator: ^3.0.2
+  retrofit_generator: ^10.2.5
+  json_serializable: ^6.13.2
+
 flutter_launcher_icons:
   android: true
   ios: true
@@ -90,6 +93,8 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+  assets:
+    - assets/icons/florista.png
   fonts:
     - family: Inter
       fonts:
@@ -115,4 +120,3 @@ flutter:
   # see https://flutter.dev/to/font-from-package
 flutter_intl:
   enabled: true
- 

@@ -1,0 +1,25 @@
+#  Run Dart / Flutter static analysis
+name: Dart Linting
+
+on:
+  pull_request:
+    branches: [main, demo, development]
+  push:
+    branches: [main, demo, development]
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Analyze
+        run: flutter analyze
