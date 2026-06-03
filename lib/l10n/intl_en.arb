@@ -59,5 +59,10 @@
   "profileUpdatedSuccessfully": "Profile updated successfully!",
   "firstNmae": "First name",
   "change": "change",
-  "update": "Update"
+  "update": "Update",
+  "changePassword": "Change password",
+  "currentPassword": "Current password",
+  "newPassword": "New password",
+  "confirmPassword2": "Confirm password",
+  "passwordChangedSuccessfully": "Password changed successfully!"
 }
