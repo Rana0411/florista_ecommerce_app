@@ -1,6 +1,7 @@
 import 'package:florista_ecommerce_app/config/shared_models/user_data/user_request_dto.dart';
 import 'package:florista_ecommerce_app/config/text_field_validator.dart';
 import 'package:florista_ecommerce_app/core/router/nav_helper.dart';
+import 'package:florista_ecommerce_app/core/router/route_path.dart';
 import 'package:florista_ecommerce_app/core/shared_widgets/custom_buttom_navigation_bar.dart';
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
@@ -73,7 +74,6 @@ class _EditProfileViewState extends State<EditProfileView> {
   Widget build(BuildContext context) {
     final String location = GoRouterState.of(context).uri.toString();
 
-    // ✅ BlocListener at the top level — no rebuild, just side effects
     return BlocListener<EditProfileViewModel, EditProfileState>(
       listenWhen: (prev, curr) =>
           prev.editProfileState != curr.editProfileState,
@@ -164,16 +164,25 @@ class _EditProfileViewState extends State<EditProfileView> {
                     validator: AppTextFieldValidator.validatePhone,
                   ),
 
-                  TextFormField(
-                    enabled: false,
-                    cursorColor: AppColors.black,
-                    obscureText: true,
-                    obscuringCharacter: '*',
-                    initialValue: '********',
-                    decoration: InputDecoration(
-                      labelText: S.current.password,
-                      suffixIcon: TextButton(
-                        onPressed: () {},
+                  Stack(
+                    alignment: Alignment.centerRight,
+                    children: [
+                      TextFormField(
+                        enabled: false,
+                        cursorColor: AppColors.black,
+                        obscureText: true,
+                        obscuringCharacter: '*',
+                        initialValue: '********',
+                        decoration: InputDecoration(
+                          labelText: S.current.password,
+                          suffixIcon: const SizedBox(width: 70),
+                        ),
+                      ),
+
+                      TextButton(
+                        onPressed: () {
+                          context.push(RoutePath.changePassword);
+                        },
                         style: TextButton.styleFrom(
                           padding: EdgeInsets.zero,
                           minimumSize: const Size(70, 0),
@@ -188,7 +197,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                           ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
 
                   const GenderRadioGroup(),
