@@ -46,6 +46,8 @@ dependencies:
   pretty_dio_logger: ^1.4.0
   retrofit: ^4.9.2
   json_annotation: ^4.9.0
+  firebase_core: ^4.10.0
+  firebase_crashlytics: ^5.2.3
 
 dev_dependencies:
   build_runner: ^2.15.0
