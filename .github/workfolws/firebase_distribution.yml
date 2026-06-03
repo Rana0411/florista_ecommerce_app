@@ -1,0 +1,43 @@
+name: Firebase App Distribution
+
+on:
+  pull_request:
+    types: [labeled]
+
+jobs:
+  deploy:
+    # Only run this job if the label added to the PR is exactly 'ReadyForTesting'
+    if: github.event.label.name == 'ReadyForTesting'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Generate Code (Build Runner)
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Build Android APK
+        run: flutter build apk --release
+
+      - name: Upload to Firebase App Distribution
+        uses: w9jds/firebase-action@v2.6.0
+        with:
+          args: appdistribution:distribute build/app/outputs/flutter-apk/app-release.apk --app "${{ secrets.FIREBASE_APP_ID }}" --groups "testers"
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
