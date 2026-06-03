@@ -22,17 +22,24 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "aboutUs": MessageLookupByLibrary.simpleMessage("About us"),
         "addToCart": MessageLookupByLibrary.simpleMessage("Add to cart"),
         "alreadyHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("Already have an account? "),
+        "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
         "bestSeller": MessageLookupByLibrary.simpleMessage("Best seller"),
         "categories": MessageLookupByLibrary.simpleMessage("Categories"),
+        "change": MessageLookupByLibrary.simpleMessage("change"),
+        "changePassword":
+            MessageLookupByLibrary.simpleMessage("Change password"),
         "codeIsRequired":
             MessageLookupByLibrary.simpleMessage("Code is required"),
         "codeVerificationDis": MessageLookupByLibrary.simpleMessage(
             "Please enter the verification code sent to your email address."),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
-        "confirmPassword":
+        "confirmPassword": MessageLookupByLibrary.simpleMessage(
+            "Please confirm your password"),
+        "confirmPassword2":
             MessageLookupByLibrary.simpleMessage("Confirm password"),
         "connectionTimeout": MessageLookupByLibrary.simpleMessage(
             "Request timed out. Please check your internet connection."),
@@ -40,16 +47,20 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Continue as Guest"),
         "creatingAnAccountYouAgreeToOur": MessageLookupByLibrary.simpleMessage(
             "Creating an account, you agree to our"),
+        "currentPassword":
+            MessageLookupByLibrary.simpleMessage("Current password"),
         "didNotReceiveCode":
             MessageLookupByLibrary.simpleMessage("Didn\'t receive the code?"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
+        "editProfile": MessageLookupByLibrary.simpleMessage("Edit profile"),
         "egp": MessageLookupByLibrary.simpleMessage("EGP"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emailIsRequired":
             MessageLookupByLibrary.simpleMessage("Email is required"),
         "emailVerification":
             MessageLookupByLibrary.simpleMessage("Email Verification"),
+        "english": MessageLookupByLibrary.simpleMessage("English"),
         "enterEmailAssociatedToAccount": MessageLookupByLibrary.simpleMessage(
             "Please enter your email associated to your account"),
         "enterFirstName":
@@ -75,48 +86,64 @@ class MessageLookup extends MessageLookupByLibrary {
             "Something went wrong. Please try again."),
         "female": MessageLookupByLibrary.simpleMessage("Female"),
         "firstName": MessageLookupByLibrary.simpleMessage("First name"),
+        "firstNmae": MessageLookupByLibrary.simpleMessage("First name"),
         "flowery": MessageLookupByLibrary.simpleMessage("Flowery"),
         "forgetPassword":
             MessageLookupByLibrary.simpleMessage("Forgot Password"),
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
         "invalidCode": MessageLookupByLibrary.simpleMessage("Invalid code"),
+        "language": MessageLookupByLibrary.simpleMessage("Language"),
         "lastName": MessageLookupByLibrary.simpleMessage("Last name"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "male": MessageLookupByLibrary.simpleMessage("Male"),
         "mustBeAtLeast3Characters": MessageLookupByLibrary.simpleMessage(
             "Must be at least 3 characters"),
+        "myOrders": MessageLookupByLibrary.simpleMessage("My orders"),
         "networkError": MessageLookupByLibrary.simpleMessage(
             "Network error. Please check your connection."),
+        "newPassword": MessageLookupByLibrary.simpleMessage("New password"),
+        "noEmail": MessageLookupByLibrary.simpleMessage("No email"),
+        "noName": MessageLookupByLibrary.simpleMessage("No name"),
+        "noUserData": MessageLookupByLibrary.simpleMessage("No user data"),
         "noValueKeyFound":
             MessageLookupByLibrary.simpleMessage("No value found for key: "),
         "notFound": MessageLookupByLibrary.simpleMessage(
             "Requested resource not found."),
+        "notification": MessageLookupByLibrary.simpleMessage("Notification"),
         "occasion": MessageLookupByLibrary.simpleMessage("Occasion"),
         "onlyLettersAllowed":
             MessageLookupByLibrary.simpleMessage("Only letters allowed"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "passwordChangedSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "Password changed successfully!"),
         "passwordMustBeAtLeastCharacters": MessageLookupByLibrary.simpleMessage(
             "Password must not be empty and must contain at least 6 characters with upper case letter and one digit"),
         "paswordNotMatched":
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone number"),
+        "profileUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "Profile updated successfully!"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
         "requestTimeout": MessageLookupByLibrary.simpleMessage(
             "Request timed out. Please try again."),
         "resend": MessageLookupByLibrary.simpleMessage("Resend"),
         "resendCode": MessageLookupByLibrary.simpleMessage("Resend"),
+        "savedAddress": MessageLookupByLibrary.simpleMessage("Saved address"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "secureStorageErrorMessage": MessageLookupByLibrary.simpleMessage(
             "Failed to save information securely. Please try again."),
         "serverError": MessageLookupByLibrary.simpleMessage(
             "Server error. Please try again later."),
-        "signUp": MessageLookupByLibrary.simpleMessage("Sign up"),
+        "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "signUpSuccess":
             MessageLookupByLibrary.simpleMessage("Sign up success"),
         "splashTagline": MessageLookupByLibrary.simpleMessage(
             "Fresh flowers, delivered with love."),
         "termsConditions":
             MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
-        "viewAll": MessageLookupByLibrary.simpleMessage("View All")
+        "update": MessageLookupByLibrary.simpleMessage("Update"),
+        "viewAll": MessageLookupByLibrary.simpleMessage("View All"),
+        "virson": MessageLookupByLibrary.simpleMessage("v 6.3.0 - (446)")
       };
 }

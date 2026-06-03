@@ -50,96 +50,6 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Request timed out. Please check your internet connection.`
-  String get connectionTimeout {
-    return Intl.message(
-      'Request timed out. Please check your internet connection.',
-      name: 'connectionTimeout',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Server error. Please try again later.`
-  String get serverError {
-    return Intl.message(
-      'Server error. Please try again later.',
-      name: 'serverError',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Requested resource not found.`
-  String get notFound {
-    return Intl.message(
-      'Requested resource not found.',
-      name: 'notFound',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Something went wrong. Please try again.`
-  String get errorMessageGeneric {
-    return Intl.message(
-      'Something went wrong. Please try again.',
-      name: 'errorMessageGeneric',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Network error. Please check your connection.`
-  String get networkError {
-    return Intl.message(
-      'Network error. Please check your connection.',
-      name: 'networkError',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Request timed out. Please try again.`
-  String get requestTimeout {
-    return Intl.message(
-      'Request timed out. Please try again.',
-      name: 'requestTimeout',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Failed to save information securely. Please try again.`
-  String get secureStorageErrorMessage {
-    return Intl.message(
-      'Failed to save information securely. Please try again.',
-      name: 'secureStorageErrorMessage',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `No value found for key: `
-  String get noValueKeyFound {
-    return Intl.message(
-      'No value found for key: ',
-      name: 'noValueKeyFound',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Sign up`
-  String get signUp {
-    return Intl.message(
-      'Sign up',
-      name: 'signUp',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `First name`
   String get firstName {
     return Intl.message(
@@ -180,51 +90,11 @@ class S {
     );
   }
 
-  /// `Email`
-  String get email {
-    return Intl.message(
-      'Email',
-      name: 'email',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Enter your email`
-  String get enterYourEmail {
-    return Intl.message(
-      'Enter your email',
-      name: 'enterYourEmail',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Password`
-  String get password {
-    return Intl.message(
-      'Password',
-      name: 'password',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Enter Password`
   String get enterPassword {
     return Intl.message(
       'Enter Password',
       name: 'enterPassword',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Confirm password`
-  String get confirmPassword {
-    return Intl.message(
-      'Confirm password',
-      name: 'confirmPassword',
       desc: '',
       args: [],
     );
@@ -355,6 +225,96 @@ class S {
     return Intl.message(
       'Password needs uppercase, digit, and special char',
       name: 'enterValidPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request timed out. Please check your internet connection.`
+  String get connectionTimeout {
+    return Intl.message(
+      'Request timed out. Please check your internet connection.',
+      name: 'connectionTimeout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Server error. Please try again later.`
+  String get serverError {
+    return Intl.message(
+      'Server error. Please try again later.',
+      name: 'serverError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Requested resource not found.`
+  String get notFound {
+    return Intl.message(
+      'Requested resource not found.',
+      name: 'notFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong. Please try again.`
+  String get errorMessageGeneric {
+    return Intl.message(
+      'Something went wrong. Please try again.',
+      name: 'errorMessageGeneric',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Network error. Please check your connection.`
+  String get networkError {
+    return Intl.message(
+      'Network error. Please check your connection.',
+      name: 'networkError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request timed out. Please try again.`
+  String get requestTimeout {
+    return Intl.message(
+      'Request timed out. Please try again.',
+      name: 'requestTimeout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to save information securely. Please try again.`
+  String get secureStorageErrorMessage {
+    return Intl.message(
+      'Failed to save information securely. Please try again.',
+      name: 'secureStorageErrorMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No value found for key: `
+  String get noValueKeyFound {
+    return Intl.message(
+      'No value found for key: ',
+      name: 'noValueKeyFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please confirm your password`
+  String get confirmPassword {
+    return Intl.message(
+      'Please confirm your password',
+      name: 'confirmPassword',
       desc: '',
       args: [],
     );
@@ -645,6 +605,266 @@ class S {
     return Intl.message(
       'View All',
       name: 'viewAll',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign Up`
+  String get signUp {
+    return Intl.message(
+      'Sign Up',
+      name: 'signUp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your email`
+  String get enterYourEmail {
+    return Intl.message(
+      'Enter your email',
+      name: 'enterYourEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get email {
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My orders`
+  String get myOrders {
+    return Intl.message(
+      'My orders',
+      name: 'myOrders',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Saved address`
+  String get savedAddress {
+    return Intl.message(
+      'Saved address',
+      name: 'savedAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About us`
+  String get aboutUs {
+    return Intl.message(
+      'About us',
+      name: 'aboutUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message(
+      'Logout',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `v 6.3.0 - (446)`
+  String get virson {
+    return Intl.message(
+      'v 6.3.0 - (446)',
+      name: 'virson',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get language {
+    return Intl.message(
+      'Language',
+      name: 'language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `English`
+  String get english {
+    return Intl.message(
+      'English',
+      name: 'english',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Arabic`
+  String get arabic {
+    return Intl.message(
+      'Arabic',
+      name: 'arabic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notification`
+  String get notification {
+    return Intl.message(
+      'Notification',
+      name: 'notification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No user data`
+  String get noUserData {
+    return Intl.message(
+      'No user data',
+      name: 'noUserData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No name`
+  String get noName {
+    return Intl.message(
+      'No name',
+      name: 'noName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No email`
+  String get noEmail {
+    return Intl.message(
+      'No email',
+      name: 'noEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit profile`
+  String get editProfile {
+    return Intl.message(
+      'Edit profile',
+      name: 'editProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile updated successfully!`
+  String get profileUpdatedSuccessfully {
+    return Intl.message(
+      'Profile updated successfully!',
+      name: 'profileUpdatedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `First name`
+  String get firstNmae {
+    return Intl.message(
+      'First name',
+      name: 'firstNmae',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `change`
+  String get change {
+    return Intl.message(
+      'change',
+      name: 'change',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update`
+  String get update {
+    return Intl.message(
+      'Update',
+      name: 'update',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change password`
+  String get changePassword {
+    return Intl.message(
+      'Change password',
+      name: 'changePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current password`
+  String get currentPassword {
+    return Intl.message(
+      'Current password',
+      name: 'currentPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New password`
+  String get newPassword {
+    return Intl.message(
+      'New password',
+      name: 'newPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm password`
+  String get confirmPassword2 {
+    return Intl.message(
+      'Confirm password',
+      name: 'confirmPassword2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password changed successfully!`
+  String get passwordChangedSuccessfully {
+    return Intl.message(
+      'Password changed successfully!',
+      name: 'passwordChangedSuccessfully',
       desc: '',
       args: [],
     );

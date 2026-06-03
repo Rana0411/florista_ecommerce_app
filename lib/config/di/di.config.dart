@@ -92,6 +92,36 @@ import '../../features/categories/domain/use_cases/get_products_by_category_use_
     as _i293;
 import '../../features/categories/presentation/cubit/categories_view_model.dart'
     as _i550;
+import '../../features/change_password/api/api_client/change_password_api_client.dart'
+    as _i244;
+import '../../features/change_password/api/data_sources/change_password_remote_data_source_impl.dart'
+    as _i788;
+import '../../features/change_password/data/data_sources/change_password_remote_data_source_contract.dart'
+    as _i365;
+import '../../features/change_password/data/repo/change_password_repo_impl.dart'
+    as _i534;
+import '../../features/change_password/domain/repo/change_password_repo_contract.dart'
+    as _i333;
+import '../../features/change_password/domain/use_cases/change_password_use_case.dart'
+    as _i874;
+import '../../features/change_password/presentation/view_model/cubit/change_password_view_model.dart'
+    as _i939;
+import '../../features/edit_profile/api/api_client/edit_profile_api_client.dart'
+    as _i690;
+import '../../features/edit_profile/api/data_sources/edit_profile_remote_data_source_impl.dart'
+    as _i46;
+import '../../features/edit_profile/data/data_sources/edit_profile_remote_data_source_contract.dart'
+    as _i228;
+import '../../features/edit_profile/data/repo/edit_profile_repo_impl.dart'
+    as _i440;
+import '../../features/edit_profile/domain/repo/edit_profile_repo_contract.dart'
+    as _i131;
+import '../../features/edit_profile/domain/use_cases/upload_profile_data_use_case.dart'
+    as _i600;
+import '../../features/edit_profile/domain/use_cases/upload_profile_photo_use_case.dart'
+    as _i1005;
+import '../../features/edit_profile/presentation/view_model/cubit/edit_profile_view_model.dart'
+    as _i70;
 import '../../features/home/api/api_client/home_api_client.dart' as _i592;
 import '../../features/home/api/data_sources/home_remote_data_source_impl.dart'
     as _i1033;
@@ -109,6 +139,17 @@ import '../../features/home/domain/use_cases/get_logged_user_addresses_use_case.
     as _i567;
 import '../../features/home/presentation/view_model/home_view_model.dart'
     as _i77;
+import '../../features/profile/api/api_client/profile_api_client.dart' as _i699;
+import '../../features/profile/api/data_sources/profile_remote_data_source_impl.dart'
+    as _i684;
+import '../../features/profile/data/data_sources/profile_remote_data_source_contract.dart'
+    as _i427;
+import '../../features/profile/data/repo/profile_repo_impl.dart' as _i256;
+import '../../features/profile/domain/repo/profile_repo_contract.dart' as _i541;
+import '../../features/profile/domain/use_cases/get_user_data_use_case.dart'
+    as _i941;
+import '../../features/profile/presentation/view_model/profile_view_model.dart'
+    as _i15;
 import '../auth_interceptor/auth_interceptor.dart' as _i988;
 import '../dio/dio_module.dart' as _i977;
 import '../hive/hive_service.dart' as _i746;
@@ -142,8 +183,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i211.ProductsApiClient>(
       () => _i211.ProductsApiClient(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i244.ChangePasswordApiClient>(
+      () => _i244.ChangePasswordApiClient(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i690.EditProfileApiClient>(
+      () => _i690.EditProfileApiClient(gh<_i361.Dio>()),
+    );
     gh.lazySingleton<_i592.HomeApiClient>(
       () => _i592.HomeApiClient(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i699.ProfileApiClient>(
+      () => _i699.ProfileApiClient(gh<_i361.Dio>()),
     );
     gh.singleton<_i478.ForgetPasswordApiClient>(
       () => _i478.ForgetPasswordApiClient(gh<_i361.Dio>()),
@@ -168,6 +218,11 @@ extension GetItInjectableX on _i174.GetIt {
         categoriesApiClient: gh<_i612.CategoriesApiClient>(),
       ),
     );
+    gh.factory<_i427.ProfileRemoteDataSourceContract>(
+      () => _i684.ProfileRemoteDataSourceImpl(
+        profileApiClient: gh<_i699.ProfileApiClient>(),
+      ),
+    );
     gh.factory<_i520.LoginRemoteDataSource>(
       () => _i520.LoginRemoteDataSourceImpl(gh<_i950.ApiClient>()),
     );
@@ -183,6 +238,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i995.BestSellerRemoteDataSourceContract>(
       () => _i395.BestSellerRemoteDataSourceImpl(
         apiClient: gh<_i375.BestSellerApiClient>(),
+      ),
+    );
+    gh.factory<_i365.ChangePasswordRemoteDataSourceContract>(
+      () => _i788.ChangePasswordRemoteDataSourceImpl(
+        changePasswordApiClient: gh<_i244.ChangePasswordApiClient>(),
       ),
     );
     gh.factory<_i170.ForgetPasswordDataSourceContract>(
@@ -212,6 +272,17 @@ extension GetItInjectableX on _i174.GetIt {
         forgetPasswordDataSource: gh<_i170.ForgetPasswordDataSourceContract>(),
       ),
     );
+    gh.factory<_i541.ProfileRepoContract>(
+      () => _i256.ProfileRepoImpl(
+        profileRemoteDataSourceContract:
+            gh<_i427.ProfileRemoteDataSourceContract>(),
+      ),
+    );
+    gh.factory<_i228.EditProfileRemoteDataSourceContract>(
+      () => _i46.EditProfileRemoteDataSourceImpl(
+        editProfileApiClient: gh<_i690.EditProfileApiClient>(),
+      ),
+    );
     gh.factory<_i293.GetProductsByCategoryUseCase>(
       () => _i293.GetProductsByCategoryUseCase(
         productsRepoContract: gh<_i747.ProductsRepoContract>(),
@@ -233,10 +304,38 @@ extension GetItInjectableX on _i174.GetIt {
         dataSource: gh<_i995.BestSellerRemoteDataSourceContract>(),
       ),
     );
+    gh.factory<_i131.EditProfileRepoContract>(
+      () => _i440.EditProfileRepoImpl(
+        editProfileRemoteDataSourceContract:
+            gh<_i228.EditProfileRemoteDataSourceContract>(),
+      ),
+    );
     gh.factory<_i233.CategoriesRepoContract>(
       () => _i706.CategoriesRepoImpl(
         categoriesRemoteDataSourceContract:
             gh<_i72.CategoriesRemoteDataSourceContract>(),
+      ),
+    );
+    gh.factory<_i600.UploadProfileDataUseCase>(
+      () => _i600.UploadProfileDataUseCase(
+        editProfileRepoContract: gh<_i131.EditProfileRepoContract>(),
+      ),
+    );
+    gh.factory<_i1005.UploadProfilePhotoUseCase>(
+      () => _i1005.UploadProfilePhotoUseCase(
+        editProfileRepoContract: gh<_i131.EditProfileRepoContract>(),
+      ),
+    );
+    gh.factory<_i70.EditProfileViewModel>(
+      () => _i70.EditProfileViewModel(
+        uploadProfileData: gh<_i600.UploadProfileDataUseCase>(),
+        uploadProfilePhotoUseCase: gh<_i1005.UploadProfilePhotoUseCase>(),
+      ),
+    );
+    gh.factory<_i333.ChangePasswordRepoContract>(
+      () => _i534.ChangePasswordRepoImpl(
+        changePasswordRemoteDataSourceContract:
+            gh<_i365.ChangePasswordRemoteDataSourceContract>(),
       ),
     );
     gh.factory<_i758.GetAllBestSellerUseCase>(
@@ -279,9 +378,24 @@ extension GetItInjectableX on _i174.GetIt {
         forgetPasswordRepo: gh<_i665.ForgetPasswordRepoContract>(),
       ),
     );
+    gh.factory<_i941.GetUserDataUseCase>(
+      () => _i941.GetUserDataUseCase(
+        profileRepoContract: gh<_i541.ProfileRepoContract>(),
+      ),
+    );
     gh.factory<_i900.GetCategoriesUseCase>(
       () => _i900.GetCategoriesUseCase(
         categoriesRepoContract: gh<_i233.CategoriesRepoContract>(),
+      ),
+    );
+    gh.factory<_i874.ChangePasswordUseCase>(
+      () => _i874.ChangePasswordUseCase(
+        changePasswordRepoContract: gh<_i333.ChangePasswordRepoContract>(),
+      ),
+    );
+    gh.factory<_i15.ProfileViewModel>(
+      () => _i15.ProfileViewModel(
+        getUserDataUseCase: gh<_i941.GetUserDataUseCase>(),
       ),
     );
     gh.factory<_i77.HomeViewModel>(
@@ -291,6 +405,11 @@ extension GetItInjectableX on _i174.GetIt {
         getAllOccasionsUseCase: gh<_i437.GetAllOccasionsUseCase>(),
         getLoggedUserAddressesUseCase:
             gh<_i567.GetLoggedUserAddressesUseCase>(),
+      ),
+    );
+    gh.factory<_i939.ChangePasswordViewModel>(
+      () => _i939.ChangePasswordViewModel(
+        changePasswordUseCase: gh<_i874.ChangePasswordUseCase>(),
       ),
     );
     gh.factory<_i550.CategoriesCubit>(

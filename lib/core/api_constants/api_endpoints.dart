@@ -15,4 +15,8 @@ abstract class ApiEndpoints {
   static const String bestSeller = '$_baseUrl/best-seller';
   static const String occasions = '$_baseUrl/occasions';
   static const String addresses = '$_baseUrl/addresses';
+  static const String getUserData = '$_baseUrl/auth/profile-data';
+  static const String editProfile = '$_baseUrl/auth/editProfile';
+  static const String uploadProfilePhoto = '$_baseUrl/auth/upload-photo';
+  static const String changePassword = '$_baseUrl/auth/change-password';
 }

@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'user_request_dto.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(includeIfNull: false)
 class UserRequestDto {
   final String? id;
   final String? firstName;
