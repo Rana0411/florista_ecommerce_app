@@ -56,6 +56,7 @@ class _ProfileViewState extends State<ProfileView> {
             children: [
               ProfileUserDataColumn(),
 
+
               SizedBox(height: 32),
 
               // My orders
