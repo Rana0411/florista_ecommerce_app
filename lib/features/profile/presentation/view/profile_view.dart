@@ -11,6 +11,8 @@ import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/shared_widgets/web_view_screen.dart';
+
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
 
@@ -81,11 +83,35 @@ class _ProfileViewState extends State<ProfileView> {
               LanguageTile(),
 
               // About us
-              ProfileTile(title: S.current.aboutUs, onTap: () {}),
-
+              ProfileTile(
+                title: S.of(context).aboutUs, // or whatever your string is
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const WebViewScreen(
+                        url:
+                            'https://elevate-flutter-team.github.io/flower_app_web_views/about.html',
+                        title: 'About Us',
+                      ),
+                    ),
+                  );
+                },
+              ),
               // Terms & Conditions
-              ProfileTile(title: S.current.termsConditions, onTap: () {}),
-
+              ProfileTile(
+                title: S.current.termsConditions,
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const WebViewScreen(
+                      url:
+                          'https://elevate-flutter-team.github.io/flower_app_web_views/terms.html',
+                      title: 'Terms & Conditions',
+                    ),
+                  ),
+                ),
+              ),
               Divider(height: 32),
 
               //TODO: Apply Logout Logic here @Rana0411
