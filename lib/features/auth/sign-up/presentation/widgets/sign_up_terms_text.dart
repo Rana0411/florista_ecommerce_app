@@ -1,6 +1,8 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../generated/l10n.dart';
+import '../../../../../core/shared_widgets/web_view_screen.dart';
 
 class SignUpTermsText extends StatelessWidget {
   const SignUpTermsText({super.key});
@@ -20,6 +22,18 @@ class SignUpTermsText extends StatelessWidget {
               fontWeight: FontWeight.bold,
               decoration: TextDecoration.underline,
             ),
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const WebViewScreen(
+                      url: 'https://elevate-flutter-team.github.io/flower_app_web_views/terms.html',
+                      title: 'Terms & Conditions',
+                    ),
+                  ),
+                );
+              },
           ),
         ],
       ),
