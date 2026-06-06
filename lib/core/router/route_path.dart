@@ -9,5 +9,5 @@ abstract class RoutePath {
   static const String categories = '/categories';
   static const String cart = '/cart';
   static const String profile = '/profile';
-  static const String bestSeller = '/bestSeller';
+  static const String productDetails = '/productDetails';
 }

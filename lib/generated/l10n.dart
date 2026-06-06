@@ -341,6 +341,60 @@ class S {
       args: [],
     );
   }
+  /// `Product Details`
+  String get productDetails {
+    return Intl.message('Product Details', name: 'productDetails', desc: '', args: []);
+  }
+
+  /// `Description`
+  String get description {
+    return Intl.message('Description', name: 'description', desc: '', args: []);
+  }
+
+  /// `Bouquet include`
+  String get bouquetInclude {
+    return Intl.message('Bouquet include', name: 'bouquetInclude', desc: '', args: []);
+  }
+
+  /// `Add to cart`
+  String get addToCart {
+    return Intl.message('Add to cart', name: 'addToCart', desc: '', args: []);
+  }
+
+  /// `In stock`
+  String get inStock {
+    return Intl.message('In stock', name: 'inStock', desc: '', args: []);
+  }
+
+  /// `Out of stock`
+  String get outOfStock {
+    return Intl.message('Out of stock', name: 'outOfStock', desc: '', args: []);
+  }
+
+  /// `Status`
+  String get status {
+    return Intl.message('Status', name: 'status', desc: '', args: []);
+  }
+
+  /// `All prices include tax`
+  String get allPricesIncludeTax {
+    return Intl.message('All prices include tax', name: 'allPricesIncludeTax', desc: '', args: []);
+  }
+
+  /// `Read more`
+  String get readMore {
+    return Intl.message('Read more', name: 'readMore', desc: '', args: []);
+  }
+
+  /// `Show less`
+  String get showLess {
+    return Intl.message('Show less', name: 'showLess', desc: '', args: []);
+  }
+
+  /// `Added to cart!`
+  String get addedToCart {
+    return Intl.message('Added to cart!', name: 'addedToCart', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

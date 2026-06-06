@@ -6,5 +6,5 @@ abstract class ApiEndpoints {
   static const String getProducts = "$_baseUrl/products";
   static const String signUp = "$_baseUrl/auth/signup";
   static const String getBestSeller = "$_baseUrl/best-seller";
-
+  static const String getProductdetails = "$_baseUrl/product-details";
 }
