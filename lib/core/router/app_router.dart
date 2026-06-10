@@ -16,10 +16,11 @@ import 'package:go_router/go_router.dart';
 import '../../features/best_seller/presentation/screens/best_seller_view.dart';
 import '../../features/categories/domain/use_cases/get_products_by_category_use_case.dart';
 import '../../features/categories/presentation/cubit/categories_view_model.dart';
+import '../../features/notifications/presentation/view/notification_view.dart';
 
 abstract class AppRouter {
   static final GoRouter goRouter = GoRouter(
-    initialLocation: RoutePath.splash,
+    initialLocation: RoutePath.notifications,
     routes: [
       GoRoute(
         path: RoutePath.splash,
@@ -57,6 +58,10 @@ abstract class AppRouter {
       GoRoute(
         path: RoutePath.bestSeller,
         builder: (context, state) => BestSellerView(),
+      ),
+      GoRoute(
+        path: RoutePath.notifications,
+        builder: (context, state) => const NotificationsView(),
       ),
     ],
   );
