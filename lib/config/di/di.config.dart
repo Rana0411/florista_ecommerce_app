@@ -13,6 +13,20 @@ import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../features/address/add_address/api/api_client/add_address_api_client.dart'
+    as _i775;
+import '../../features/address/add_address/api/data_sources/add_address_remote_data_source_impl.dart'
+    as _i683;
+import '../../features/address/add_address/data/data_sources/add_address_remote_data_source_contract.dart'
+    as _i206;
+import '../../features/address/add_address/data/repo/add_address_repo_impl.dart'
+    as _i22;
+import '../../features/address/add_address/domain/repo/add_address_repo_contract.dart'
+    as _i319;
+import '../../features/address/add_address/domain/use_cases/add_address_use_cases.dart'
+    as _i482;
+import '../../features/address/add_address/presentation/cubit/add_address_view_model.dart'
+    as _i303;
 import '../../features/auth/forget_password/api/api_client/forget_password_api_client.dart'
     as _i478;
 import '../../features/auth/forget_password/api/date_source/forget_password_data_source_impl.dart'
@@ -195,6 +209,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i699.ProfileApiClient>(
       () => _i699.ProfileApiClient(gh<_i361.Dio>()),
     );
+    gh.singleton<_i775.AddAddressApiClient>(
+      () => _i775.AddAddressApiClient(gh<_i361.Dio>()),
+    );
     gh.singleton<_i478.ForgetPasswordApiClient>(
       () => _i478.ForgetPasswordApiClient(gh<_i361.Dio>()),
     );
@@ -245,6 +262,11 @@ extension GetItInjectableX on _i174.GetIt {
         changePasswordApiClient: gh<_i244.ChangePasswordApiClient>(),
       ),
     );
+    gh.factory<_i206.AddAddressRemoteDataSourceContract>(
+      () => _i683.AddAddressRemoteDataSourceImpl(
+        addAddressApiClient: gh<_i775.AddAddressApiClient>(),
+      ),
+    );
     gh.factory<_i170.ForgetPasswordDataSourceContract>(
       () => _i847.ForgetPasswordDataSourceImpl(
         forgetPasswordApiClient: gh<_i478.ForgetPasswordApiClient>(),
@@ -288,12 +310,28 @@ extension GetItInjectableX on _i174.GetIt {
         productsRepoContract: gh<_i747.ProductsRepoContract>(),
       ),
     );
+    gh.factory<_i319.AddAddressRepoContract>(
+      () => _i22.AddAddressRepoImpl(
+        addAddressRemoteDataSource:
+            gh<_i206.AddAddressRemoteDataSourceContract>(),
+      ),
+    );
     gh.factory<_i817.LoginUseCase>(
       () => _i817.LoginUseCase(gh<_i632.LoginRepo>()),
     );
     gh.factory<_i396.HomeRepoContract>(
       () => _i1024.HomeRepoImpl(
         homeRemoteDataSourceContract: gh<_i582.HomeRemoteDataSourceContract>(),
+      ),
+    );
+    gh.factory<_i482.AddAddressUseCase>(
+      () => _i482.AddAddressUseCase(
+        addAddressRepo: gh<_i319.AddAddressRepoContract>(),
+      ),
+    );
+    gh.factory<_i482.GetAddressesUseCase>(
+      () => _i482.GetAddressesUseCase(
+        addAddressRepo: gh<_i319.AddAddressRepoContract>(),
       ),
     );
     gh.factory<_i629.LoginCubit>(
@@ -356,6 +394,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i567.GetLoggedUserAddressesUseCase>(
       () => _i567.GetLoggedUserAddressesUseCase(
         homeRepoContract: gh<_i396.HomeRepoContract>(),
+      ),
+    );
+    gh.factory<_i303.AddAddressViewModel>(
+      () => _i303.AddAddressViewModel(
+        addAddressUseCase: gh<_i482.AddAddressUseCase>(),
+        getAddressesUseCase: gh<_i482.GetAddressesUseCase>(),
       ),
     );
     gh.factory<_i722.GetBestSellerUseCase>(

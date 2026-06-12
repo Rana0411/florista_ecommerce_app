@@ -23,13 +23,14 @@ import 'package:florista_ecommerce_app/features/splash/presentation/view/splash_
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/address/add_address/presentation/view/add_address_view.dart';
 import '../../features/best_seller/presentation/screens/best_seller_view.dart';
 import '../../features/categories/domain/use_cases/get_products_by_category_use_case.dart';
 import '../../features/categories/presentation/cubit/categories_view_model.dart';
 
 abstract class AppRouter {
   static final GoRouter goRouter = GoRouter(
-    initialLocation: RoutePath.splash,
+    initialLocation: RoutePath.addAddressView,
     routes: [
       GoRoute(
         path: RoutePath.splash,
@@ -106,6 +107,10 @@ abstract class AppRouter {
             child: ChangePasswordView(),
           );
         },
+      ),
+      GoRoute(
+        path: RoutePath.addAddressView,
+        builder: (context, state) => const AddAddressView(),
       ),
     ],
   );
