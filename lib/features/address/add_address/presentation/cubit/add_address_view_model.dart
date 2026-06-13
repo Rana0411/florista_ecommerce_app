@@ -21,8 +21,8 @@ class AddAddressViewModel extends Cubit<AddAddressState> {
     required String street,
     required String phone,
     required String city,
-    String lat = '',
-    String long = '',
+    required String lat,
+    required String long,
   }) async {
     emit(
       state.copyWith(

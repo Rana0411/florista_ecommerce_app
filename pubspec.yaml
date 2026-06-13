@@ -50,7 +50,10 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   pinput: ^5.0.0
-  google_maps_flutter: ^2.17.1
+  flutter_map: ^8.3.0
+  latlong2: ^0.9.1
+  geolocator: ^14.0.3
+  geocoding: ^4.0.0
 
 
 dev_dependencies:
@@ -102,8 +105,8 @@ flutter:
     - assets/icons/florista.png
     - assets/icons/flower_12px.png
     - assets/icons/noto-v1_pen.png
-    - assets/json/cities.json
-    - assets/json/states.json
+    - assets/data/cities.json
+    - assets/data/states.json
   fonts:
     - family: Inter
       fonts:

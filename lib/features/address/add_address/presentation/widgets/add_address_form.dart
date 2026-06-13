@@ -1,6 +1,13 @@
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/features/address/add_address/presentation/cubit/add_address_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart' as ll;
+import 'package:geocoding/geocoding.dart';
+
+import '../../data/data_sources/location_loader.dart';
+import '../../data/data_sources/picked_location.dart';
+import '../view/map_picker_view.dart';
 
 class AddAddressForm extends StatefulWidget {
   final AddAddressViewModel viewModel;
@@ -22,36 +29,82 @@ class _AddAddressFormState extends State<AddAddressForm> {
   final _phoneController = TextEditingController();
   final _recipientNameController = TextEditingController();
 
-  // Egypt cities list
-  final List<String> _cities = [
-    'Cairo',
-    'Alexandria',
-    'Giza',
-    'Luxor',
-    'Aswan',
-    'Hurghada',
-    'Sharm El-Sheikh',
-    'Mansoura',
-    'Tanta',
-    'Zagazig',
-  ];
+  bool _isLoadingLocations = true;
 
-  // Areas per city (simplified)
-  final Map<String, List<String>> _areas = {
-    'Cairo': ['Nasr City', 'Heliopolis', 'Maadi', 'Zamalek', 'October', 'New Cairo'],
-    'Alexandria': ['Montazah', 'Smouha', 'Agami', 'Gleem'],
-    'Giza': ['Dokki', 'Mohandessin', '6th October', 'Haram'],
-    'Luxor': ['Luxor City', 'Karnak', 'West Bank'],
-    'Aswan': ['Aswan City', 'Elephantine Island'],
-    'Hurghada': ['Hurghada City', 'El Gouna', 'Sahl Hasheesh'],
-    'Sharm El-Sheikh': ['Naama Bay', 'Hadaba', 'Sharm El Maya'],
-    'Mansoura': ['Mansoura City', 'Talkha'],
-    'Tanta': ['Tanta City', 'Basyoun'],
-    'Zagazig': ['Zagazig City', 'Abu Hammad'],
-  };
+  GovernorateModel? _selectedGovernorate;
+  CityModel? _selectedCity;
+  List<CityModel> _currentCities = [];
 
-  String _selectedCity = 'Cairo';
-  String _selectedArea = 'October';
+  // Map state
+  final MapController _mapController = MapController();
+  ll.LatLng _selectedLatLng = const ll.LatLng(30.0444, 31.2357); // Cairo default
+  bool _isResolvingAddress = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _initLocations();
+  }
+
+  Future<void> _initLocations() async {
+    await LocationDataLoader.load();
+    final governorates = LocationDataLoader.governorates;
+
+    setState(() {
+      _selectedGovernorate = governorates.isNotEmpty ? governorates.first : null;
+      _currentCities = _selectedGovernorate != null
+          ? LocationDataLoader.citiesFor(_selectedGovernorate!.id)
+          : [];
+      _selectedCity = _currentCities.isNotEmpty ? _currentCities.first : null;
+      _isLoadingLocations = false;
+    });
+  }
+
+  // Way 1: user drags the small inline map (no click)
+  Future<void> _onMapIdle() async {
+    setState(() => _isResolvingAddress = true);
+    try {
+      final placemarks = await placemarkFromCoordinates(
+        _selectedLatLng.latitude,
+        _selectedLatLng.longitude,
+      );
+      if (placemarks.isNotEmpty) {
+        final p = placemarks.first;
+        final parts = [
+          p.street,
+          p.subLocality,
+          p.locality,
+        ].where((e) => e != null && e.isNotEmpty).toList();
+        if (parts.isNotEmpty) {
+          setState(() {
+            _addressController.text = parts.join(', ');
+          });
+        }
+      }
+    } catch (_) {
+      // ignore, user can type manually
+    } finally {
+      setState(() => _isResolvingAddress = false);
+    }
+  }
+
+  // Way 2: open full-screen map picker
+  Future<void> _openMapPicker() async {
+    final result = await Navigator.push<PickedLocation>(
+      context,
+      MaterialPageRoute(
+        builder: (_) => MapPickerView(initialLocation: _selectedLatLng),
+      ),
+    );
+
+    if (result != null) {
+      setState(() {
+        _selectedLatLng = ll.LatLng(result.latitude, result.longitude);
+        _addressController.text = result.address;
+      });
+      _mapController.move(_selectedLatLng, 15);
+    }
+  }
 
   @override
   void dispose() {
@@ -61,42 +114,95 @@ class _AddAddressFormState extends State<AddAddressForm> {
     super.dispose();
   }
 
-  List<String> get _currentAreas =>
-      _areas[_selectedCity] ?? [_selectedCity];
-
   @override
   Widget build(BuildContext context) {
+    if (_isLoadingLocations) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
     return SingleChildScrollView(
       child: Column(
         children: [
           // Map section
-          Container(
-            height: 160,
+          SizedBox(
+            height: 180,
             width: double.infinity,
-            color: Colors.grey.shade200,
             child: Stack(
               alignment: Alignment.center,
               children: [
-                Image.asset(
-                  'assets/images/map_placeholder.png',
-                  fit: BoxFit.cover,
-                  width: double.infinity,
-                  height: double.infinity,
-                  errorBuilder: (_, __, ___) => Container(
-                    color: const Color(0xffE8E8E8),
-                    child: Center(
-                      child: Icon(
-                        Icons.map_outlined,
-                        size: 60,
-                        color: Colors.grey.shade400,
+                FlutterMap(
+                  mapController: _mapController,
+                  options: MapOptions(
+                    initialCenter: _selectedLatLng,
+                    initialZoom: 15,
+                    onPositionChanged: (position, hasGesture) {
+                      if (hasGesture) {
+                        _selectedLatLng = position.center!;
+                      }
+                    },
+                    onTap: (tapPosition, point) => _openMapPicker(),
+                  ),
+                  children: [
+                    TileLayer(
+                      urlTemplate:
+                      'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                      userAgentPackageName:
+                      'com.florista.florista_ecommerce_app',
+                    ),
+                  ],
+                ),
+
+                // Fixed center pin
+                 Padding(
+                  padding: EdgeInsets.only(bottom: 32),
+                  child: Icon(
+                    Icons.location_pin,
+                    color: AppColors.primary,
+                    size: 40,
+                  ),
+                ),
+
+                // Loading indicator while resolving address
+                if (_isResolvingAddress)
+                  const Positioned(
+                    top: 12,
+                    child: SizedBox(
+                      height: 20,
+                      width: 20,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    ),
+                  ),
+
+                // "Open map" button
+                Positioned(
+                  bottom: 8,
+                  right: 8,
+                  child: GestureDetector(
+                    onTap: _openMapPicker,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 6),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: const [
+                          BoxShadow(color: Colors.black12, blurRadius: 4),
+                        ],
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.fullscreen,
+                              size: 16, color: AppColors.primary),
+                          const SizedBox(width: 4),
+                          Text(
+                            'Open map',
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                ),
-                Icon(
-                  Icons.location_pin,
-                  color: AppColors.primary,
-                  size: 40,
                 ),
               ],
             ),
@@ -159,43 +265,17 @@ class _AddAddressFormState extends State<AddAddressForm> {
                   ),
                   const SizedBox(height: 16),
 
-                  // City & Area dropdowns
+                  // Governorate & City dropdowns
                   Row(
                     children: [
-                      // City dropdown
+                      // Governorate dropdown
                       Expanded(
-                        child: _buildLabeledDropdown(
-                          context: context,
-                          label: 'City',
-                          value: _selectedCity,
-                          items: _cities,
-                          onChanged: (val) {
-                            if (val != null) {
-                              setState(() {
-                                _selectedCity = val;
-                                _selectedArea =
-                                    (_areas[val]?.isNotEmpty == true)
-                                        ? _areas[val]!.first
-                                        : val;
-                              });
-                            }
-                          },
-                        ),
+                        child: _buildGovernorateDropdown(context),
                       ),
                       const SizedBox(width: 12),
-                      // Area dropdown
+                      // City dropdown
                       Expanded(
-                        child: _buildLabeledDropdown(
-                          context: context,
-                          label: 'Area',
-                          value: _selectedArea,
-                          items: _currentAreas,
-                          onChanged: (val) {
-                            if (val != null) {
-                              setState(() => _selectedArea = val);
-                            }
-                          },
-                        ),
+                        child: _buildCityDropdown(context),
                       ),
                     ],
                   ),
@@ -209,14 +289,17 @@ class _AddAddressFormState extends State<AddAddressForm> {
                       onPressed: widget.isLoading
                           ? null
                           : () {
-                              if (_formKey.currentState!.validate()) {
-                                widget.viewModel.addAddress(
-                                  street: _addressController.text.trim(),
-                                  phone: _phoneController.text.trim(),
-                                  city: _selectedCity,
-                                );
-                              }
-                            },
+                        if (_formKey.currentState!.validate()) {
+                          widget.viewModel.addAddress(
+                            street: _addressController.text.trim(),
+                            phone: _phoneController.text.trim(),
+                            city:
+                            '${_selectedGovernorate?.nameEn} - ${_selectedCity?.nameEn}',
+                            lat: _selectedLatLng.latitude.toString(),
+                            long: _selectedLatLng.longitude.toString(),
+                          );
+                        }
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.lightGrey,
                         foregroundColor: AppColors.white,
@@ -227,20 +310,20 @@ class _AddAddressFormState extends State<AddAddressForm> {
                       ),
                       child: widget.isLoading
                           ? SizedBox(
-                              height: 20,
-                              width: 20,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2,
-                                color: AppColors.white,
-                              ),
-                            )
+                        height: 20,
+                        width: 20,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          color: AppColors.white,
+                        ),
+                      )
                           : Text(
-                              'Save address',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium
-                                  ?.copyWith(color: AppColors.white),
-                            ),
+                        'Save address',
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium
+                            ?.copyWith(color: AppColors.white),
+                      ),
                     ),
                   ),
                 ],
@@ -248,6 +331,93 @@ class _AddAddressFormState extends State<AddAddressForm> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildGovernorateDropdown(BuildContext context) {
+    return InputDecorator(
+      decoration: InputDecoration(
+        labelText: 'City',
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: AppColors.hintColor),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: AppColors.hintColor),
+        ),
+        contentPadding:
+        const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      ),
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton<GovernorateModel>(
+          value: _selectedGovernorate,
+          isExpanded: true,
+          icon: Icon(Icons.keyboard_arrow_down, color: AppColors.grey),
+          items: LocationDataLoader.governorates
+              .map(
+                (gov) => DropdownMenuItem<GovernorateModel>(
+              value: gov,
+              child: Text(
+                gov.nameEn,
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: AppColors.hintColor),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          )
+              .toList(),
+          onChanged: (gov) {
+            if (gov == null) return;
+            setState(() {
+              _selectedGovernorate = gov;
+              _currentCities = LocationDataLoader.citiesFor(gov.id);
+              _selectedCity =
+              _currentCities.isNotEmpty ? _currentCities.first : null;
+            });
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCityDropdown(BuildContext context) {
+    return InputDecorator(
+      decoration: InputDecoration(
+        labelText: 'Area',
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: AppColors.hintColor),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: AppColors.hintColor),
+        ),
+        contentPadding:
+        const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      ),
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton<CityModel>(
+          value: _selectedCity,
+          isExpanded: true,
+          icon: Icon(Icons.keyboard_arrow_down, color: AppColors.grey),
+          items: _currentCities
+              .map(
+                (city) => DropdownMenuItem<CityModel>(
+              value: city,
+              child: Text(
+                city.nameEn,
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: AppColors.hintColor),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          )
+              .toList(),
+          onChanged: (city) {
+            if (city == null) return;
+            setState(() => _selectedCity = city);
+          },
+        ),
       ),
     );
   }
@@ -284,51 +454,7 @@ class _AddAddressFormState extends State<AddAddressForm> {
           borderSide: BorderSide(color: AppColors.primary),
         ),
         contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-      ),
-    );
-  }
-
-  Widget _buildLabeledDropdown({
-    required BuildContext context,
-    required String label,
-    required String value,
-    required List<String> items,
-    required void Function(String?) onChanged,
-  }) {
-    return InputDecorator(
-      decoration: InputDecoration(
-        labelText: label,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: AppColors.hintColor),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: AppColors.hintColor),
-        ),
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-      ),
-      child: DropdownButtonHideUnderline(
-        child: DropdownButton<String>(
-          value: items.contains(value) ? value : items.first,
-          isExpanded: true,
-          icon: Icon(Icons.keyboard_arrow_down, color: AppColors.grey),
-          items: items
-              .map(
-                (item) => DropdownMenuItem<String>(
-                  value: item,
-                  child: Text(
-                    item,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-              )
-              .toList(),
-          onChanged: onChanged,
-        ),
+        const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       ),
     );
   }
