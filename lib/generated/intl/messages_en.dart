@@ -26,11 +26,14 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "EGB": MessageLookupByLibrary.simpleMessage("EGB"),
+        "addAddress": MessageLookupByLibrary.simpleMessage("Add address"),
         "addToCart": MessageLookupByLibrary.simpleMessage("Add to cart"),
         "alreadyHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "area": MessageLookupByLibrary.simpleMessage("Area"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "cartTitle": m0,
+        "checkout": MessageLookupByLibrary.simpleMessage("Checkout"),
         "close": MessageLookupByLibrary.simpleMessage("Close"),
         "codeIsRequired":
             MessageLookupByLibrary.simpleMessage("Code is required"),
@@ -50,6 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "deliveryFee": MessageLookupByLibrary.simpleMessage("Delivery Fee"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
+        "editAddress": MessageLookupByLibrary.simpleMessage("Edit address"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "emailIsRequired":
             MessageLookupByLibrary.simpleMessage("Email is required"),
@@ -79,6 +83,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Forgot Password"),
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
         "invalidCode": MessageLookupByLibrary.simpleMessage("Invalid code"),
+        "label": MessageLookupByLibrary.simpleMessage("Label (e.g. Home)"),
         "lastName": MessageLookupByLibrary.simpleMessage("Last name"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "male": MessageLookupByLibrary.simpleMessage("Male"),
@@ -96,11 +101,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "paswordNotMatched":
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
+        "paymentCancelled":
+            MessageLookupByLibrary.simpleMessage("Payment cancelled"),
+        "paymentNotCompleted":
+            MessageLookupByLibrary.simpleMessage("Payment  wasnt completed"),
+        "paymentSuccessful":
+            MessageLookupByLibrary.simpleMessage("Payment successful!"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone number"),
         "plusCode": MessageLookupByLibrary.simpleMessage("Plus Code"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
         "requestTimeout": MessageLookupByLibrary.simpleMessage(
             "Request timed out. Please try again."),
+        "save": MessageLookupByLibrary.simpleMessage("Save"),
         "secureStorageErrorMessage": MessageLookupByLibrary.simpleMessage(
             "Failed to save information securely. Please try again."),
         "serverError": MessageLookupByLibrary.simpleMessage(

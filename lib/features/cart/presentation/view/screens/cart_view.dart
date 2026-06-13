@@ -1,4 +1,5 @@
 import 'package:florista_ecommerce_app/config/di/di.dart';
+import 'package:florista_ecommerce_app/config/shared_models/addresses/address_entity.dart';
 import 'package:florista_ecommerce_app/core/router/nav_helper.dart';
 import 'package:florista_ecommerce_app/core/shared_widgets/custom_buttom_navigation_bar.dart';
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
@@ -10,6 +11,8 @@ import 'package:florista_ecommerce_app/features/cart/presentation/view/widgets/c
 import 'package:florista_ecommerce_app/features/cart/presentation/view/widgets/cart_header.dart';
 import 'package:florista_ecommerce_app/features/cart/presentation/view/widgets/cart_summary_section.dart';
 import 'package:florista_ecommerce_app/features/cart/presentation/view_model/cart_cubit.dart';
+import 'package:florista_ecommerce_app/features/payment/presentation/view_model/payment_cubit.dart';
+import 'package:florista_ecommerce_app/features/payment/presentation/views/payment_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -21,13 +24,17 @@ class CartView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => getIt<CartCubit>()..getCart(),
-      child: const _CartViewBody(),
+      child: const _CartViewBody(addresses: [], subTotal: 78),
     );
   }
 }
 
 class _CartViewBody extends StatelessWidget {
-  const _CartViewBody();
+  const _CartViewBody({required this.addresses, required this.subTotal});
+
+  final List<AddressEntity> addresses;
+
+  final double subTotal;
 
   @override
   Widget build(BuildContext context) {
@@ -91,9 +98,18 @@ class _CartViewBody extends StatelessWidget {
                             onPressed: isGlobalLoading
                                 ? null
                                 : () {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        content: Text('Checkout coming soon'),
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => BlocProvider.value(
+                                          value: getIt<PaymentCubit>(),
+                                          child: PaymentView(
+                                            subTotal: subTotal,
+                                            deliveryFee: deliveryFee,
+                                            addresses:
+                                                addresses, // from your address feature/cubit
+                                          ),
+                                        ),
                                       ),
                                     );
                                   },

@@ -63,5 +63,14 @@
   "deliverTo": "Deliver to  ",
   "subTotal": "Sub Total",
   "deliveryFee": "Delivery Fee",
-  "total": "Total"
+  "total": "Total",
+  "paymentSuccessful": "Payment successful!",
+  "paymentCancelled": "Payment cancelled",
+  "paymentNotCompleted": "Payment  wasnt completed",
+  "checkout": "Checkout",
+  "addAddress": "Add address",
+  "editAddress": "Edit address",
+  "label": "Label (e.g. Home)",
+  "cancel": "Cancel",
+  "save": "Save"
 }

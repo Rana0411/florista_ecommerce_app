@@ -7,13 +7,14 @@ import 'package:florista_ecommerce_app/features/auth/forget_password/presentatio
 import 'package:florista_ecommerce_app/features/auth/login/presentation/view/login_view.dart';
 import 'package:florista_ecommerce_app/features/categories/presentation/view/categories_view.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/view/home_view.dart';
+import 'package:florista_ecommerce_app/features/payment/presentation/views/payment_view.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/view/profile_view.dart';
 import 'package:florista_ecommerce_app/features/splash_screen/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
   static final GoRouter goRouter = GoRouter(
-    initialLocation: RoutePath.login,
+    initialLocation: RoutePath.cart,
     routes: [
       GoRoute(
         path: RoutePath.splash,
@@ -45,6 +46,11 @@ abstract class AppRouter {
       GoRoute(
         path: RoutePath.profile,
         builder: (context, state) => ProfileView(),
+      ),
+      GoRoute(
+        path: RoutePath.payment,
+        builder: (context, state) =>
+            PaymentView(subTotal: 0.0, deliveryFee: 0.0, addresses: []),
       ),
     ],
   );

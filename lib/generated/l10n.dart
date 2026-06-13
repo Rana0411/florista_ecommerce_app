@@ -629,6 +629,96 @@ class S {
       args: [],
     );
   }
+
+  /// `Payment successful!`
+  String get paymentSuccessful {
+    return Intl.message(
+      'Payment successful!',
+      name: 'paymentSuccessful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment cancelled`
+  String get paymentCancelled {
+    return Intl.message(
+      'Payment cancelled',
+      name: 'paymentCancelled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment  wasnt completed`
+  String get paymentNotCompleted {
+    return Intl.message(
+      'Payment  wasnt completed',
+      name: 'paymentNotCompleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Checkout`
+  String get checkout {
+    return Intl.message(
+      'Checkout',
+      name: 'checkout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add address`
+  String get addAddress {
+    return Intl.message(
+      'Add address',
+      name: 'addAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit address`
+  String get editAddress {
+    return Intl.message(
+      'Edit address',
+      name: 'editAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Label (e.g. Home)`
+  String get label {
+    return Intl.message(
+      'Label (e.g. Home)',
+      name: 'label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get save {
+    return Intl.message(
+      'Save',
+      name: 'save',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
