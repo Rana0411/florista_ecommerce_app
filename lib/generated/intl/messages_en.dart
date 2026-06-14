@@ -20,18 +20,25 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(count) =>
+      "Cart (${Intl.plural(count, zero: 'Empty', one: '1 item', other: '${count} items')})";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "EGB": MessageLookupByLibrary.simpleMessage("EGB"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("About us"),
         "addToCart": MessageLookupByLibrary.simpleMessage("Add to cart"),
         "alreadyHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("Already have an account? "),
         "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
+        "area": MessageLookupByLibrary.simpleMessage("Area"),
         "bestSeller": MessageLookupByLibrary.simpleMessage("Best seller"),
+        "cartTitle": m0,
         "categories": MessageLookupByLibrary.simpleMessage("Categories"),
         "change": MessageLookupByLibrary.simpleMessage("change"),
         "changePassword":
             MessageLookupByLibrary.simpleMessage("Change password"),
+        "close": MessageLookupByLibrary.simpleMessage("Close"),
         "codeIsRequired":
             MessageLookupByLibrary.simpleMessage("Code is required"),
         "codeVerificationDis": MessageLookupByLibrary.simpleMessage(
@@ -45,10 +52,16 @@ class MessageLookup extends MessageLookupByLibrary {
             "Request timed out. Please check your internet connection."),
         "continueAsGuest":
             MessageLookupByLibrary.simpleMessage("Continue as Guest"),
+        "couldNotOpenMaps": MessageLookupByLibrary.simpleMessage(
+            "Could not open maps on this device"),
         "creatingAnAccountYouAgreeToOur": MessageLookupByLibrary.simpleMessage(
             "Creating an account, you agree to our"),
         "currentPassword":
             MessageLookupByLibrary.simpleMessage("Current password"),
+        "deliverTo": MessageLookupByLibrary.simpleMessage("Deliver to  "),
+        "deliveryAddress":
+            MessageLookupByLibrary.simpleMessage("Delivery address"),
+        "deliveryFee": MessageLookupByLibrary.simpleMessage("Delivery Fee"),
         "didNotReceiveCode":
             MessageLookupByLibrary.simpleMessage("Didn\'t receive the code?"),
         "dontHaveAccount":
@@ -87,6 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "female": MessageLookupByLibrary.simpleMessage("Female"),
         "firstName": MessageLookupByLibrary.simpleMessage("First name"),
         "firstNmae": MessageLookupByLibrary.simpleMessage("First name"),
+        "florista": MessageLookupByLibrary.simpleMessage("Florista"),
         "flowery": MessageLookupByLibrary.simpleMessage("Flowery"),
         "forgetPassword":
             MessageLookupByLibrary.simpleMessage("Forgot Password"),
@@ -114,6 +128,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "occasion": MessageLookupByLibrary.simpleMessage("Occasion"),
         "onlyLettersAllowed":
             MessageLookupByLibrary.simpleMessage("Only letters allowed"),
+        "openInMaps": MessageLookupByLibrary.simpleMessage("Open in Maps"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordChangedSuccessfully": MessageLookupByLibrary.simpleMessage(
             "Password changed successfully!"),
@@ -122,6 +137,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "paswordNotMatched":
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone number"),
+        "plusCode": MessageLookupByLibrary.simpleMessage("Plus Code"),
         "profileUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage(
             "Profile updated successfully!"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
@@ -138,10 +154,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "signUpSuccess":
             MessageLookupByLibrary.simpleMessage("Sign up success"),
+        "somethineWentWrong": MessageLookupByLibrary.simpleMessage(
+            "Something went wrong Try again later"),
         "splashTagline": MessageLookupByLibrary.simpleMessage(
             "Fresh flowers, delivered with love."),
+        "subTotal": MessageLookupByLibrary.simpleMessage("Sub Total"),
         "termsConditions":
             MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
+        "total": MessageLookupByLibrary.simpleMessage("Total"),
         "update": MessageLookupByLibrary.simpleMessage("Update"),
         "viewAll": MessageLookupByLibrary.simpleMessage("View All"),
         "virson": MessageLookupByLibrary.simpleMessage("v 6.3.0 - (446)")

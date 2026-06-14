@@ -410,6 +410,46 @@ class S {
     );
   }
 
+  /// `Email`
+  String get email {
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your email`
+  String get enterYourEmail {
+    return Intl.message(
+      'Enter your email',
+      name: 'enterYourEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign Up`
+  String get signUp {
+    return Intl.message(
+      'Sign Up',
+      name: 'signUp',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Continue as Guest`
   String get continueAsGuest {
     return Intl.message(
@@ -605,46 +645,6 @@ class S {
     return Intl.message(
       'View All',
       name: 'viewAll',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Sign Up`
-  String get signUp {
-    return Intl.message(
-      'Sign Up',
-      name: 'signUp',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Enter your email`
-  String get enterYourEmail {
-    return Intl.message(
-      'Enter your email',
-      name: 'enterYourEmail',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Email`
-  String get email {
-    return Intl.message(
-      'Email',
-      name: 'email',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Password`
-  String get password {
-    return Intl.message(
-      'Password',
-      name: 'password',
       desc: '',
       args: [],
     );
@@ -865,6 +865,146 @@ class S {
     return Intl.message(
       'Password changed successfully!',
       name: 'passwordChangedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EGB`
+  String get EGB {
+    return Intl.message(
+      'EGB',
+      name: 'EGB',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Florista`
+  String get florista {
+    return Intl.message(
+      'Florista',
+      name: 'florista',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong Try again later`
+  String get somethineWentWrong {
+    return Intl.message(
+      'Something went wrong Try again later',
+      name: 'somethineWentWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cart ({count, plural, =0{Empty} =1{1 item} other{{count} items}})`
+  String cartTitle(num count) {
+    return Intl.message(
+      'Cart (${Intl.plural(count, zero: 'Empty', one: '1 item', other: '$count items')})',
+      name: 'cartTitle',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Could not open maps on this device`
+  String get couldNotOpenMaps {
+    return Intl.message(
+      'Could not open maps on this device',
+      name: 'couldNotOpenMaps',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delivery address`
+  String get deliveryAddress {
+    return Intl.message(
+      'Delivery address',
+      name: 'deliveryAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Close`
+  String get close {
+    return Intl.message(
+      'Close',
+      name: 'close',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Open in Maps`
+  String get openInMaps {
+    return Intl.message(
+      'Open in Maps',
+      name: 'openInMaps',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Plus Code`
+  String get plusCode {
+    return Intl.message(
+      'Plus Code',
+      name: 'plusCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Area`
+  String get area {
+    return Intl.message(
+      'Area',
+      name: 'area',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deliver to  `
+  String get deliverTo {
+    return Intl.message(
+      'Deliver to  ',
+      name: 'deliverTo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sub Total`
+  String get subTotal {
+    return Intl.message(
+      'Sub Total',
+      name: 'subTotal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delivery Fee`
+  String get deliveryFee {
+    return Intl.message(
+      'Delivery Fee',
+      name: 'deliveryFee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total`
+  String get total {
+    return Intl.message(
+      'Total',
+      name: 'total',
       desc: '',
       args: [],
     );

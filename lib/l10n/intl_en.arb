@@ -35,6 +35,10 @@
   "login": "Login",
   "forgetPassword": "Forgot Password",
   "dontHaveAccount": "Don't have an account?",
+  "email": "Email",
+  "enterYourEmail": "Enter your email",
+  "password": "Password",
+  "signUp": "Sign Up",
   "continueAsGuest": "Continue as Guest",
   "rememberMe": "Remember me",
   "enterYourPassword": "Enter your password",
@@ -55,10 +59,6 @@
   "egp": "EGP",
   "search": "Search",
   "viewAll": "View All",
-  "signUp": "Sign Up",
-  "enterYourEmail": "Enter your email",
-  "email": "Email",
-  "password": "Password",
   "myOrders": "My orders",
   "savedAddress": "Saved address",
   "aboutUs": "About us",
@@ -80,5 +80,26 @@
   "currentPassword": "Current password",
   "newPassword": "New password",
   "confirmPassword2": "Confirm password",
-  "passwordChangedSuccessfully": "Password changed successfully!"
+  "passwordChangedSuccessfully": "Password changed successfully!",
+  "EGB": "EGB",
+  "florista": "Florista",
+  "somethineWentWrong": "Something went wrong Try again later",
+  "cartTitle": "Cart ({count, plural, =0{Empty} =1{1 item} other{{count} items}})",
+  "@cartTitle": {
+    "placeholders": {
+      "count": {
+        "type": "num"
+      }
+    }
+  },
+  "couldNotOpenMaps": "Could not open maps on this device",
+  "deliveryAddress": "Delivery address",
+  "close": "Close",
+  "openInMaps": "Open in Maps",
+  "plusCode": "Plus Code",
+  "area": "Area",
+  "deliverTo": "Deliver to  ",
+  "subTotal": "Sub Total",
+  "deliveryFee": "Delivery Fee",
+  "total": "Total"
 }

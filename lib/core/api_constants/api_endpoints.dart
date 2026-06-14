@@ -9,8 +9,6 @@ abstract class ApiEndpoints {
   static const String forgetPassword = '$_baseUrl/auth/forgotPassword';
   static const String verifyResetCode = '$_baseUrl/auth/verifyResetCode';
   static const String resetPassword = '$_baseUrl/auth/resetPassword';
-
-
   static const String categories = '$_baseUrl/categories';
   static const String bestSeller = '$_baseUrl/best-seller';
   static const String occasions = '$_baseUrl/occasions';
@@ -19,4 +17,5 @@ abstract class ApiEndpoints {
   static const String editProfile = '$_baseUrl/auth/editProfile';
   static const String uploadProfilePhoto = '$_baseUrl/auth/upload-photo';
   static const String changePassword = '$_baseUrl/auth/change-password';
+  static const String cartOfLoggedUSer = "$_baseUrl/cart";
 }
