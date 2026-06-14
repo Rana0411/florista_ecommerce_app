@@ -155,6 +155,20 @@ import '../../features/home/domain/use_cases/get_logged_user_addresses_use_case.
     as _i567;
 import '../../features/home/presentation/view_model/home_view_model.dart'
     as _i77;
+import '../../features/product_details/api/product_details_api_client.dart'
+    as _i218;
+import '../../features/product_details/api/product_details_remote_data_source_impl.dart'
+    as _i546;
+import '../../features/product_details/data/data_source/product_details_remote_data_source_contract.dart'
+    as _i1025;
+import '../../features/product_details/data/repo/product_details_repo_impl.dart'
+    as _i402;
+import '../../features/product_details/domain/repo/product_details_repo_contract.dart'
+    as _i338;
+import '../../features/product_details/domain/usecase/get_product_details_use_case.dart'
+    as _i37;
+import '../../features/product_details/presentation/cubit/product_details_view_model.dart'
+    as _i717;
 import '../../features/profile/api/api_client/profile_api_client.dart' as _i699;
 import '../../features/profile/api/data_sources/profile_remote_data_source_impl.dart'
     as _i684;
@@ -210,6 +224,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i592.HomeApiClient>(
       () => _i592.HomeApiClient(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i218.ProductDetailsApiClient>(
+      () => _i218.ProductDetailsApiClient(gh<_i361.Dio>()),
     );
     gh.lazySingleton<_i699.ProfileApiClient>(
       () => _i699.ProfileApiClient(gh<_i361.Dio>()),
@@ -296,6 +313,11 @@ extension GetItInjectableX on _i174.GetIt {
         homeApiClient: gh<_i592.HomeApiClient>(),
       ),
     );
+    gh.lazySingleton<_i1025.ProductDetailsRemoteDataSourceContract>(
+      () => _i546.ProductDetailsRemoteDataSourceImpl(
+        gh<_i218.ProductDetailsApiClient>(),
+      ),
+    );
     gh.factory<_i665.ForgetPasswordRepoContract>(
       () => _i610.ForgetPasswordRepoImpl(
         forgetPasswordDataSource: gh<_i170.ForgetPasswordDataSourceContract>(),
@@ -315,6 +337,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i293.GetProductsByCategoryUseCase>(
       () => _i293.GetProductsByCategoryUseCase(
         productsRepoContract: gh<_i747.ProductsRepoContract>(),
+      ),
+    );
+    gh.lazySingleton<_i338.ProductDetailsRepoContract>(
+      () => _i402.ProductDetailsRepoImpl(
+        gh<_i1025.ProductDetailsRemoteDataSourceContract>(),
       ),
     );
     gh.factory<_i817.LoginUseCase>(
@@ -409,6 +436,10 @@ extension GetItInjectableX on _i174.GetIt {
         homeRepoContract: gh<_i396.HomeRepoContract>(),
       ),
     );
+    gh.factory<_i37.GetProductDetailsUseCase>(
+      () =>
+          _i37.GetProductDetailsUseCase(gh<_i338.ProductDetailsRepoContract>()),
+    );
     gh.factory<_i818.CartCubit>(
       () => _i818.CartCubit(
         getCartUseCase: gh<_i176.GetCartUseCase>(),
@@ -422,6 +453,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i722.GetBestSellerUseCase(
         bestSellerRepoContract: gh<_i949.BestSellerRepoContract>(),
       ),
+    );
+    gh.factory<_i717.ProductDetailsCubit>(
+      () => _i717.ProductDetailsCubit(gh<_i37.GetProductDetailsUseCase>()),
     );
     gh.factory<_i913.ForgetPasswordUseCase>(
       () => _i913.ForgetPasswordUseCase(

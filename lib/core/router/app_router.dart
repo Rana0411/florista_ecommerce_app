@@ -4,7 +4,6 @@ import 'package:florista_ecommerce_app/core/router/route_path.dart';
 import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/screens/forget_password_view.dart';
 import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/screens/reset_password_view.dart';
 import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/screens/validation_code_view.dart';
-import 'package:florista_ecommerce_app/features/best_seller/presentation/screens/best_seller_view.dart';
 import 'package:florista_ecommerce_app/features/cart/presentation/view/screens/cart_view.dart';
 import 'package:florista_ecommerce_app/features/auth/login/presentation/view/login_view.dart';
 import 'package:florista_ecommerce_app/features/auth/sign-up/presentation/screens/sign_up_screen.dart';
@@ -25,6 +24,8 @@ import 'package:florista_ecommerce_app/features/profile/presentation/view_model/
 import 'package:florista_ecommerce_app/features/splash/presentation/view/splash_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import '../../features/categories/domain/entities/product_entity.dart';
+import '../../features/product_details/presentation/view/product_details_view.dart';
 
 abstract class AppRouter {
   static final GoRouter goRouter = GoRouter(
@@ -67,9 +68,17 @@ abstract class AppRouter {
         ),
       ),
       GoRoute(path: RoutePath.cart, builder: (context, state) => CartView()),
+      // GoRoute(
+      //   path: RoutePath.bestSeller,
+      //   builder: (context, state) => BestSellerView(),
+      // ),
+      GoRoute(path: RoutePath.cart, builder: (context, state) => CartView()),
       GoRoute(
-        path: RoutePath.bestSeller,
-        builder: (context, state) => BestSellerView(),
+        path: RoutePath.productDetails,
+        builder: (context, state) {
+          final product = state.extra as ProductEntity?;
+          return ProductDetailsView(product: product);
+        },
       ),
       GoRoute(
         path: RoutePath.resetPassword,

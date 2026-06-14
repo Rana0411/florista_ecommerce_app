@@ -28,11 +28,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "EGB": MessageLookupByLibrary.simpleMessage("EGB"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("About us"),
         "addToCart": MessageLookupByLibrary.simpleMessage("Add to cart"),
+        "addedToCart": MessageLookupByLibrary.simpleMessage("Added to cart!"),
+        "allPricesIncludeTax":
+            MessageLookupByLibrary.simpleMessage("All prices include tax"),
         "alreadyHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("Already have an account? "),
         "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
         "area": MessageLookupByLibrary.simpleMessage("Area"),
         "bestSeller": MessageLookupByLibrary.simpleMessage("Best seller"),
+        "bouquetInclude":
+            MessageLookupByLibrary.simpleMessage("Bouquet include"),
         "cartTitle": m0,
         "categories": MessageLookupByLibrary.simpleMessage("Categories"),
         "change": MessageLookupByLibrary.simpleMessage("change"),
@@ -62,6 +67,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "deliveryAddress":
             MessageLookupByLibrary.simpleMessage("Delivery address"),
         "deliveryFee": MessageLookupByLibrary.simpleMessage("Delivery Fee"),
+        "description": MessageLookupByLibrary.simpleMessage("Description"),
         "didNotReceiveCode":
             MessageLookupByLibrary.simpleMessage("Didn\'t receive the code?"),
         "dontHaveAccount":
@@ -105,6 +111,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgetPassword":
             MessageLookupByLibrary.simpleMessage("Forgot Password"),
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
+        "inStock": MessageLookupByLibrary.simpleMessage("In stock"),
         "invalidCode": MessageLookupByLibrary.simpleMessage("Invalid code"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "lastName": MessageLookupByLibrary.simpleMessage("Last name"),
@@ -129,6 +136,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "onlyLettersAllowed":
             MessageLookupByLibrary.simpleMessage("Only letters allowed"),
         "openInMaps": MessageLookupByLibrary.simpleMessage("Open in Maps"),
+        "outOfStock": MessageLookupByLibrary.simpleMessage("Out of stock"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordChangedSuccessfully": MessageLookupByLibrary.simpleMessage(
             "Password changed successfully!"),
@@ -138,8 +146,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone number"),
         "plusCode": MessageLookupByLibrary.simpleMessage("Plus Code"),
+        "productDetails":
+            MessageLookupByLibrary.simpleMessage("Product Details"),
         "profileUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage(
             "Profile updated successfully!"),
+        "readMore": MessageLookupByLibrary.simpleMessage("Read more"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
         "requestTimeout": MessageLookupByLibrary.simpleMessage(
             "Request timed out. Please try again."),
@@ -151,6 +162,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Failed to save information securely. Please try again."),
         "serverError": MessageLookupByLibrary.simpleMessage(
             "Server error. Please try again later."),
+        "showLess": MessageLookupByLibrary.simpleMessage("Show less"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "signUpSuccess":
             MessageLookupByLibrary.simpleMessage("Sign up success"),
@@ -158,6 +170,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Something went wrong Try again later"),
         "splashTagline": MessageLookupByLibrary.simpleMessage(
             "Fresh flowers, delivered with love."),
+        "status": MessageLookupByLibrary.simpleMessage("Status"),
         "subTotal": MessageLookupByLibrary.simpleMessage("Sub Total"),
         "termsConditions":
             MessageLookupByLibrary.simpleMessage("Terms & Conditions"),

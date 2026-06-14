@@ -8,8 +8,9 @@ abstract class RoutePath {
   static const String cart = '/cart';
   static const String profile = '/profile';
   static const String bestSeller = '/bestSeller';
-  static const String validationCode='/validationCode';
-   static const String resetPassword='/resetPassword';
+  static const String validationCode = '/validationCode';
+  static const String resetPassword = '/resetPassword';
   static const String editProfile = '/editProfile';
   static const String changePassword = '/changePassword';
+  static const String productDetails = '/productDetails';
 }

@@ -101,5 +101,15 @@
   "deliverTo": "Deliver to  ",
   "subTotal": "Sub Total",
   "deliveryFee": "Delivery Fee",
-  "total": "Total"
+  "total": "Total",
+  "inStock": "In stock",
+  "outOfStock": "Out of stock",
+  "status": "Status",
+  "allPricesIncludeTax": "All prices include tax",
+  "readMore": "Read more",
+  "showLess": "Show less",
+  "addedToCart": "Added to cart!",
+  "productDetails": "Product Details",
+  "description": "Description",
+  "bouquetInclude": "Bouquet include"
 }

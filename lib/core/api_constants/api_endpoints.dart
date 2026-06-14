@@ -18,4 +18,5 @@ abstract class ApiEndpoints {
   static const String uploadProfilePhoto = '$_baseUrl/auth/upload-photo';
   static const String changePassword = '$_baseUrl/auth/change-password';
   static const String cartOfLoggedUSer = "$_baseUrl/cart";
+  static const String getProductdetails = "$_baseUrl/product-details";
 }
