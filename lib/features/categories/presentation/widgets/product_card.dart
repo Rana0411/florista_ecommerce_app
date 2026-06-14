@@ -1,3 +1,4 @@
+import 'package:florista_ecommerce_app/core/router/app_router.dart';
 import 'package:florista_ecommerce_app/features/cart/data/models/cart_requests_model.dart';
 import 'package:florista_ecommerce_app/features/cart/presentation/view_model/cart_cubit.dart';
 import 'package:florista_ecommerce_app/generated/l10n.dart';
@@ -126,12 +127,18 @@ class ProductCard extends StatelessWidget {
                     height: 32,
                     child: ElevatedButton.icon(
                       onPressed: () {
-                        BlocProvider.of<CartCubit>(context).addProductToCart(
-                          AddProductRequest(
-                            productId: product.id,
-                            quantity: product.quantity,
-                          ),
-                        );
+                        AppRouter
+                            .goRouter
+                            .routerDelegate
+                            .navigatorKey
+                            .currentContext!
+                            .read<CartCubit>()
+                            .addProductToCart(
+                              AddProductRequest(
+                                productId: product.id,
+                                quantity: 1,
+                              ),
+                            );
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(S.of(context).addedToCart),

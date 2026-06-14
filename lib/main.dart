@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt.get<CartCubit>(),
+    return MultiBlocProvider(
+      providers: [BlocProvider(create: (context) => getIt.get<CartCubit>())],
       child: MaterialApp.router(
         title: 'Florista Shop App',
         debugShowCheckedModeBanner: false,

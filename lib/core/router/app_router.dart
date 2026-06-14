@@ -1,5 +1,6 @@
 import 'package:florista_ecommerce_app/config/di/di.dart';
 import 'package:florista_ecommerce_app/config/shared_models/user_data/user_request_dto.dart';
+import 'package:florista_ecommerce_app/core/router/nav_helper.dart';
 import 'package:florista_ecommerce_app/core/router/route_path.dart';
 import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/screens/forget_password_view.dart';
 import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/screens/reset_password_view.dart';
@@ -22,14 +23,18 @@ import 'package:florista_ecommerce_app/features/profile/presentation/view/profil
 import 'package:florista_ecommerce_app/features/profile/presentation/view_model/profile_events.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/view_model/profile_view_model.dart';
 import 'package:florista_ecommerce_app/features/splash/presentation/view/splash_view.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/categories/domain/entities/product_entity.dart';
 import '../../features/product_details/presentation/view/product_details_view.dart';
 
 abstract class AppRouter {
+  static final _rootNavigatorKey = GlobalKey<NavigatorState>(); // ✅ أضف دي
+
   static final GoRouter goRouter = GoRouter(
     initialLocation: RoutePath.splash,
+    navigatorKey: _rootNavigatorKey,
     routes: [
       GoRoute(
         path: RoutePath.splash,
