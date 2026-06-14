@@ -9,6 +9,9 @@ abstract class ApiEndpoints {
   static const String forgetPassword = '$_baseUrl/auth/forgotPassword';
   static const String verifyResetCode = '$_baseUrl/auth/verifyResetCode';
   static const String resetPassword = '$_baseUrl/auth/resetPassword';
+  static const String getUserOrders = '$_baseUrl/orders';
+  static const String createCashOrder = '$_baseUrl/orders/cash';
+  static const String checkoutSession = '$_baseUrl/orders/checkout';
 
 
   static const String categories = '$_baseUrl/categories';
