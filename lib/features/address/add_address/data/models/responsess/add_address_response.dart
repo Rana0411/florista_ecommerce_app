@@ -7,7 +7,7 @@ part 'add_address_response.g.dart';
 class AddAddressResponse {
   @JsonKey(name: "message")
   final String? message;
-  @JsonKey(name: "addresses")
+  @JsonKey(name: "address")
   final List<AddressDto>? addresses;
 
   AddAddressResponse({this.message, this.addresses});

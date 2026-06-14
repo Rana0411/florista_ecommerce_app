@@ -12,7 +12,7 @@ abstract class AddAddressApiClient {
   @factoryMethod
   factory AddAddressApiClient(Dio dio) = _AddAddressApiClient;
 
-  @POST(ApiEndpoints.addresses)
+  @PATCH(ApiEndpoints.addresses)
   Future<AddAddressResponse> addAddress(
       @Body() Map<String, dynamic> body,
       );
