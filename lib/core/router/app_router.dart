@@ -22,8 +22,8 @@ import 'package:florista_ecommerce_app/features/home/presentation/view_model/hom
 import 'package:florista_ecommerce_app/features/profile/presentation/view/profile_view.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/view_model/profile_events.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/view_model/profile_view_model.dart';
+import 'package:florista_ecommerce_app/features/splash/presentation/view/splash_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:florista_ecommerce_app/features/splash_screen/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
@@ -32,7 +32,7 @@ abstract class AppRouter {
     routes: [
       GoRoute(
         path: RoutePath.splash,
-        builder: (context, state) => const SplashScreen(),
+        builder: (context, state) => const SplashView(),
       ),
       GoRoute(
         path: RoutePath.login,
