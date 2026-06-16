@@ -1,13 +1,9 @@
-import 'package:florista_ecommerce_app/core/router/app_router.dart';
+import 'package:florista_ecommerce_app/core/shared_widgets/add_to_cart_elevated_button.dart';
 import 'package:florista_ecommerce_app/features/cart/data/models/cart_requests_model.dart';
-import 'package:florista_ecommerce_app/features/cart/presentation/view_model/cart_cubit.dart';
-import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
-
 import 'package:florista_ecommerce_app/core/router/route_path.dart';
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/features/categories/domain/entities/product_entity.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class ProductCard extends StatelessWidget {
@@ -121,37 +117,11 @@ class ProductCard extends StatelessWidget {
                   ),
 
                   const SizedBox(height: 8),
-
-                  SizedBox(
-                    width: double.infinity,
+                  AddToCartButton(
                     height: 32,
-                    child: ElevatedButton.icon(
-                      onPressed: () {
-                        AppRouter
-                            .goRouter
-                            .routerDelegate
-                            .navigatorKey
-                            .currentContext!
-                            .read<CartCubit>()
-                            .addProductToCart(
-                              AddProductRequest(
-                                productId: product.id,
-                                quantity: 1,
-                              ),
-                            );
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(S.of(context).addedToCart),
-                            backgroundColor: AppColors.primary,
-                          ),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        textStyle: textTheme.labelMedium,
-                      ),
-                      icon: const Icon(Icons.shopping_cart_outlined, size: 13),
-                      label: const Text('Add to cart'),
+                    addProductRequest: AddProductRequest(
+                      productId: product.id,
+                      quantity: 1,
                     ),
                   ),
                 ],

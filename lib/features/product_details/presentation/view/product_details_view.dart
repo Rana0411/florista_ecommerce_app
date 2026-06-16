@@ -1,12 +1,13 @@
+import 'package:florista_ecommerce_app/config/di/di.dart';
+import 'package:florista_ecommerce_app/core/shared_widgets/add_to_cart_elevated_button.dart';
+import 'package:florista_ecommerce_app/features/cart/data/models/cart_requests_model.dart';
+import 'package:florista_ecommerce_app/features/product_details/presentation/cubit/product_details_state.dart';
+import 'package:florista_ecommerce_app/features/product_details/presentation/widgets/product_image_carousel.dart';
+import 'package:florista_ecommerce_app/features/product_details/presentation/widgets/product_info_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:florista_ecommerce_app/features/categories/domain/entities/product_entity.dart';
 import 'package:florista_ecommerce_app/features/product_details/presentation/cubit/product_details_view_model.dart';
-import 'package:florista_ecommerce_app/generated/l10n.dart';
-import '../../../../config/di/di.dart';
-import '../cubit/product_details_state.dart';
-import '../widgets/product_image_carousel.dart';
-import '../widgets/product_info_section.dart';
 
 class ProductDetailsView extends StatelessWidget {
   final ProductEntity? product;
@@ -36,7 +37,9 @@ class ProductDetailsView extends StatelessWidget {
               return Center(child: Text(state.message));
             }
 
-            final currentProduct = state is ProductDetailsSuccess ? state.product : product;
+            final currentProduct = state is ProductDetailsSuccess
+                ? state.product
+                : product;
 
             if (currentProduct == null) {
               return const Center(child: Text("Product not found"));
@@ -70,30 +73,11 @@ class ProductDetailsView extends StatelessWidget {
                   child: Container(
                     color: Colors.white,
                     padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
-                    child: SizedBox(
+                    child: AddToCartButton(
                       height: 56,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(S.of(context).addedToCart),
-                              backgroundColor: const Color(0xffD21E6A),
-                            ),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xffD21E6A),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30)),
-                          elevation: 0,
-                        ),
-                        child: Text(
-                          S.of(context).addToCart,
-                          style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white),
-                        ),
+                      addProductRequest: AddProductRequest(
+                        productId: product?.id ?? "",
+                        quantity: 1,
                       ),
                     ),
                   ),
