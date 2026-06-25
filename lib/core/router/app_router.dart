@@ -23,6 +23,7 @@ import 'package:florista_ecommerce_app/features/profile/presentation/view/profil
 import 'package:florista_ecommerce_app/features/profile/presentation/view_model/profile_events.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/view_model/profile_view_model.dart';
 import 'package:florista_ecommerce_app/features/splash/presentation/view/splash_view.dart';
+import 'package:florista_ecommerce_app/features/track_order/presentation/view/screens/track_order_view.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -78,6 +79,11 @@ abstract class AppRouter {
         ),
       ),
       GoRoute(path: RoutePath.cart, builder: (context, state) => CartView()),
+      // GoRoute(
+      //   path: RoutePath.bestSeller,
+      //   builder: (context, state) => BestSellerView(),
+      // ),
+      GoRoute(path: RoutePath.cart, builder: (context, state) => CartView()),
       GoRoute(
         path: RoutePath.productDetails,
         builder: (context, state) {
@@ -123,7 +129,11 @@ abstract class AppRouter {
       GoRoute(
         path: RoutePath.myOrders,
         builder: (context, state) => const MyOrdersView(),
-      )
+      ),
+      GoRoute(
+        path: RoutePath.trackOrder,
+        builder: (context, state) => const TrackOrderView(),
+      ),
     ],
   );
 }

@@ -111,5 +111,13 @@
   "addedToCart": "Added to cart!",
   "productDetails": "Product Details",
   "description": "Description",
-  "bouquetInclude": "Bouquet include"
+  "bouquetInclude": "Bouquet include",
+  "trackOrder": "Track order",
+  "estimatedArrival": "Estimated arrival",
+  "isYourDeliveryHeroForToday": "Is your delivery hero for today",
+  "showMap": "Show map",
+  "receivedYourOrder": "Received your order",
+  "preparingYourOrder": "Preparing your order",
+  "outForDelivery": "Out for delivery",
+  "delivered": "Delivered"
 }
