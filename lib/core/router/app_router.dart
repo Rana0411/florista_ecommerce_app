@@ -29,6 +29,11 @@ import 'package:go_router/go_router.dart';
 import '../../features/categories/domain/entities/product_entity.dart';
 import '../../features/product_details/presentation/view/product_details_view.dart';
 
+import '../../features/best_seller/presentation/screens/best_seller_view.dart';
+import '../../features/categories/domain/use_cases/get_products_by_category_use_case.dart';
+import '../../features/categories/presentation/cubit/categories_view_model.dart';
+import '../../features/orders/presentation/view/my_orders_view.dart';
+
 abstract class AppRouter {
   static final _rootNavigatorKey = GlobalKey<NavigatorState>(); // ✅ أضف دي
 
@@ -73,11 +78,6 @@ abstract class AppRouter {
         ),
       ),
       GoRoute(path: RoutePath.cart, builder: (context, state) => CartView()),
-      // GoRoute(
-      //   path: RoutePath.bestSeller,
-      //   builder: (context, state) => BestSellerView(),
-      // ),
-      GoRoute(path: RoutePath.cart, builder: (context, state) => CartView()),
       GoRoute(
         path: RoutePath.productDetails,
         builder: (context, state) {
@@ -120,6 +120,10 @@ abstract class AppRouter {
           );
         },
       ),
+      GoRoute(
+        path: RoutePath.myOrders,
+        builder: (context, state) => const MyOrdersView(),
+      )
     ],
   );
 }

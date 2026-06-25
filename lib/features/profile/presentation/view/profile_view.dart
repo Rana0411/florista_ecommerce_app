@@ -11,6 +11,8 @@ import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/router/route_path.dart';
+
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
 
@@ -60,7 +62,7 @@ class _ProfileViewState extends State<ProfileView> {
               ProfileTile(
                 icon: Icons.book_outlined,
                 title: S.current.myOrders,
-                onTap: () {},
+                onTap: () => context.push(RoutePath.myOrders),
               ),
 
               // Saved address
