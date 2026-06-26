@@ -64,6 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "currentPassword":
             MessageLookupByLibrary.simpleMessage("Current password"),
         "deliverTo": MessageLookupByLibrary.simpleMessage("Deliver to  "),
+        "delivered": MessageLookupByLibrary.simpleMessage("Delivered"),
         "deliveryAddress":
             MessageLookupByLibrary.simpleMessage("Delivery address"),
         "deliveryFee": MessageLookupByLibrary.simpleMessage("Delivery Fee"),
@@ -103,6 +104,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enter your verification code that sent to your email address"),
         "errorMessageGeneric": MessageLookupByLibrary.simpleMessage(
             "Something went wrong. Please try again."),
+        "estimatedArrival":
+            MessageLookupByLibrary.simpleMessage("Estimated arrival"),
         "female": MessageLookupByLibrary.simpleMessage("Female"),
         "firstName": MessageLookupByLibrary.simpleMessage("First name"),
         "firstNmae": MessageLookupByLibrary.simpleMessage("First name"),
@@ -113,6 +116,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
         "inStock": MessageLookupByLibrary.simpleMessage("In stock"),
         "invalidCode": MessageLookupByLibrary.simpleMessage("Invalid code"),
+        "isYourDeliveryHeroForToday": MessageLookupByLibrary.simpleMessage(
+            "Is your delivery hero for today"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "lastName": MessageLookupByLibrary.simpleMessage("Last name"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
@@ -136,6 +141,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "onlyLettersAllowed":
             MessageLookupByLibrary.simpleMessage("Only letters allowed"),
         "openInMaps": MessageLookupByLibrary.simpleMessage("Open in Maps"),
+        "outForDelivery":
+            MessageLookupByLibrary.simpleMessage("Out for delivery"),
         "outOfStock": MessageLookupByLibrary.simpleMessage("Out of stock"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordChangedSuccessfully": MessageLookupByLibrary.simpleMessage(
@@ -146,11 +153,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone number"),
         "plusCode": MessageLookupByLibrary.simpleMessage("Plus Code"),
+        "preparingYourOrder":
+            MessageLookupByLibrary.simpleMessage("Preparing your order"),
         "productDetails":
             MessageLookupByLibrary.simpleMessage("Product Details"),
         "profileUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage(
             "Profile updated successfully!"),
         "readMore": MessageLookupByLibrary.simpleMessage("Read more"),
+        "receivedYourOrder":
+            MessageLookupByLibrary.simpleMessage("Received your order"),
         "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
         "requestTimeout": MessageLookupByLibrary.simpleMessage(
             "Request timed out. Please try again."),
@@ -163,6 +174,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "serverError": MessageLookupByLibrary.simpleMessage(
             "Server error. Please try again later."),
         "showLess": MessageLookupByLibrary.simpleMessage("Show less"),
+        "showMap": MessageLookupByLibrary.simpleMessage("Show map"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "signUpSuccess":
             MessageLookupByLibrary.simpleMessage("Sign up success"),
@@ -175,6 +187,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "termsConditions":
             MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
         "total": MessageLookupByLibrary.simpleMessage("Total"),
+        "trackOrder": MessageLookupByLibrary.simpleMessage("Track order"),
         "update": MessageLookupByLibrary.simpleMessage("Update"),
         "viewAll": MessageLookupByLibrary.simpleMessage("View All"),
         "virson": MessageLookupByLibrary.simpleMessage("v 6.3.0 - (446)")

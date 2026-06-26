@@ -1109,6 +1109,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Track order`
+  String get trackOrder {
+    return Intl.message(
+      'Track order',
+      name: 'trackOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Estimated arrival`
+  String get estimatedArrival {
+    return Intl.message(
+      'Estimated arrival',
+      name: 'estimatedArrival',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Is your delivery hero for today`
+  String get isYourDeliveryHeroForToday {
+    return Intl.message(
+      'Is your delivery hero for today',
+      name: 'isYourDeliveryHeroForToday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Show map`
+  String get showMap {
+    return Intl.message(
+      'Show map',
+      name: 'showMap',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Received your order`
+  String get receivedYourOrder {
+    return Intl.message(
+      'Received your order',
+      name: 'receivedYourOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Preparing your order`
+  String get preparingYourOrder {
+    return Intl.message(
+      'Preparing your order',
+      name: 'preparingYourOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Out for delivery`
+  String get outForDelivery {
+    return Intl.message(
+      'Out for delivery',
+      name: 'outForDelivery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delivered`
+  String get delivered {
+    return Intl.message(
+      'Delivered',
+      name: 'delivered',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
