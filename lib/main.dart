@@ -1,15 +1,20 @@
+import 'package:firebase_core/firebase_core.dart' show Firebase;
 import 'package:florista_ecommerce_app/config/di/di.dart';
 import 'package:florista_ecommerce_app/config/hive/hive_service.dart';
 import 'package:florista_ecommerce_app/core/router/app_router.dart';
 import 'package:florista_ecommerce_app/core/utils/themes/dark_theme.dart';
 import 'package:florista_ecommerce_app/core/utils/themes/light_theme.dart';
 import 'package:florista_ecommerce_app/features/cart/presentation/view_model/cart_cubit.dart';
+import 'package:florista_ecommerce_app/firebase_options.dart';
 import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   await configureDependencies();
 

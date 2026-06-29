@@ -119,5 +119,8 @@
   "receivedYourOrder": "Received your order",
   "preparingYourOrder": "Preparing your order",
   "outForDelivery": "Out for delivery",
-  "delivered": "Delivered"
+  "delivered": "Delivered",
+  "orderDelivered": "Order Delivered",
+  "callDriver": "Call Driver",
+  "textDriver": "Text Driver"
 }
