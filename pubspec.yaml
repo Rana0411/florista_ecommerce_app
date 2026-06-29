@@ -58,6 +58,7 @@ dependencies:
   flutter_local_notifications: ^22.0.1
   cloud_firestore: ^6.4.1
 
+
 dev_dependencies:
   intl_utils: ^2.8.8
   build_runner: ^2.15.0
@@ -108,6 +109,11 @@ flutter:
     - assets/icons/flower_12px.png
     - assets/icons/noto-v1_pen.png
     - assets/images/empty_cart.svg
+    - assets/images/Car.png
+    - assets/images/Vector.png
+    - assets/images/whatsapp.png
+    - "assets/images/Delivery Boy.png"
+
   fonts:
     - family: Inter
       fonts:
@@ -120,7 +126,7 @@ flutter:
         - asset: assets/fonts/Inter_24pt-Bold.ttf
     - family: IMFellEnglish
       fonts:
-      - asset: assets/fonts/IMFellEnglish-Regular.ttf
+        - asset: assets/fonts/IMFellEnglish-Regular.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
 flutter_intl:
