@@ -119,5 +119,7 @@
   "receivedYourOrder": "Received your order",
   "preparingYourOrder": "Preparing your order",
   "outForDelivery": "Out for delivery",
-  "delivered": "Delivered"
+  "delivered": "Delivered",
+  "orderPlacedSuccessfully": "Your order placed\nsuccessfully!",
+  "unableToLoadOrderDetails": "Unable to load order details"
 }

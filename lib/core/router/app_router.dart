@@ -27,6 +27,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/categories/domain/entities/product_entity.dart';
+import '../../features/order_success/presentation/view/order_success_view.dart';
+import '../../features/order_success/presentation/view_model/order_success_view_model.dart';
 import '../../features/product_details/presentation/view/product_details_view.dart';
 import '../../features/best_seller/presentation/screens/best_seller_view.dart';
 import '../../features/categories/domain/use_cases/get_products_by_category_use_case.dart';
@@ -37,7 +39,7 @@ abstract class AppRouter {
   static final _rootNavigatorKey = GlobalKey<NavigatorState>(); // ✅ أضف دي
 
   static final GoRouter goRouter = GoRouter(
-    initialLocation: RoutePath.splash,
+    initialLocation: RoutePath.orderSuccess,
     navigatorKey: _rootNavigatorKey,
     routes: [
       GoRoute(
@@ -127,6 +129,16 @@ abstract class AppRouter {
       GoRoute(
         path: RoutePath.myOrders,
         builder: (context, state) => const MyOrdersView(),
+      ),
+      GoRoute(
+        path: RoutePath.orderSuccess,
+        builder: (context, state) {
+          final orderId = state.extra as String?;
+          return BlocProvider(
+            create: (context) => getIt.get<OrderSuccessViewModel>(),
+            child: OrderSuccessView(orderId: orderId),
+          );
+        },
       ),
     ],
   );
