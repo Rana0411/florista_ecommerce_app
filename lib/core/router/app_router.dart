@@ -47,7 +47,7 @@ abstract class AppRouter {
           final notificationCubit = getIt.get<NotificationsCubit>();
           return BlocProvider(
             create: (context) => notificationCubit..loadNotifications(),
-            child: NotificationsView(notificationsCubit: notificationCubit),
+            child: NotificationsView(),
           );
         },
       ),

@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:florista_ecommerce_app/config/di/di.dart';
 import 'package:florista_ecommerce_app/config/hive/hive_service.dart';
 import 'package:florista_ecommerce_app/config/notification/firebase_notification_service.dart';
@@ -22,6 +23,7 @@ void main() async {
   await hive.init();
 
   await Firebase.initializeApp();
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   // 3. Pass all uncaught asynchronous errors from the framework to Crashlytics
   PlatformDispatcher.instance.onError = (error, stack) {
@@ -38,6 +40,12 @@ void main() async {
   await getIt<FirebaseNotificationService>().init();
 
   runApp(const MyApp());
+}
+
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  print('Background message: ${message.notification?.title}');
 }
 
 class MyApp extends StatelessWidget {
