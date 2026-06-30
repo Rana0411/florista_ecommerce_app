@@ -1,18 +1,19 @@
 import 'package:florista_ecommerce_app/config/shared_models/products/product_entity.dart';
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
+import 'package:florista_ecommerce_app/features/cart/data/models/cart_requests_model.dart';
+import 'package:florista_ecommerce_app/features/cart/presentation/view_model/cart_cubit.dart';
 import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductCard extends StatelessWidget {
   final VoidCallback? onTap;
-  final VoidCallback? onAddToCart;
   final ProductEntity productEntity;
 
   const ProductCard({
     super.key,
-    this.onTap,
-    this.onAddToCart,
+    required this.onTap,
     required this.productEntity,
   });
 
@@ -89,15 +90,52 @@ class ProductCard extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               height: 42,
-              child: ElevatedButton.icon(
-                onPressed: onAddToCart,
-                icon: const Icon(Icons.shopping_cart_outlined),
-                label: Text(S.current.addToCart),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
-                  foregroundColor: AppColors.white,
-                  shape: RoundedRectangleBorder(),
-                ),
+              child: BlocBuilder<CartCubit, CartState>(
+                buildWhen: (previous, current) {
+                  final prevInCart =
+                      (previous.cartState.data?.cart.cartItems ?? []).any(
+                        (item) => item.product.id == productEntity.id,
+                      );
+                  final currInCart =
+                      (current.cartState.data?.cart.cartItems ?? []).any(
+                        (item) => item.product.id == productEntity.id,
+                      );
+                  return prevInCart != currInCart ||
+                      previous.busyRowId != current.busyRowId;
+                },
+                builder: (context, state) {
+                  final cartItems = state.cartState.data?.cart.cartItems ?? [];
+                  final isInCart = cartItems.any(
+                    (item) => item.product.id == productEntity.id,
+                  );
+                  final isBusy = state.busyRowId == productEntity.id;
+
+                  return ElevatedButton.icon(
+                    onPressed: () {
+                      (isInCart || isBusy)
+                          ? null
+                          : context.read<CartCubit>().addProductToCartUseCase(
+                              AddProductRequest(
+                                productId: productEntity.id,
+                                quantity: 1,
+                              ),
+                            );
+                    },
+                    icon: const Icon(Icons.shopping_cart_outlined),
+                    label: Text(S.current.addToCart),
+                    style: (isInCart || isBusy)
+                        ? ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.lightGrey,
+                            foregroundColor: AppColors.white,
+                            shape: RoundedRectangleBorder(),
+                          )
+                        : ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.primary,
+                            foregroundColor: AppColors.white,
+                            shape: RoundedRectangleBorder(),
+                          ),
+                  );
+                },
               ),
             ),
           ],

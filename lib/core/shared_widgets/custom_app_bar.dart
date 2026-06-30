@@ -1,21 +1,25 @@
-import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
-import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({
-    super.key,
-    required this.title,
-    required PreferredSize bottom,
-  });
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const CustomAppBar({super.key, required this.title, this.bottom});
+
   final String title;
+  final PreferredSizeWidget? bottom;
+
+  @override
+  Size get preferredSize =>
+      Size.fromHeight(kToolbarHeight + (bottom?.preferredSize.height ?? 0));
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: Icon(Icons.arrow_back_ios, color: AppColors.black),
-      elevation: 0,
-      title: Text(title, style: TextStyle(fontWeight: FontWeightManager.bold)),
+      leading: IconButton(
+        icon: const Icon(Icons.arrow_back_ios),
+        onPressed: () => context.pop(context),
+      ),
+      title: Text(title),
+      bottom: bottom,
     );
   }
 }

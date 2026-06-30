@@ -15,7 +15,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 part 'cart_states.dart';
 
-@injectable
+@Singleton()
 class CartCubit extends Cubit<CartState> {
   CartCubit({
     required this.getCartUseCase,

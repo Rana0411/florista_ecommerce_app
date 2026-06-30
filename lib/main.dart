@@ -5,8 +5,10 @@ import 'package:florista_ecommerce_app/core/app_keys/secure_storage_keys.dart';
 import 'package:florista_ecommerce_app/core/router/app_router.dart';
 import 'package:florista_ecommerce_app/core/utils/themes/dark_theme.dart';
 import 'package:florista_ecommerce_app/core/utils/themes/light_theme.dart';
+import 'package:florista_ecommerce_app/features/cart/presentation/view_model/cart_cubit.dart';
 import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,15 +33,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'Florista Shop App',
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates: [S.delegate],
-      supportedLocales: S.delegate.supportedLocales,
-      routerConfig: AppRouter.goRouter,
-      theme: TLightTheme.lightTheme,
-      darkTheme: TDarkTheme.darkTheme,
-      themeMode: ThemeMode.system,
+    return MultiBlocProvider(
+      providers: [BlocProvider.value(value: getIt.get<CartCubit>())],
+      child: MaterialApp.router(
+        title: 'Florista Shop App',
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: [S.delegate],
+        supportedLocales: S.delegate.supportedLocales,
+        routerConfig: AppRouter.goRouter,
+        theme: TLightTheme.lightTheme,
+        darkTheme: TDarkTheme.darkTheme,
+        themeMode: ThemeMode.system,
+      ),
     );
   }
 }

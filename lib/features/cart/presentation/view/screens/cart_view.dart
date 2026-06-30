@@ -19,15 +19,37 @@ class CartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => getIt<CartCubit>()..getCart(),
+    return BlocProvider.value(
+      value: getIt<CartCubit>(),
       child: const _CartViewBody(),
     );
   }
 }
 
-class _CartViewBody extends StatelessWidget {
+class _CartViewBody extends StatefulWidget {
   const _CartViewBody();
+
+  @override
+  State<_CartViewBody> createState() => _CartViewBodyState();
+}
+
+class _CartViewBodyState extends State<_CartViewBody> {
+  @override
+  void initState() {
+    final cubit = context.read<CartCubit>();
+    if (cubit.state.cartState.data == null) {
+      cubit.getCart();
+    }
+    super.initState();
+  }
+
+  Size? screenSize;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    screenSize = MediaQuery.sizeOf(context);
+  }
 
   @override
   Widget build(BuildContext context) {
