@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
 import 'package:florista_ecommerce_app/features/track_order/domain/entities/track_order_entities.dart';
+import 'package:florista_ecommerce_app/features/track_order/presentation/widgets/action_circle.dart';
 
 class DriverInfoCard extends StatelessWidget {
   final DriverEntity driver;
@@ -74,53 +75,19 @@ class DriverInfoCard extends StatelessWidget {
 
         // Contact buttons — only shown once a real phone number is available
         if (_hasPhone) ...[
-          _ActionCircle(
+          ActionCircle(
             assetPath: 'assets/images/Vector.png',
             fallbackIcon: Icons.call,
             onTap: _call,
           ),
           const SizedBox(width: 8),
-          _ActionCircle(
+          ActionCircle(
             assetPath: 'assets/images/whatsapp.png',
             fallbackIcon: Icons.chat_bubble,
             onTap: _whatsapp,
           ),
         ],
       ],
-    );
-  }
-}
-
-class _ActionCircle extends StatelessWidget {
-  final String assetPath;
-  final IconData fallbackIcon;
-  final VoidCallback onTap;
-
-  const _ActionCircle({
-    required this.assetPath,
-    required this.fallbackIcon,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      customBorder: const CircleBorder(),
-      child: Container(
-        width: 38,
-        height: 38,
-        decoration: BoxDecoration(
-          color: AppColors.lightPink,
-          shape: BoxShape.circle,
-        ),
-        padding: const EdgeInsets.all(9),
-        child: Image.asset(
-          assetPath,
-          errorBuilder: (_, __, ___) =>
-              Icon(fallbackIcon, color: AppColors.primary, size: 18),
-        ),
-      ),
     );
   }
 }
