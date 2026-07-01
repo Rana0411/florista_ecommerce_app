@@ -28,66 +28,73 @@ class DriverInfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        // Avatar
-        ClipRRect(
-          borderRadius: BorderRadius.circular(24),
-          child: Image.asset(
-            driver.avatarAsset,
-            width: 44,
-            height: 44,
-            fit: BoxFit.cover,
-            errorBuilder: (_, __, ___) => CircleAvatar(
-              radius: 22,
-              backgroundColor: AppColors.lightPink,
-              child: Icon(Icons.person, color: AppColors.primary),
-            ),
-          ),
-        ),
+        _buildAvatar(),
         const SizedBox(width: 12),
-
-        // Name + subtitle
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                driver.name,
-                style: TextStyle(
-                  fontFamily: AppFonts.interFamily,
-                  fontSize: FontSize.s16,
-                  fontWeight: FontWeightManager.semiBold,
-                  color: AppColors.black,
-                ),
-              ),
-              Text(
-                _hasPhone
-                    ? 'Is your delivery hero for today'
-                    : 'Driver will be assigned shortly',
-                style: TextStyle(
-                  fontFamily: AppFonts.interFamily,
-                  fontSize: FontSize.s12,
-                  color: AppColors.grey,
-                ),
-              ),
-            ],
-          ),
-        ),
-
-        // Contact buttons — only shown once a real phone number is available
-        if (_hasPhone) ...[
-          ActionCircle(
-            assetPath: 'assets/images/Vector.png',
-            fallbackIcon: Icons.call,
-            onTap: _call,
-          ),
-          const SizedBox(width: 8),
-          ActionCircle(
-            assetPath: 'assets/images/whatsapp.png',
-            fallbackIcon: Icons.chat_bubble,
-            onTap: _whatsapp,
-          ),
-        ],
+        Expanded(child: _buildInfo()),
+        ..._buildContactActions(),
       ],
     );
+  }
+
+  Widget _buildAvatar() {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(24),
+      child: Image.asset(
+        driver.avatarAsset,
+        width: 44,
+        height: 44,
+        fit: BoxFit.cover,
+        errorBuilder: (_, __, ___) => CircleAvatar(
+          radius: 22,
+          backgroundColor: AppColors.lightPink,
+          child: Icon(Icons.person, color: AppColors.primary),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildInfo() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          driver.name,
+          style: TextStyle(
+            fontFamily: AppFonts.interFamily,
+            fontSize: FontSize.s16,
+            fontWeight: FontWeightManager.semiBold,
+            color: AppColors.black,
+          ),
+        ),
+        Text(
+          _hasPhone
+              ? 'Is your delivery hero for today'
+              : 'Driver will be assigned shortly',
+          style: TextStyle(
+            fontFamily: AppFonts.interFamily,
+            fontSize: FontSize.s12,
+            color: AppColors.grey,
+          ),
+        ),
+      ],
+    );
+  }
+
+  // Only shown once a real phone number is available.
+  List<Widget> _buildContactActions() {
+    if (!_hasPhone) return const [];
+    return [
+      ActionCircle(
+        assetPath: 'assets/images/Vector.png',
+        fallbackIcon: Icons.call,
+        onTap: _call,
+      ),
+      const SizedBox(width: 8),
+      ActionCircle(
+        assetPath: 'assets/images/whatsapp.png',
+        fallbackIcon: Icons.chat_bubble,
+        onTap: _whatsapp,
+      ),
+    ];
   }
 }

@@ -74,9 +74,8 @@ class _TrackOrderBody extends StatelessWidget {
   }
 
   Widget _buildLoading() {
-    return Center(
-      child: CircularProgressIndicator(color: AppColors.primary),
-    );
+    // Color comes from TLightTheme.progressIndicatorTheme.
+    return const Center(child: CircularProgressIndicator());
   }
 
   Widget _buildError(String message) {
