@@ -41,46 +41,46 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBfq5F4tM_NDBax_-gTbvS6WZkoHCrZt5Q',
-    appId: '1:489750405560:web:08e0b26af9a9c9ed87ef4d',
-    messagingSenderId: '489750405560',
-    projectId: 'flower-app-b0514',
-    authDomain: 'flower-app-b0514.firebaseapp.com',
-    storageBucket: 'flower-app-b0514.firebasestorage.app',
+    apiKey: 'AIzaSyBEE4weQurlra1PhZFreVfPmvS9RKvpZAA',
+    appId: '1:685078061318:web:1d10596f60be58b8de3e87',
+    messagingSenderId: '685078061318',
+    projectId: 'track-app-d33ab',
+    authDomain: 'track-app-d33ab.firebaseapp.com',
+    storageBucket: 'track-app-d33ab.firebasestorage.app',
+    measurementId: 'G-58PRQ07DJ2',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDKGWT0MQwCcVET6ESdF41nkGwEyeiaL4k',
-    appId: '1:489750405560:android:731ded579ee449ad87ef4d',
-    messagingSenderId: '489750405560',
-    projectId: 'flower-app-b0514',
-    storageBucket: 'flower-app-b0514.firebasestorage.app',
+    apiKey: 'AIzaSyDMpJ9T50h9c9rMqUYaB7zxqZ2-FPYOxRo',
+    appId: '1:685078061318:android:19f56bfc4eadadd6de3e87',
+    messagingSenderId: '685078061318',
+    projectId: 'track-app-d33ab',
+    storageBucket: 'track-app-d33ab.firebasestorage.app',
   );
-
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDN1LcbTUF_wBrDFtdGsuadFakiRdWm9Gg',
-    appId: '1:489750405560:ios:b7e77c4706dbb69887ef4d',
-    messagingSenderId: '489750405560',
-    projectId: 'flower-app-b0514',
-    storageBucket: 'flower-app-b0514.firebasestorage.app',
+    apiKey: 'AIzaSyC4II6MAekPplmIqgQf10tGPZFysy2Kji4',
+    appId: '1:685078061318:ios:06880d8928561335de3e87',
+    messagingSenderId: '685078061318',
+    projectId: 'track-app-d33ab',
+    storageBucket: 'track-app-d33ab.firebasestorage.app',
     iosBundleId: 'com.example.floristaEcommerceApp',
   );
-
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDN1LcbTUF_wBrDFtdGsuadFakiRdWm9Gg',
-    appId: '1:489750405560:ios:b7e77c4706dbb69887ef4d',
-    messagingSenderId: '489750405560',
-    projectId: 'flower-app-b0514',
-    storageBucket: 'flower-app-b0514.firebasestorage.app',
+    apiKey: 'AIzaSyC4II6MAekPplmIqgQf10tGPZFysy2Kji4',
+    appId: '1:685078061318:ios:06880d8928561335de3e87',
+    messagingSenderId: '685078061318',
+    projectId: 'track-app-d33ab',
+    storageBucket: 'track-app-d33ab.firebasestorage.app',
     iosBundleId: 'com.example.floristaEcommerceApp',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyBfq5F4tM_NDBax_-gTbvS6WZkoHCrZt5Q',
-    appId: '1:489750405560:web:c888be3a191cd38387ef4d',
-    messagingSenderId: '489750405560',
-    projectId: 'flower-app-b0514',
-    authDomain: 'flower-app-b0514.firebaseapp.com',
-    storageBucket: 'flower-app-b0514.firebasestorage.app',
+    apiKey: 'AIzaSyBEE4weQurlra1PhZFreVfPmvS9RKvpZAA',
+    appId: '1:685078061318:web:b990f9d20ea4763dde3e87',
+    messagingSenderId: '685078061318',
+    projectId: 'track-app-d33ab',
+    authDomain: 'track-app-d33ab.firebaseapp.com',
+    storageBucket: 'track-app-d33ab.firebasestorage.app',
+    measurementId: 'G-HEJGB89K0D',
   );
 }
