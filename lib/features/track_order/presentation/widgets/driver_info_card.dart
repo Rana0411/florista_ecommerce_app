@@ -5,6 +5,7 @@ import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
 import 'package:florista_ecommerce_app/features/track_order/domain/entities/track_order_entities.dart';
 import 'package:florista_ecommerce_app/features/track_order/presentation/widgets/action_circle.dart';
+import 'package:florista_ecommerce_app/generated/l10n.dart';
 
 class DriverInfoCard extends StatelessWidget {
   final DriverEntity driver;
@@ -13,34 +14,35 @@ class DriverInfoCard extends StatelessWidget {
 
   bool get _hasPhone => driver.phoneNumber.isNotEmpty;
 
-  Future<void> _call() async {
-    final uri = Uri(scheme: 'tel', path: driver.phoneNumber);
-    await launchUrl(uri);
-  }
-
-  Future<void> _whatsapp() async {
-    final phone = driver.phoneNumber.replaceAll('+', '').replaceAll(' ', '');
-    final uri = Uri.parse('https://wa.me/$phone');
-    await launchUrl(uri, mode: LaunchMode.externalApplication);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        _buildAvatar(),
+        _DriverAvatar(avatarAsset: driver.avatarAsset),
         const SizedBox(width: 12),
-        Expanded(child: _buildInfo()),
-        ..._buildContactActions(),
+        Expanded(
+          child: _DriverInfo(name: driver.name, hasPhone: _hasPhone),
+        ),
+        if (_hasPhone)
+          _DriverContactActions(phoneNumber: driver.phoneNumber),
       ],
     );
   }
+}
 
-  Widget _buildAvatar() {
+/// Const, standalone widget so it isn't rebuilt whenever [DriverInfoCard]'s
+/// parent (the tracking BlocBuilder) rebuilds for unrelated state changes.
+class _DriverAvatar extends StatelessWidget {
+  final String avatarAsset;
+
+  const _DriverAvatar({required this.avatarAsset});
+
+  @override
+  Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(24),
       child: Image.asset(
-        driver.avatarAsset,
+        avatarAsset,
         width: 44,
         height: 44,
         fit: BoxFit.cover,
@@ -52,13 +54,21 @@ class DriverInfoCard extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _buildInfo() {
+class _DriverInfo extends StatelessWidget {
+  final String name;
+  final bool hasPhone;
+
+  const _DriverInfo({required this.name, required this.hasPhone});
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          driver.name,
+          name,
           style: TextStyle(
             fontFamily: AppFonts.interFamily,
             fontSize: FontSize.s16,
@@ -67,9 +77,9 @@ class DriverInfoCard extends StatelessWidget {
           ),
         ),
         Text(
-          _hasPhone
-              ? 'Is your delivery hero for today'
-              : 'Driver will be assigned shortly',
+          hasPhone
+              ? S.of(context).isYourDeliveryHeroForToday
+              : S.of(context).driverWillBeAssignedShortly,
           style: TextStyle(
             fontFamily: AppFonts.interFamily,
             fontSize: FontSize.s12,
@@ -79,22 +89,46 @@ class DriverInfoCard extends StatelessWidget {
       ],
     );
   }
+}
 
-  // Only shown once a real phone number is available.
-  List<Widget> _buildContactActions() {
-    if (!_hasPhone) return const [];
-    return [
-      ActionCircle(
-        assetPath: 'assets/images/Vector.png',
-        fallbackIcon: Icons.call,
-        onTap: _call,
-      ),
-      const SizedBox(width: 8),
-      ActionCircle(
-        assetPath: 'assets/images/whatsapp.png',
-        fallbackIcon: Icons.chat_bubble,
-        onTap: _whatsapp,
-      ),
-    ];
+/// Only shown once a real phone number is available. Const constructor —
+/// the call/WhatsApp handlers are static functions taking [phoneNumber]
+/// directly instead of instance methods, so this widget needs no mutable
+/// state and never has to rebuild for anything other than a phone number
+/// change.
+class _DriverContactActions extends StatelessWidget {
+  final String phoneNumber;
+
+  const _DriverContactActions({required this.phoneNumber});
+
+  static Future<void> _call(String phoneNumber) async {
+    final uri = Uri(scheme: 'tel', path: phoneNumber);
+    await launchUrl(uri);
+  }
+
+  static Future<void> _whatsapp(String phoneNumber) async {
+    final phone = phoneNumber.replaceAll('+', '').replaceAll(' ', '');
+    final uri = Uri.parse('https://wa.me/$phone');
+    await launchUrl(uri, mode: LaunchMode.externalApplication);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        ActionCircle(
+          assetPath: 'assets/images/Vector.png',
+          fallbackIcon: Icons.call,
+          onTap: () => _call(phoneNumber),
+        ),
+        const SizedBox(width: 8),
+        ActionCircle(
+          assetPath: 'assets/images/whatsapp.png',
+          fallbackIcon: Icons.chat_bubble,
+          onTap: () => _whatsapp(phoneNumber),
+        ),
+      ],
+    );
   }
 }

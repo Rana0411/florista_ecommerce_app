@@ -122,5 +122,7 @@
   "delivered": "Delivered",
   "orderDelivered": "Order Delivered",
   "callDriver": "Call Driver",
-  "textDriver": "Text Driver"
+  "textDriver": "Text Driver",
+  "driverWillBeAssignedShortly": "Driver will be assigned shortly",
+  "orderDeliveredConfirmationMessage": "Thanks for confirming! Enjoy your flowers 🌸"
 }

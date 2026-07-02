@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -6,7 +7,9 @@ import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
 import 'package:florista_ecommerce_app/core/utils/maps_launcher.dart';
 import 'package:florista_ecommerce_app/features/orders/domain/use_cases/orders_use_cases.dart';
+import 'package:florista_ecommerce_app/generated/l10n.dart';
 
+import 'package:florista_ecommerce_app/features/track_order/data/data_sources/track_order_remote_data_source.dart';
 import 'package:florista_ecommerce_app/features/track_order/presentation/cubit/track_order_cubit.dart';
 import 'package:florista_ecommerce_app/features/track_order/presentation/cubit/track_order_state.dart';
 import 'package:florista_ecommerce_app/features/track_order/presentation/utils/track_date_formatter.dart';
@@ -23,8 +26,13 @@ class TrackOrderView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => TrackOrderCubit(getIt<GetUserOrdersUseCase>())
-        ..load(orderId ?? ''),
+      // TrackOrderRemoteDataSource streams the live driver/timeline fields
+      // straight from Firestore — not wired through GetIt (no @injectable
+      // codegen for it yet), so it's constructed directly here.
+      create: (_) => TrackOrderCubit(
+        getIt<GetUserOrdersUseCase>(),
+        TrackOrderRemoteDataSource(FirebaseFirestore.instance),
+      )..load(orderId ?? ''),
       child: const _TrackOrderBody(),
     );
   }
@@ -37,22 +45,30 @@ class _TrackOrderBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      appBar: _buildAppBar(context),
+      appBar: const _TrackOrderAppBar(),
       body: BlocBuilder<TrackOrderCubit, TrackOrderState>(
         builder: (context, state) {
           if (state.isLoading && state.order == null) {
-            return _buildLoading();
+            return const Center(child: CircularProgressIndicator());
           }
           if (state.errorMessage != null && state.order == null) {
-            return _buildError(state.errorMessage!);
+            return _ErrorView(message: state.errorMessage!);
           }
-          return _buildContent(context, state);
+          return _TrackOrderContent(state: state);
         },
       ),
     );
   }
+}
 
-  PreferredSizeWidget _buildAppBar(BuildContext context) {
+/// App bar for the Track Order screen. Const constructor + its own class
+/// (rather than a `_build` method on the screen) so it isn't rebuilt every
+/// time the BlocBuilder below it rebuilds.
+class _TrackOrderAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const _TrackOrderAppBar();
+
+  @override
+  Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.white,
       elevation: 0,
@@ -62,7 +78,7 @@ class _TrackOrderBody extends StatelessWidget {
         onPressed: () => Navigator.pop(context),
       ),
       title: Text(
-        'Track order',
+        S.of(context).trackOrder,
         style: TextStyle(
           fontFamily: AppFonts.interFamily,
           fontSize: FontSize.s18,
@@ -73,12 +89,17 @@ class _TrackOrderBody extends StatelessWidget {
     );
   }
 
-  Widget _buildLoading() {
-    // Color comes from TLightTheme.progressIndicatorTheme.
-    return const Center(child: CircularProgressIndicator());
-  }
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+}
 
-  Widget _buildError(String message) {
+class _ErrorView extends StatelessWidget {
+  final String message;
+
+  const _ErrorView({required this.message});
+
+  @override
+  Widget build(BuildContext context) {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(24),
@@ -100,27 +121,41 @@ class _TrackOrderBody extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _buildContent(BuildContext context, TrackOrderState state) {
+class _TrackOrderContent extends StatelessWidget {
+  final TrackOrderState state;
+
+  const _TrackOrderContent({required this.state});
+
+  @override
+  Widget build(BuildContext context) {
     return SafeArea(
       child: Column(
         children: [
-          Expanded(child: _buildDetails(state)),
+          Expanded(child: _TrackOrderDetails(state: state)),
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
-            child: _buildActions(context, state),
+            child: _TrackOrderActions(state: state),
           ),
         ],
       ),
     );
   }
+}
 
-  Widget _buildDetails(TrackOrderState state) {
+class _TrackOrderDetails extends StatelessWidget {
+  final TrackOrderState state;
+
+  const _TrackOrderDetails({required this.state});
+
+  @override
+  Widget build(BuildContext context) {
     return ListView(
       padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
       children: [
         Text(
-          'Estimated arrival',
+          S.of(context).estimatedArrival,
           style: TextStyle(
             fontFamily: AppFonts.interFamily,
             fontSize: FontSize.s12,
@@ -148,11 +183,18 @@ class _TrackOrderBody extends StatelessWidget {
       ],
     );
   }
+}
 
-  Widget _buildActions(BuildContext context, TrackOrderState state) {
+class _TrackOrderActions extends StatelessWidget {
+  final TrackOrderState state;
+
+  const _TrackOrderActions({required this.state});
+
+  @override
+  Widget build(BuildContext context) {
     if (!state.isDelivered) {
       return TrackOrderPrimaryButton(
-        label: 'Show map',
+        label: S.of(context).showMap,
         onPressed: MapsLauncher.openDeliveryAddress,
       );
     }
@@ -160,14 +202,14 @@ class _TrackOrderBody extends StatelessWidget {
       children: [
         Expanded(
           child: TrackOrderSecondaryButton(
-            label: 'Show map',
+            label: S.of(context).showMap,
             onPressed: MapsLauncher.openDeliveryAddress,
           ),
         ),
         const SizedBox(width: 12),
         Expanded(
           child: TrackOrderPrimaryButton(
-            label: 'Order Delivered',
+            label: S.of(context).orderDelivered,
             onPressed: () => _confirmDelivery(context),
           ),
         ),
@@ -178,8 +220,7 @@ class _TrackOrderBody extends StatelessWidget {
   void _confirmDelivery(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content:
-            const Text('Thanks for confirming! Enjoy your flowers 🌸'),
+        content: Text(S.of(context).orderDeliveredConfirmationMessage),
         backgroundColor: AppColors.primary,
         behavior: SnackBarBehavior.floating,
       ),

@@ -5,35 +5,35 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:florista_ecommerce_app/config/base_response/base_response.dart';
 import 'package:florista_ecommerce_app/features/orders/domain/entities/order_entity.dart';
 import 'package:florista_ecommerce_app/features/orders/domain/use_cases/orders_use_cases.dart';
+import 'package:florista_ecommerce_app/features/track_order/data/data_sources/track_order_remote_data_source.dart';
+import 'package:florista_ecommerce_app/features/track_order/data/models/order_tracking_snapshot.dart';
 import 'package:florista_ecommerce_app/features/track_order/domain/entities/track_order_entities.dart';
 import 'track_order_state.dart';
 
-
 class TrackOrderCubit extends Cubit<TrackOrderState> {
-  TrackOrderCubit(this._getUserOrders) : super(const TrackOrderState());
+  TrackOrderCubit(this._getUserOrders, this._trackingDataSource)
+      : super(const TrackOrderState());
 
   final GetUserOrdersUseCase _getUserOrders;
-  Timer? _pollingTimer;
+  final TrackOrderRemoteDataSource _trackingDataSource;
+
+  StreamSubscription<OrderTrackingSnapshot>? _trackingSubscription;
   String? _orderId;
+  OrderEntity? _baseOrder;
 
   Future<void> load(String orderId) async {
     _orderId = orderId;
     if (isClosed) return;
     emit(state.copyWith(isLoading: true, clearError: true));
-    await _fetch();
-    _startPolling();
+    await _fetchBaseOrder();
+    _listenToTracking(orderId);
   }
 
-  void _startPolling() {
-    _pollingTimer?.cancel();
-    _pollingTimer = Timer.periodic(const Duration(seconds: 15), (_) {
-      if (!state.isDelivered) _fetch(silent: true);
-    });
-  }
-
-  Future<void> _fetch({bool silent = false}) async {
+  /// One-time REST fetch for the order's static data (items, price,
+  /// order number, createdAt). This never repeats — live driver/timeline
+  /// updates come from the Firestore stream in [_listenToTracking].
+  Future<void> _fetchBaseOrder() async {
     if (isClosed || _orderId == null) return;
-    if (!silent) emit(state.copyWith(isLoading: true, clearError: true));
 
     final response = await _getUserOrders();
 
@@ -45,6 +45,7 @@ class TrackOrderCubit extends Cubit<TrackOrderState> {
               ? response.data.first
               : _emptyOrder(),
         );
+        _baseOrder = order;
         if (!isClosed) {
           emit(state.copyWith(
             isLoading: false,
@@ -66,6 +67,47 @@ class TrackOrderCubit extends Cubit<TrackOrderState> {
     }
   }
 
+  /// Subscribes to the single order's live tracking document. Firestore
+  /// only pushes an update when the document actually changes, so this
+  /// is real-time and far cheaper than the previous 15s full-list poll.
+  void _listenToTracking(String orderId) {
+    _trackingSubscription?.cancel();
+    _trackingSubscription = _trackingDataSource
+        .watchOrderTracking(orderId)
+        .listen(_onTrackingSnapshot);
+  }
+
+  void _onTrackingSnapshot(OrderTrackingSnapshot snapshot) {
+    if (isClosed) return;
+    final base = _baseOrder;
+    if (base == null) return;
+
+    final mergedOrder = OrderEntity(
+      id: base.id,
+      orderNumber: base.orderNumber,
+      items: base.items,
+      totalPrice: base.totalPrice,
+      status: base.status,
+      deliveredAt: snapshot.deliveredAt ?? base.deliveredAt,
+      createdAt: base.createdAt,
+      driverStatus: snapshot.driverStatus,
+      arrivedAtPickupAt: snapshot.arrivedAtPickupAt,
+      startDeliverAt: snapshot.startDeliverAt,
+      arrivedToUserAt: snapshot.arrivedToUserAt,
+      driverName: snapshot.driverName,
+      driverPhone: snapshot.driverPhone,
+      driverAvatarAsset: snapshot.driverAvatarAsset,
+    );
+
+    emit(state.copyWith(
+      isLoading: false,
+      order: mergedOrder,
+      driver: _buildDriver(mergedOrder),
+      timeline: _buildTimeline(mergedOrder),
+      estimatedArrival: _estimateArrival(mergedOrder),
+    ));
+  }
+
   // ── Driver info ──────────────────────────────────────────────────────────
 
   /// Builds a [DriverEntity] from the real driver fields on [order].
@@ -81,9 +123,7 @@ class TrackOrderCubit extends Cubit<TrackOrderState> {
 
   // ── Timeline ─────────────────────────────────────────────────────────────
 
-
   List<TrackTimelineEntry> _buildTimeline(OrderEntity order) {
-
     final int completedSteps;
     switch (order.driverStatus) {
       case null:
@@ -98,12 +138,11 @@ class TrackOrderCubit extends Cubit<TrackOrderState> {
         completedSteps = 4; // "Delivered"
     }
 
-
     final timestamps = [
-      order.arrivedAtPickupAt,  // step 1: Received your order
-      order.startDeliverAt,     // step 2: Preparing your order
-      order.arrivedToUserAt,    // step 3: Out for delivery
-      order.deliveredAt,        // step 4: Delivered
+      order.arrivedAtPickupAt, // step 1: Received your order
+      order.startDeliverAt, // step 2: Preparing your order
+      order.arrivedToUserAt, // step 3: Out for delivery
+      order.deliveredAt, // step 4: Delivered
     ];
 
     final steps = TrackOrderStep.values;
@@ -111,7 +150,6 @@ class TrackOrderCubit extends Cubit<TrackOrderState> {
       final isDone = i < completedSteps;
       return TrackTimelineEntry(
         step: steps[i],
-
         timestamp: isDone ? timestamps[i] : null,
         isCompleted: isDone,
       );
@@ -141,7 +179,7 @@ class TrackOrderCubit extends Cubit<TrackOrderState> {
 
   @override
   Future<void> close() {
-    _pollingTimer?.cancel();
+    _trackingSubscription?.cancel();
     return super.close();
   }
 }
