@@ -24,6 +24,7 @@ import 'package:florista_ecommerce_app/features/profile/presentation/view/profil
 import 'package:florista_ecommerce_app/features/profile/presentation/view_model/profile_events.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/view_model/profile_view_model.dart';
 import 'package:florista_ecommerce_app/features/splash/presentation/view/splash_view.dart';
+import 'package:florista_ecommerce_app/features/track_order/presentation/view/screens/track_order_view.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -38,7 +39,7 @@ abstract class AppRouter {
   static final _rootNavigatorKey = GlobalKey<NavigatorState>(); // ✅ أضف دي
 
   static final GoRouter goRouter = GoRouter(
-    initialLocation: RoutePath.splash,
+    initialLocation: RoutePath.trackOrder,
     navigatorKey: _rootNavigatorKey,
     routes: [
       GoRoute(
@@ -138,6 +139,13 @@ abstract class AppRouter {
       GoRoute(
         path: RoutePath.myOrders,
         builder: (context, state) => const MyOrdersView(),
+      ),
+      GoRoute(
+        path: RoutePath.trackOrder,
+        builder: (context, state) {
+          final orderId = state.extra as String?;
+          return TrackOrderView(orderId: orderId);
+        },
       ),
     ],
   );

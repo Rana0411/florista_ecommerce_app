@@ -60,7 +60,7 @@ dependencies:
   firebase_crashlytics: ^5.2.4
   intl_utils: ^2.8.14
 
-  json_annotation: ^4.11.0
+
 
 dev_dependencies:
   intl_utils: ^2.8.8
@@ -79,7 +79,6 @@ dev_dependencies:
   injectable_generator: ^3.0.2
   json_serializable: ^6.13.2
   retrofit_generator: ^10.2.5
-  json_serializable: ^6.13.2
 
 flutter_launcher_icons:
   android: true
@@ -112,6 +111,12 @@ flutter:
     - assets/icons/florista.png
     - assets/icons/flower_12px.png
     - assets/icons/noto-v1_pen.png
+    - assets/images/empty_cart.svg
+    - assets/images/Car.png
+    - assets/images/Vector.png
+    - assets/images/whatsapp.png
+    - assets/images/Delivery Boy.png
+
     - assets/images/
   fonts:
     - family: Inter
@@ -136,7 +141,7 @@ flutter:
           weight: 500
     - family: IMFellEnglish
       fonts:
-      - asset: assets/fonts/IMFellEnglish-Regular.ttf
+        - asset: assets/fonts/IMFellEnglish-Regular.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
 flutter_intl:

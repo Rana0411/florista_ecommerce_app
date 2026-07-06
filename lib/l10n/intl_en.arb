@@ -12,7 +12,6 @@
   "male": "Male",
   "creatingAnAccountYouAgreeToOur": "Creating an account, you agree to our",
   "alreadyHaveAnAccount": "Already have an account? ",
-  "addToCart": "Add to cart",
   "signUpSuccess": "Sign up success",
   "connectionTimeout": "Request timed out. Please check your internet connection.",
   "serverError": "Server error. Please try again later.",
@@ -69,7 +68,6 @@
   "newPassword": "New password",
   "confirmPassword2": "Confirm password",
   "passwordChangedSuccessfully": "Password changed successfully!",
-  "EGB": "EGB",
   "florista": "Florista",
   "somethineWentWrong": "Something went wrong Try again later",
   "cartTitle": "Cart ({count, plural, =0{Empty} =1{1 item} other{{count} items}})",
@@ -125,5 +123,10 @@
   "EGB": "EGB",
   "occassions": "Occasions",
   "sloganOfoccasion": "Bloom with our exquisite best sellers",
-  "noOccasionFounds": "No occasions found"
+  "noOccasionFounds": "No occasions found",
+  "orderDelivered": "Order Delivered",
+  "callDriver": "Call Driver",
+  "textDriver": "Text Driver",
+  "driverWillBeAssignedShortly": "Driver will be assigned shortly",
+  "orderDeliveredConfirmationMessage": "Thanks for confirming! Enjoy your flowers 🌸"
 }

@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart' show Firebase;
 import 'package:florista_ecommerce_app/config/di/di.dart';
 import 'package:florista_ecommerce_app/config/hive/hive_service.dart';
 import 'package:florista_ecommerce_app/config/secure_storage/secure_storage_service.dart';
@@ -7,6 +8,8 @@ import 'package:florista_ecommerce_app/core/utils/themes/dark_theme.dart';
 import 'package:florista_ecommerce_app/core/utils/themes/light_theme.dart';
 import 'package:florista_ecommerce_app/core/localization/florista_localization_delegate.dart';
 import 'package:florista_ecommerce_app/features/app_language/locale_cubit.dart';
+import 'package:florista_ecommerce_app/features/cart/presentation/view_model/cart_cubit.dart';
+import 'package:florista_ecommerce_app/firebase_options.dart';
 import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,6 +17,10 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   await configureDependencies();
 
   final hive = getIt<HiveService>();
@@ -58,7 +65,6 @@ class MyApp extends StatelessWidget {
             },
             localizationsDelegates: const [
               FloristaLocalizationDelegate(),
-              GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
