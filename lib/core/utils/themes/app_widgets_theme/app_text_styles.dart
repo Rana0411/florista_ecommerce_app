@@ -18,6 +18,7 @@ abstract class AppTextStyles {
     displaySmall: getMediumStyle(
       color: AppColors.black,
       fontSize: FontSize.s30,
+
       fontFamily: AppFonts.interFamily,
     ),
 

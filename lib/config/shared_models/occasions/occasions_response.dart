@@ -1,5 +1,6 @@
-import 'package:florista_ecommerce_app/config/shared_models/meta_data.dart';
 import 'package:florista_ecommerce_app/config/shared_models/occasions/occasion_dto.dart';
+import 'package:florista_ecommerce_app/config/shared_models/meta_data.dart';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'occasions_response.g.dart';

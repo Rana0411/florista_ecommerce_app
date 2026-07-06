@@ -6,11 +6,17 @@ class BaseState<T> extends Equatable {
   final String? errorMessage;
   const BaseState({this.isLoading, this.data, this.errorMessage});
 
-  BaseState<T> copyWith({bool? isLoading, String? errorMessage, T? data}) {
+  BaseState<T> copyWith({
+    bool? isLoading,
+    String? errorMessage,
+    T? data,
+    bool clearData = false,
+    bool clearError = false,
+  }) {
     return BaseState<T>(
       isLoading: isLoading ?? this.isLoading,
-      errorMessage: errorMessage ?? this.errorMessage,
-      data: data ?? this.data,
+      errorMessage: clearError ? null : (errorMessage ?? this.errorMessage),
+      data: clearData ? null : (data ?? this.data),
     );
   }
 

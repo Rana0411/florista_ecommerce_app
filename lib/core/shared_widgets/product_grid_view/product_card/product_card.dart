@@ -1,8 +1,11 @@
-import 'package:florista_ecommerce_app/config/shared_models/products/product_entity.dart';
+import 'package:florista_ecommerce_app/config/shared_models/entities/product_entity.dart';
+import 'package:florista_ecommerce_app/core/app_constants.dart';
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
 import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
+part 'product_image.dart';
+part 'product_price_section.dart';
 
 class ProductCard extends StatelessWidget {
   final VoidCallback? onTap;
@@ -11,92 +14,67 @@ class ProductCard extends StatelessWidget {
 
   const ProductCard({
     super.key,
+    required this.productEntity,
     this.onTap,
     this.onAddToCart,
-    required this.productEntity,
   });
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    final textTheme = Theme.of(context).textTheme;
+
+    return InkWell(
       onTap: onTap,
+      borderRadius: BorderRadius.circular(16),
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          border: Border.all(color: AppColors.lightGrey),
-          borderRadius: BorderRadius.circular(16),
           color: AppColors.white,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: AppColors.lightGrey),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
+            AspectRatio(
+              aspectRatio: 1,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Image.asset(
-                  productEntity.image,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
+                child: ProductImage(imageUrl: productEntity.imageCover),
               ),
             ),
 
             const SizedBox(height: 8),
 
             Text(
-              productEntity.title,
-              maxLines: 1,
+              productEntity.name ?? '',
+              maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(fontWeight: FontWeightManager.medium),
+              style: textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.w600,
+              ),
             ),
 
-            const SizedBox(height: 4),
+            const SizedBox(height: 6),
 
-            Row(
-              children: [
-                Text(
-                  '${S.current.EGB} ${productEntity.price.toInt()}',
-                  style: const TextStyle(
-                    fontWeight: FontWeightManager.bold,
-                    fontSize: FontSize.s16,
+            PriceSection(product: productEntity),
+
+            const Spacer(),
+
+            ConstrainedBox(
+              constraints: const BoxConstraints(minHeight: 42),
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  onPressed: onAddToCart,
+                  icon: const Icon(Icons.shopping_cart_outlined, size: 18),
+                  label: Text(
+                    S.current.addToCart,
+                    overflow: TextOverflow.ellipsis,
+                    style: textTheme.bodyMedium?.copyWith(
+                      color: AppColors.black,
+                    ),
                   ),
-                ),
-
-                const SizedBox(width: 6),
-
-                Text(
-                  productEntity.oldPrice.toInt().toString(),
-                  style: TextStyle(
-                    decoration: TextDecoration.lineThrough,
-                    color: AppColors.grey,
-                  ),
-                ),
-
-                const SizedBox(width: 6),
-
-                Text(
-                  '${productEntity.discount}%',
-                  style: TextStyle(
-                    color: AppColors.success,
-                    fontWeight: FontWeightManager.semiBold,
-                  ),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 10),
-
-            SizedBox(
-              width: double.infinity,
-              height: 42,
-              child: ElevatedButton.icon(
-                onPressed: onAddToCart,
-                icon: const Icon(Icons.shopping_cart_outlined),
-                label: Text(S.current.addToCart),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
-                  foregroundColor: AppColors.white,
-                  shape: RoundedRectangleBorder(),
                 ),
               ),
             ),

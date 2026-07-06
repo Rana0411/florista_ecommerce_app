@@ -120,5 +120,10 @@
   "logoutTitle": "Log Out",
   "logoutConfirmation": "Are you sure you want to log out of your account?",
   "cancel": "Cancel",
-  "changeLanguage": "Change Language"
+  "changeLanguage": "Change Language",
+  "addToCart": "Add to cart",
+  "EGB": "EGB",
+  "occassions": "Occasions",
+  "sloganOfoccasion": "Bloom with our exquisite best sellers",
+  "noOccasionFounds": "No occasions found"
 }

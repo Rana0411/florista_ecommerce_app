@@ -8,22 +8,16 @@ class ProductsGridShimmer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: GridView.builder(
-        padding: const EdgeInsets.all(16),
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: itemCount,
-        shrinkWrap: true,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 14,
-          mainAxisSpacing: 14,
-          childAspectRatio: 0.62,
-        ),
-        itemBuilder: (context, index) {
-          return const ProductCardShimmer();
-        },
+    return GridView.builder(
+      padding: const EdgeInsets.all(16),
+      itemCount: itemCount,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 12,
+        mainAxisSpacing: 12,
+        childAspectRatio: 0.62,
       ),
+      itemBuilder: (context, index) => const ProductCardShimmer(),
     );
   }
 }

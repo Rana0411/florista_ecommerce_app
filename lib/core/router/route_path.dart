@@ -15,4 +15,5 @@ abstract class RoutePath {
   static const String productDetails = '/productDetails';
   static const String myOrders = '/myOrders';
   static const String notification = '/notification';
+  static const String occasions = '/occasions';
 }

@@ -1,6 +1,5 @@
-import 'package:florista_ecommerce_app/features/home/domain/entities/occasion_entity.dart';
+import 'package:florista_ecommerce_app/features/occasions/domain/models/occasion_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
-
 part 'occasion_dto.g.dart';
 
 @JsonSerializable()
@@ -33,11 +32,31 @@ class OccasionDto {
     this.productsCount,
   });
 
+  OccasionDto copyWith({
+    String? id,
+    String? name,
+    String? slug,
+    String? image,
+    bool? isSuperAdmin,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    int? productsCount,
+  }) => OccasionDto(
+    id: id ?? this.id,
+    name: name ?? this.name,
+    slug: slug ?? this.slug,
+    image: image ?? this.image,
+    isSuperAdmin: isSuperAdmin ?? this.isSuperAdmin,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    productsCount: productsCount ?? this.productsCount,
+  );
+
   factory OccasionDto.fromJson(Map<String, dynamic> json) =>
       _$OccasionDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$OccasionDtoToJson(this);
 
-  OccasionEntity toHomeDomain() =>
-      OccasionEntity(id: id, name: name, image: image);
+  OccasionEntity toDomain(OccasionDto dto) =>
+      OccasionEntity(id: dto.id, name: dto.name);
 }
