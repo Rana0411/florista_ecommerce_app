@@ -1,51 +1,30 @@
-import 'dart:ui';
-
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:florista_ecommerce_app/config/di/di.dart';
 import 'package:florista_ecommerce_app/config/hive/hive_service.dart';
-import 'package:florista_ecommerce_app/config/notification/firebase_notification_service.dart';
+import 'package:florista_ecommerce_app/config/secure_storage/secure_storage_service.dart';
+import 'package:florista_ecommerce_app/core/app_keys/secure_storage_keys.dart';
 import 'package:florista_ecommerce_app/core/router/app_router.dart';
 import 'package:florista_ecommerce_app/core/utils/themes/dark_theme.dart';
 import 'package:florista_ecommerce_app/core/utils/themes/light_theme.dart';
-import 'package:florista_ecommerce_app/features/cart/presentation/view_model/cart_cubit.dart';
+import 'package:florista_ecommerce_app/core/localization/florista_localization_delegate.dart';
+import 'package:florista_ecommerce_app/features/app_language/locale_cubit.dart';
 import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await configureDependencies();
 
   final hive = getIt<HiveService>();
   await hive.init();
-
-  await Firebase.initializeApp();
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-
-  // 3. Pass all uncaught asynchronous errors from the framework to Crashlytics
-  PlatformDispatcher.instance.onError = (error, stack) {
-    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-    return true;
-  };
-
-  // 4. Pass all uncaught Flutter framework errors to Crashlytics
-  FlutterError.onError = (errorDetails) {
-    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
-  };
-
-  // 5. Start Firebase notification service (FCM setup)
-  await getIt<FirebaseNotificationService>().init();
-
+  await getIt<SecureStorageService>()
+    ..write(
+      key: SecureStorageKeys.token,
+      value:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNmExM2E2YjRhMWUyOThmNTU2MjQxZWVjIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3Nzk2NzI3ODJ9.6nftFCvrGfqq-SvN0ubRG_g0sh7LhMRvPLwGT1N-Yho",
+    );
   runApp(const MyApp());
-}
-
-@pragma('vm:entry-point')
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
-  print('Background message: ${message.notification?.title}');
 }
 
 class MyApp extends StatelessWidget {
@@ -54,16 +33,43 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => getIt.get<CartCubit>())],
-      child: MaterialApp.router(
-        title: 'Florista Shop App',
-        debugShowCheckedModeBanner: false,
-        localizationsDelegates: [S.delegate],
-        supportedLocales: S.delegate.supportedLocales,
-        routerConfig: AppRouter.goRouter,
-        theme: TLightTheme.lightTheme,
-        darkTheme: TDarkTheme.darkTheme,
-        themeMode: ThemeMode.system,
+      providers: [
+        BlocProvider<LocaleCubit>(
+          create: (context) => getIt<LocaleCubit>()..getSavedLanguage(),
+        ),
+      ],
+      child: BlocBuilder<LocaleCubit, LocaleState>(
+        builder: (context, state) {
+          return MaterialApp.router(
+            key: ValueKey(state.locale.languageCode),
+            title: 'Florista Shop App',
+            debugShowCheckedModeBanner: false,
+            locale: state.locale,
+            localeResolutionCallback: (locale, supportedLocales) {
+              if (locale == null) {
+                return const Locale('en');
+              }
+              for (final supported in supportedLocales) {
+                if (supported.languageCode == locale.languageCode) {
+                  return supported;
+                }
+              }
+              return const Locale('en');
+            },
+            localizationsDelegates: const [
+              FloristaLocalizationDelegate(),
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
+
+            routerConfig: AppRouter.goRouter,
+            theme: TLightTheme.lightTheme,
+            darkTheme: TDarkTheme.darkTheme,
+            themeMode: ThemeMode.system,
+          );
+        },
       ),
     );
   }

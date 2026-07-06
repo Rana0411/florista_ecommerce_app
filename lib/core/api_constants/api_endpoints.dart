@@ -19,9 +19,11 @@ abstract class ApiEndpoints {
   static const String occasions = '$_baseUrl/occasions';
   static const String addresses = '$_baseUrl/addresses';
   static const String getUserData = '$_baseUrl/auth/profile-data';
+  static const String logOut = '$_baseUrl/auth/logout';
   static const String editProfile = '$_baseUrl/auth/editProfile';
   static const String uploadProfilePhoto = '$_baseUrl/auth/upload-photo';
   static const String changePassword = '$_baseUrl/auth/change-password';
   static const String cartOfLoggedUSer = "$_baseUrl/cart";
   static const String getProductdetails = "$_baseUrl/product-details";
+
 }
