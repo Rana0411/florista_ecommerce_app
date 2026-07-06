@@ -1,6 +1,5 @@
 import 'package:florista_ecommerce_app/config/di/di.dart';
 import 'package:florista_ecommerce_app/config/shared_models/user_data/user_request_dto.dart';
-import 'package:florista_ecommerce_app/core/router/nav_helper.dart';
 import 'package:florista_ecommerce_app/core/router/route_path.dart';
 import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/screens/forget_password_view.dart';
 import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/screens/reset_password_view.dart';
@@ -19,6 +18,8 @@ import 'package:florista_ecommerce_app/features/edit_profile/presentation/view_m
 import 'package:florista_ecommerce_app/features/home/presentation/view/home_view.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/view_model/home_event.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/view_model/home_view_model.dart';
+import 'package:florista_ecommerce_app/features/notifications/presentation/view_model/cubit.dart';
+import 'package:florista_ecommerce_app/features/notifications/presentation/views/notification_view.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/view/profile_view.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/view_model/profile_events.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/view_model/profile_view_model.dart';
@@ -43,6 +44,16 @@ abstract class AppRouter {
       GoRoute(
         path: RoutePath.splash,
         builder: (context, state) => const SplashView(),
+      ),
+      GoRoute(
+        path: RoutePath.notification,
+        builder: (context, state) {
+          final notificationCubit = getIt.get<NotificationsCubit>();
+          return BlocProvider(
+            create: (context) => notificationCubit..loadNotifications(),
+            child: NotificationsView(),
+          );
+        },
       ),
       GoRoute(
         path: RoutePath.login,
