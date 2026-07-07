@@ -146,5 +146,7 @@
   "editAddress": "Edit address",
   "label": "Label (e.g. Home)",
   "cancel": "Cancel",
-  "save": "Save"
+  "save": "Save",
+  "orderPlacedSuccessfully": "Your order placed\nsuccessfully!",
+  "unableToLoadOrderDetails": "Unable to load order details"
 }
