@@ -160,16 +160,6 @@ class S {
     );
   }
 
-  /// `Terms & Conditions`
-  String get termsConditions {
-    return Intl.message(
-      'Terms & Conditions',
-      name: 'termsConditions',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Already have an account? `
   String get alreadyHaveAnAccount {
     return Intl.message(
@@ -180,51 +170,11 @@ class S {
     );
   }
 
-  /// `Add to cart`
-  String get addToCart {
-    return Intl.message(
-      'Add to cart',
-      name: 'addToCart',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Sign up success`
   String get signUpSuccess {
     return Intl.message(
       'Sign up success',
       name: 'signUpSuccess',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Email is required`
-  String get emailIsRequired {
-    return Intl.message(
-      'Email is required',
-      name: 'emailIsRequired',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Enter a valid email address`
-  String get enterValidEmail {
-    return Intl.message(
-      'Enter a valid email address',
-      name: 'enterValidEmail',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Password needs uppercase, digit, and special char`
-  String get enterValidPassword {
-    return Intl.message(
-      'Password needs uppercase, digit, and special char',
-      name: 'enterValidPassword',
       desc: '',
       args: [],
     );
@@ -405,36 +355,6 @@ class S {
     return Intl.message(
       'Don\'t have an account?',
       name: 'dontHaveAccount',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Email`
-  String get email {
-    return Intl.message(
-      'Email',
-      name: 'email',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Enter your email`
-  String get enterYourEmail {
-    return Intl.message(
-      'Enter your email',
-      name: 'enterYourEmail',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Password`
-  String get password {
-    return Intl.message(
-      'Password',
-      name: 'password',
       desc: '',
       args: [],
     );
@@ -680,6 +600,16 @@ class S {
     );
   }
 
+  /// `Terms & Conditions`
+  String get termsConditions {
+    return Intl.message(
+      'Terms & Conditions',
+      name: 'termsConditions',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Logout`
   String get logout {
     return Intl.message(
@@ -695,76 +625,6 @@ class S {
     return Intl.message(
       'v 6.3.0 - (446)',
       name: 'virson',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Language`
-  String get language {
-    return Intl.message(
-      'Language',
-      name: 'language',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `English`
-  String get english {
-    return Intl.message(
-      'English',
-      name: 'english',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Arabic`
-  String get arabic {
-    return Intl.message(
-      'Arabic',
-      name: 'arabic',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Notification`
-  String get notification {
-    return Intl.message(
-      'Notification',
-      name: 'notification',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `No user data`
-  String get noUserData {
-    return Intl.message(
-      'No user data',
-      name: 'noUserData',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `No name`
-  String get noName {
-    return Intl.message(
-      'No name',
-      name: 'noName',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `No email`
-  String get noEmail {
-    return Intl.message(
-      'No email',
-      name: 'noEmail',
       desc: '',
       args: [],
     );
@@ -865,16 +725,6 @@ class S {
     return Intl.message(
       'Password changed successfully!',
       name: 'passwordChangedSuccessfully',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `EGB`
-  String get EGB {
-    return Intl.message(
-      'EGB',
-      name: 'EGB',
       desc: '',
       args: [],
     );
@@ -1189,6 +1039,296 @@ class S {
       args: [],
     );
   }
+
+  /// `Language`
+  String get language {
+    return Intl.message(
+      'Language',
+      name: 'language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `English`
+  String get english {
+    return Intl.message(
+      'English',
+      name: 'english',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Arabic`
+  String get arabic {
+    return Intl.message(
+      'Arabic',
+      name: 'arabic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notification`
+  String get notification {
+    return Intl.message(
+      'Notification',
+      name: 'notification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No user data`
+  String get noUserData {
+    return Intl.message(
+      'No user data',
+      name: 'noUserData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No name`
+  String get noName {
+    return Intl.message(
+      'No name',
+      name: 'noName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No email`
+  String get noEmail {
+    return Intl.message(
+      'No email',
+      name: 'noEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout successful`
+  String get logoutSuccessful {
+    return Intl.message(
+      'Logout successful',
+      name: 'logoutSuccessful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout failed. Please try again.`
+  String get logoutFailed {
+    return Intl.message(
+      'Logout failed. Please try again.',
+      name: 'logoutFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log Out`
+  String get logoutTitle {
+    return Intl.message(
+      'Log Out',
+      name: 'logoutTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to log out of your account?`
+  String get logoutConfirmation {
+    return Intl.message(
+      'Are you sure you want to log out of your account?',
+      name: 'logoutConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Language`
+  String get changeLanguage {
+    return Intl.message(
+      'Change Language',
+      name: 'changeLanguage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email is required`
+  String get emailIsRequired {
+    return Intl.message(
+      'Email is required',
+      name: 'emailIsRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter a valid email address`
+  String get enterValidEmail {
+    return Intl.message(
+      'Enter a valid email address',
+      name: 'enterValidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password needs uppercase, digit, and special char`
+  String get enterValidPassword {
+    return Intl.message(
+      'Password needs uppercase, digit, and special char',
+      name: 'enterValidPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get email {
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your email`
+  String get enterYourEmail {
+    return Intl.message(
+      'Enter your email',
+      name: 'enterYourEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add to cart`
+  String get addToCart {
+    return Intl.message(
+      'Add to cart',
+      name: 'addToCart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EGB`
+  String get EGB {
+    return Intl.message(
+      'EGB',
+      name: 'EGB',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Occasions`
+  String get occassions {
+    return Intl.message(
+      'Occasions',
+      name: 'occassions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bloom with our exquisite best sellers`
+  String get sloganOfoccasion {
+    return Intl.message(
+      'Bloom with our exquisite best sellers',
+      name: 'sloganOfoccasion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No occasions found`
+  String get noOccasionFounds {
+    return Intl.message(
+      'No occasions found',
+      name: 'noOccasionFounds',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order Delivered`
+  String get orderDelivered {
+    return Intl.message(
+      'Order Delivered',
+      name: 'orderDelivered',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Call Driver`
+  String get callDriver {
+    return Intl.message(
+      'Call Driver',
+      name: 'callDriver',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Text Driver`
+  String get textDriver {
+    return Intl.message(
+      'Text Driver',
+      name: 'textDriver',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Driver will be assigned shortly`
+  String get driverWillBeAssignedShortly {
+    return Intl.message(
+      'Driver will be assigned shortly',
+      name: 'driverWillBeAssignedShortly',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Thanks for confirming! Enjoy your flowers 🌸`
+  String get orderDeliveredConfirmationMessage {
+    return Intl.message(
+      'Thanks for confirming! Enjoy your flowers 🌸',
+      name: 'orderDeliveredConfirmationMessage',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -1197,6 +1337,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   List<Locale> get supportedLocales {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'ar'),
     ];
   }
 

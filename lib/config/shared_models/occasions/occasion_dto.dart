@@ -1,5 +1,7 @@
 import 'package:florista_ecommerce_app/features/occasions/domain/models/occasion_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../../../features/home/domain/entities/occasion_entity.dart' as home;
 part 'occasion_dto.g.dart';
 
 @JsonSerializable()
@@ -59,4 +61,6 @@ class OccasionDto {
 
   OccasionEntity toDomain(OccasionDto dto) =>
       OccasionEntity(id: dto.id, name: dto.name);
+  home.OccasionEntity toHomeDomain() => home.OccasionEntity(id: id, name: name, image: image);
+
 }

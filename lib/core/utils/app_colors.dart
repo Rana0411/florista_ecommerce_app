@@ -14,7 +14,6 @@ abstract class AppColors {
   static Color lightGrey = const Color(0xff878787);
   static Color placeholder = const Color(0xffA6A6A6);
   static Color transparent = const Color.fromRGBO(0, 0, 0, 0);
-  static Color placeholder = const Color(0xffA6A6A6);
   static Color lightGreen = const Color(0xff0CB359);
   static Color green = const Color(0xFF4CAF50);
   static Color lightPink = const Color(0xffF9ECF0);

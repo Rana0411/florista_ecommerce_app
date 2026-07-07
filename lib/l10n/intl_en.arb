@@ -119,6 +119,17 @@
   "logoutConfirmation": "Are you sure you want to log out of your account?",
   "cancel": "Cancel",
   "changeLanguage": "Change Language",
+
+  "emailIsRequired": "Email is required",
+  "enterValidEmail": "Enter a valid email address",
+  "enterValidPassword": "Password needs uppercase, digit, and special char",
+
+  "email": "Email",
+  "enterYourEmail": "Enter your email",
+  "password": "Password",
+
+
+  "changeLanguage": "Change Language",
   "addToCart": "Add to cart",
   "EGB": "EGB",
   "occassions": "Occasions",

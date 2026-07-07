@@ -28,18 +28,18 @@ import 'package:florista_ecommerce_app/features/track_order/presentation/view/sc
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import '../../features/address/add_address/presentation/view/add_address_view.dart';
 import '../../features/categories/domain/entities/product_entity.dart';
+import '../../features/occasions/presentation/screens/occasion_screen.dart';
+import '../../features/occasions/presentation/view_model/occasion_cubit.dart';
 import '../../features/product_details/presentation/view/product_details_view.dart';
-import '../../features/best_seller/presentation/screens/best_seller_view.dart';
-import '../../features/categories/domain/use_cases/get_products_by_category_use_case.dart';
-import '../../features/categories/presentation/cubit/categories_view_model.dart';
 import '../../features/orders/presentation/view/my_orders_view.dart';
 
 abstract class AppRouter {
-  static final _rootNavigatorKey = GlobalKey<NavigatorState>(); // ✅ أضف دي
+  static final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
   static final GoRouter goRouter = GoRouter(
-    initialLocation: RoutePath.trackOrder,
+    initialLocation: RoutePath.splash,
     navigatorKey: _rootNavigatorKey,
     routes: [
       GoRoute(
@@ -79,6 +79,11 @@ abstract class AppRouter {
         },
       ),
       GoRoute(
+        path: RoutePath.occasions,
+        builder: (context, state) =>
+            OccasionScreen(occasionCubit: getIt.get<OccasionCubit>()),
+      ),
+      GoRoute(
         path: RoutePath.categories,
         builder: (context, state) => BlocProvider(
           create: (_) => CategoriesCubit(
@@ -100,6 +105,11 @@ abstract class AppRouter {
           final product = state.extra as ProductEntity?;
           return ProductDetailsView(product: product);
         },
+      ),
+      GoRoute(
+        path: RoutePath.occasions,
+        builder: (context, state) =>
+            OccasionScreen(occasionCubit: getIt.get<OccasionCubit>()),
       ),
       GoRoute(
         path: RoutePath.resetPassword,
@@ -146,6 +156,11 @@ abstract class AppRouter {
           final orderId = state.extra as String?;
           return TrackOrderView(orderId: orderId);
         },
+
+      ),
+      GoRoute(
+        path: RoutePath.addAddressView,
+        builder: (context, state) => const AddAddressView(),
       ),
     ],
   );
