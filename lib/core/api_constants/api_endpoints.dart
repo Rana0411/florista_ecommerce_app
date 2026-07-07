@@ -28,4 +28,5 @@ abstract class ApiEndpoints {
 
   static const String allOccasions = "$_baseUrl/occasions";
   static const String productsOfOccasion = "$_baseUrl/products";
+  static const String checkoutSession = "$_baseUrl//orders/checkout";
 }

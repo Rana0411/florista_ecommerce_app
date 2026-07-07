@@ -117,8 +117,6 @@
   "logoutFailed": "Logout failed. Please try again.",
   "logoutTitle": "Log Out",
   "logoutConfirmation": "Are you sure you want to log out of your account?",
-  "cancel": "Cancel",
-  "changeLanguage": "Change Language",
 
   "emailIsRequired": "Email is required",
   "enterValidEmail": "Enter a valid email address",
@@ -139,5 +137,14 @@
   "callDriver": "Call Driver",
   "textDriver": "Text Driver",
   "driverWillBeAssignedShortly": "Driver will be assigned shortly",
-  "orderDeliveredConfirmationMessage": "Thanks for confirming! Enjoy your flowers 🌸"
+  "orderDeliveredConfirmationMessage": "Thanks for confirming! Enjoy your flowers 🌸",
+  "paymentSuccessful": "Payment successful!",
+  "paymentCancelled": "Payment cancelled",
+  "paymentNotCompleted": "Payment  wasnt completed",
+  "checkout": "Checkout",
+  "addAddress": "Add address",
+  "editAddress": "Edit address",
+  "label": "Label (e.g. Home)",
+  "cancel": "Cancel",
+  "save": "Save"
 }

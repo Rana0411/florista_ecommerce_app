@@ -7,6 +7,14 @@ import 'package:flutter/material.dart';
 
 abstract class TLightTheme {
   static ThemeData lightTheme = ThemeData(
+    radioTheme: RadioThemeData(
+      fillColor: WidgetStateProperty.resolveWith<Color>((states) {
+        if (states.contains(WidgetState.selected)) {
+          return AppColors.primary; // Color when selected
+        }
+        return AppColors.grey; // Color when unselected
+      }),
+    ),
     brightness: Brightness.light,
     textTheme: AppTextStyles.light,
     elevatedButtonTheme: AppButtonTheme.light,
@@ -15,6 +23,7 @@ abstract class TLightTheme {
       color: AppColors.primary, // progress color
       linearTrackColor: AppColors.grey, // background track
       borderRadius: BorderRadius.circular(8),
+
       // rounded edges
     ),
 
