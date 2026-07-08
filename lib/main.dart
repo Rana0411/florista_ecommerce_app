@@ -32,7 +32,7 @@ void main() async {
     ..write(
       key: SecureStorageKeys.token,
       value:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNmExM2E2YjRhMWUyOThmNTU2MjQxZWVjIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3Nzk2NzI3ODJ9.6nftFCvrGfqq-SvN0ubRG_g0sh7LhMRvPLwGT1N-Yho",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNmExM2E2YjRhMWUyOThmNTU2MjQxZWVjIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3Nzk2NzI3ODJ9.6nftFCvrGfqq-SvN0ubRG_g0sh7LhMRvPLwGT1N-Yho",
     );
 
   SecureStorageService secureStorage = getIt<SecureStorageService>();
@@ -53,6 +53,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<LocaleCubit>(
           create: (context) => getIt<LocaleCubit>()..getSavedLanguage(),
+        ),
+        BlocProvider<CartCubit>(
+          create: (context) => getIt<CartCubit>()..getCart(),
         ),
       ],
       child: BlocBuilder<LocaleCubit, LocaleState>(
@@ -75,6 +78,7 @@ class MyApp extends StatelessWidget {
             },
             localizationsDelegates: const [
               FloristaLocalizationDelegate(),
+              GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],

@@ -20,6 +20,8 @@ import 'package:florista_ecommerce_app/features/home/presentation/view_model/hom
 import 'package:florista_ecommerce_app/features/home/presentation/view_model/home_view_model.dart';
 import 'package:florista_ecommerce_app/features/notifications/presentation/view_model/cubit.dart';
 import 'package:florista_ecommerce_app/features/notifications/presentation/views/notification_view.dart';
+import 'package:florista_ecommerce_app/features/order_success/presentation/view_model/order_success_view_model.dart';
+import 'package:florista_ecommerce_app/features/payment/presentation/views/payment_view.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/view/profile_view.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/view_model/profile_events.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/view_model/profile_view_model.dart';
@@ -32,6 +34,7 @@ import '../../features/address/add_address/presentation/view/add_address_view.da
 import '../../features/categories/domain/entities/product_entity.dart';
 import '../../features/occasions/presentation/screens/occasion_screen.dart';
 import '../../features/occasions/presentation/view_model/occasion_cubit.dart';
+import '../../features/order_success/presentation/view/order_success_view.dart' show OrderSuccessView;
 import '../../features/product_details/presentation/view/product_details_view.dart';
 import '../../features/orders/presentation/view/my_orders_view.dart';
 
@@ -151,6 +154,11 @@ abstract class AppRouter {
         builder: (context, state) => const MyOrdersView(),
       ),
       GoRoute(
+        path: RoutePath.payment,
+        builder: (context, state) =>
+            PaymentView(subTotal: 0.0, deliveryFee: 0.0, addresses: []),
+      ),
+      GoRoute(
         path: RoutePath.trackOrder,
         builder: (context, state) {
           final orderId = state.extra as String?;
@@ -162,6 +170,17 @@ abstract class AppRouter {
         path: RoutePath.addAddressView,
         builder: (context, state) => const AddAddressView(),
       ),
+      GoRoute(
+        path: RoutePath.orderSuccess,
+        builder: (context, state) {
+          final orderId = state.extra as String?;
+          return BlocProvider(
+            create: (context) => getIt.get<OrderSuccessViewModel>(),
+            child: OrderSuccessView(orderId: orderId),
+          );
+        },
+      ),
+
     ],
   );
 }
