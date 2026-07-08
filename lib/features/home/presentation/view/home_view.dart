@@ -49,120 +49,118 @@ class _HomeViewState extends State<HomeView> {
           ],
         ),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(10),
-        child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              // DropDown Button
-              Align(alignment: Alignment.centerLeft, child: HomeDropDownRow()),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // DropDown Button
+            Align(alignment: Alignment.centerLeft, child: HomeDropDownRow()),
 
-              // Categories Section
-              BlocBuilder<HomeViewModel, HomeState>(
-                buildWhen: (previous, current) =>
-                    previous.getAllCategoriesState !=
-                    current.getAllCategoriesState,
-                builder: (context, state) {
-                  final categoryState = state.getAllCategoriesState;
+            // Categories Section
+            BlocBuilder<HomeViewModel, HomeState>(
+              buildWhen: (previous, current) =>
+              previous.getAllCategoriesState !=
+                  current.getAllCategoriesState,
+              builder: (context, state) {
+                final categoryState = state.getAllCategoriesState;
 
-                  if (categoryState.isLoading == true) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
+                if (categoryState.isLoading == true) {
+                  return const Center(child: CircularProgressIndicator());
+                }
 
-                  if (categoryState.errorMessage != null) {
-                    return Center(
-                      child: Text(
-                        categoryState.errorMessage!,
-                        style: TextStyle(color: AppColors.error),
-                      ),
-                    );
-                  }
-
-                  final categories = categoryState.data ?? [];
-
-                  return HomeSection(
-                    title: S.current.categories,
-                    items: categories,
-                    itemBuilder: (category) {
-                      return HomeCategoryCard(category: category);
-                    },
-                    onViewAll: () {},
+                if (categoryState.errorMessage != null) {
+                  return Center(
+                    child: Text(
+                      categoryState.errorMessage!,
+                      style: TextStyle(color: AppColors.error),
+                    ),
                   );
-                },
-              ),
+                }
 
-              //BestSellers Section
-              BlocBuilder<HomeViewModel, HomeState>(
-                buildWhen: (previous, current) =>
-                    previous.getAllBestSellerState !=
-                    current.getAllBestSellerState,
-                builder: (context, state) {
-                  final bestSellerState = state.getAllBestSellerState;
+                final categories = categoryState.data ?? [];
 
-                  if (bestSellerState.isLoading == true) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
+                return HomeSection(
+                  title: S.current.categories,
+                  items: categories,
+                  itemBuilder: (category) {
+                    return HomeCategoryCard(category: category);
+                  },
+                  onViewAll: () {},
+                );
+              },
+            ),
 
-                  if (bestSellerState.errorMessage != null) {
-                    return Center(
-                      child: Text(
-                        bestSellerState.errorMessage!,
-                        style: TextStyle(color: AppColors.error),
-                      ),
-                    );
-                  }
+            //BestSellers Section
+            BlocBuilder<HomeViewModel, HomeState>(
+              buildWhen: (previous, current) =>
+              previous.getAllBestSellerState !=
+                  current.getAllBestSellerState,
+              builder: (context, state) {
+                final bestSellerState = state.getAllBestSellerState;
 
-                  final bestSellers = bestSellerState.data ?? [];
+                if (bestSellerState.isLoading == true) {
+                  return const Center(child: CircularProgressIndicator());
+                }
 
-                  return HomeSection(
-                    height: 200,
-                    title: S.current.bestSeller,
-                    items: bestSellers,
-                    itemBuilder: (bestSeller) {
-                      return HomeBestSellerCard(bestSeller: bestSeller);
-                    },
-                    onViewAll: () {},
+                if (bestSellerState.errorMessage != null) {
+                  return Center(
+                    child: Text(
+                      bestSellerState.errorMessage!,
+                      style: TextStyle(color: AppColors.error),
+                    ),
                   );
-                },
-              ),
+                }
 
-              //Occasions Section
-              BlocBuilder<HomeViewModel, HomeState>(
-                buildWhen: (previous, current) =>
-                    previous.getAllOccasionsState !=
-                    current.getAllOccasionsState,
-                builder: (context, state) {
-                  final occasionState = state.getAllOccasionsState;
+                final bestSellers = bestSellerState.data ?? [];
 
-                  if (occasionState.isLoading == true) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
+                return HomeSection(
+                  height: 200,
+                  title: S.current.bestSeller,
+                  items: bestSellers,
+                  itemBuilder: (bestSeller) {
+                    return HomeBestSellerCard(bestSeller: bestSeller);
+                  },
+                  onViewAll: () {},
+                );
+              },
+            ),
 
-                  if (occasionState.errorMessage != null) {
-                    return Center(
-                      child: Text(
-                        occasionState.errorMessage!,
-                        style: TextStyle(color: AppColors.error),
-                      ),
-                    );
-                  }
+            //Occasions Section
+            BlocBuilder<HomeViewModel, HomeState>(
+              buildWhen: (previous, current) =>
+              previous.getAllOccasionsState !=
+                  current.getAllOccasionsState,
+              builder: (context, state) {
+                final occasionState = state.getAllOccasionsState;
 
-                  final occasions = occasionState.data ?? [];
+                if (occasionState.isLoading == true) {
+                  return const Center(child: CircularProgressIndicator());
+                }
 
-                  return HomeSection(
-                    height: 200,
-                    title: S.current.occasion,
-                    items: occasions,
-                    itemBuilder: (occasion) {
-                      return HomeOccasionCard(occasion: occasion);
-                    },
-                    onViewAll: () {},
+                if (occasionState.errorMessage != null) {
+                  return Center(
+                    child: Text(
+                      occasionState.errorMessage!,
+                      style: TextStyle(color: AppColors.error),
+                    ),
                   );
-                },
-              ),
-            ],
-          ),
+                }
+
+                final occasions = occasionState.data ?? [];
+
+                return HomeSection(
+                  height: 200,
+                  title: S.current.occasion,
+                  items: occasions,
+                  itemBuilder: (occasion) {
+                    return HomeOccasionCard(occasion: occasion);
+                  },
+                  onViewAll: () {},
+                );
+              },
+            ),
+          ],
         ),
       ),
 

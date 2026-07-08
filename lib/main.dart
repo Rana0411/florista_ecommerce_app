@@ -10,10 +10,13 @@ import 'package:florista_ecommerce_app/core/localization/florista_localization_d
 import 'package:florista_ecommerce_app/features/app_language/locale_cubit.dart';
 import 'package:florista_ecommerce_app/features/cart/presentation/view_model/cart_cubit.dart';
 import 'package:florista_ecommerce_app/firebase_options.dart';
+import 'package:florista_ecommerce_app/features/cart/presentation/view_model/cart_cubit.dart';
+import 'package:florista_ecommerce_app/features/payment/presentation/view_model/payment_cubit.dart';
 import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,8 +32,15 @@ void main() async {
     ..write(
       key: SecureStorageKeys.token,
       value:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNmExM2E2YjRhMWUyOThmNTU2MjQxZWVjIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3Nzk2NzI3ODJ9.6nftFCvrGfqq-SvN0ubRG_g0sh7LhMRvPLwGT1N-Yho",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNmExM2E2YjRhMWUyOThmNTU2MjQxZWVjIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3Nzk2NzI3ODJ9.6nftFCvrGfqq-SvN0ubRG_g0sh7LhMRvPLwGT1N-Yho",
     );
+
+  SecureStorageService secureStorage = getIt<SecureStorageService>();
+  await secureStorage.write(
+    key: SecureStorageKeys.token,
+    value:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjllMmJmNDg2YmJhZjE1ODhiYmM5MzcyIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3ODEzNTgyNjN9.N0w2E9mBneZ4dS2i7ZcNgfcFQSk8t28fPbClxtY1ljU",
+  );
   runApp(const MyApp());
 }
 
@@ -43,6 +53,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<LocaleCubit>(
           create: (context) => getIt<LocaleCubit>()..getSavedLanguage(),
+        ),
+        BlocProvider<CartCubit>(
+          create: (context) => getIt<CartCubit>()..getCart(),
         ),
       ],
       child: BlocBuilder<LocaleCubit, LocaleState>(
@@ -65,6 +78,7 @@ class MyApp extends StatelessWidget {
             },
             localizationsDelegates: const [
               FloristaLocalizationDelegate(),
+              GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],

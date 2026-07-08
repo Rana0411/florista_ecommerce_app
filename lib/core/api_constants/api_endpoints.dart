@@ -25,7 +25,6 @@ abstract class ApiEndpoints {
   static const String changePassword = '$_baseUrl/auth/change-password';
   static const String cartOfLoggedUSer = "$_baseUrl/cart";
   static const String getProductdetails = "$_baseUrl/product-details";
-
   static const String allOccasions = "$_baseUrl/occasions";
   static const String productsOfOccasion = "$_baseUrl/products";
   static String orderDetails(String orderId) => '/orders/$orderId';

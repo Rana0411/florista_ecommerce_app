@@ -13,6 +13,37 @@ import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../features/address/add_address/api/api_client/add_address_api_client.dart'
+    as _i775;
+import '../../features/address/add_address/api/data_sources/add_address_remote_data_source_impl.dart'
+    as _i683;
+import '../../features/address/add_address/data/data_sources/add_address_remote_data_source_contract.dart'
+    as _i206;
+import '../../features/address/add_address/data/repo/add_address_repo_impl.dart'
+    as _i22;
+import '../../features/address/add_address/domain/repo/add_address_repo_contract.dart'
+    as _i319;
+import '../../features/address/add_address/domain/use_cases/add_address_use_cases.dart'
+    as _i482;
+import '../../features/address/add_address/presentation/cubit/add_address_view_model.dart'
+    as _i303;
+import '../../features/address/saved_address/api/api_client/saved_address_api_client.dart'
+    as _i21;
+import '../../features/address/saved_address/api/data_sources/saved_address_remote_data_source_impl.dart'
+    as _i944;
+import '../../features/address/saved_address/data/data_sources/saved_address_remote_data_source_contract.dart'
+    as _i232;
+import '../../features/address/saved_address/data/repo/saved_address_repo_impl.dart'
+    as _i582;
+import '../../features/address/saved_address/domain/repo/saved_address_repo_contract.dart'
+    as _i619;
+import '../../features/address/saved_address/domain/use_cases/delete_address_use_case.dart'
+    as _i776;
+import '../../features/address/saved_address/domain/use_cases/get_saved_addresses_use_case.dart'
+    as _i1051;
+import '../../features/address/saved_address/presentation/view_model/cubit/saved_address_view_model.dart'
+    as _i387;
+import '../../features/app_language/locale_cubit.dart' as _i707;
 import '../../features/auth/forget_password/api/api_client/forget_password_api_client.dart'
     as _i478;
 import '../../features/auth/forget_password/api/date_source/forget_password_data_source_impl.dart'
@@ -155,6 +186,64 @@ import '../../features/home/domain/use_cases/get_logged_user_addresses_use_case.
     as _i567;
 import '../../features/home/presentation/view_model/home_view_model.dart'
     as _i77;
+import '../../features/log_out/api/api_client/api_client.dart' as _i225;
+import '../../features/log_out/api/data_sources/remote_data_source_impl.dart'
+    as _i175;
+import '../../features/log_out/data/data_sources/remote_data_source_contract.dart'
+    as _i786;
+import '../../features/log_out/data/repo/repo_impl.dart' as _i252;
+import '../../features/log_out/domain/repo/repo_contract.dart' as _i393;
+import '../../features/log_out/domain/use_case/log_out_user.dart' as _i702;
+import '../../features/log_out/presentation/view_model/log_out_cubit.dart'
+    as _i7;
+import '../../features/notifications/data/repo/notification_repo_impl.dart'
+    as _i340;
+import '../../features/notifications/domain/repo/notification_repo_contract.dart'
+    as _i853;
+import '../../features/notifications/domain/use_cases/clear_all_notification.dart'
+    as _i1022;
+import '../../features/notifications/domain/use_cases/delete_notification_use_case.dart'
+    as _i938;
+import '../../features/notifications/domain/use_cases/get_notification_use_case.dart'
+    as _i185;
+import '../../features/notifications/domain/use_cases/get_unread_notification_count.dart'
+    as _i982;
+import '../../features/notifications/domain/use_cases/mark_all_notification_as_read.dart'
+    as _i791;
+import '../../features/notifications/domain/use_cases/mark_notification_read.dart'
+    as _i876;
+import '../../features/notifications/domain/use_cases/save_notification_use_case.dart'
+    as _i473;
+import '../../features/notifications/presentation/view_model/cubit.dart'
+    as _i923;
+import '../../features/occasions/api/api_client/api_client.dart' as _i710;
+import '../../features/occasions/api/data_sources/remote_data_source_impl.dart'
+    as _i1055;
+import '../../features/occasions/data/data_sources/remote_data_source_contract.dart'
+    as _i693;
+import '../../features/occasions/data/repo/occasion_repo_impl.dart' as _i29;
+import '../../features/occasions/domain/repo/occasions_repo_contract.dart'
+    as _i405;
+import '../../features/occasions/domain/use_cases/get_all_occasions_use_case.dart'
+    as _i28;
+import '../../features/occasions/domain/use_cases/get_products_of_occasion.dart'
+    as _i73;
+import '../../features/occasions/presentation/view_model/occasion_cubit.dart'
+    as _i453;
+import '../../features/order_success/api/api_client/order_success_api_client.dart'
+    as _i640;
+import '../../features/order_success/api/data_sources/order_success_remote_data_source_impl.dart'
+    as _i698;
+import '../../features/order_success/data/data_sources/order_success_remote_data_source_contract.dart'
+    as _i299;
+import '../../features/order_success/data/repo/order_success_repo_impl.dart'
+    as _i6;
+import '../../features/order_success/domain/repo/order_success_repo_contract.dart'
+    as _i129;
+import '../../features/order_success/domain/use_cases/get_order_success_details_use_case.dart'
+    as _i159;
+import '../../features/order_success/presentation/view_model/order_success_view_model.dart'
+    as _i761;
 import '../../features/orders/api/api_client/orders_api_client.dart' as _i107;
 import '../../features/orders/api/data_sources/orders_remote_data_source_impl.dart'
     as _i153;
@@ -164,6 +253,17 @@ import '../../features/orders/data/repo/orders_repo_impl.dart' as _i404;
 import '../../features/orders/domain/repo/orders_repo_contract.dart' as _i839;
 import '../../features/orders/domain/use_cases/orders_use_cases.dart' as _i427;
 import '../../features/orders/presentation/cubit/orders_cubit.dart' as _i1028;
+import '../../features/payment/api/api_client/api_client.dart' as _i57;
+import '../../features/payment/api/data-sources/remote_data_source_impl.dart'
+    as _i781;
+import '../../features/payment/data/data_sources/remote_data_source_contract.dart'
+    as _i800;
+import '../../features/payment/data/repo/repo_impl.dart' as _i810;
+import '../../features/payment/domain/repo/repo_contract.dart' as _i380;
+import '../../features/payment/domain/use_cases/create_checkout_session_use_case.dart'
+    as _i773;
+import '../../features/payment/presentation/view_model/payment_cubit.dart'
+    as _i517;
 import '../../features/product_details/api/product_details_api_client.dart'
     as _i218;
 import '../../features/product_details/api/product_details_remote_data_source_impl.dart'
@@ -192,6 +292,7 @@ import '../../features/profile/presentation/view_model/profile_view_model.dart'
 import '../auth_interceptor/auth_interceptor.dart' as _i988;
 import '../dio/dio_module.dart' as _i977;
 import '../hive/hive_service.dart' as _i746;
+import '../notification/firebase_notification_service.dart' as _i492;
 import '../secure_storage/secure_storage_service.dart' as _i611;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -209,9 +310,48 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i988.AuthInterceptor>(
       () => _i988.AuthInterceptor(gh<_i611.SecureStorageService>()),
     );
+    gh.lazySingleton<_i853.NotificationRepoContract>(
+      () => _i340.NotificationRepoImpl(gh<_i611.SecureStorageService>()),
+    );
     gh.singleton<_i361.Dio>(() => dioModule.dio(gh<_i988.AuthInterceptor>()));
+    gh.singleton<_i707.LocaleCubit>(
+      () => _i707.LocaleCubit(gh<_i611.SecureStorageService>()),
+    );
     gh.factory<_i349.LoginLocalDataSource>(
       () => _i349.LoginLocalDataSourceImpl(gh<_i611.SecureStorageService>()),
+    );
+    gh.factory<_i1022.ClearAllNotificationsUseCase>(
+      () => _i1022.ClearAllNotificationsUseCase(
+        gh<_i853.NotificationRepoContract>(),
+      ),
+    );
+    gh.factory<_i938.DeleteNotificationUseCase>(
+      () =>
+          _i938.DeleteNotificationUseCase(gh<_i853.NotificationRepoContract>()),
+    );
+    gh.factory<_i185.GetNotificationsUseCase>(
+      () => _i185.GetNotificationsUseCase(gh<_i853.NotificationRepoContract>()),
+    );
+    gh.factory<_i982.GetUnreadNotificationCountUseCase>(
+      () => _i982.GetUnreadNotificationCountUseCase(
+        gh<_i853.NotificationRepoContract>(),
+      ),
+    );
+    gh.factory<_i791.MarkAllNotificationsAsReadUseCase>(
+      () => _i791.MarkAllNotificationsAsReadUseCase(
+        gh<_i853.NotificationRepoContract>(),
+      ),
+    );
+    gh.factory<_i876.MarkNotificationAsReadUseCase>(
+      () => _i876.MarkNotificationAsReadUseCase(
+        gh<_i853.NotificationRepoContract>(),
+      ),
+    );
+    gh.factory<_i473.SaveNotificationUseCase>(
+      () => _i473.SaveNotificationUseCase(gh<_i853.NotificationRepoContract>()),
+    );
+    gh.lazySingleton<_i21.SavedAddressApiClient>(
+      () => _i21.SavedAddressApiClient(gh<_i361.Dio>()),
     );
     gh.lazySingleton<_i375.BestSellerApiClient>(
       () => _i375.BestSellerApiClient(gh<_i361.Dio>()),
@@ -234,14 +374,20 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i592.HomeApiClient>(
       () => _i592.HomeApiClient(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i225.ApiClient>(() => _i225.ApiClient(gh<_i361.Dio>()));
+    gh.lazySingleton<_i710.ApiClient>(() => _i710.ApiClient(gh<_i361.Dio>()));
     gh.lazySingleton<_i107.OrdersApiClient>(
       () => _i107.OrdersApiClient(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i57.ApiClient>(() => _i57.ApiClient(gh<_i361.Dio>()));
     gh.lazySingleton<_i218.ProductDetailsApiClient>(
       () => _i218.ProductDetailsApiClient(gh<_i361.Dio>()),
     );
     gh.lazySingleton<_i699.ProfileApiClient>(
       () => _i699.ProfileApiClient(gh<_i361.Dio>()),
+    );
+    gh.singleton<_i775.AddAddressApiClient>(
+      () => _i775.AddAddressApiClient(gh<_i361.Dio>()),
     );
     gh.singleton<_i478.ForgetPasswordApiClient>(
       () => _i478.ForgetPasswordApiClient(gh<_i361.Dio>()),
@@ -256,6 +402,19 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i447.CartRemoteDataSourceContract>(
       () =>
           _i866.CartRemoteDataSourceImpl(apiClient: gh<_i673.CartApiClient>()),
+    );
+    gh.factory<_i640.OrderSuccessApiClient>(
+      () => _i640.OrderSuccessApiClient(gh<_i361.Dio>()),
+    );
+    gh.factory<_i923.NotificationsCubit>(
+      () => _i923.NotificationsCubit(
+        getNotifications: gh<_i185.GetNotificationsUseCase>(),
+        markAsRead: gh<_i876.MarkNotificationAsReadUseCase>(),
+        markAllAsRead: gh<_i791.MarkAllNotificationsAsReadUseCase>(),
+        deleteNotification: gh<_i938.DeleteNotificationUseCase>(),
+        clearAll: gh<_i1022.ClearAllNotificationsUseCase>(),
+        getUnreadCount: gh<_i982.GetUnreadNotificationCountUseCase>(),
+      ),
     );
     gh.factory<_i754.SignUpRepoContract>(
       () => _i437.SignUpRepoImpl(gh<_i505.SignUpRemoteDataSourceContract>()),
@@ -275,11 +434,17 @@ extension GetItInjectableX on _i174.GetIt {
         profileApiClient: gh<_i699.ProfileApiClient>(),
       ),
     );
+    gh.factory<_i800.RemoteDataSourceContract>(
+      () => _i781.RemoteDataSourceImpl(apiClient: gh<_i57.ApiClient>()),
+    );
     gh.factory<_i520.LoginRemoteDataSource>(
       () => _i520.LoginRemoteDataSourceImpl(gh<_i950.ApiClient>()),
     );
     gh.factory<_i605.SignUpUseCases>(
       () => _i605.SignUpUseCases(gh<_i754.SignUpRepoContract>()),
+    );
+    gh.factory<_i786.LogOutRemoteDataSourceContract>(
+      () => _i175.LogOutRemoteDataSourceImpl(apiClient: gh<_i225.ApiClient>()),
     );
     gh.factory<_i557.SignUpViewModel>(
       () => _i557.SignUpViewModel(
@@ -300,10 +465,23 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i27.OrdersRemoteDataSourceContract>(
       () => _i153.OrdersRemoteDataSourceImpl(gh<_i107.OrdersApiClient>()),
     );
+    gh.factory<_i693.RemoteDataSourceContract>(
+      () => _i1055.RemoteDataSourceImpl(apiClient: gh<_i710.ApiClient>()),
+    );
     gh.factory<_i63.CartRepoContract>(
       () => _i234.CartRepoImpl(
         cartRemoteDataSourceContract: gh<_i447.CartRemoteDataSourceContract>(),
         secureStorageService: gh<_i611.SecureStorageService>(),
+      ),
+    );
+    gh.factory<_i206.AddAddressRemoteDataSourceContract>(
+      () => _i683.AddAddressRemoteDataSourceImpl(
+        addAddressApiClient: gh<_i775.AddAddressApiClient>(),
+      ),
+    );
+    gh.factory<_i232.SavedAddressRemoteDataSourceContract>(
+      () => _i944.SavedAddressRemoteDataSourceImpl(
+        savedAddressApiClient: gh<_i21.SavedAddressApiClient>(),
       ),
     );
     gh.factory<_i170.ForgetPasswordDataSourceContract>(
@@ -317,10 +495,21 @@ extension GetItInjectableX on _i174.GetIt {
             gh<_i502.ProductsRemoteDataSourceContract>(),
       ),
     );
+    gh.factory<_i393.LogOutRepoContract>(
+      () => _i252.RepoImpl(
+        remoteDataSource: gh<_i786.LogOutRemoteDataSourceContract>(),
+        secureStorageService: gh<_i611.SecureStorageService>(),
+      ),
+    );
     gh.factory<_i632.LoginRepo>(
       () => _i1001.LoginRepoImpl(
         gh<_i520.LoginRemoteDataSource>(),
         gh<_i349.LoginLocalDataSource>(),
+      ),
+    );
+    gh.factory<_i299.OrderSuccessRemoteDataSourceContract>(
+      () => _i698.OrderSuccessRemoteDataSourceImpl(
+        gh<_i640.OrderSuccessApiClient>(),
       ),
     );
     gh.factory<_i582.HomeRemoteDataSourceContract>(
@@ -331,6 +520,16 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i1025.ProductDetailsRemoteDataSourceContract>(
       () => _i546.ProductDetailsRemoteDataSourceImpl(
         gh<_i218.ProductDetailsApiClient>(),
+      ),
+    );
+    gh.lazySingleton<_i492.FirebaseNotificationService>(
+      () => _i492.FirebaseNotificationService(
+        gh<_i473.SaveNotificationUseCase>(),
+      ),
+    );
+    gh.factory<_i405.OccasionsRepoContract>(
+      () => _i29.OccasionRepoImpl(
+        remoteDataSourceContract: gh<_i693.RemoteDataSourceContract>(),
       ),
     );
     gh.factory<_i665.ForgetPasswordRepoContract>(
@@ -349,9 +548,21 @@ extension GetItInjectableX on _i174.GetIt {
         editProfileApiClient: gh<_i690.EditProfileApiClient>(),
       ),
     );
+    gh.factory<_i619.SavedAddressRepoContract>(
+      () => _i582.SavedAddressRepoImpl(
+        savedAddressRemoteDataSourceContract:
+            gh<_i232.SavedAddressRemoteDataSourceContract>(),
+      ),
+    );
     gh.factory<_i293.GetProductsByCategoryUseCase>(
       () => _i293.GetProductsByCategoryUseCase(
         productsRepoContract: gh<_i747.ProductsRepoContract>(),
+      ),
+    );
+    gh.factory<_i319.AddAddressRepoContract>(
+      () => _i22.AddAddressRepoImpl(
+        addAddressRemoteDataSource:
+            gh<_i206.AddAddressRemoteDataSourceContract>(),
       ),
     );
     gh.lazySingleton<_i338.ProductDetailsRepoContract>(
@@ -392,8 +603,23 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i839.OrdersRepoContract>(
       () => _i404.OrdersRepoImpl(gh<_i27.OrdersRemoteDataSourceContract>()),
     );
+    gh.factory<_i482.AddAddressUseCase>(
+      () => _i482.AddAddressUseCase(
+        addAddressRepo: gh<_i319.AddAddressRepoContract>(),
+      ),
+    );
+    gh.factory<_i482.GetAddressesUseCase>(
+      () => _i482.GetAddressesUseCase(
+        addAddressRepo: gh<_i319.AddAddressRepoContract>(),
+      ),
+    );
     gh.factory<_i629.LoginCubit>(
       () => _i629.LoginCubit(gh<_i817.LoginUseCase>()),
+    );
+    gh.factory<_i380.RepoContract>(
+      () => _i810.RepoImpl(
+        remoteDataSource: gh<_i800.RemoteDataSourceContract>(),
+      ),
     );
     gh.factory<_i949.BestSellerRepoContract>(
       () => _i1026.BestSellerRepoImpl(
@@ -410,6 +636,16 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i706.CategoriesRepoImpl(
         categoriesRemoteDataSourceContract:
             gh<_i72.CategoriesRemoteDataSourceContract>(),
+      ),
+    );
+    gh.factory<_i776.DeleteAddressUseCase>(
+      () => _i776.DeleteAddressUseCase(
+        savedAddressRepoContract: gh<_i619.SavedAddressRepoContract>(),
+      ),
+    );
+    gh.factory<_i1051.GetSavedAddressesUseCase>(
+      () => _i1051.GetSavedAddressesUseCase(
+        savedAddressRepoContract: gh<_i619.SavedAddressRepoContract>(),
       ),
     );
     gh.factory<_i427.GetUserOrdersUseCase>(
@@ -431,6 +667,11 @@ extension GetItInjectableX on _i174.GetIt {
         editProfileRepoContract: gh<_i131.EditProfileRepoContract>(),
       ),
     );
+    gh.factory<_i129.OrderSuccessRepoContract>(
+      () => _i6.OrderSuccessRepoImpl(
+        gh<_i299.OrderSuccessRemoteDataSourceContract>(),
+      ),
+    );
     gh.factory<_i70.EditProfileViewModel>(
       () => _i70.EditProfileViewModel(
         uploadProfileData: gh<_i600.UploadProfileDataUseCase>(),
@@ -442,6 +683,25 @@ extension GetItInjectableX on _i174.GetIt {
         changePasswordRemoteDataSourceContract:
             gh<_i365.ChangePasswordRemoteDataSourceContract>(),
       ),
+    );
+    gh.factory<_i387.SavedAddressViewModel>(
+      () => _i387.SavedAddressViewModel(
+        getSavedAddressesUseCase: gh<_i1051.GetSavedAddressesUseCase>(),
+        deleteAddressUseCase: gh<_i776.DeleteAddressUseCase>(),
+      ),
+    );
+    gh.factory<_i73.GetProductsOfOccasion>(
+      () => _i73.GetProductsOfOccasion(
+        repoContract: gh<_i405.OccasionsRepoContract>(),
+      ),
+    );
+    gh.factory<_i159.GetOrderSuccessDetailsUseCase>(
+      () => _i159.GetOrderSuccessDetailsUseCase(
+        gh<_i129.OrderSuccessRepoContract>(),
+      ),
+    );
+    gh.factory<_i773.CreateCheckoutSessionUseCase>(
+      () => _i773.CreateCheckoutSessionUseCase(repo: gh<_i380.RepoContract>()),
     );
     gh.factory<_i758.GetAllBestSellerUseCase>(
       () => _i758.GetAllBestSellerUseCase(
@@ -463,6 +723,20 @@ extension GetItInjectableX on _i174.GetIt {
         homeRepoContract: gh<_i396.HomeRepoContract>(),
       ),
     );
+    gh.factory<_i303.AddAddressViewModel>(
+      () => _i303.AddAddressViewModel(
+        addAddressUseCase: gh<_i482.AddAddressUseCase>(),
+        getAddressesUseCase: gh<_i482.GetAddressesUseCase>(),
+      ),
+    );
+    gh.factory<_i702.LogOutUserUseCase>(
+      () => _i702.LogOutUserUseCase(gh<_i393.LogOutRepoContract>()),
+    );
+    gh.factory<_i28.GetAllOccasionsUseCase>(
+      () => _i28.GetAllOccasionsUseCase(
+        occasionRepoContract: gh<_i405.OccasionsRepoContract>(),
+      ),
+    );
     gh.factory<_i37.GetProductDetailsUseCase>(
       () =>
           _i37.GetProductDetailsUseCase(gh<_i338.ProductDetailsRepoContract>()),
@@ -479,6 +753,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i722.GetBestSellerUseCase>(
       () => _i722.GetBestSellerUseCase(
         bestSellerRepoContract: gh<_i949.BestSellerRepoContract>(),
+      ),
+    );
+    gh.factory<_i517.PaymentCubit>(
+      () => _i517.PaymentCubit(
+        createCheckoutSessionUseCase: gh<_i773.CreateCheckoutSessionUseCase>(),
       ),
     );
     gh.factory<_i1028.OrdersCubit>(
@@ -526,6 +805,12 @@ extension GetItInjectableX on _i174.GetIt {
         getUserDataUseCase: gh<_i941.GetUserDataUseCase>(),
       ),
     );
+    gh.factory<_i453.OccasionCubit>(
+      () => _i453.OccasionCubit(
+        getOccasionsUseCase: gh<_i28.GetAllOccasionsUseCase>(),
+        getProductsOfOccasion: gh<_i73.GetProductsOfOccasion>(),
+      ),
+    );
     gh.factory<_i77.HomeViewModel>(
       () => _i77.HomeViewModel(
         getAllCategoriesUseCase: gh<_i431.GetAllCategoriesUseCase>(),
@@ -534,6 +819,9 @@ extension GetItInjectableX on _i174.GetIt {
         getLoggedUserAddressesUseCase:
             gh<_i567.GetLoggedUserAddressesUseCase>(),
       ),
+    );
+    gh.factory<_i7.LogOutCubit>(
+      () => _i7.LogOutCubit(gh<_i702.LogOutUserUseCase>()),
     );
     gh.factory<_i939.ChangePasswordViewModel>(
       () => _i939.ChangePasswordViewModel(
@@ -544,6 +832,11 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i550.CategoriesCubit(
         getCategoriesUseCase: gh<_i900.GetCategoriesUseCase>(),
         getProductsByCategoryUseCase: gh<_i293.GetProductsByCategoryUseCase>(),
+      ),
+    );
+    gh.factory<_i761.OrderSuccessViewModel>(
+      () => _i761.OrderSuccessViewModel(
+        gh<_i159.GetOrderSuccessDetailsUseCase>(),
       ),
     );
     gh.factory<_i835.BestSellerViewModel>(

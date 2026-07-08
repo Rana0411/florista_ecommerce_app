@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "EGB": MessageLookupByLibrary.simpleMessage("EGB"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("About us"),
+        "addAddress": MessageLookupByLibrary.simpleMessage("Add address"),
         "addToCart": MessageLookupByLibrary.simpleMessage("Add to cart"),
         "addedToCart": MessageLookupByLibrary.simpleMessage("Added to cart!"),
         "allPricesIncludeTax":
@@ -38,11 +39,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "bestSeller": MessageLookupByLibrary.simpleMessage("Best seller"),
         "bouquetInclude":
             MessageLookupByLibrary.simpleMessage("Bouquet include"),
+        "callDriver": MessageLookupByLibrary.simpleMessage("Call Driver"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "cartTitle": m0,
         "categories": MessageLookupByLibrary.simpleMessage("Categories"),
         "change": MessageLookupByLibrary.simpleMessage("change"),
+        "changeLanguage":
+            MessageLookupByLibrary.simpleMessage("Change Language"),
         "changePassword":
             MessageLookupByLibrary.simpleMessage("Change password"),
+        "checkout": MessageLookupByLibrary.simpleMessage("Checkout"),
         "close": MessageLookupByLibrary.simpleMessage("Close"),
         "codeIsRequired":
             MessageLookupByLibrary.simpleMessage("Code is required"),
@@ -73,6 +79,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Didn\'t receive the code?"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
+        "driverWillBeAssignedShortly": MessageLookupByLibrary.simpleMessage(
+            "Driver will be assigned shortly"),
+        "editAddress": MessageLookupByLibrary.simpleMessage("Edit address"),
         "editProfile": MessageLookupByLibrary.simpleMessage("Edit profile"),
         "egp": MessageLookupByLibrary.simpleMessage("EGP"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
@@ -118,10 +127,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidCode": MessageLookupByLibrary.simpleMessage("Invalid code"),
         "isYourDeliveryHeroForToday": MessageLookupByLibrary.simpleMessage(
             "Is your delivery hero for today"),
+        "label": MessageLookupByLibrary.simpleMessage("Label (e.g. Home)"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "lastName": MessageLookupByLibrary.simpleMessage("Last name"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+        "logoutConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to log out of your account?"),
+        "logoutFailed": MessageLookupByLibrary.simpleMessage(
+            "Logout failed. Please try again."),
+        "logoutSuccessful":
+            MessageLookupByLibrary.simpleMessage("Logout successful"),
+        "logoutTitle": MessageLookupByLibrary.simpleMessage("Log Out"),
         "male": MessageLookupByLibrary.simpleMessage("Male"),
         "mustBeAtLeast3Characters": MessageLookupByLibrary.simpleMessage(
             "Must be at least 3 characters"),
@@ -131,6 +148,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "newPassword": MessageLookupByLibrary.simpleMessage("New password"),
         "noEmail": MessageLookupByLibrary.simpleMessage("No email"),
         "noName": MessageLookupByLibrary.simpleMessage("No name"),
+        "noOccasionFounds":
+            MessageLookupByLibrary.simpleMessage("No occasions found"),
         "noUserData": MessageLookupByLibrary.simpleMessage("No user data"),
         "noValueKeyFound":
             MessageLookupByLibrary.simpleMessage("No value found for key: "),
@@ -138,9 +157,17 @@ class MessageLookup extends MessageLookupByLibrary {
             "Requested resource not found."),
         "notification": MessageLookupByLibrary.simpleMessage("Notification"),
         "occasion": MessageLookupByLibrary.simpleMessage("Occasion"),
+        "occassions": MessageLookupByLibrary.simpleMessage("Occasions"),
         "onlyLettersAllowed":
             MessageLookupByLibrary.simpleMessage("Only letters allowed"),
         "openInMaps": MessageLookupByLibrary.simpleMessage("Open in Maps"),
+        "orderDelivered":
+            MessageLookupByLibrary.simpleMessage("Order Delivered"),
+        "orderDeliveredConfirmationMessage":
+            MessageLookupByLibrary.simpleMessage(
+                "Thanks for confirming! Enjoy your flowers 🌸"),
+        "orderPlacedSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "Your order placed\nsuccessfully!"),
         "outForDelivery":
             MessageLookupByLibrary.simpleMessage("Out for delivery"),
         "outOfStock": MessageLookupByLibrary.simpleMessage("Out of stock"),
@@ -151,6 +178,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Password must not be empty and must contain at least 6 characters with upper case letter and one digit"),
         "paswordNotMatched":
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
+        "paymentCancelled":
+            MessageLookupByLibrary.simpleMessage("Payment cancelled"),
+        "paymentNotCompleted":
+            MessageLookupByLibrary.simpleMessage("Payment  wasnt completed"),
+        "paymentSuccessful":
+            MessageLookupByLibrary.simpleMessage("Payment successful!"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone number"),
         "plusCode": MessageLookupByLibrary.simpleMessage("Plus Code"),
         "preparingYourOrder":
@@ -167,6 +200,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Request timed out. Please try again."),
         "resend": MessageLookupByLibrary.simpleMessage("Resend"),
         "resendCode": MessageLookupByLibrary.simpleMessage("Resend"),
+        "save": MessageLookupByLibrary.simpleMessage("Save"),
         "savedAddress": MessageLookupByLibrary.simpleMessage("Saved address"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "secureStorageErrorMessage": MessageLookupByLibrary.simpleMessage(
@@ -178,6 +212,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "signUpSuccess":
             MessageLookupByLibrary.simpleMessage("Sign up success"),
+        "sloganOfoccasion": MessageLookupByLibrary.simpleMessage(
+            "Bloom with our exquisite best sellers"),
         "somethineWentWrong": MessageLookupByLibrary.simpleMessage(
             "Something went wrong Try again later"),
         "splashTagline": MessageLookupByLibrary.simpleMessage(
@@ -186,8 +222,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "subTotal": MessageLookupByLibrary.simpleMessage("Sub Total"),
         "termsConditions":
             MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
+        "textDriver": MessageLookupByLibrary.simpleMessage("Text Driver"),
         "total": MessageLookupByLibrary.simpleMessage("Total"),
         "trackOrder": MessageLookupByLibrary.simpleMessage("Track order"),
+        "unableToLoadOrderDetails": MessageLookupByLibrary.simpleMessage(
+            "Unable to load order details"),
         "update": MessageLookupByLibrary.simpleMessage("Update"),
         "viewAll": MessageLookupByLibrary.simpleMessage("View All"),
         "virson": MessageLookupByLibrary.simpleMessage("v 6.3.0 - (446)")

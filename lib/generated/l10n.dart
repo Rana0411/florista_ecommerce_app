@@ -1150,26 +1150,6 @@ class S {
     );
   }
 
-  /// `Cancel`
-  String get cancel {
-    return Intl.message(
-      'Cancel',
-      name: 'cancel',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Change Language`
-  String get changeLanguage {
-    return Intl.message(
-      'Change Language',
-      name: 'changeLanguage',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Email is required`
   String get emailIsRequired {
     return Intl.message(
@@ -1225,6 +1205,16 @@ class S {
     return Intl.message(
       'Password',
       name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Language`
+  String get changeLanguage {
+    return Intl.message(
+      'Change Language',
+      name: 'changeLanguage',
       desc: '',
       args: [],
     );
@@ -1325,6 +1315,116 @@ class S {
     return Intl.message(
       'Thanks for confirming! Enjoy your flowers 🌸',
       name: 'orderDeliveredConfirmationMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment successful!`
+  String get paymentSuccessful {
+    return Intl.message(
+      'Payment successful!',
+      name: 'paymentSuccessful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment cancelled`
+  String get paymentCancelled {
+    return Intl.message(
+      'Payment cancelled',
+      name: 'paymentCancelled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment  wasnt completed`
+  String get paymentNotCompleted {
+    return Intl.message(
+      'Payment  wasnt completed',
+      name: 'paymentNotCompleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Checkout`
+  String get checkout {
+    return Intl.message(
+      'Checkout',
+      name: 'checkout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add address`
+  String get addAddress {
+    return Intl.message(
+      'Add address',
+      name: 'addAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit address`
+  String get editAddress {
+    return Intl.message(
+      'Edit address',
+      name: 'editAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Label (e.g. Home)`
+  String get label {
+    return Intl.message(
+      'Label (e.g. Home)',
+      name: 'label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get save {
+    return Intl.message(
+      'Save',
+      name: 'save',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your order placed\nsuccessfully!`
+  String get orderPlacedSuccessfully {
+    return Intl.message(
+      'Your order placed\nsuccessfully!',
+      name: 'orderPlacedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unable to load order details`
+  String get unableToLoadOrderDetails {
+    return Intl.message(
+      'Unable to load order details',
+      name: 'unableToLoadOrderDetails',
       desc: '',
       args: [],
     );
