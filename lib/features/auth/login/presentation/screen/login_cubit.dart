@@ -15,10 +15,15 @@ class LoginCubit extends Cubit<BaseState<LoginEntity>> {
   Future<void> login({
     required String email,
     required String password,
+    required bool rememberMe,
   }) async {
     emit(state.copyWith(isLoading: true, errorMessage: null));
 
-    final response = await _loginUseCase(email: email, password: password);
+    final response = await _loginUseCase(
+      email: email,
+      password: password,
+      rememberMe: rememberMe,
+    );
 
     emit(ResponseToStateMapper.handle(response));
   }

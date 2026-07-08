@@ -12,6 +12,7 @@ class LoginUseCase {
   Future<BaseResponse<LoginEntity>> call({
     required String email,
     required String password,
+    required bool rememberMe,
   }) =>
-      _loginRepo.login(email: email, password: password);
+      _loginRepo.login(email: email, password: password, rememberMe: rememberMe);
 }

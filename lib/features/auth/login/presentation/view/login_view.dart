@@ -3,6 +3,7 @@ import 'package:florista_ecommerce_app/config/di/di.dart';
 import 'package:florista_ecommerce_app/config/text_field_validator.dart';
 import 'package:florista_ecommerce_app/core/router/route_path.dart';
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
+import 'package:florista_ecommerce_app/features/auth/login/data/data_source/login_local_data_source.dart';
 import 'package:florista_ecommerce_app/features/auth/login/domain/entity/login_entity.dart';
 import 'package:florista_ecommerce_app/features/auth/login/presentation/widget/login_form_section.dart';
 import 'package:florista_ecommerce_app/generated/l10n.dart';
@@ -42,6 +43,27 @@ class _LoginBodyState extends State<_LoginBody> {
   bool _rememberMe = false;
 
   @override
+  void initState() {
+    super.initState();
+    _loadRememberedCredentials();
+  }
+
+  /// Pre-fills the form and checks the box if a previous login was saved
+  /// with "remember me" checked.
+  Future<void> _loadRememberedCredentials() async {
+    final localDataSource = getIt<LoginLocalDataSource>();
+    final remembered = await localDataSource.getRememberedCredentials();
+
+    if (!mounted || !remembered.rememberMe) return;
+
+    setState(() {
+      _rememberMe = true;
+      _emailController.text = remembered.email ?? '';
+      _passwordController.text = remembered.password ?? '';
+    });
+  }
+
+  @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
@@ -53,6 +75,7 @@ class _LoginBodyState extends State<_LoginBody> {
       context.read<LoginCubit>().login(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
+        rememberMe: _rememberMe,
       );
     }
   }

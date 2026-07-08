@@ -18,23 +18,40 @@ class LoginRepoImpl implements LoginRepo {
   Future<BaseResponse<LoginEntity>> login({
     required String email,
     required String password,
+    required bool rememberMe,
   }) async {
     final result = await _remoteDataSource.login(
       LoginRequestModel(email: email, password: password),
     );
 
     return switch (result) {
-      SuccessBaseResponse(:final data) => _persistToken(data.toEntity()),
+      SuccessBaseResponse(:final data) => _onLoginSuccess(
+          data.toEntity(),
+          email: email,
+          password: password,
+          rememberMe: rememberMe,
+        ),
       ErrorBaseResponse(:final error, :final errorMessage) =>
           ErrorBaseResponse(error: error, errorMessage: errorMessage),
     };
   }
 
-  /// Persists the token via [LoginLocalDataSource].
-  Future<BaseResponse<LoginEntity>> _persistToken(LoginEntity entity) async {
+  /// Persists the token and (if [rememberMe]) the credentials, via
+  /// [LoginLocalDataSource].
+  Future<BaseResponse<LoginEntity>> _onLoginSuccess(
+      LoginEntity entity, {
+        required String email,
+        required String password,
+        required bool rememberMe,
+      }) async {
     if (entity.token != null) {
-      await _localDataSource.persistToken(entity.token!);
+      await _localDataSource.persistToken(entity.token!, rememberMe: rememberMe);
     }
+    await _localDataSource.persistCredentials(
+      email: email,
+      password: password,
+      rememberMe: rememberMe,
+    );
     return SuccessBaseResponse(data: entity);
   }
 }

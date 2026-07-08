@@ -29,7 +29,7 @@ void main() async {
   final hive = getIt<HiveService>();
   await hive.init();
   await getIt<SecureStorageService>()
-    ..write(
+    .write(
       key: SecureStorageKeys.token,
       value:
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNmExM2E2YjRhMWUyOThmNTU2MjQxZWVjIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3Nzk2NzI3ODJ9.6nftFCvrGfqq-SvN0ubRG_g0sh7LhMRvPLwGT1N-Yho",
