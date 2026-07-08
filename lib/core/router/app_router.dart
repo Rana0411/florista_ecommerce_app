@@ -4,6 +4,7 @@ import 'package:florista_ecommerce_app/core/router/route_path.dart';
 import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/screens/forget_password_view.dart';
 import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/screens/reset_password_view.dart';
 import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/screens/validation_code_view.dart';
+import 'package:florista_ecommerce_app/features/best_seller/presentation/screens/best_seller_view.dart';
 import 'package:florista_ecommerce_app/features/cart/presentation/view/screens/cart_view.dart';
 import 'package:florista_ecommerce_app/features/auth/login/presentation/view/login_view.dart';
 import 'package:florista_ecommerce_app/features/auth/sign-up/presentation/screens/sign_up_screen.dart';
@@ -20,6 +21,8 @@ import 'package:florista_ecommerce_app/features/home/presentation/view_model/hom
 import 'package:florista_ecommerce_app/features/home/presentation/view_model/home_view_model.dart';
 import 'package:florista_ecommerce_app/features/notifications/presentation/view_model/cubit.dart';
 import 'package:florista_ecommerce_app/features/notifications/presentation/views/notification_view.dart';
+import 'package:florista_ecommerce_app/features/order_success/presentation/view/order_success_view.dart';
+import 'package:florista_ecommerce_app/features/order_success/presentation/view_model/order_success_view_model.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/view/profile_view.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/view_model/profile_events.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/view_model/profile_view_model.dart';
@@ -79,11 +82,6 @@ abstract class AppRouter {
         },
       ),
       GoRoute(
-        path: RoutePath.occasions,
-        builder: (context, state) =>
-            OccasionScreen(occasionCubit: getIt.get<OccasionCubit>()),
-      ),
-      GoRoute(
         path: RoutePath.categories,
         builder: (context, state) => BlocProvider(
           create: (_) => CategoriesCubit(
@@ -94,11 +92,10 @@ abstract class AppRouter {
         ),
       ),
       GoRoute(path: RoutePath.cart, builder: (context, state) => CartView()),
-      // GoRoute(
-      //   path: RoutePath.bestSeller,
-      //   builder: (context, state) => BestSellerView(),
-      // ),
-      GoRoute(path: RoutePath.cart, builder: (context, state) => CartView()),
+      GoRoute(
+        path: RoutePath.bestSeller,
+        builder: (context, state) => BestSellerView(),
+      ),
       GoRoute(
         path: RoutePath.productDetails,
         builder: (context, state) {
@@ -156,11 +153,20 @@ abstract class AppRouter {
           final orderId = state.extra as String?;
           return TrackOrderView(orderId: orderId);
         },
-
       ),
       GoRoute(
         path: RoutePath.addAddressView,
         builder: (context, state) => const AddAddressView(),
+      ),
+      GoRoute(
+        path: RoutePath.orderSuccess,
+        builder: (context, state) {
+          final orderId = state.extra as String?;
+          return BlocProvider(
+            create: (context) => getIt.get<OrderSuccessViewModel>(),
+            child: OrderSuccessView(orderId: orderId),
+          );
+        },
       ),
     ],
   );

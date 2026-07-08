@@ -1,4 +1,5 @@
 import 'package:florista_ecommerce_app/core/router/nav_helper.dart';
+import 'package:florista_ecommerce_app/core/router/route_path.dart';
 import 'package:florista_ecommerce_app/core/shared_widgets/custom_buttom_navigation_bar.dart';
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/core/utils/assets_manager.dart';
@@ -45,7 +46,10 @@ class _ProfileViewState extends State<ProfileView> {
 
             Spacer(),
 
-            Icon(Icons.notifications_outlined),
+            IconButton(
+              icon: const Icon(Icons.notifications_outlined),
+              onPressed: () => context.push(RoutePath.notification),
+            ),
           ],
         ),
       ),
@@ -56,21 +60,21 @@ class _ProfileViewState extends State<ProfileView> {
             children: [
               ProfileUserDataColumn(),
 
-
               SizedBox(height: 32),
 
+              // My orders
               // My orders
               ProfileTile(
                 icon: Icons.book_outlined,
                 title: S.current.myOrders,
-                onTap: () {},
+                onTap: () => context.push(RoutePath.myOrders),
               ),
 
               // Saved address
               ProfileTile(
                 icon: Icons.place_outlined,
                 title: S.current.savedAddress,
-                onTap: () {},
+                onTap: () => context.push(RoutePath.addAddressView),
               ),
 
               Divider(),
@@ -81,7 +85,7 @@ class _ProfileViewState extends State<ProfileView> {
               Divider(),
 
               //TODO: Apply Language Logic here @Rana0411
-              LanguageTile(),
+              LanguageTile(onPressed: () {}),
 
               // About us
               ProfileTile(

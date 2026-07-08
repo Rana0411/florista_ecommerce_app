@@ -72,7 +72,7 @@ class _OrderSuccessViewState extends State<OrderSuccessView> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () => context.push(RoutePath.myOrders),
+                  onPressed: () => context.push(RoutePath.trackOrder),
                   child: Text(l10n.trackOrder),
                 ),
               ),
