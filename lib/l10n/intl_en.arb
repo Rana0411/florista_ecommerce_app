@@ -129,7 +129,6 @@
   "password": "Password",
 
 
-  "changeLanguage": "Change Language",
   "addToCart": "Add to cart",
   "EGB": "EGB",
   "occassions": "Occasions",
@@ -139,5 +138,7 @@
   "callDriver": "Call Driver",
   "textDriver": "Text Driver",
   "driverWillBeAssignedShortly": "Driver will be assigned shortly",
-  "orderDeliveredConfirmationMessage": "Thanks for confirming! Enjoy your flowers 🌸"
+  "orderDeliveredConfirmationMessage": "Thanks for confirming! Enjoy your flowers 🌸",
+  "orderPlacedSuccessfully": "Your order placed\nsuccessfully!",
+  "unableToLoadOrderDetails": "Unable to load order details"
 }
