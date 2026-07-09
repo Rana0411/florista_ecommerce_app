@@ -15,6 +15,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/router/route_path.dart';
+
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
   @override
@@ -86,7 +88,7 @@ class _HomeViewState extends State<HomeView> {
                   itemBuilder: (category) {
                     return HomeCategoryCard(category: category);
                   },
-                  onViewAll: () {},
+                  onViewAll: () => context.push(RoutePath.categories),
                 );
               },
             ),
@@ -121,7 +123,7 @@ class _HomeViewState extends State<HomeView> {
                   itemBuilder: (bestSeller) {
                     return HomeBestSellerCard(bestSeller: bestSeller);
                   },
-                  onViewAll: () {},
+                  onViewAll: () => context.push(RoutePath.bestSeller)
                 );
               },
             ),
@@ -156,7 +158,7 @@ class _HomeViewState extends State<HomeView> {
                   itemBuilder: (occasion) {
                     return HomeOccasionCard(occasion: occasion);
                   },
-                  onViewAll: () {},
+                  onViewAll: () => context.push(RoutePath.occasions),
                 );
               },
             ),

@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart' show Firebase;
 import 'package:florista_ecommerce_app/config/di/di.dart';
 import 'package:florista_ecommerce_app/config/hive/hive_service.dart';
 import 'package:florista_ecommerce_app/config/secure_storage/secure_storage_service.dart';
-import 'package:florista_ecommerce_app/core/app_keys/secure_storage_keys.dart';
 import 'package:florista_ecommerce_app/core/router/app_router.dart';
 import 'package:florista_ecommerce_app/core/utils/themes/dark_theme.dart';
 import 'package:florista_ecommerce_app/core/utils/themes/light_theme.dart';
@@ -10,13 +9,10 @@ import 'package:florista_ecommerce_app/core/localization/florista_localization_d
 import 'package:florista_ecommerce_app/features/app_language/locale_cubit.dart';
 import 'package:florista_ecommerce_app/features/cart/presentation/view_model/cart_cubit.dart';
 import 'package:florista_ecommerce_app/firebase_options.dart';
-import 'package:florista_ecommerce_app/features/cart/presentation/view_model/cart_cubit.dart';
-import 'package:florista_ecommerce_app/features/payment/presentation/view_model/payment_cubit.dart';
 import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,19 +24,13 @@ void main() async {
 
   final hive = getIt<HiveService>();
   await hive.init();
-  await getIt<SecureStorageService>()
-    .write(
-      key: SecureStorageKeys.token,
-      value:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNmExM2E2YjRhMWUyOThmNTU2MjQxZWVjIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3Nzk2NzI3ODJ9.6nftFCvrGfqq-SvN0ubRG_g0sh7LhMRvPLwGT1N-Yho",
-    );
 
-  SecureStorageService secureStorage = getIt<SecureStorageService>();
-  await secureStorage.write(
-    key: SecureStorageKeys.token,
-    value:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjllMmJmNDg2YmJhZjE1ODhiYmM5MzcyIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3ODEzNTgyNjN9.N0w2E9mBneZ4dS2i7ZcNgfcFQSk8t28fPbClxtY1ljU",
-  );
+  // NOTE: remove this block entirely once real auth/login flow is wired up.
+  // Hardcoded tokens should never ship in source control.
+  // If you still need a dev-only token for local testing, gate it behind
+  // a debug flag, e.g. `if (kDebugMode) { ... }`, and load it from an
+  // untracked .env file instead of committing it here.
+
   runApp(const MyApp());
 }
 
@@ -83,7 +73,6 @@ class MyApp extends StatelessWidget {
               GlobalCupertinoLocalizations.delegate,
             ],
             supportedLocales: S.delegate.supportedLocales,
-
             routerConfig: AppRouter.goRouter,
             theme: TLightTheme.lightTheme,
             darkTheme: TDarkTheme.darkTheme,
