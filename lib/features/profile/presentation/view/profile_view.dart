@@ -1,15 +1,19 @@
+import 'package:florista_ecommerce_app/config/di/di.dart';
 import 'package:florista_ecommerce_app/core/router/nav_helper.dart';
 import 'package:florista_ecommerce_app/core/router/route_path.dart';
 import 'package:florista_ecommerce_app/core/shared_widgets/custom_buttom_navigation_bar.dart';
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/core/utils/assets_manager.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
+import 'package:florista_ecommerce_app/features/log_out/presentation/view/widgets/log_out_dialog.dart';
+import 'package:florista_ecommerce_app/features/log_out/presentation/view_model/log_out_cubit.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/widgets/language_tile.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/widgets/notification_tile.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/widgets/profile_tile.dart';
 import 'package:florista_ecommerce_app/features/profile/presentation/widgets/profile_user_data_column.dart';
 import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/shared_widgets/web_view_screen.dart';
@@ -124,7 +128,13 @@ class _ProfileViewState extends State<ProfileView> {
                 icon: Icons.logout,
                 title: S.current.logout,
                 isLogout: true,
-                onTap: () {},
+                onTap: () => showDialog(
+                  context: context,
+                  builder: (dialogContext) => BlocProvider(
+                    create: (_) => getIt<LogOutCubit>(),
+                    child: const LogOutDialog(),
+                  ),
+                ),
               ),
 
               Spacer(),

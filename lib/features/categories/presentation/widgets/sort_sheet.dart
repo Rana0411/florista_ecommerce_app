@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
+import 'package:florista_ecommerce_app/generated/l10n.dart';
 import '../cubit/categories_state.dart';
 
 class SortSheet extends StatefulWidget {
@@ -25,14 +26,6 @@ class _SortSheetState extends State<SortSheet>
   late AnimationController _ctrl;
   late Animation<double> _slide;
 
-  static const _options = [
-    (SortOption.lowestPrice, 'Lowest Price'),
-    (SortOption.highestPrice, 'Highest Price'),
-    (SortOption.newest, 'New'),
-    (SortOption.oldest, 'Old'),
-    (SortOption.discount, 'Discount'),
-  ];
-
   @override
   void initState() {
     super.initState();
@@ -55,6 +48,14 @@ class _SortSheetState extends State<SortSheet>
 
   @override
   Widget build(BuildContext context) {
+    final options = [
+      (SortOption.lowestPrice, S.of(context).lowestPrice),
+      (SortOption.highestPrice, S.of(context).highestPrice),
+      (SortOption.newest, S.of(context).newest),
+      (SortOption.oldest, S.of(context).oldest),
+      (SortOption.discount, S.of(context).discount),
+    ];
+
     return GestureDetector(
       onTap: _dismiss,
       child: Container(
@@ -92,7 +93,7 @@ class _SortSheetState extends State<SortSheet>
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'Sort by',
+                        S.of(context).sortBy,
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w700,
@@ -104,7 +105,7 @@ class _SortSheetState extends State<SortSheet>
                     const SizedBox(height: 12),
 
                     // Options
-                    ..._options.map((opt) {
+                    ...options.map((opt) {
                       final isSelected = _selected == opt.$1;
                       return GestureDetector(
                         onTap: () => setState(() => _selected = opt.$1),
@@ -183,9 +184,9 @@ class _SortSheetState extends State<SortSheet>
                         ),
                         icon: const Icon(Icons.tune,
                             color: Colors.white, size: 18),
-                        label: const Text(
-                          'Filter',
-                          style: TextStyle(
+                        label: Text(
+                          S.of(context).filter,
+                          style: const TextStyle(
                               fontSize: 16,
                               color: Colors.white,
                               fontWeight: FontWeight.w600),

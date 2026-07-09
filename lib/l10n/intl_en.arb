@@ -144,5 +144,16 @@
   "editAddress": "Edit address",
   "label": "Label (e.g. Home)",
   "cancel": "Cancel",
-  "save": "Save"
+  "save": "Save",
+  "home": "Home",
+  "cart": "Cart",
+  "profile": "Profile",
+  "sortBy": "Sort by",
+  "lowestPrice": "Lowest Price",
+  "highestPrice": "Highest Price",
+  "newest": "New",
+  "oldest": "Old",
+  "discount": "Discount",
+  "filter": "Filter",
+  "all": "All"
 }

@@ -1,3 +1,4 @@
+import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -74,8 +75,8 @@ class _CategoriesViewState extends State<CategoriesView> {
                 backgroundColor: AppColors.primary,
                 shape: const StadiumBorder(),
                 icon: const Icon(Icons.tune, color: Colors.white, size: 20),
-                label: const Text(
-                  'Filter',
+                label:  Text(
+                  S.of(context).filter,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 15,

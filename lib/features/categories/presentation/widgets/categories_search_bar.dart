@@ -1,3 +1,4 @@
+import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -27,7 +28,7 @@ class CategoriesSearchBar extends StatelessWidget {
                 onChanged: (q) =>
                     context.read<CategoriesCubit>().searchProducts(q),
                 decoration: InputDecoration(
-                  hintText: 'Search',
+                  hintText: S.of(context).search,
                   hintStyle:
                   TextStyle(color: AppColors.hintColor, fontSize: 15),
                   prefixIcon:

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/features/categories/domain/entities/categories_entity.dart';
+import 'package:florista_ecommerce_app/generated/l10n.dart';
 
 class CategoryTabs extends StatelessWidget {
   final List<CategoriesEntity> categories;
@@ -17,13 +18,12 @@ class CategoryTabs extends StatelessWidget {
     required this.onTap,
   });
 
-  static const _allLabel = 'All';
-
   @override
   Widget build(BuildContext context) {
+    final allLabel = S.of(context).all;
     final labels = isLoading
-        ? [_allLabel]
-        : [_allLabel, ...categories.map((c) => c.name)];
+        ? [allLabel]
+        : [allLabel, ...categories.map((c) => c.name)];
 
     return SizedBox(
       height: 36,

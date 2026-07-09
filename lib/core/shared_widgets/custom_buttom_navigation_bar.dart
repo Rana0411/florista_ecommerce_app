@@ -1,4 +1,5 @@
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
+import 'package:florista_ecommerce_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
@@ -19,19 +20,22 @@ class CustomBottomNavigationBar extends StatelessWidget {
       selectedItemColor: AppColors.primary,
       unselectedItemColor: AppColors.unSelectedIconColor,
       onTap: onTap,
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: "Home"),
+      items: [
         BottomNavigationBarItem(
-          icon: Icon(Icons.category_outlined),
-          label: "Categories",
+          icon: const Icon(Icons.home_outlined),
+          label: S.of(context).home,
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.shopping_cart_outlined),
-          label: "Cart",
+          icon: const Icon(Icons.category_outlined),
+          label: S.of(context).categories,
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.person_outline),
-          label: "Profile",
+          icon: const Icon(Icons.shopping_cart_outlined),
+          label: S.of(context).cart,
+        ),
+        BottomNavigationBarItem(
+          icon: const Icon(Icons.person_outline),
+          label: S.of(context).profile,
         ),
       ],
     );
