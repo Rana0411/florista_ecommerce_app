@@ -6,4 +6,6 @@ abstract class AppConstants {
   static const String regExpValidateEmail =
       r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
   static const imagePlaceholder = "assets/images/image_placeholder.png";
+  static const List<String> mapTileSubdomains = ['a', 'b', 'c', 'd'];
+  static const String userAgentPackageName = 'com.yourcompany.tracking_app';
 }

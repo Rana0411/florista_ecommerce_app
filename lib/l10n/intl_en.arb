@@ -155,5 +155,7 @@
   "oldest": "Old",
   "discount": "Discount",
   "filter": "Filter",
-  "all": "All"
+  "all": "All",
+  "pickupAdderss": "Pickup address",
+  "userAddress": "User address"
 }

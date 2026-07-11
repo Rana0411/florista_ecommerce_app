@@ -13,7 +13,6 @@ abstract class ApiEndpoints {
   static const String createCashOrder = '$_baseUrl/orders/cash';
   static const String checkoutSession = '$_baseUrl/orders/checkout';
 
-
   static const String categories = '$_baseUrl/categories';
   static const String bestSeller = '$_baseUrl/best-seller';
   static const String occasions = '$_baseUrl/occasions';
@@ -27,5 +26,7 @@ abstract class ApiEndpoints {
   static const String getProductdetails = "$_baseUrl/product-details";
   static const String allOccasions = "$_baseUrl/occasions";
   static const String productsOfOccasion = "$_baseUrl/products";
+  static const String getRouteCoordinates = "/route/v1/driving/{coordinates}";
+
   static String orderDetails(String orderId) => '/orders/$orderId';
 }

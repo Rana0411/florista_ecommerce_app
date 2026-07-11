@@ -26,7 +26,9 @@ class _OrderSuccessViewState extends State<OrderSuccessView> {
   @override
   void initState() {
     super.initState();
-    context.read<OrderSuccessViewModel>().getOrderSuccessDetails(widget.orderId);
+    context.read<OrderSuccessViewModel>().getOrderSuccessDetails(
+      widget.orderId,
+    );
   }
 
   @override
@@ -72,7 +74,8 @@ class _OrderSuccessViewState extends State<OrderSuccessView> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () => context.push(RoutePath.trackOrder),
+                  onPressed: () =>
+                      context.push(RoutePath.trackOrder, extra: widget.orderId),
                   child: Text(l10n.trackOrder),
                 ),
               ),

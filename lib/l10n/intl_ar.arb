@@ -155,5 +155,7 @@
   "oldest": "الأقدم",
   "discount": "الخصم",
   "filter": "تصفية",
-  "all": "الكل"
+  "all": "الكل",
+  "pickupAdderss": "Pickup address",
+  "userAddress": "User address"
 }

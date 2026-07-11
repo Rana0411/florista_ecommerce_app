@@ -23,10 +23,6 @@ class CartHeader extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  IconButton(
-                    onPressed: () => context.pop(),
-                    icon: const Icon(Icons.arrow_back_ios_new, size: 20),
-                  ),
                   Expanded(
                     child: Text(
                       S.of(context).cartTitle(itemCount),

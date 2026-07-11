@@ -1,3 +1,4 @@
+import 'package:florista_ecommerce_app/core/router/route_path.dart';
 import 'package:florista_ecommerce_app/features/payment/presentation/views/payment_webview.dart';
 import 'package:florista_ecommerce_app/features/payment/presentation/widgets/date_time_helper.dart';
 import 'package:florista_ecommerce_app/features/payment/presentation/widgets/delivery_address_section.dart';
@@ -12,6 +13,8 @@ import 'package:florista_ecommerce_app/config/shared_models/addresses/address_en
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/features/payment/presentation/view_model/payment_cubit.dart';
 import 'package:florista_ecommerce_app/features/payment/presentation/widgets/place_order_button.dart';
+import 'package:go_router/go_router.dart';
+import 'package:injectable/injectable.dart';
 
 class PaymentView extends StatefulWidget {
   final double subTotal;
@@ -319,6 +322,9 @@ class _PaymentViewState extends State<PaymentView> {
     if (_selectedAddressId == null) return;
 
     final selected = _addresses.firstWhere((a) => a.id == _selectedAddressId);
+    if (_paymentMethod == 'cod') {
+      context.go(RoutePath.orderSuccess, extra: selected.id);
+    }
 
     context.read<PaymentCubit>().checkout(
       address: selected,

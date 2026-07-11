@@ -1,4 +1,5 @@
 import 'package:florista_ecommerce_app/config/di/di.dart';
+import 'package:florista_ecommerce_app/config/shared_models/map_extra.dart';
 import 'package:florista_ecommerce_app/config/shared_models/user_data/user_request_dto.dart';
 import 'package:florista_ecommerce_app/core/router/route_path.dart';
 import 'package:florista_ecommerce_app/features/auth/forget_password/presentation/screens/forget_password_view.dart';
@@ -19,6 +20,8 @@ import 'package:florista_ecommerce_app/features/edit_profile/presentation/view_m
 import 'package:florista_ecommerce_app/features/home/presentation/view/home_view.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/view_model/home_event.dart';
 import 'package:florista_ecommerce_app/features/home/presentation/view_model/home_view_model.dart';
+import 'package:florista_ecommerce_app/features/map/presentation/view/map_view.dart';
+import 'package:florista_ecommerce_app/features/map/presentation/view_model/map_view_model.dart';
 import 'package:florista_ecommerce_app/features/notifications/presentation/view_model/cubit.dart';
 import 'package:florista_ecommerce_app/features/notifications/presentation/views/notification_view.dart';
 import 'package:florista_ecommerce_app/features/order_success/presentation/view/order_success_view.dart';
@@ -167,6 +170,13 @@ abstract class AppRouter {
             child: OrderSuccessView(orderId: orderId),
           );
         },
+      ),
+      GoRoute(
+        path: RoutePath.map,
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt.get<MapCubit>(),
+          child: MapView(mapExtra: state.extra as MapExtra),
+        ),
       ),
     ],
   );
