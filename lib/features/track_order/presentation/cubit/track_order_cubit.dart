@@ -105,6 +105,7 @@ class TrackOrderCubit extends Cubit<TrackOrderState> {
       driver: _buildDriver(mergedOrder),
       timeline: _buildTimeline(mergedOrder),
       estimatedArrival: _estimateArrival(mergedOrder),
+      shippingAddress: snapshot.shippingAddress,
     ));
   }
 

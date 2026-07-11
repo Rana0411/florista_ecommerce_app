@@ -1,11 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:florista_ecommerce_app/config/di/di.dart';
+import 'package:florista_ecommerce_app/config/shared_models/map_extra.dart';
+import 'package:florista_ecommerce_app/core/router/route_path.dart';
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
-import 'package:florista_ecommerce_app/core/utils/maps_launcher.dart';
+import 'package:florista_ecommerce_app/features/auth/sign-up/domain/models/user_entity.dart'
+    as auth_user;
+import 'package:florista_ecommerce_app/features/map/domain/entities/shipping_address_entity.dart';
 import 'package:florista_ecommerce_app/features/orders/domain/use_cases/orders_use_cases.dart';
 import 'package:florista_ecommerce_app/generated/l10n.dart';
 
@@ -174,6 +179,30 @@ class _TrackOrderDetails extends StatelessWidget {
             color: AppColors.black,
           ),
         ),
+        if (state.shippingAddress.street.isNotEmpty ||
+            state.shippingAddress.city.isNotEmpty) ...[
+          const Divider(height: 28),
+          Text(
+            'Delivering to',
+            style: TextStyle(
+              fontFamily: AppFonts.interFamily,
+              fontSize: FontSize.s12,
+              color: AppColors.grey,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            [state.shippingAddress.street, state.shippingAddress.city]
+                .where((part) => part.isNotEmpty)
+                .join(', '),
+            style: TextStyle(
+              fontFamily: AppFonts.interFamily,
+              fontSize: FontSize.s14,
+              fontWeight: FontWeightManager.medium,
+              color: AppColors.black,
+            ),
+          ),
+        ],
         const Divider(height: 28),
         DriverInfoCard(driver: state.driver),
         const SizedBox(height: 16),
@@ -190,12 +219,47 @@ class _TrackOrderActions extends StatelessWidget {
 
   const _TrackOrderActions({required this.state});
 
+  /// Opens the in-app map page (RoutePath.map) with the real shipping
+  /// address (street/city/lat/lng) streamed live from Firestore, and the
+  /// driver's contact info for the "who's delivering" card.
+  void _openMapPage(BuildContext context) {
+    final address = state.shippingAddress;
+
+    final shippingAddressEntity = ShippingAddressEntity(
+      street: address.street,
+      city: address.city,
+      lat: address.latitude?.toString() ?? '',
+      long: address.longitude?.toString() ?? '',
+    );
+
+    final nameParts = state.driver.name.trim().split(' ');
+    final driverAsUser = auth_user.UserEntity(
+      firstName: nameParts.isNotEmpty ? nameParts.first : '',
+      lastName: nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
+      email: '',
+      phone: state.driver.phoneNumber,
+      token: '',
+      message: '',
+      gender: '',
+      role: '',
+      photo: state.driver.avatarAsset,
+    );
+
+    context.push(
+      RoutePath.map,
+      extra: MapExtra(
+        shippingAddressEntity: shippingAddressEntity,
+        userEntity: driverAsUser,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     if (!state.isDelivered) {
       return TrackOrderPrimaryButton(
         label: S.of(context).showMap,
-        onPressed: MapsLauncher.openDeliveryAddress,
+        onPressed: () => _openMapPage(context),
       );
     }
     return Row(
@@ -203,7 +267,7 @@ class _TrackOrderActions extends StatelessWidget {
         Expanded(
           child: TrackOrderSecondaryButton(
             label: S.of(context).showMap,
-            onPressed: MapsLauncher.openDeliveryAddress,
+            onPressed: () => _openMapPage(context),
           ),
         ),
         const SizedBox(width: 12),

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:florista_ecommerce_app/features/orders/domain/entities/order_entity.dart';
+import 'package:florista_ecommerce_app/features/track_order/domain/entities/track_order_entities.dart';
 
 /// Parses the Firestore document the Tracking App writes for a single
 /// order into the driver/timeline fields Florista needs.
@@ -14,6 +15,13 @@ import 'package:florista_ecommerce_app/features/orders/domain/entities/order_ent
 ///   startDeliverAt    (Timestamp?)
 ///   arrivedToUserAt   (Timestamp?)
 ///   deliveredAt       (Timestamp?)
+///   shippingAddress    (Map?)     — same shape sent to the backend when
+///                                   the order was placed:
+///                                     street (String?)
+///                                     phone  (String?)
+///                                     city   (String?)
+///                                     lat    (String? or num?)
+///                                     long   (String? or num?)
 ///
 /// NOTE: this schema is inferred from [OrderEntity]'s tracking fields and
 /// the doc comments already on that entity ("written by the Tracking App
@@ -28,6 +36,7 @@ class OrderTrackingSnapshot {
   final DateTime? startDeliverAt;
   final DateTime? arrivedToUserAt;
   final DateTime? deliveredAt;
+  final TrackOrderShippingAddress shippingAddress;
 
   const OrderTrackingSnapshot({
     this.driverStatus,
@@ -38,6 +47,7 @@ class OrderTrackingSnapshot {
     this.startDeliverAt,
     this.arrivedToUserAt,
     this.deliveredAt,
+    this.shippingAddress = const TrackOrderShippingAddress.empty(),
   });
 
   /// Empty snapshot — used while the tracking doc doesn't exist yet
@@ -50,7 +60,8 @@ class OrderTrackingSnapshot {
         arrivedAtPickupAt = null,
         startDeliverAt = null,
         arrivedToUserAt = null,
-        deliveredAt = null;
+        deliveredAt = null,
+        shippingAddress = const TrackOrderShippingAddress.empty();
 
   factory OrderTrackingSnapshot.fromSnapshot(DocumentSnapshot snapshot) {
     if (!snapshot.exists) return const OrderTrackingSnapshot.empty();
@@ -66,7 +77,27 @@ class OrderTrackingSnapshot {
       startDeliverAt: _parseTimestamp(data['startDeliverAt']),
       arrivedToUserAt: _parseTimestamp(data['arrivedToUserAt']),
       deliveredAt: _parseTimestamp(data['deliveredAt']),
+      shippingAddress: _parseShippingAddress(data['shippingAddress']),
     );
+  }
+
+  static TrackOrderShippingAddress _parseShippingAddress(dynamic raw) {
+    if (raw is! Map) return const TrackOrderShippingAddress.empty();
+    final map = raw;
+
+    return TrackOrderShippingAddress(
+      street: (map['street'] as String?) ?? '',
+      city: (map['city'] as String?) ?? '',
+      phone: (map['phone'] as String?) ?? '',
+      latitude: _parseCoordinate(map['lat']),
+      longitude: _parseCoordinate(map['long'] ?? map['lng']),
+    );
+  }
+
+  static double? _parseCoordinate(dynamic value) {
+    if (value is num) return value.toDouble();
+    if (value is String) return double.tryParse(value);
+    return null;
   }
 
   static DriverStatus? _parseDriverStatus(String? raw) {

@@ -13,6 +13,10 @@ class TrackOrderState extends Equatable {
   final List<TrackTimelineEntry> timeline;
   final DateTime? estimatedArrival;
 
+  /// Delivery destination (street, city, lat/lng) streamed live from the
+  /// order's Firestore tracking document.
+  final TrackOrderShippingAddress shippingAddress;
+
   const TrackOrderState({
     this.isLoading = false,
     this.errorMessage,
@@ -24,6 +28,7 @@ class TrackOrderState extends Equatable {
     ),
     this.timeline = const [],
     this.estimatedArrival,
+    this.shippingAddress = const TrackOrderShippingAddress.empty(),
   });
 
   bool get isDelivered =>
@@ -38,6 +43,7 @@ class TrackOrderState extends Equatable {
     DriverEntity? driver,
     List<TrackTimelineEntry>? timeline,
     DateTime? estimatedArrival,
+    TrackOrderShippingAddress? shippingAddress,
     bool clearError = false,
   }) {
     return TrackOrderState(
@@ -47,6 +53,7 @@ class TrackOrderState extends Equatable {
       driver: driver ?? this.driver,
       timeline: timeline ?? this.timeline,
       estimatedArrival: estimatedArrival ?? this.estimatedArrival,
+      shippingAddress: shippingAddress ?? this.shippingAddress,
     );
   }
 
@@ -58,5 +65,6 @@ class TrackOrderState extends Equatable {
         driver,
         timeline,
         estimatedArrival,
+        shippingAddress,
       ];
 }
