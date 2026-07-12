@@ -10,9 +10,14 @@ import 'package:florista_ecommerce_app/features/map/presentation/view_model/map_
 import 'package:florista_ecommerce_app/features/map/presentation/widgets/custom_marker.dart';
 
 class OrderMapWidget extends StatefulWidget {
-  const OrderMapWidget({super.key, required this.endLocation});
+  const OrderMapWidget({
+    super.key,
+    required this.endLocation,
+    required this.orderId,
+  });
 
   final LatLng endLocation;
+  final String orderId;
 
   @override
   State<OrderMapWidget> createState() => _OrderMapWidgetState();
@@ -28,7 +33,7 @@ class _OrderMapWidgetState extends State<OrderMapWidget> {
     mapController = MapController();
 
     context.read<MapCubit>().onEvent(
-      GetRouteEvent(endPoint: widget.endLocation),
+      GetRouteEvent(endPoint: widget.endLocation, orderId: widget.orderId),
     );
   }
 
@@ -42,7 +47,7 @@ class _OrderMapWidgetState extends State<OrderMapWidget> {
   Widget build(BuildContext context) {
     return BlocBuilder<MapCubit, MapState>(
       buildWhen: (previous, current) =>
-          previous.getRouteState != current.getRouteState,
+      previous.getRouteState != current.getRouteState,
       builder: (context, state) {
         if (state.getRouteState.isLoading == true) {
           return const Center(child: CircularProgressIndicator());
@@ -71,7 +76,7 @@ class _OrderMapWidgetState extends State<OrderMapWidget> {
                 ElevatedButton(
                   onPressed: () {
                     context.read<MapCubit>().onEvent(
-                      GetRouteEvent(endPoint: widget.endLocation),
+                      GetRouteEvent(endPoint: widget.endLocation, orderId: widget.orderId),
                     );
                   },
                   child: const Text('Retry'),
@@ -85,7 +90,7 @@ class _OrderMapWidgetState extends State<OrderMapWidget> {
           mapController: mapController,
           options: MapOptions(
             initialCenter:
-                state.currentDeliveryLocation ?? LatLng(30.0444, 31.2357),
+            state.currentDeliveryLocation ?? LatLng(30.0444, 31.2357),
             initialZoom: 15.5,
             backgroundColor: Theme.of(context).colorScheme.primary,
           ),

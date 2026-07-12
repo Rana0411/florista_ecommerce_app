@@ -22,6 +22,11 @@ import 'package:florista_ecommerce_app/features/track_order/domain/entities/trac
 ///                                     city   (String?)
 ///                                     lat    (String? or num?)
 ///                                     long   (String? or num?)
+///   driverLocation     (Map?)     — the driver's live GPS position,
+///                                   written every ~5s while delivering:
+///                                     lat  (num?)
+///                                     long (num?)
+///   driverLocationUpdatedAt (Timestamp?)
 ///
 /// NOTE: this schema is inferred from [OrderEntity]'s tracking fields and
 /// the doc comments already on that entity ("written by the Tracking App
@@ -37,6 +42,7 @@ class OrderTrackingSnapshot {
   final DateTime? arrivedToUserAt;
   final DateTime? deliveredAt;
   final TrackOrderShippingAddress shippingAddress;
+  final TrackOrderDriverLocation driverLocation;
 
   const OrderTrackingSnapshot({
     this.driverStatus,
@@ -48,6 +54,7 @@ class OrderTrackingSnapshot {
     this.arrivedToUserAt,
     this.deliveredAt,
     this.shippingAddress = const TrackOrderShippingAddress.empty(),
+    this.driverLocation = const TrackOrderDriverLocation.empty(),
   });
 
   /// Empty snapshot — used while the tracking doc doesn't exist yet
@@ -61,7 +68,8 @@ class OrderTrackingSnapshot {
         startDeliverAt = null,
         arrivedToUserAt = null,
         deliveredAt = null,
-        shippingAddress = const TrackOrderShippingAddress.empty();
+        shippingAddress = const TrackOrderShippingAddress.empty(),
+        driverLocation = const TrackOrderDriverLocation.empty();
 
   factory OrderTrackingSnapshot.fromSnapshot(DocumentSnapshot snapshot) {
     if (!snapshot.exists) return const OrderTrackingSnapshot.empty();
@@ -78,6 +86,24 @@ class OrderTrackingSnapshot {
       arrivedToUserAt: _parseTimestamp(data['arrivedToUserAt']),
       deliveredAt: _parseTimestamp(data['deliveredAt']),
       shippingAddress: _parseShippingAddress(data['shippingAddress']),
+      driverLocation: _parseDriverLocation(
+        data['driverLocation'],
+        data['driverLocationUpdatedAt'],
+      ),
+    );
+  }
+
+  static TrackOrderDriverLocation _parseDriverLocation(
+      dynamic raw,
+      dynamic updatedAtRaw,
+      ) {
+    if (raw is! Map) return const TrackOrderDriverLocation.empty();
+    final map = raw;
+
+    return TrackOrderDriverLocation(
+      latitude: _parseCoordinate(map['lat']),
+      longitude: _parseCoordinate(map['long'] ?? map['lng']),
+      updatedAt: _parseTimestamp(updatedAtRaw),
     );
   }
 

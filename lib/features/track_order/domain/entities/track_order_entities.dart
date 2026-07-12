@@ -84,3 +84,29 @@ class DriverEntity extends Equatable {
   @override
   List<Object?> get props => [name, phoneNumber, avatarAsset];
 }
+
+/// The driver's live GPS position, streamed from the Firestore tracking
+/// document (`orders/{orderId}.driverLocation`), written by the Tracking
+/// App every ~5 seconds while it's actively delivering the order.
+class TrackOrderDriverLocation extends Equatable {
+  final double? latitude;
+  final double? longitude;
+  final DateTime? updatedAt;
+
+  const TrackOrderDriverLocation({
+    required this.latitude,
+    required this.longitude,
+    required this.updatedAt,
+  });
+
+  const TrackOrderDriverLocation.empty()
+      : latitude = null,
+        longitude = null,
+        updatedAt = null;
+
+  /// Whether we have real coordinates we can plot on the map.
+  bool get hasCoordinates => latitude != null && longitude != null;
+
+  @override
+  List<Object?> get props => [latitude, longitude, updatedAt];
+}

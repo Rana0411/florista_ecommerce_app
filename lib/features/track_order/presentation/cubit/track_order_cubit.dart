@@ -40,7 +40,7 @@ class TrackOrderCubit extends Cubit<TrackOrderState> {
     switch (response) {
       case SuccessBaseResponse():
         final order = response.data.firstWhere(
-          (o) => o.id == _orderId,
+              (o) => o.id == _orderId,
           orElse: () => response.data.isNotEmpty
               ? response.data.first
               : _emptyOrder(),
@@ -56,8 +56,8 @@ class TrackOrderCubit extends Cubit<TrackOrderState> {
           ));
         }
       case ErrorBaseResponse():
-        // Real API failed — show the error; no fake data so the user
-        // always sees live driver info, never a hardcoded placeholder.
+      // Real API failed — show the error; no fake data so the user
+      // always sees live driver info, never a hardcoded placeholder.
         if (!isClosed) {
           emit(state.copyWith(
             isLoading: false,
@@ -106,6 +106,7 @@ class TrackOrderCubit extends Cubit<TrackOrderState> {
       timeline: _buildTimeline(mergedOrder),
       estimatedArrival: _estimateArrival(mergedOrder),
       shippingAddress: snapshot.shippingAddress,
+      driverLocation: snapshot.driverLocation,
     ));
   }
 
@@ -118,7 +119,7 @@ class TrackOrderCubit extends Cubit<TrackOrderState> {
       name: order.driverName ?? 'Waiting for driver…',
       phoneNumber: order.driverPhone ?? '',
       avatarAsset:
-          order.driverAvatarAsset ?? 'assets/images/Delivery Boy.png',
+      order.driverAvatarAsset ?? 'assets/images/Delivery Boy.png',
     );
   }
 
@@ -170,13 +171,13 @@ class TrackOrderCubit extends Cubit<TrackOrderState> {
   // ── Helpers ──────────────────────────────────────────────────────────────
 
   OrderEntity _emptyOrder() => OrderEntity(
-        id: _orderId ?? '',
-        orderNumber: _orderId ?? '',
-        items: const [],
-        totalPrice: 0,
-        status: OrderStatus.pending,
-        createdAt: DateTime.now(),
-      );
+    id: _orderId ?? '',
+    orderNumber: _orderId ?? '',
+    items: const [],
+    totalPrice: 0,
+    status: OrderStatus.pending,
+    createdAt: DateTime.now(),
+  );
 
   @override
   Future<void> close() {

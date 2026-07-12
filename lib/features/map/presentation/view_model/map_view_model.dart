@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:latlong2/latlong.dart';
@@ -14,24 +15,29 @@ import 'map_state.dart';
 @injectable
 class MapCubit extends Cubit<MapState> {
   final GetRoutePointsUseCase _getRoutePointsUseCase;
+  // Kept for DI compatibility (still registered via GetIt) — no longer
+  // used to source the map's "driver" position, since that now comes
+  // live from Firestore (see `_listenToDriverLocation` below).
+  // ignore: unused_field
   final LocationService _locationService;
   final LauncherService _launcherService;
 
-  Timer? _locationTimer;
+  StreamSubscription<DocumentSnapshot<Map<String, dynamic>>>?
+  _driverLocationSubscription;
 
   MapCubit({
     required GetRoutePointsUseCase getRoutePointsUseCase,
     required LocationService locationService,
     required LauncherService launcherService,
   }) : _launcherService = launcherService,
-       _getRoutePointsUseCase = getRoutePointsUseCase,
-       _locationService = locationService,
-       super(const MapState());
+        _getRoutePointsUseCase = getRoutePointsUseCase,
+        _locationService = locationService,
+        super(const MapState());
 
   void onEvent(MapEvents event) {
     switch (event) {
       case GetRouteEvent():
-        _getRouteAndStartTracking(event.endPoint);
+        _getRouteAndStartTracking(event.endPoint, event.orderId);
       case CallUserEvent():
         _callUser(event.phone);
       case OpenChatEvent():
@@ -39,38 +45,76 @@ class MapCubit extends Cubit<MapState> {
     }
   }
 
-  Future<void> _getRouteAndStartTracking(LatLng end) async {
+  Future<void> _getRouteAndStartTracking(LatLng end, String orderId) async {
     emit(state.copyWith(getRouteState: const BaseState(isLoading: true)));
 
-    //TODO: change the location service to get the location from the firestore
-    final locationResponse = await _locationService.getCurrentLocation();
-    if (isClosed) return;
-
-    final LatLng start;
-    switch (locationResponse) {
-      case SuccessBaseResponse<LatLng>():
-        start = locationResponse.data;
-      case ErrorBaseResponse<LatLng>():
-        emit(
-          state.copyWith(
-            getRouteState: BaseState(
-              isLoading: false,
-              errorMessage: locationResponse.error.toString(),
-            ),
+    if (orderId.isEmpty) {
+      emit(
+        state.copyWith(
+          getRouteState: const BaseState(
+            isLoading: false,
+            errorMessage: 'Missing order id — can\'t track the driver.',
           ),
-        );
-        return;
+        ),
+      );
+      return;
     }
 
+    _listenToDriverLocation(orderId, end);
+  }
+
+  /// Streams `orders/{orderId}.driverLocation` from Firestore — the
+  /// position the Tracking App writes every 5 seconds while delivering
+  /// this order — and redraws the route/marker every time it changes.
+  /// Firestore only pushes an update when the field actually changes, so
+  /// this reacts in real time and is cheaper than polling on a timer.
+  void _listenToDriverLocation(String orderId, LatLng end) {
+    _driverLocationSubscription?.cancel();
+
+    _driverLocationSubscription = FirebaseFirestore.instance
+        .collection('orders')
+        .doc(orderId)
+        .snapshots()
+        .listen((snapshot) => _onDriverLocationSnapshot(snapshot, end));
+  }
+
+  Future<void> _onDriverLocationSnapshot(
+      DocumentSnapshot<Map<String, dynamic>> snapshot,
+      LatLng end,
+      ) async {
+    if (isClosed) return;
+
+    final data = snapshot.data();
+    final rawLocation = data?['driverLocation'];
+
+    if (rawLocation is! Map) {
+      // Driver hasn't started sharing their location yet.
+      emit(
+        state.copyWith(
+          getRouteState: const BaseState(
+            isLoading: false,
+            errorMessage: 'Waiting for the driver\'s live location…',
+          ),
+        ),
+      );
+      return;
+    }
+
+    final double? lat = _asDouble(rawLocation['lat']);
+    final double? long = _asDouble(rawLocation['long'] ?? rawLocation['lng']);
+    if (lat == null || long == null) return;
+
+    final LatLng driverLocation = LatLng(lat, long);
+
     final String coords =
-        '${start.longitude},${start.latitude};${end.longitude},${end.latitude}';
+        '${driverLocation.longitude},${driverLocation.latitude};${end.longitude},${end.latitude}';
     final response = await _getRoutePointsUseCase(coordinates: coords);
     if (isClosed) return;
 
+    List<LatLng> roadPoints = [driverLocation, end];
+
     switch (response) {
       case SuccessBaseResponse<List<MapPathModel>>():
-        List<LatLng> roadPoints = [start, end];
-
         if (response.data.isNotEmpty) {
           final path = response.data.first;
           if (path.geometry?.coordinates != null) {
@@ -85,66 +129,20 @@ class MapCubit extends Cubit<MapState> {
         emit(
           state.copyWith(
             getRouteState: BaseState(isLoading: false, data: roadPoints),
-            currentDeliveryLocation: start,
+            currentDeliveryLocation: driverLocation,
           ),
         );
-
-        _startLiveTracking(end);
-
       case ErrorBaseResponse<List<MapPathModel>>():
-        emit(
-          state.copyWith(
-            getRouteState: BaseState(
-              isLoading: false,
-              errorMessage: response.errorMessage,
-            ),
-          ),
-        );
+      // Route service hiccup — still move the driver marker so the
+      // live position stays accurate even if the road path doesn't.
+        emit(state.copyWith(currentDeliveryLocation: driverLocation));
     }
   }
 
-  void _startLiveTracking(LatLng end) {
-    _locationTimer?.cancel();
-
-    _locationTimer = Timer.periodic(const Duration(seconds: 5), (timer) async {
-      final locationResponse = await _locationService.getCurrentLocation();
-      if (isClosed) return;
-
-      if (locationResponse is! SuccessBaseResponse<LatLng>) {
-        return;
-      }
-
-      final LatLng newLocation = locationResponse.data;
-      final String coords =
-          '${newLocation.longitude},${newLocation.latitude};${end.longitude},${end.latitude}';
-      final response = await _getRoutePointsUseCase(coordinates: coords);
-      if (isClosed) return;
-
-      List<LatLng> updatedRoadPoints = [newLocation, end];
-
-      switch (response) {
-        case SuccessBaseResponse<List<MapPathModel>>():
-          if (response.data.isNotEmpty) {
-            final path = response.data.first;
-            if (path.geometry?.coordinates != null) {
-              updatedRoadPoints = path.geometry!.coordinates!.map((coord) {
-                final double lat = (coord[1] as num).toDouble();
-                final double lng = (coord[0] as num).toDouble();
-                return LatLng(lat, lng);
-              }).toList();
-            }
-          }
-
-          emit(
-            state.copyWith(
-              currentDeliveryLocation: newLocation,
-              getRouteState: BaseState(data: updatedRoadPoints),
-            ),
-          );
-        case ErrorBaseResponse<List<MapPathModel>>():
-          emit(state.copyWith(currentDeliveryLocation: newLocation));
-      }
-    });
+  double? _asDouble(dynamic value) {
+    if (value is num) return value.toDouble();
+    if (value is String) return double.tryParse(value);
+    return null;
   }
 
   Future<void> _callUser(String phone) async {
@@ -157,7 +155,7 @@ class MapCubit extends Cubit<MapState> {
 
   @override
   Future<void> close() {
-    _locationTimer?.cancel();
+    _driverLocationSubscription?.cancel();
     return super.close();
   }
 }

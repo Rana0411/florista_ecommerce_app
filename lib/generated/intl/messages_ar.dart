@@ -27,9 +27,11 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "EGB": MessageLookupByLibrary.simpleMessage("جنيه مصري"),
         "aboutUs": MessageLookupByLibrary.simpleMessage("من نحن"),
+        "addAddress": MessageLookupByLibrary.simpleMessage("إضافة عنوان"),
         "addToCart": MessageLookupByLibrary.simpleMessage("أضف إلى السلة"),
         "addedToCart":
             MessageLookupByLibrary.simpleMessage("تمت الإضافة إلى السلة!"),
+        "all": MessageLookupByLibrary.simpleMessage("الكل"),
         "allPricesIncludeTax":
             MessageLookupByLibrary.simpleMessage("جميع الأسعار شاملة الضريبة"),
         "alreadyHaveAnAccount":
@@ -40,12 +42,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "bouquetInclude": MessageLookupByLibrary.simpleMessage("تشمل الباقة"),
         "callDriver": MessageLookupByLibrary.simpleMessage("اتصل بالسائق"),
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
+        "cart": MessageLookupByLibrary.simpleMessage("السلة"),
         "cartTitle": m0,
         "categories": MessageLookupByLibrary.simpleMessage("الفئات"),
         "change": MessageLookupByLibrary.simpleMessage("تغيير"),
         "changeLanguage": MessageLookupByLibrary.simpleMessage("تغيير اللغة"),
         "changePassword":
             MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
+        "checkout": MessageLookupByLibrary.simpleMessage("إتمام الطلب"),
         "close": MessageLookupByLibrary.simpleMessage("إغلاق"),
         "codeIsRequired": MessageLookupByLibrary.simpleMessage("الرمز مطلوب"),
         "codeVerificationDis": MessageLookupByLibrary.simpleMessage(
@@ -73,10 +77,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "description": MessageLookupByLibrary.simpleMessage("الوصف"),
         "didNotReceiveCode":
             MessageLookupByLibrary.simpleMessage("لم تستلم الرمز؟"),
+        "discount": MessageLookupByLibrary.simpleMessage("الخصم"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
         "driverWillBeAssignedShortly":
             MessageLookupByLibrary.simpleMessage("سيتم تعيين سائق قريبًا"),
+        "editAddress": MessageLookupByLibrary.simpleMessage("تعديل العنوان"),
         "editProfile":
             MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
         "egp": MessageLookupByLibrary.simpleMessage("جنيه مصري"),
@@ -113,6 +119,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "estimatedArrival":
             MessageLookupByLibrary.simpleMessage("الوصول المتوقع"),
         "female": MessageLookupByLibrary.simpleMessage("أنثى"),
+        "filter": MessageLookupByLibrary.simpleMessage("تصفية"),
         "firstName": MessageLookupByLibrary.simpleMessage("الاسم الأول"),
         "firstNmae": MessageLookupByLibrary.simpleMessage("الاسم الأول"),
         "florista": MessageLookupByLibrary.simpleMessage("فلوريستا"),
@@ -120,10 +127,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgetPassword":
             MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور"),
         "gender": MessageLookupByLibrary.simpleMessage("الجنس"),
+        "highestPrice": MessageLookupByLibrary.simpleMessage("الأعلى سعرًا"),
+        "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
         "inStock": MessageLookupByLibrary.simpleMessage("متوفر"),
         "invalidCode": MessageLookupByLibrary.simpleMessage("رمز غير صالح"),
         "isYourDeliveryHeroForToday": MessageLookupByLibrary.simpleMessage(
             "هو بطل التوصيل الخاص بك لليوم"),
+        "label": MessageLookupByLibrary.simpleMessage("التسمية (مثال: المنزل)"),
         "language": MessageLookupByLibrary.simpleMessage("اللغة"),
         "lastName": MessageLookupByLibrary.simpleMessage("اسم العائلة"),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
@@ -135,6 +145,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logoutSuccessful":
             MessageLookupByLibrary.simpleMessage("تم تسجيل الخروج بنجاح"),
         "logoutTitle": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+        "lowestPrice": MessageLookupByLibrary.simpleMessage("الأقل سعرًا"),
         "male": MessageLookupByLibrary.simpleMessage("ذكر"),
         "mustBeAtLeast3Characters": MessageLookupByLibrary.simpleMessage(
             "يجب أن يتكون من 3 أحرف على الأقل"),
@@ -143,6 +154,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "خطأ في الشبكة. يرجى التحقق من اتصالك."),
         "newPassword":
             MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
+        "newest": MessageLookupByLibrary.simpleMessage("الأحدث"),
         "noEmail":
             MessageLookupByLibrary.simpleMessage("لا يوجد بريد إلكتروني"),
         "noName": MessageLookupByLibrary.simpleMessage("لا يوجد اسم"),
@@ -157,6 +169,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "notification": MessageLookupByLibrary.simpleMessage("الإشعارات"),
         "occasion": MessageLookupByLibrary.simpleMessage("المناسبة"),
         "occassions": MessageLookupByLibrary.simpleMessage("المناسبات"),
+        "oldest": MessageLookupByLibrary.simpleMessage("الأقدم"),
         "onlyLettersAllowed":
             MessageLookupByLibrary.simpleMessage("الأحرف فقط مسموح بها"),
         "openInMaps": MessageLookupByLibrary.simpleMessage("فتح في الخرائط"),
@@ -165,6 +178,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "orderDeliveredConfirmationMessage":
             MessageLookupByLibrary.simpleMessage(
                 "شكرًا لتأكيدك! استمتع بزهورك 🌸"),
+        "orderPlacedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("تم تقديم طلبك\nبنجاح!"),
         "outForDelivery":
             MessageLookupByLibrary.simpleMessage("في الطريق للتوصيل"),
         "outOfStock": MessageLookupByLibrary.simpleMessage("غير متوفر"),
@@ -175,11 +190,19 @@ class MessageLookup extends MessageLookupByLibrary {
             "يجب ألا تكون كلمة المرور فارغة ويجب أن تحتوي على 6 أحرف على الأقل مع حرف كبير ورقم واحد"),
         "paswordNotMatched":
             MessageLookupByLibrary.simpleMessage("كلمتا المرور غير متطابقتين"),
+        "paymentCancelled":
+            MessageLookupByLibrary.simpleMessage("تم إلغاء الدفع"),
+        "paymentNotCompleted":
+            MessageLookupByLibrary.simpleMessage("لم تكتمل عملية الدفع"),
+        "paymentSuccessful":
+            MessageLookupByLibrary.simpleMessage("تم الدفع بنجاح!"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
+        "pickupAdderss": MessageLookupByLibrary.simpleMessage("Pickup address"),
         "plusCode": MessageLookupByLibrary.simpleMessage("بلس كود"),
         "preparingYourOrder":
             MessageLookupByLibrary.simpleMessage("جاري تحضير طلبك"),
         "productDetails": MessageLookupByLibrary.simpleMessage("تفاصيل المنتج"),
+        "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
         "profileUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage(
             "تم تحديث الملف الشخصي بنجاح!"),
         "readMore": MessageLookupByLibrary.simpleMessage("قراءة المزيد"),
@@ -190,6 +213,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "انتهت مهلة الطلب. يرجى المحاولة مرة أخرى."),
         "resend": MessageLookupByLibrary.simpleMessage("إعادة الإرسال"),
         "resendCode": MessageLookupByLibrary.simpleMessage("إعادة الإرسال"),
+        "save": MessageLookupByLibrary.simpleMessage("حفظ"),
         "savedAddress": MessageLookupByLibrary.simpleMessage("العنوان المحفوظ"),
         "search": MessageLookupByLibrary.simpleMessage("بحث"),
         "secureStorageErrorMessage": MessageLookupByLibrary.simpleMessage(
@@ -205,6 +229,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "ازدهر مع أفضل مبيعاتنا الرائعة"),
         "somethineWentWrong": MessageLookupByLibrary.simpleMessage(
             "حدث خطأ ما، حاول مرة أخرى لاحقًا"),
+        "sortBy": MessageLookupByLibrary.simpleMessage("الترتيب حسب"),
         "splashTagline": MessageLookupByLibrary.simpleMessage(
             "زهور طازجة، تصل إليك بكل حب."),
         "status": MessageLookupByLibrary.simpleMessage("الحالة"),
@@ -214,7 +239,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "textDriver": MessageLookupByLibrary.simpleMessage("راسل السائق"),
         "total": MessageLookupByLibrary.simpleMessage("الإجمالي"),
         "trackOrder": MessageLookupByLibrary.simpleMessage("تتبع الطلب"),
+        "unableToLoadOrderDetails":
+            MessageLookupByLibrary.simpleMessage("تعذّر تحميل تفاصيل الطلب"),
         "update": MessageLookupByLibrary.simpleMessage("تحديث"),
+        "userAddress": MessageLookupByLibrary.simpleMessage("User address"),
         "viewAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
         "virson": MessageLookupByLibrary.simpleMessage("الإصدار 6.3.0 - (446)")
       };

@@ -9,7 +9,7 @@ import 'package:florista_ecommerce_app/core/router/route_path.dart';
 import 'package:florista_ecommerce_app/core/utils/app_colors.dart';
 import 'package:florista_ecommerce_app/core/utils/fonts_manager.dart';
 import 'package:florista_ecommerce_app/features/auth/sign-up/domain/models/user_entity.dart'
-    as auth_user;
+as auth_user;
 import 'package:florista_ecommerce_app/features/map/domain/entities/shipping_address_entity.dart';
 import 'package:florista_ecommerce_app/features/orders/domain/use_cases/orders_use_cases.dart';
 import 'package:florista_ecommerce_app/generated/l10n.dart';
@@ -248,6 +248,7 @@ class _TrackOrderActions extends StatelessWidget {
     context.push(
       RoutePath.map,
       extra: MapExtra(
+        orderId: state.order?.id ?? '',
         shippingAddressEntity: shippingAddressEntity,
         userEntity: driverAsUser,
       ),

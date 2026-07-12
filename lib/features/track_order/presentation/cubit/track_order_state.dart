@@ -17,6 +17,10 @@ class TrackOrderState extends Equatable {
   /// order's Firestore tracking document.
   final TrackOrderShippingAddress shippingAddress;
 
+  /// The driver's live GPS position, streamed live from the order's
+  /// Firestore tracking document (updated by the Tracking App every ~5s).
+  final TrackOrderDriverLocation driverLocation;
+
   const TrackOrderState({
     this.isLoading = false,
     this.errorMessage,
@@ -29,12 +33,13 @@ class TrackOrderState extends Equatable {
     this.timeline = const [],
     this.estimatedArrival,
     this.shippingAddress = const TrackOrderShippingAddress.empty(),
+    this.driverLocation = const TrackOrderDriverLocation.empty(),
   });
 
   bool get isDelivered =>
       timeline.isNotEmpty &&
-      timeline.last.step == TrackOrderStep.delivered &&
-      timeline.last.isCompleted;
+          timeline.last.step == TrackOrderStep.delivered &&
+          timeline.last.isCompleted;
 
   TrackOrderState copyWith({
     bool? isLoading,
@@ -44,6 +49,7 @@ class TrackOrderState extends Equatable {
     List<TrackTimelineEntry>? timeline,
     DateTime? estimatedArrival,
     TrackOrderShippingAddress? shippingAddress,
+    TrackOrderDriverLocation? driverLocation,
     bool clearError = false,
   }) {
     return TrackOrderState(
@@ -54,17 +60,19 @@ class TrackOrderState extends Equatable {
       timeline: timeline ?? this.timeline,
       estimatedArrival: estimatedArrival ?? this.estimatedArrival,
       shippingAddress: shippingAddress ?? this.shippingAddress,
+      driverLocation: driverLocation ?? this.driverLocation,
     );
   }
 
   @override
   List<Object?> get props => [
-        isLoading,
-        errorMessage,
-        order,
-        driver,
-        timeline,
-        estimatedArrival,
-        shippingAddress,
-      ];
+    isLoading,
+    errorMessage,
+    order,
+    driver,
+    timeline,
+    estimatedArrival,
+    shippingAddress,
+    driverLocation,
+  ];
 }

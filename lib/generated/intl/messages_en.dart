@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addAddress": MessageLookupByLibrary.simpleMessage("Add address"),
         "addToCart": MessageLookupByLibrary.simpleMessage("Add to cart"),
         "addedToCart": MessageLookupByLibrary.simpleMessage("Added to cart!"),
+        "all": MessageLookupByLibrary.simpleMessage("All"),
         "allPricesIncludeTax":
             MessageLookupByLibrary.simpleMessage("All prices include tax"),
         "alreadyHaveAnAccount":
@@ -41,6 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Bouquet include"),
         "callDriver": MessageLookupByLibrary.simpleMessage("Call Driver"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "cart": MessageLookupByLibrary.simpleMessage("Cart"),
         "cartTitle": m0,
         "categories": MessageLookupByLibrary.simpleMessage("Categories"),
         "change": MessageLookupByLibrary.simpleMessage("change"),
@@ -77,6 +79,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "description": MessageLookupByLibrary.simpleMessage("Description"),
         "didNotReceiveCode":
             MessageLookupByLibrary.simpleMessage("Didn\'t receive the code?"),
+        "discount": MessageLookupByLibrary.simpleMessage("Discount"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
         "driverWillBeAssignedShortly": MessageLookupByLibrary.simpleMessage(
@@ -116,6 +119,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "estimatedArrival":
             MessageLookupByLibrary.simpleMessage("Estimated arrival"),
         "female": MessageLookupByLibrary.simpleMessage("Female"),
+        "filter": MessageLookupByLibrary.simpleMessage("Filter"),
         "firstName": MessageLookupByLibrary.simpleMessage("First name"),
         "firstNmae": MessageLookupByLibrary.simpleMessage("First name"),
         "florista": MessageLookupByLibrary.simpleMessage("Florista"),
@@ -123,6 +127,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgetPassword":
             MessageLookupByLibrary.simpleMessage("Forgot Password"),
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
+        "highestPrice": MessageLookupByLibrary.simpleMessage("Highest Price"),
+        "home": MessageLookupByLibrary.simpleMessage("Home"),
         "inStock": MessageLookupByLibrary.simpleMessage("In stock"),
         "invalidCode": MessageLookupByLibrary.simpleMessage("Invalid code"),
         "isYourDeliveryHeroForToday": MessageLookupByLibrary.simpleMessage(
@@ -139,6 +145,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logoutSuccessful":
             MessageLookupByLibrary.simpleMessage("Logout successful"),
         "logoutTitle": MessageLookupByLibrary.simpleMessage("Log Out"),
+        "lowestPrice": MessageLookupByLibrary.simpleMessage("Lowest Price"),
         "male": MessageLookupByLibrary.simpleMessage("Male"),
         "mustBeAtLeast3Characters": MessageLookupByLibrary.simpleMessage(
             "Must be at least 3 characters"),
@@ -146,6 +153,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "networkError": MessageLookupByLibrary.simpleMessage(
             "Network error. Please check your connection."),
         "newPassword": MessageLookupByLibrary.simpleMessage("New password"),
+        "newest": MessageLookupByLibrary.simpleMessage("New"),
         "noEmail": MessageLookupByLibrary.simpleMessage("No email"),
         "noName": MessageLookupByLibrary.simpleMessage("No name"),
         "noOccasionFounds":
@@ -158,6 +166,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "notification": MessageLookupByLibrary.simpleMessage("Notification"),
         "occasion": MessageLookupByLibrary.simpleMessage("Occasion"),
         "occassions": MessageLookupByLibrary.simpleMessage("Occasions"),
+        "oldest": MessageLookupByLibrary.simpleMessage("Old"),
         "onlyLettersAllowed":
             MessageLookupByLibrary.simpleMessage("Only letters allowed"),
         "openInMaps": MessageLookupByLibrary.simpleMessage("Open in Maps"),
@@ -185,11 +194,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "paymentSuccessful":
             MessageLookupByLibrary.simpleMessage("Payment successful!"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone number"),
+        "pickupAdderss": MessageLookupByLibrary.simpleMessage("Pickup address"),
         "plusCode": MessageLookupByLibrary.simpleMessage("Plus Code"),
         "preparingYourOrder":
             MessageLookupByLibrary.simpleMessage("Preparing your order"),
         "productDetails":
             MessageLookupByLibrary.simpleMessage("Product Details"),
+        "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "profileUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage(
             "Profile updated successfully!"),
         "readMore": MessageLookupByLibrary.simpleMessage("Read more"),
@@ -216,6 +227,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Bloom with our exquisite best sellers"),
         "somethineWentWrong": MessageLookupByLibrary.simpleMessage(
             "Something went wrong Try again later"),
+        "sortBy": MessageLookupByLibrary.simpleMessage("Sort by"),
         "splashTagline": MessageLookupByLibrary.simpleMessage(
             "Fresh flowers, delivered with love."),
         "status": MessageLookupByLibrary.simpleMessage("Status"),
@@ -228,6 +240,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "unableToLoadOrderDetails": MessageLookupByLibrary.simpleMessage(
             "Unable to load order details"),
         "update": MessageLookupByLibrary.simpleMessage("Update"),
+        "userAddress": MessageLookupByLibrary.simpleMessage("User address"),
         "viewAll": MessageLookupByLibrary.simpleMessage("View All"),
         "virson": MessageLookupByLibrary.simpleMessage("v 6.3.0 - (446)")
       };
